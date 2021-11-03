@@ -1,6 +1,5 @@
 package com.example.myapplication.entity;
 
-import android.graphics.Bitmap;
 
 import java.util.Date;
 
