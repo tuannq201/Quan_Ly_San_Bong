@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -14,6 +15,10 @@ public class LoginActivity extends AppCompatActivity {
         //Lương test
         String luong = "Test";
 
+
+    }
+
+    public void openDialog(View v){
 
     }
 }
