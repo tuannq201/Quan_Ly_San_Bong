@@ -20,7 +20,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(taiKhoan TEXT PRIMARY KEY, " +
                 "ten TEXT NOT NULL," +
                 "matKhau TEXT NOT NULL," +
-                "phanQuyen TEXT NOT NULL)";
+                "phanQuyen TEXT NOT NULL, " +
+                "hinh BLOB NOT NULL)";
         db.execSQL(create_User);
 
 
@@ -30,7 +31,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 "diaChi TEXT NOT NULL, " +
                 "giaThue INTEGER NOT NULL, " +
                 "loaiSan INTEGER NOT NULL, " +
-                "chuSan TEXT NOT NULL)";
+                "chuSan TEXT NOT NULL, " +
+                "hinh BLOB NOT NULL)";
         db.execSQL(create_San);
 
         String create_PhieuThue = "CREATE TABLE PhieuThue" +
