@@ -1,7 +1,9 @@
 package com.example.myapplication.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 
 import com.example.myapplication.database.DbHelper;
@@ -19,4 +21,13 @@ public class UserDAO {
         DbHelper dbHelper = new DbHelper(context);
         db = dbHelper.getWritableDatabase();
     }
+
+//    public int insert(User user){
+//        ContentValues values = new ContentValues();
+//        values.put("taiKhoan", user.getTaiKhoan());
+//        values.put("ten", user.getTen());
+//        values.put("matKhau", user.getMatKhau());
+//        values.put("phanQuyen", user.getPhanQuyen());
+//        values.put("hinh", user.getHinhAnh());
+//    }
 }
