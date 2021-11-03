@@ -26,22 +26,22 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
         String create_San = "CREATE TABLE San" +
-                "(ma INTEGER PRIMARY KEY AUTOINCREMENT , " +
-                "ten TEXT NOT NULL, " +
+                "(maSan INTEGER PRIMARY KEY AUTOINCREMENT , " +
+                "tenSan TEXT NOT NULL, " +
                 "diaChi TEXT NOT NULL, " +
-                "giaThue INTEGER NOT NULL, " +
+                "giaSan INTEGER NOT NULL, " +
                 "loaiSan INTEGER NOT NULL, " +
                 "chuSan TEXT NOT NULL, " +
-                "hinh BLOB NOT NULL)";
+                "anhSan BLOB NOT NULL)";
         db.execSQL(create_San);
 
         String create_PhieuThue = "CREATE TABLE PhieuThue" +
-                "(ma INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "(maPT INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "maSan INTEGER NOT NULL, " +
                 "nguoiThue TEXT NOT NULL, " +
                 "caThue INTEGER NOT NULL, " +
                 "ngayThue DATE NOT NULL, " +
-                "tienThue INTEGER NOT NULL)";
+                "tienSan INTEGER NOT NULL)";
         db.execSQL(create_PhieuThue);
 
     }
