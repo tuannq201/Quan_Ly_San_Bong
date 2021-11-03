@@ -15,12 +15,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="300dp"
         android:layout_marginEnd="16dp"
-        android:hint="Tên đăng nhập"
+        android:hint="Số điện thoại"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_phone_number_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -39,6 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_password_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -50,7 +52,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="2dp"
         android:gravity="center"
-        android:onClick="openDialog"
         android:text="Dăng Ký"
         android:textAllCaps="false"
         app:layout_constraintEnd_toStartOf="@+id/textView"
@@ -63,10 +64,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/chk_remember" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
@@ -79,7 +80,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/chk_remember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

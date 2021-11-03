@@ -1,7 +1,9 @@
 package com.example.myapplication.dao;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
@@ -22,12 +24,54 @@ public class UserDAO {
         db = dbHelper.getWritableDatabase();
     }
 
-//    public int insert(User user){
-//        ContentValues values = new ContentValues();
-//        values.put("taiKhoan", user.getTaiKhoan());
-//        values.put("ten", user.getTen());
-//        values.put("matKhau", user.getMatKhau());
-//        values.put("phanQuyen", user.getPhanQuyen());
-//        values.put("hinh", user.getHinhAnh());
-//    }
+    public int insert(User user){
+        ContentValues values = new ContentValues();
+        values.put("taiKhoan", user.taiKhoan);
+        values.put("ten", user.ten);
+        values.put("matKhau", user.matKhau);
+        values.put("phanQuyen", user.phanQuyen);
+        values.put("hinh", user.hinhAnh);
+
+        return (int) db.insert(TABLE_NAME, null, values);
+    }
+
+    public User getUser(String taiKhoan){
+        String sql = "SELECT * FROM "+TABLE_NAME+" WHERE taiKhoan=?";
+        return getData(sql, taiKhoan).get(0);
+    }
+
+    public boolean checkLogin(String taiKhoan, String pass){
+        String sql = "SELECT * FROM "+TABLE_NAME+" WHERE taiKhoan=? AND matKhau=?";
+        try {
+            List<User> list = getData(sql, taiKhoan, pass);
+            if (list.size() > 0 && list != null){
+                return true;
+            }else {
+                return false;
+            }
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public List<User> getAll(){
+        String sql = "SELECT * FROM "+TABLE_NAME;
+        return getData(sql);
+    }
+
+    @SuppressLint("Range")
+    private List<User> getData(String sql , String...selectionArgs){
+        List<User> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery(sql, selectionArgs);
+        while (cursor.moveToNext()){
+            User obj = new User();
+            obj.taiKhoan = cursor.getString(cursor.getColumnIndex("taiKhoan"));
+            obj.ten = cursor.getString(cursor.getColumnIndex("ten"));
+            obj.matKhau = cursor.getString(cursor.getColumnIndex("matKhau"));
+            obj.phanQuyen = cursor.getString(cursor.getColumnIndex("phanQuyen"));
+            obj.hinhAnh = cursor.getBlob(cursor.getColumnIndex("hinh"));
+            list.add(obj);
+        }
+        return list;
+    }
 }
