@@ -64,7 +64,6 @@ public class LoginActivity extends AppCompatActivity {
 
         checkRemember();
 
-
     }
 
     public void Login(){
@@ -169,9 +168,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
         dialog.show();
     }
 
