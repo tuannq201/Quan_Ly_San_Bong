@@ -21,7 +21,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "ten TEXT NOT NULL," +
                 "matKhau TEXT NOT NULL," +
                 "phanQuyen TEXT NOT NULL, " +
-                "hinh BLOB NOT NULL)";
+                "hinh BLOB )";
         db.execSQL(create_User);
 
 
@@ -43,6 +43,13 @@ public class DbHelper extends SQLiteOpenHelper {
                 "ngayThue DATE NOT NULL, " +
                 "tienSan INTEGER NOT NULL)";
         db.execSQL(create_PhieuThue);
+
+
+        String INSERT_User = "Insert into User(taiKhoan,ten,matKhau,phanQuyen,hinh) values " +
+                "('9999','Nhom 1 Dep Trai','123456','AD',null)," +
+                "('7777','Nhom 1 Dep Trai','123456','NT',null)," +
+                "('8888','Nhom 1 Dep Trai','123456','CS',null)";
+        db.execSQL(INSERT_User);
 
     }
 
