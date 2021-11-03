@@ -50,6 +50,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="2dp"
         android:gravity="center"
+        android:onClick="openDialog"
         android:text="Dăng Ký"
         android:textAllCaps="false"
         app:layout_constraintEnd_toStartOf="@+id/textView"
