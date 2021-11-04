@@ -6,11 +6,23 @@
     android:orientation="vertical"
     tools:context=".ui.chusan.ListSanFragment">
 
-    <ListView
-        android:id="@+id/list_sanOfChuThue"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"/>
-    <Im
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/list_sanOfChuThue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_weight="1" />
+    </ScrollView>
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="18dp"
+        android:layout_marginStart="175dp"
+        android:src="@drawable/ic_baseline_add_24"
+        android:background="@drawable/shake_bottom_ima"/>
 
 </LinearLayout>
