@@ -14,10 +14,13 @@
         <entry key="app/src/main/res/layout/dialog_register_user.xml" value="0.2536231884057971" />
         <entry key="app/src/main/res/layout/fragment_chu_san.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/layout/fragment_lich_san.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_lich_san_chu_san.xml" value="0.12360688956433637" />
         <entry key="app/src/main/res/layout/fragment_nguoi_thue.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/layout/fragment_san.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/layout/fragment_san_da_thue.xml" value="0.23641304347826086" />
+        <entry key="app/src/main/res/layout/fragment_thong_ke.xml" value="0.12360688956433637" />
         <entry key="app/src/main/res/layout/fragment_thong_tin_san.xml" value="0.24954710144927536" />
+        <entry key="app/src/main/res/menu/menu_bottom_chu_san.xml" value="0.15833333333333333" />
       </map>
     </option>
   </component>

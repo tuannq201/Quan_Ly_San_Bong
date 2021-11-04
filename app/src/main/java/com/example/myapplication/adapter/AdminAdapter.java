@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.myapplication.UI.ChuSanFragment;
-import com.example.myapplication.UI.NguoiThueFragment;
+import com.example.myapplication.UI.admin.ChuSanFragment;
+import com.example.myapplication.UI.admin.NguoiThueFragment;
 
 public class AdminAdapter extends FragmentStateAdapter {
 

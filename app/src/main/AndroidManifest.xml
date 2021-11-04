@@ -14,10 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" >
         <activity
-            android:name=".NguoiThueActivity"
+            android:name=".UI.nguoithue.NguoiThueActivity"
             android:exported="true" />
         <activity
-            android:name=".ChuSanActivity"
+            android:name=".UI.chusan.ChuSanActivity"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AdminActivity"
+            android:name=".UI.admin.AdminActivity"
             android:exported="true" />
     </application>
 

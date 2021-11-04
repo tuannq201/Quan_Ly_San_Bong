@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.UI.nguoithue;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.myapplication.UI.SanDaThueFragment;
+import com.example.myapplication.R;
 import com.example.myapplication.UI.SanFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

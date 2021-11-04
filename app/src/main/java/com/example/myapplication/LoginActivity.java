@@ -12,7 +12,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -20,6 +19,9 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.myapplication.UI.admin.AdminActivity;
+import com.example.myapplication.UI.chusan.ChuSanActivity;
+import com.example.myapplication.UI.nguoithue.NguoiThueActivity;
 import com.example.myapplication.dao.UserDAO;
 import com.example.myapplication.entity.User;
 import com.google.android.material.textfield.TextInputEditText;
