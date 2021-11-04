@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="Chọn Sân"
-        android:id="@+id/nav_chon_san"
+        android:id="@+id/nav_chon_san_cs"
         android:icon="@drawable/avatar_default"/>
     <item
         android:id="@+id/nav_thong_ke"
