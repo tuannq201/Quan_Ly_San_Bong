@@ -11,7 +11,6 @@ import com.example.myapplication.adapter.AdminAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import org.jetbrains.annotations.NotNull;
 
 public class AdminActivity extends AppCompatActivity {
 

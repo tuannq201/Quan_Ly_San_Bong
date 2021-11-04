@@ -32,6 +32,10 @@ public class NguoiThueActivity extends AppCompatActivity {
                         fragment = new SanDaThueFragment();
                         loadFragment(fragment);
                         return true;
+                    case R.id.nav_user:
+                        fragment = new UserFragment();
+                        loadFragment(fragment);
+                        return true;
                 }
                 return false;
             }
