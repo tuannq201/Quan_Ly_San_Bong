@@ -8,10 +8,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout7"
-        android:layout_width="330dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/imgTim"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
@@ -30,9 +32,8 @@
         android:id="@+id/imgTim"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
         android:src="@drawable/top10"
-        app:layout_constraintStart_toEndOf="@+id/textInputLayout7"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textInputLayout7" />
 
 
