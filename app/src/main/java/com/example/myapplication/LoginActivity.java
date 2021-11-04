@@ -12,6 +12,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -64,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
         checkRemember();
 
+
     }
 
     public void Login(){
@@ -71,20 +73,16 @@ public class LoginActivity extends AppCompatActivity {
         String password = ed_password_login.getText().toString().trim();
         if (userDAO.checkLogin(phone_number, password)){
             remember();
-            // Đăng nhập phân quyền
-            if(userDAO.getUser(phone_number).phanQuyen.equals("AD")){
-                startActivity(new Intent(LoginActivity.this,AdminActivity.class));
-            }
-
-            if(userDAO.getUser(phone_number).phanQuyen.equals("CS")){
-                startActivity(new Intent(LoginActivity.this,ChuSanActivity.class));
-            }
-
-            if(userDAO.getUser(phone_number).phanQuyen.equals("NT")){
-                startActivity(new Intent(LoginActivity.this,NguoiThueActivity.class));
-            }
-
             Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+            if (userDAO.getUser(phone_number).phanQuyen.equals("AD")){
+                startActivity(new Intent(LoginActivity.this, AdminActivity.class));
+            }
+            if (userDAO.getUser(phone_number).phanQuyen.equals("CS")){
+                startActivity(new Intent(LoginActivity.this, ChuSanActivity.class));
+            }
+            if (userDAO.getUser(phone_number).phanQuyen.equals("NT")){
+                startActivity(new Intent(LoginActivity.this, NguoiThueActivity.class));
+            }
         }else {
             Toast.makeText(getApplicationContext(), "Số điện thoại hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
         }
@@ -168,6 +166,9 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
         dialog.show();
     }
 
