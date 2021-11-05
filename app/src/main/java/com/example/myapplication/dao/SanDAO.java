@@ -50,7 +50,6 @@ public class SanDAO {
     public List<San> getAll(){
         String sql = "SELECT * FROM San";
         return getData(sql);
-
     }
     public San getID(String id){
         String sql = "SELECT * FROM San WHERE maSan=?";

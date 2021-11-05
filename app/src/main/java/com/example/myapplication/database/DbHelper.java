@@ -32,7 +32,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "giaSan INTEGER NOT NULL, " +
                 "loaiSan INTEGER NOT NULL, " +
                 "chuSan TEXT NOT NULL, " +
-                "anhSan BLOB NOT NULL)";
+                "anhSan BLOB )";
         db.execSQL(create_San);
 
         String create_PhieuThue = "CREATE TABLE PhieuThue" +
@@ -50,6 +50,17 @@ public class DbHelper extends SQLiteOpenHelper {
                 "('7777','Nhom 1 Dep Trai','123456','NT',null)," +
                 "('8888','Nhom 1 Dep Trai','123456','CS',null)";
         db.execSQL(INSERT_User);
+
+        String INSERT_San = "Insert into San(tenSan,diaChi,giaSan,loaiSan,chuSan,anhSan) values " +
+                "('5a','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
+                "('5b','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
+                "('5c','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
+                "('5d','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
+                "('5e','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
+                "('5f','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
+                "('7a','12 Au Co Da Nang',300000,7,'Nhom 1 Dep Trai',null)," +
+                "('7b','12 Au Co Da Nang',300000,7,'Nhom 1 Dep Trai',null)";
+        db.execSQL(INSERT_San);
 
     }
 
