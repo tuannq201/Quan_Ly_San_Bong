@@ -39,8 +39,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(maPT INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "maSan INTEGER NOT NULL, " +
                 "nguoiThue TEXT NOT NULL, " +
-                "caThue INTEGER NOT NULL, " +
-                "ngayThue DATE NOT NULL, " +
+                "caThue TEXT NOT NULL, " +
+                "ngayThue TEXT NOT NULL, " +
                 "tienSan INTEGER NOT NULL)";
         db.execSQL(create_PhieuThue);
 

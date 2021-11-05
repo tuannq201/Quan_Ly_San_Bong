@@ -7,12 +7,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.example.myapplication.R;
 
 public class NguoiThueFragment extends Fragment {
-
-
+    SearchView searchView;
+    ImageView imgAdd;
+    ListView lv;
     public NguoiThueFragment() {
         // Required empty public constructor
     }
@@ -33,7 +37,10 @@ public class NguoiThueFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nguoi_thue, container, false);
+        View view = inflater.inflate(R.layout.fragment_nguoi_thue, container, false);
+        searchView = view.findViewById(R.id.svChuSan);
+        imgAdd = view.findViewById(R.id.imgThemCS);
+        lv = view.findViewById(R.id.lvChuSan);
+        return view;
     }
 }

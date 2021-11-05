@@ -5,6 +5,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 
@@ -23,6 +25,7 @@ public class UserDAO {
         DbHelper dbHelper = new DbHelper(context);
         db = dbHelper.getWritableDatabase();
     }
+
 
     public int insert(User user){
         ContentValues values = new ContentValues();
@@ -82,5 +85,22 @@ public class UserDAO {
             list.add(obj);
         }
         return list;
+    }
+    //Lấy ảnh từ db (Lương tạo)
+    public Bitmap getImage(int i){
+
+        String qu = "select hinh from User where taiKhoan=?" + i ;
+        Cursor cur = db.rawQuery(qu, null);
+
+        if (cur.moveToFirst()){
+            byte[] imgByte = cur.getBlob(0);
+            cur.close();
+            return BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
+        }
+        if (cur != null && !cur.isClosed()) {
+            cur.close();
+        }
+
+        return null;
     }
 }

@@ -30,7 +30,7 @@ public class PhieuThueDAO {
         ContentValues values = new ContentValues();
         values.put("maSan",String.valueOf(obj.maSan));
         values.put("ngayThue",simpleDateFormat.format(obj.ngayThue));
-        values.put("caThue",String.valueOf(obj.caThue));
+        values.put("caThue",obj.caThue);
         values.put("tienSan",String.valueOf(obj.tienSan));
         return db.insert("PhieuThue",null,values);
     }
@@ -39,7 +39,7 @@ public class PhieuThueDAO {
             ContentValues values = new ContentValues();
             values.put("maSan",String.valueOf(obj.maSan));
             values.put("ngayThue",simpleDateFormat.format(obj.ngayThue));
-            values.put("caThue",String.valueOf(obj.caThue));
+            values.put("caThue",obj.caThue);
             values.put("tienSan",String.valueOf(obj.tienSan));
             return db.update("PhieuThue",values,"maPT=?",new String[]{String.valueOf(obj.maPT)});
         }catch (Exception ex){
@@ -64,7 +64,7 @@ public class PhieuThueDAO {
         String sql = "SELECT * FROM PhieuThue WHERE maSan=? AND caThue=? AND ngayThue=?";
         TrangThai trangThai = new TrangThai();
         try {
-            PhieuThue phieuThue = getData(sql, String.valueOf(maSan), String.valueOf(ca), ngay).get(0);
+            PhieuThue phieuThue = getData(sql, String.valueOf(maSan), ca, ngay).get(0);
 
             trangThai.maSan = phieuThue.maSan;
             trangThai.ca = phieuThue.caThue;
@@ -83,10 +83,9 @@ public class PhieuThueDAO {
             PhieuThue obj = new PhieuThue();
             obj.maPT = Integer.parseInt(cursor.getString(cursor.getColumnIndex("maPT")));
             obj.maSan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("maSan")));
-            //obj.nguoiThue = cursor.getString(cursor.getColumnIndex("nguoiThue"));
-            obj.caThue = (cursor.getString(cursor.getColumnIndex("caThue")));
+            obj.caThue = cursor.getString(cursor.getColumnIndex("caThue"));
             obj.tienSan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("tienSan")));
-            obj.ngayThue = (cursor.getString(cursor.getColumnIndex("ngayThue")));
+            obj.ngayThue = cursor.getString(cursor.getColumnIndex("ngayThue"));
             list.add(obj);
         }
         return list;

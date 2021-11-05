@@ -7,7 +7,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 
 import com.example.myapplication.R;
-import com.example.myapplication.adapter.AdminAdapter;
+import com.example.myapplication.ADadapter.AdminAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
