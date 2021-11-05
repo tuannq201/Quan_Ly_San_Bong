@@ -3,13 +3,13 @@ package com.example.myapplication.entity;
 import java.util.Date;
 
 public class PhieuThue {
-    public int maPT, maSan,caThue,tienSan;
-    public String maNT;
-    public Date ngayThue;
+    public int maPT, maSan,tienSan;
+    public String maNT, caThue;
+    public String ngayThue;
     public PhieuThue() {
     }
 
-    public PhieuThue(int maPT, int maSan, int caThue, int tienSan, String maNT, Date ngayThue) {
+    public PhieuThue(int maPT, int maSan, String caThue, int tienSan, String maNT, String ngayThue) {
         this.maPT = maPT;
         this.maSan = maSan;
         this.caThue = caThue;

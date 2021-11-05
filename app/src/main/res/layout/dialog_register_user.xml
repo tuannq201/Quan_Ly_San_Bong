@@ -48,10 +48,23 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="16dp"
+        android:onClick="gggggg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/avatar_default" />
+        app:srcCompat="@drawable/avatar_default"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+<!--    <com.theartofdev.edmodo.cropper.CropImageView-->
+<!--        android:id="@+id/cropImageView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_weight="1"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        tools:ignore="MissingConstraints" />-->
 
     <Button
         android:id="@+id/btn_camera"

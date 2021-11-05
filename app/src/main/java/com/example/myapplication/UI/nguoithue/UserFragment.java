@@ -19,6 +19,8 @@ import com.example.myapplication.R;
 import com.example.myapplication.dao.UserDAO;
 import com.example.myapplication.entity.User;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link UserFragment#newInstance} factory method to
@@ -29,6 +31,7 @@ public class UserFragment extends Fragment {
     UserDAO userDAO;
     User user;
 
+    CircleImageView circleImageView;
     ImageView iv_user_avata;
     public UserFragment() {
         // Required empty public constructor
@@ -61,15 +64,20 @@ public class UserFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_user, container, false);
         iv_user_avata = v.findViewById(R.id.iv_user_avata);
 
+        circleImageView = v.findViewById(R.id.profile_image);
+
         setAvatar();
 
         return v;
     }
+
+
     public void setAvatar(){
         if (user.hinhAnh != null){
             byte[] hinh = user.hinhAnh;
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinh, 0, hinh.length);
             iv_user_avata.setImageBitmap(bitmap);
+            circleImageView.setImageBitmap(bitmap);
         }
     }
 }

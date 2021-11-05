@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -25,6 +27,8 @@ import com.example.myapplication.UI.nguoithue.NguoiThueActivity;
 import com.example.myapplication.dao.UserDAO;
 import com.example.myapplication.entity.User;
 import com.google.android.material.textfield.TextInputEditText;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -174,6 +178,12 @@ public class LoginActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
     public byte[] imageViewToByteArray(ImageView iv){
         BitmapDrawable bitmapDrawable = (BitmapDrawable) iv.getDrawable();
         Bitmap bitmap = bitmapDrawable.getBitmap();
@@ -182,24 +192,90 @@ public class LoginActivity extends AppCompatActivity {
         return byteArray.toByteArray();
     }
 
+    public void gggggg(View v){
+//        CropImage.activity()
+//                .setGuidelines(CropImageView.Guidelines.ON)
+//                .start(this);
+//        .setGuidelines(CropImageView.Guidelines.ON)
+//                .setCropShape(CropImageView.CropShape.OVAL)
+//                .setActivityTitle("chỉnh sửa")
+//                .setCropMenuCropButtonTitle("DONE")
+//                .setFixAspectRatio(true)
+//                .start(this);
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_CAMERA && resultCode == RESULT_OK && data != null){
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            iv_camera_result.setImageBitmap(bitmap);
+            //iv_camera_result.setImageBitmap(bitmap);
+
+            Uri uri = getImageUri(LoginActivity.this, bitmap);
+
+            CropImage.activity(uri)
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                    .setCropShape(CropImageView.CropShape.OVAL)
+                    .setActivityTitle("chỉnh sửa")
+                    .setCropMenuCropButtonTitle("Lưu")
+                    .setFixAspectRatio(true)
+                    .start(this);
+
+            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+                CropImage.ActivityResult result = CropImage.getActivityResult(data);
+                if (resultCode == RESULT_OK) {
+                    Uri resultUri = result.getUri();
+                    iv_camera_result.setImageURI(resultUri);
+                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                    Exception error = result.getError();
+                }
+            }
+
         }
+
+
+
         if (requestCode == REQUEST_CODE_FOLDER && resultCode == RESULT_OK && data != null){
             Uri uri = data.getData();
             try {
-                InputStream inputStream = getContentResolver().openInputStream(uri);
-                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                iv_camera_result.setImageBitmap(bitmap);
-            } catch (FileNotFoundException e) {
+//                InputStream inputStream = getContentResolver().openInputStream(uri);
+//                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+//                iv_camera_result.setImageBitmap(bitmap);
+
+                CropImage.activity(uri)
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .setCropShape(CropImageView.CropShape.OVAL)
+                        .setActivityTitle("chỉnh sửa")
+                        .setCropMenuCropButtonTitle("Lưu")
+                        .setFixAspectRatio(true)
+                        .start(this);
+
+                Log.i("iiiii", "crop folder");
+
+
+                if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+                    CropImage.ActivityResult result = CropImage.getActivityResult(data);
+                    if (resultCode == RESULT_OK) {
+                        Uri resultUri = result.getUri();
+                        Log.i("iiiii", "crop ok");
+//                        InputStream inputStream = getContentResolver().openInputStream(resultUri);
+//                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+//                        iv_camera_result.setImageBitmap(bitmap);
+                        iv_camera_result.setImageURI(resultUri);
+
+                    } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                        Log.i("iiiii", "crop ok no");
+                        Exception error = result.getError();
+                    }
+                }
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+
+
     }
     public boolean validate(){
         return true;

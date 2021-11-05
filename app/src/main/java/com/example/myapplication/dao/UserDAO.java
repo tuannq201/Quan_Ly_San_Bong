@@ -34,6 +34,15 @@ public class UserDAO {
 
         return (int) db.insert(TABLE_NAME, null, values);
     }
+    public int update(User user){
+        ContentValues values = new ContentValues();
+//        values.put("taiKhoan", user.taiKhoan);
+        values.put("ten", user.ten);
+        values.put("matKhau", user.matKhau);
+        values.put("phanQuyen", user.phanQuyen);
+        values.put("hinh", user.hinhAnh);
+        return db.update(TABLE_NAME, values, "taiKhoan=?", new String[]{user.taiKhoan});
+    }
 
     public User getUser(String taiKhoan){
         String sql = "SELECT * FROM "+TABLE_NAME+" WHERE taiKhoan=?";

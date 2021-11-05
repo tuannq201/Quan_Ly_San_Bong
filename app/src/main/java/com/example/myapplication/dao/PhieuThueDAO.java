@@ -8,10 +8,12 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myapplication.database.DbHelper;
 import com.example.myapplication.entity.PhieuThue;
+import com.example.myapplication.entity.TrangThai;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PhieuThueDAO {
@@ -36,7 +38,6 @@ public class PhieuThueDAO {
         try {
             ContentValues values = new ContentValues();
             values.put("maSan",String.valueOf(obj.maSan));
-
             values.put("ngayThue",simpleDateFormat.format(obj.ngayThue));
             values.put("caThue",String.valueOf(obj.caThue));
             values.put("tienSan",String.valueOf(obj.tienSan));
@@ -58,6 +59,22 @@ public class PhieuThueDAO {
         List<PhieuThue> list = getData(sql,id);
         return list.get(0);
     }
+
+    public TrangThai checkTrangThai(int maSan, String ca, String ngay){
+        String sql = "SELECT * FROM PhieuThue WHERE maSan=? AND caThue=? AND ngayThue=?";
+        TrangThai trangThai = new TrangThai();
+        try {
+            PhieuThue phieuThue = getData(sql, String.valueOf(maSan), String.valueOf(ca), ngay).get(0);
+
+            trangThai.maSan = phieuThue.maSan;
+            trangThai.ca = phieuThue.caThue;
+            trangThai.ngay = phieuThue.ngayThue;
+            trangThai.taiKhoan = phieuThue.maNT;
+        }catch (Exception e){
+
+        }
+        return trangThai;
+    }
     @SuppressLint("Range")
     private List<PhieuThue> getData(String sql ,String...selectionArgs){
         List<PhieuThue> list = new ArrayList<>();
@@ -67,13 +84,9 @@ public class PhieuThueDAO {
             obj.maPT = Integer.parseInt(cursor.getString(cursor.getColumnIndex("maPT")));
             obj.maSan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("maSan")));
             //obj.nguoiThue = cursor.getString(cursor.getColumnIndex("nguoiThue"));
-            obj.caThue = Integer.parseInt(cursor.getString(cursor.getColumnIndex("caThue")));
+            obj.caThue = (cursor.getString(cursor.getColumnIndex("caThue")));
             obj.tienSan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("tienSan")));
-            try{
-                obj.ngayThue = simpleDateFormat.parse(cursor.getString(cursor.getColumnIndex("ngayThue")));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            obj.ngayThue = (cursor.getString(cursor.getColumnIndex("ngayThue")));
             list.add(obj);
         }
         return list;
