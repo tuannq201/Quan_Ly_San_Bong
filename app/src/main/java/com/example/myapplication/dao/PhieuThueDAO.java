@@ -10,10 +10,8 @@ import com.example.myapplication.database.DbHelper;
 import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.TrangThai;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class PhieuThueDAO {
@@ -73,7 +71,6 @@ public class PhieuThueDAO {
         TrangThai trangThai = new TrangThai();
         try {
             PhieuThue phieuThue = getData(sql, String.valueOf(maSan), ca, ngay).get(0);
-
             trangThai.maSan = phieuThue.maSan;
             trangThai.ca = phieuThue.caThue;
             trangThai.ngay = phieuThue.ngayThue;

@@ -1,20 +1,14 @@
 package com.example.myapplication.UI.chusan;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.myapplication.R;
-import com.example.myapplication.UI.BottomNavigationBehavior;
-import com.example.myapplication.UI.nguoithue.SanDaThueFragment;
-import com.example.myapplication.UI.nguoithue.SanFragment;
-import com.example.myapplication.UI.nguoithue.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ChuSanActivity extends AppCompatActivity {
@@ -37,7 +31,7 @@ public class ChuSanActivity extends AppCompatActivity {
                         loadFragment(fragment);
                         return true;
                     case R.id.nav_thong_ke:
-                        fragment = new ThongKeFragment();
+                        fragment = new CaSanFragment();
                         loadFragment(fragment);
                         return true;
                 }

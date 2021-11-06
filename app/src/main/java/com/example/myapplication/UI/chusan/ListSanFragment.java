@@ -4,11 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.ScrollView;
 
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -26,7 +22,7 @@ import java.util.List;
 
 
 public class ListSanFragment extends Fragment {
-
+    Fragment fragment;
     RecyclerView rcvSan;
     SanDAO dao;
     List<San> listSan;
@@ -47,6 +43,8 @@ public class ListSanFragment extends Fragment {
 
         }
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,4 +74,5 @@ public class ListSanFragment extends Fragment {
         });
         rcvSan.setAdapter(adapter);
     }
+
 }
