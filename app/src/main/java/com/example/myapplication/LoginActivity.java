@@ -194,84 +194,50 @@ public class LoginActivity extends AppCompatActivity {
 
     public void gggggg(View v){
 //        CropImage.activity()
-//                .setGuidelines(CropImageView.Guidelines.ON)
-//                .start(this);
 //        .setGuidelines(CropImageView.Guidelines.ON)
 //                .setCropShape(CropImageView.CropShape.OVAL)
 //                .setActivityTitle("chỉnh sửa")
-//                .setCropMenuCropButtonTitle("DONE")
+//                .setCropMenuCropButtonTitle("Lưu")
 //                .setFixAspectRatio(true)
 //                .start(this);
     }
-
-
-    @Override
+        @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_CAMERA && resultCode == RESULT_OK && data != null){
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            //iv_camera_result.setImageBitmap(bitmap);
-
             Uri uri = getImageUri(LoginActivity.this, bitmap);
-
             CropImage.activity(uri)
                     .setGuidelines(CropImageView.Guidelines.ON)
                     .setCropShape(CropImageView.CropShape.OVAL)
-                    .setActivityTitle("chỉnh sửa")
+                    .setActivityTitle("Cắt xén")
                     .setCropMenuCropButtonTitle("Lưu")
                     .setFixAspectRatio(true)
                     .start(this);
-
-            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-                CropImage.ActivityResult result = CropImage.getActivityResult(data);
-                if (resultCode == RESULT_OK) {
-                    Uri resultUri = result.getUri();
-                    iv_camera_result.setImageURI(resultUri);
-                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                    Exception error = result.getError();
-                }
-            }
-
         }
-
-
-
         if (requestCode == REQUEST_CODE_FOLDER && resultCode == RESULT_OK && data != null){
             Uri uri = data.getData();
             try {
-//                InputStream inputStream = getContentResolver().openInputStream(uri);
-//                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-//                iv_camera_result.setImageBitmap(bitmap);
-
                 CropImage.activity(uri)
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setCropShape(CropImageView.CropShape.OVAL)
-                        .setActivityTitle("chỉnh sửa")
+                        .setActivityTitle("Cắt xén")
                         .setCropMenuCropButtonTitle("Lưu")
                         .setFixAspectRatio(true)
                         .start(this);
-
-                Log.i("iiiii", "crop folder");
-
-
-                if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-                    CropImage.ActivityResult result = CropImage.getActivityResult(data);
-                    if (resultCode == RESULT_OK) {
-                        Uri resultUri = result.getUri();
-                        Log.i("iiiii", "crop ok");
-//                        InputStream inputStream = getContentResolver().openInputStream(resultUri);
-//                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-//                        iv_camera_result.setImageBitmap(bitmap);
-                        iv_camera_result.setImageURI(resultUri);
-
-                    } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                        Log.i("iiiii", "crop ok no");
-                        Exception error = result.getError();
-                    }
-                }
-
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        }
+
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                Uri resultUri = result.getUri();
+                iv_camera_result.setImageURI(resultUri);
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
             }
         }
 

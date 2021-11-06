@@ -71,7 +71,7 @@ public class PhieuThueDAO {
             trangThai.ngay = phieuThue.ngayThue;
             trangThai.taiKhoan = phieuThue.maNT;
         }catch (Exception e){
-
+            trangThai = null;
         }
         return trangThai;
     }

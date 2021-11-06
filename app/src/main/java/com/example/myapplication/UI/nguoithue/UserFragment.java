@@ -62,7 +62,7 @@ public class UserFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_user, container, false);
-        iv_user_avata = v.findViewById(R.id.iv_user_avata);
+        iv_user_avata = v.findViewById(R.id.profile_image);
 
         circleImageView = v.findViewById(R.id.profile_image);
 

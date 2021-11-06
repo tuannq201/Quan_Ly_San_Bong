@@ -5,27 +5,15 @@
       <map>
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_login.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/dialog_register_user.xml" value="0.22" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/drawable/ic_football.xml" value="0.26614583333333336" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/drawable-v24/ic_baseline_add_24.xml" value="0.1425925925925926" />
-        <entry key="app/src/main/res/layout/activity_admin.xml" value="0.23641304347826086" />
-        <entry key="app/src/main/res/layout/activity_chu_san.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.23641304347826086" />
-        <entry key="app/src/main/res/layout/activity_nguoi_thue.xml" value="0.23641304347826086" />
-        <entry key="app/src/main/res/layout/dialog_register_user.xml" value="0.2536231884057971" />
-        <entry key="app/src/main/res/layout/fragment_chu_san.xml" value="0.23641304347826086" />
-        <entry key="app/src/main/res/layout/fragment_lich_san.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_lich_san_chu_san.xml" value="0.12360688956433637" />
-        <entry key="app/src/main/res/layout/fragment_list_san.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/fragment_nguoi_thue.xml" value="0.23641304347826086" />
-        <entry key="app/src/main/res/layout/fragment_san.xml" value="0.23641304347826086" />
-        <entry key="app/src/main/res/layout/fragment_san_da_thue.xml" value="0.23641304347826086" />
-        <entry key="app/src/main/res/layout/fragment_thong_ke.xml" value="0.12360688956433637" />
-        <entry key="app/src/main/res/layout/fragment_thong_tin_san.xml" value="0.24954710144927536" />
-        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.4726890756302521" />
-        <entry key="app/src/main/res/layout/item_list_san_layout.xml" value="0.25" />
-        <entry key="app/src/main/res/menu/menu_activity_nguoi_thue.xml" value="0.13020833333333334" />
-        <entry key="app/src/main/res/menu/menu_bottom_chu_san.xml" value="0.15833333333333333" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/activity_nguoi_thue.xml" value="0.25" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/fragment_nguoi_thue.xml" value="0.25" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/fragment_san.xml" value="0.25" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/fragment_user.xml" value="0.25" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/menu/menu_activity_nguoi_thue.xml" value="0.25" />
       </map>
     </option>
   </component>

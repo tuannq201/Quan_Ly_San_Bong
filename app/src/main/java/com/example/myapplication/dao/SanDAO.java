@@ -7,7 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myapplication.database.DbHelper;
+import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
+import com.example.myapplication.entity.TrangThai;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +53,9 @@ public class SanDAO {
         String sql = "SELECT * FROM San";
         return getData(sql);
     }
+
+
+
     public San getID(String id){
         String sql = "SELECT * FROM San WHERE maSan=?";
         List<San> list = getData(sql,id);
