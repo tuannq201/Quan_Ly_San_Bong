@@ -28,6 +28,7 @@ public class PhieuThueDAO {
 
     public long insert(PhieuThue obj){
         ContentValues values = new ContentValues();
+        values.put("nguoiThue", obj.maNT);
         values.put("maSan",String.valueOf(obj.maSan));
         values.put("ngayThue",simpleDateFormat.format(obj.ngayThue));
         values.put("caThue",obj.caThue);
@@ -37,6 +38,7 @@ public class PhieuThueDAO {
     public int update(PhieuThue obj){
         try {
             ContentValues values = new ContentValues();
+            values.put("nguoiThue", obj.maNT);
             values.put("maSan",String.valueOf(obj.maSan));
             values.put("ngayThue",simpleDateFormat.format(obj.ngayThue));
             values.put("caThue",obj.caThue);
@@ -58,6 +60,12 @@ public class PhieuThueDAO {
         String sql = "SELECT * FROM PhieuThue WHERE maPT=?";
         List<PhieuThue> list = getData(sql,id);
         return list.get(0);
+    }
+
+    public List<PhieuThue> getPhieuByUser(String taiKhoan){
+        String sql = "SELECT * FROM PhieuThue WHERE nguoiThue=?";
+        List<PhieuThue> list = getData(sql,taiKhoan);
+        return list;
     }
 
     public TrangThai checkTrangThai(int maSan, String ca, String ngay){

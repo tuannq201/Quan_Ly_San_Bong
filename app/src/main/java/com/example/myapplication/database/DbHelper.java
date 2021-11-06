@@ -51,16 +51,28 @@ public class DbHelper extends SQLiteOpenHelper {
                 "('8888','Nhom 1 Dep Trai','123456','CS',null)";
         db.execSQL(INSERT_User);
 
-        String INSERT_San = "Insert into San(tenSan,diaChi,giaSan,loaiSan,chuSan,anhSan) values " +
-                "('5a','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
-                "('5b','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
-                "('5c','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
-                "('5d','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
-                "('5e','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
-                "('5f','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
-                "('7a','12 Au Co Da Nang',300000,7,'Nhom 1 Dep Trai',null)," +
-                "('7b','12 Au Co Da Nang',300000,7,'Nhom 1 Dep Trai',null)";
-        db.execSQL(INSERT_San);
+        String INSERT_San1 = "Insert into San(tenSan,diaChi,giaSan,loaiSan,chuSan, anhSan) values " +
+                "('san 1','Nhom 1 Dep Trai','123456',5,'8888', null)," +
+                "('san 2','Nhom 1 Dep Trai','123456',7,'8888', null)," +
+                "('san 3','Nhom 1 Dep Trai','123456',5,'8888', null)";
+        db.execSQL(INSERT_San1);
+
+        String INSERT_PT = "Insert into PhieuThue(maSan,nguoiThue,caThue,ngayThue,tienSan) values " +
+                "(1,'7777','5','2021-16-11',9999)," +
+                "(2,'7777','8','2021-16-11',9999)," +
+                "(3,'7777','2','2021-16-11',9999)";
+        db.execSQL(INSERT_PT);
+
+//        String INSERT_San = "Insert into San(tenSan,diaChi,giaSan,loaiSan,chuSan,anhSan) values " +
+//                "('5a','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
+//                "('5b','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
+//                "('5c','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
+//                "('5d','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
+//                "('5e','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
+//                "('5f','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
+//                "('7a','12 Au Co Da Nang',300000,7,'Nhom 1 Dep Trai',null)," +
+//                "('7b','12 Au Co Da Nang',300000,7,'Nhom 1 Dep Trai',null)";
+//        db.execSQL(INSERT_San);
 
     }
 

@@ -24,7 +24,11 @@ import android.widget.Toast;
 import com.example.myapplication.UI.admin.AdminActivity;
 import com.example.myapplication.UI.chusan.ChuSanActivity;
 import com.example.myapplication.UI.nguoithue.NguoiThueActivity;
+import com.example.myapplication.dao.PhieuThueDAO;
+import com.example.myapplication.dao.SanDAO;
 import com.example.myapplication.dao.UserDAO;
+import com.example.myapplication.entity.PhieuThue;
+import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.User;
 import com.google.android.material.textfield.TextInputEditText;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -73,6 +77,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+
 
     public void Login(){
         String phone_number = ed_phone_login.getText().toString().trim();

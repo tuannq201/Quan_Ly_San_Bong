@@ -10,9 +10,14 @@
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/activity_nguoi_thue.xml" value="0.25" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/dialog_register_user.xml" value="0.25" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/fragment_list_san.xml" value="0.25" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/fragment_nguoi_thue.xml" value="0.25" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/fragment_san.xml" value="0.25" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/fragment_san_da_thue.xml" value="0.25" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/fragment_user.xml" value="0.25" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/item_list_san_layout.xml" value="0.25" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/item_san_da_thue.xml" value="0.536" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/menu/menu_activity_nguoi_thue.xml" value="0.25" />
       </map>
     </option>
