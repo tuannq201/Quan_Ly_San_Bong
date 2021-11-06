@@ -54,7 +54,11 @@ public class DbHelper extends SQLiteOpenHelper {
         String INSERT_San1 = "Insert into San(tenSan,diaChi,giaSan,loaiSan,chuSan, anhSan) values " +
                 "('san 1','Nhom 1 Dep Trai','123456',5,'8888', null)," +
                 "('san 2','Nhom 1 Dep Trai','123456',7,'8888', null)," +
-                "('san 3','Nhom 1 Dep Trai','123456',5,'8888', null)";
+                "('san 3','Nhom 1 Dep Trai','123456',5,'8888', null)," +
+                "('san 4','Nhom 1 Dep Trai','123456',7,'8888', null)," +
+                "('san 5','Nhom 1 Dep Trai','123456',5,'8888', null)," +
+                "('san 6','Nhom 1 Dep Trai','123456',7,'8888', null)," +
+                "('san 7','Nhom 1 Dep Trai','123456',5,'8888', null)";
         db.execSQL(INSERT_San1);
 
         String INSERT_PT = "Insert into PhieuThue(maSan,nguoiThue,caThue,ngayThue,tienSan) values " +

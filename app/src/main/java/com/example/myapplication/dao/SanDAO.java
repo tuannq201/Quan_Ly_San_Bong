@@ -61,6 +61,7 @@ public class SanDAO {
         List<San> list = getData(sql,id);
         return list.get(0);
     }
+
     @SuppressLint("Range")
     private List<San> getData(String sql ,String...selectionArgs){
         List<San> list = new ArrayList<>();

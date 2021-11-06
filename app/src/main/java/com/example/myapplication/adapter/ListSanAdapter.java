@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.example.myapplication.UI.admin.ChuSanFragment;
 import com.example.myapplication.UI.admin.NguoiThueFragment;
 import com.example.myapplication.UI.chusan.ListSanFragment;
 import com.example.myapplication.entity.San;
+import com.example.myapplication.itf.ITFOnItenClick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +33,13 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
     private ListSanFragment fragment;
     private TextView tvTenSan, tvLoaiSan, tvGiaSan;
     private ImageView imgSan;
+    private ITFOnItenClick itfOnItenClick;
 
-    public ListSanAdapter(Context context, List<San> listSan) {
+
+    public ListSanAdapter(Context context, List<San> listSan, ITFOnItenClick itfOnItenClick) {
         this.context = context;
         this.listSan = listSan;
+        this.itfOnItenClick = itfOnItenClick;
     }
 
     @NonNull
@@ -51,6 +56,12 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
         holder.tvTenSan.setText("Tên Sân: "+ san.tenSan);
         holder.tvLoaiSan.setText("Loại Sân: "+ san.loaiSan);
         holder.tvGiaSan.setText("Giá sân: "+ san.giaSan+ "VND");
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                itfOnItenClick.onItemClick(san);
+            }
+        });
     }
 
     @Override
@@ -62,6 +73,7 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
         private TextView tvTenSan, tvLoaiSan, tvGiaSan;
         private ImageView imgSan;
         public CardView cv;
+        public LinearLayout layout;
         public int position;
 
         public ListsanViewHolder(@NonNull View itemView) {
@@ -70,8 +82,10 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
             tvLoaiSan = itemView.findViewById(R.id.text_loai_san);
             tvGiaSan = itemView.findViewById(R.id.text_gia_san);
             imgSan = itemView.findViewById(R.id.img_san);
+            layout = itemView.findViewById(R.id.layout_item_san);
 //            cv = (CardView) itemView;
         }
     }
+
 
 }

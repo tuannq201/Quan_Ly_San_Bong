@@ -17,7 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.ListSanAdapter;
 import com.example.myapplication.dao.SanDAO;
+import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
+import com.example.myapplication.itf.ITFOnItenClick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +63,17 @@ public class ListSanFragment extends Fragment {
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         rcvSan.setLayoutManager(mLayoutManager);
         rcvSan.setItemAnimator(new DefaultItemAnimator());
-        adapter = new ListSanAdapter(getActivity(), listSan);
+        adapter = new ListSanAdapter(getActivity(), listSan, new ITFOnItenClick() {
+            @Override
+            public void onItemClick(San san) {
+
+            }
+
+            @Override
+            public void onItemClick(PhieuThue phieuThue) {
+
+            }
+        });
         rcvSan.setAdapter(adapter);
     }
 }
