@@ -49,10 +49,11 @@ public class CaSanFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_ca_san, container, false);
         gridView = view.findViewById(R.id.grCaSan);
-        ArrayList<String> list = new ArrayList<>();
+
+
+
         PhieuThueDAO phieuThueDAO = new PhieuThueDAO(getContext());
         ArrayList<TrangThai> list1 = new ArrayList<>();
-
         for (int i = 1; i <= 12 ; i++) {
             //list.add("Ca: "+i);
             list1.add(phieuThueDAO.checkTrangThai(1, String.valueOf(i), "2021-11-11"));

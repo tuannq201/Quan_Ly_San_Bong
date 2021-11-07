@@ -26,9 +26,7 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
 
     private Context context;
     private ArrayList<TrangThai> list;
-    private CaSanFragment fragment;
     TextView tvTenCa,tvTrangThai,tvKhuyenMai;
-    ImageView imgCaSan;
 
     public CaSanAdapter(Context context, ArrayList<TrangThai> list) {
         super(context, 0, list);
