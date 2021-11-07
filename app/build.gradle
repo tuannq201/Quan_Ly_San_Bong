@@ -40,6 +40,7 @@ dependencies {
 
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     //thư viện bo góc ảnh
+    implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
 }

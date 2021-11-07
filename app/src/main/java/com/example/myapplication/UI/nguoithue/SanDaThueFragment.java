@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,8 @@ import com.example.myapplication.R;
 import com.example.myapplication.adapter.nguoi_thue_adapter.SanDaThueAdapter;
 import com.example.myapplication.dao.PhieuThueDAO;
 import com.example.myapplication.entity.PhieuThue;
+import com.example.myapplication.entity.San;
+import com.example.myapplication.itf.ITFOnItenClick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +36,7 @@ public class SanDaThueFragment extends Fragment {
     List<PhieuThue> phieuThueList;
     ListView lv;
     SanDaThueAdapter adapter;
+    RecyclerView rcv;
 
 
     public SanDaThueFragment() {
@@ -57,9 +63,18 @@ public class SanDaThueFragment extends Fragment {
             phieuThueList = phieuThueDAO.getPhieuByUser(phone);
             Toast.makeText(getContext(), ""+phieuThueList.size(), Toast.LENGTH_SHORT).show();
         }catch (Exception e){
-            Toast.makeText(getContext(), "err", Toast.LENGTH_SHORT).show();
         }
-        adapter = new SanDaThueAdapter(getContext(), (ArrayList<PhieuThue>) phieuThueList);
+        adapter = new SanDaThueAdapter(getContext(), (ArrayList<PhieuThue>) phieuThueList, new ITFOnItenClick() {
+            @Override
+            public void onItemClick(San san) {
+
+            }
+
+            @Override
+            public void onItemClick(PhieuThue phieuThue) {
+
+            }
+        });
 
     }
 
@@ -67,8 +82,11 @@ public class SanDaThueFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_san_da_thue, container, false);
-        lv = v.findViewById(R.id.lv_san_da_thue);
-        lv.setAdapter(adapter);
+        rcv = v.findViewById(R.id.rcv_san_da_thue);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 1);
+        rcv.setLayoutManager(mLayoutManager);
+        rcv.setItemAnimator(new DefaultItemAnimator());
+        rcv.setAdapter(adapter);
         return v;
     }
 }

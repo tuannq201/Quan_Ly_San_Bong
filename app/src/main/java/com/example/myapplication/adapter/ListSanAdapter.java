@@ -23,6 +23,7 @@ import com.example.myapplication.UI.admin.NguoiThueFragment;
 import com.example.myapplication.UI.chusan.ListSanFragment;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.itf.ITFOnItenClick;
+import com.example.myapplication.util.ImageCover;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,11 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
         holder.tvTenSan.setText("Tên Sân: "+ san.tenSan);
         holder.tvLoaiSan.setText("Loại Sân: "+ san.loaiSan);
         holder.tvGiaSan.setText("Giá sân: "+ san.giaSan+ "VND");
+        try {
+            holder.imgSan.setImageBitmap(ImageCover.ByteToBitmap(san.anhSan));
+        }catch (Exception e){
+
+        }
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
