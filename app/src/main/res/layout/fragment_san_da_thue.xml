@@ -11,5 +11,12 @@
         android:id="@+id/rcv_san_da_thue"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/lv_1111111"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginBottom="50dp" />
 </LinearLayout>

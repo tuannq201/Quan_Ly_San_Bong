@@ -6,15 +6,21 @@
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_login.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/dialog_register_user.xml" value="0.22" />
-        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_chu_san.xml" value="0.22010869565217392" />
-        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_nguoi_thue.xml" value="0.3625" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/drawable/ic_football.xml" value="0.26614583333333336" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/activity_nguoi_thue.xml" value="0.25" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/dialog_register_user.xml" value="0.25" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/fragment_list_san.xml" value="0.25" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/fragment_nguoi_thue.xml" value="0.25" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/fragment_san.xml" value="0.25" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/fragment_san111.xml" value="0.25" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/fragment_san_da_thue.xml" value="0.25" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/fragment_user.xml" value="0.25" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/item_ca_san.xml" value="0.25" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/item_list_san_layout.xml" value="0.4" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/item_san_da_thue.xml" value="0.536" />
+        <entry key="..\:/ass_du_an_1/app/src/main/res/layout/item_san_da_thue_user.xml" value="0.264" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/menu/menu_activity_nguoi_thue.xml" value="0.25" />
       </map>
     </option>
