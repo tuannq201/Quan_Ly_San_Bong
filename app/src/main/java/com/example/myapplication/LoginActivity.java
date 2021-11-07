@@ -29,6 +29,7 @@ import com.example.myapplication.dao.SanDAO;
 import com.example.myapplication.dao.UserDAO;
 import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
+import com.example.myapplication.entity.TrangThai;
 import com.example.myapplication.entity.User;
 import com.google.android.material.textfield.TextInputEditText;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -37,6 +38,8 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -60,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_register = findViewById(R.id.btn_register_user);
 
         userDAO = new UserDAO(LoginActivity.this);
+
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,6 +79,27 @@ public class LoginActivity extends AppCompatActivity {
 
         checkRemember();
 
+        demo();
+
+    }
+
+
+    public void demo(){
+        PhieuThueDAO dao = new PhieuThueDAO(LoginActivity.this);
+        List<TrangThai> trangThais = new ArrayList<>();
+        for (int ca = 1;ca <= 12;ca++){
+            trangThais.add(dao.checkTrangThai(1, String.valueOf(ca), "2021-11-11"));
+
+        }
+
+        for (int i = 0;i < 12;i++){
+            String tt = "";
+            if (trangThais.get(i) != null){
+
+            }
+            Log.i("trangthai", "ca "+ (i+1)+" trang thái: "+trangThais.get(i).taiKhoan);
+
+        }
 
     }
 

@@ -54,8 +54,8 @@ public class CaSanFragment extends Fragment {
 //        }
 
         //adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,list);
-        adapter = new PhieuThueDAO()
-        gridView.setAdapter(adapter);
+//        adapter = new PhieuThueDAO()
+//        gridView.setAdapter(adapter);
         return view;
     }
     private void openDialog(){

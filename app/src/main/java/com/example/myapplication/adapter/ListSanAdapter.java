@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -66,6 +67,7 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
             @Override
             public void onClick(View view) {
                 itfOnItenClick.onItemClick(san);
+                Toast.makeText(context, ""+san.tenSan, Toast.LENGTH_SHORT).show();
             }
         });
     }

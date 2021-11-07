@@ -27,7 +27,7 @@ public class PhieuThueDAO {
 
     public long insert(PhieuThue obj){
         ContentValues values = new ContentValues();
-        values.put("nguoiThue", obj.maNT);
+        values.put("nguoiThue", obj.nguoiThue);
         values.put("maSan",String.valueOf(obj.maSan));
         values.put("ngayThue",simpleDateFormat.format(obj.ngayThue));
         values.put("caThue",obj.caThue);
@@ -37,7 +37,7 @@ public class PhieuThueDAO {
     public int update(PhieuThue obj){
         try {
             ContentValues values = new ContentValues();
-            values.put("nguoiThue", obj.maNT);
+            values.put("nguoiThue", obj.nguoiThue);
             values.put("maSan",String.valueOf(obj.maSan));
             values.put("ngayThue",simpleDateFormat.format(obj.ngayThue));
             values.put("caThue",obj.caThue);
@@ -75,9 +75,12 @@ public class PhieuThueDAO {
             trangThai.maSan = phieuThue.maSan;
             trangThai.ca = phieuThue.caThue;
             trangThai.ngay = phieuThue.ngayThue;
-            trangThai.taiKhoan = phieuThue.maNT;
+            trangThai.taiKhoan = "đã thuê";
         }catch (Exception e){
-            trangThai = null;
+            trangThai.maSan = 0;
+            trangThai.ca = "";
+            trangThai.ngay = "";
+            trangThai.taiKhoan = "chưa thuê";
         }
         return trangThai;
     }
@@ -94,6 +97,8 @@ public class PhieuThueDAO {
             obj.caThue = cursor.getString(cursor.getColumnIndex("caThue"));
             obj.tienSan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("tienSan")));
             obj.ngayThue = cursor.getString(cursor.getColumnIndex("ngayThue"));
+            obj.nguoiThue = cursor.getString(cursor.getColumnIndex("nguoiThue"));
+
             list.add(obj);
         }
         return list;

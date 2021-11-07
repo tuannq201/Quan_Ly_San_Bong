@@ -19,22 +19,20 @@ import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.TrangThai;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CaSanAdapter extends ArrayAdapter<PhieuThue> {
 
     private Context context;
-    private List<TrangThai> list;
+    private ArrayList<TrangThai> list;
     private CaSanFragment fragment;
     TextView tvTenCa,tvTrangThai,tvKhuyenMai;
     ImageView imgCaSan;
-    public CaSanAdapter(@NonNull Context context, CaSanFragment fragment, List<TrangThai> list) {
-        super(context,0,list);
-        this.context = context;
-        this.fragment = fragment;
-        this.list = list;
-    }
 
+    public CaSanAdapter(@NonNull Context context, ArrayList<TrangThai> list) {
+        super(context, 0, list);
+    }
 
 
     @NonNull
@@ -46,7 +44,7 @@ public class CaSanAdapter extends ArrayAdapter<PhieuThue> {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.item_ca_san,null);
         }
-        final PhieuThue item = list.get(position);
+        final TrangThai item = list.get(position);
 
 
         if (item != null){

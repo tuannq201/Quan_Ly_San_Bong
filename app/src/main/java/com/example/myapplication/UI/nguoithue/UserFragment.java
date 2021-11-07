@@ -57,6 +57,8 @@ public class UserFragment extends Fragment {
         user = userDAO.getUser(phone);
         Toast.makeText(getContext(), ""+user.taiKhoan, Toast.LENGTH_SHORT).show();
 
+
+
     }
 
     @Override

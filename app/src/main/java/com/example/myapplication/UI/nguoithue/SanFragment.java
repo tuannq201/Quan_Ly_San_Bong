@@ -65,7 +65,7 @@ public class SanFragment extends Fragment {
         adapter = new ListSanAdapter(getContext(), sanList, new ITFOnItenClick() {
             @Override
             public void onItemClick(San san) {
-                Toast.makeText(getContext(), ""+san.tenSan, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), ""+san.tenSan, Toast.LENGTH_SHORT).show();
             }
 
             @Override
