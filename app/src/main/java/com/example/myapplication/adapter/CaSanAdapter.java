@@ -22,7 +22,7 @@ import com.example.myapplication.entity.TrangThai;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CaSanAdapter extends ArrayAdapter<PhieuThue> {
+public class CaSanAdapter extends ArrayAdapter<TrangThai> {
 
     private Context context;
     private ArrayList<TrangThai> list;
@@ -30,33 +30,25 @@ public class CaSanAdapter extends ArrayAdapter<PhieuThue> {
     TextView tvTenCa,tvTrangThai,tvKhuyenMai;
     ImageView imgCaSan;
 
-    public CaSanAdapter(@NonNull Context context, ArrayList<TrangThai> list) {
+    public CaSanAdapter(Context context, ArrayList<TrangThai> list) {
         super(context, 0, list);
+        this.context = context;
+        this.list = list;
     }
-
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = convertView;
-
         if (view ==null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.item_ca_san,null);
         }
         final TrangThai item = list.get(position);
-
-
         if (item != null){
-            SanDAO sanDAO = new SanDAO(context);
-            PhieuThueDAO phieuThueDAO = new PhieuThueDAO(context);
-
-            San san = sanDAO.getID(String.valueOf(item.maSan));
-            TrangThai trangThai = phieuThueDAO.checkTrangThai(1,String.valueOf(position+1),"2021-11-11");
             tvTenCa = view.findViewById(R.id.tvTenCa);
             tvTenCa.setText("Tên Ca: "+(position+1));
             tvTrangThai = view.findViewById(R.id.tvTrangThai);
-            tvTrangThai.setText("Trạng Thái: "+trangThai.taiKhoan);
+            tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
             tvKhuyenMai = view.findViewById(R.id.tvKhuyenMai);
 
         }

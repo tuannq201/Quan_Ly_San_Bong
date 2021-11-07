@@ -10,8 +10,10 @@ import android.widget.GridView;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
+import com.example.myapplication.adapter.CaSanAdapter;
 import com.example.myapplication.dao.PhieuThueDAO;
 import com.example.myapplication.entity.PhieuThue;
+import com.example.myapplication.entity.TrangThai;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ public class CaSanFragment extends Fragment {
     PhieuThueDAO dao;
     PhieuThue item;
     List<PhieuThue> list;
-    PhieuThueDAO adapter
+    PhieuThueDAO adapter;
     //ArrayAdapter adapter;
     GridView gridView;
     public CaSanFragment() {
@@ -48,14 +50,15 @@ public class CaSanFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ca_san, container, false);
         gridView = view.findViewById(R.id.grCaSan);
         ArrayList<String> list = new ArrayList<>();
-//        for (int i = 1; i <13 ; i++) {
-//            //list.add("Ca: "+i);
-//            String tenCa = String.valueOf(i);
-//        }
+        PhieuThueDAO phieuThueDAO = new PhieuThueDAO(getContext());
+        ArrayList<TrangThai> list1 = new ArrayList<>();
 
-        //adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,list);
-//        adapter = new PhieuThueDAO()
-//        gridView.setAdapter(adapter);
+        for (int i = 1; i <= 12 ; i++) {
+            //list.add("Ca: "+i);
+            list1.add(phieuThueDAO.checkTrangThai(1, String.valueOf(i), "2021-11-11"));
+        }
+        CaSanAdapter caSanAdapter = new CaSanAdapter(getContext(), list1);
+        gridView.setAdapter(caSanAdapter);
         return view;
     }
     private void openDialog(){
