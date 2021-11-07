@@ -1,21 +1,15 @@
 package com.example.myapplication.UI.admin;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.os.Bundle;
-import android.util.Log;
-
-import com.example.myapplication.R;
 import com.example.myapplication.ADadapter.AdminAdapter;
-import com.example.myapplication.dao.PhieuThueDAO;
-import com.example.myapplication.entity.CaSan;
-import com.example.myapplication.entity.PhieuThue;
+import com.example.myapplication.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-
-import java.util.ArrayList;
 
 
 public class AdminActivity extends AppCompatActivity {
@@ -47,6 +41,7 @@ public class AdminActivity extends AppCompatActivity {
                 }
             }
         }).attach();
+
 
     }
 
