@@ -1,6 +1,7 @@
 package com.example.myapplication.UI.chusan;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.CaSanAdapter;
 import com.example.myapplication.dao.PhieuThueDAO;
+import com.example.myapplication.entity.CaSan;
 import com.example.myapplication.entity.PhieuThue;
 
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ public class CaSanFragment extends Fragment {
     List<PhieuThue> list;
     CaSanAdapter adapter;
     GridView gridView;
+
     public CaSanFragment() {
 
     }

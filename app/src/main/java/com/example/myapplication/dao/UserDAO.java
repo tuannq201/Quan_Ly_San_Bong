@@ -66,9 +66,18 @@ public class UserDAO {
         }
     }
 
-    public List<User> getAll(){
-        String sql = "SELECT * FROM "+TABLE_NAME;
+    public List<User> getChuSan(){
+        String sql = "SELECT * FROM "+TABLE_NAME+ " WHERE phanQuyen = 'CS'";
         return getData(sql);
+    }
+
+    public List<User> getNguoiThue(){
+        String sql = "SELECT * FROM "+TABLE_NAME+ " WHERE phanQuyen = 'NT'";
+        return getData(sql);
+    }
+    public List<User> getPhanQuyen(String PQ){
+        String sql = "SELECT * FROM "+TABLE_NAME+ " WHERE phanQuyen =?";
+        return getData(sql,PQ);
     }
 
     @SuppressLint("Range")
@@ -84,23 +93,8 @@ public class UserDAO {
             obj.hinhAnh = cursor.getBlob(cursor.getColumnIndex("hinh"));
             list.add(obj);
         }
+        Log.e("//=========", "getData: "+toString());
         return list;
-    }
-    //Lấy ảnh từ db (Lương tạo)
-    public Bitmap getImage(int i){
 
-        String qu = "select hinh from User where taiKhoan=?" + i ;
-        Cursor cur = db.rawQuery(qu, null);
-
-        if (cur.moveToFirst()){
-            byte[] imgByte = cur.getBlob(0);
-            cur.close();
-            return BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
-        }
-        if (cur != null && !cur.isClosed()) {
-            cur.close();
-        }
-
-        return null;
     }
 }

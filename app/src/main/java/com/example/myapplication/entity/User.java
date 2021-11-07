@@ -2,6 +2,8 @@ package com.example.myapplication.entity;
 
 import android.graphics.Bitmap;
 
+import java.util.Arrays;
+
 public class User {
     public String taiKhoan, ten, matKhau, phanQuyen;
     public byte[] hinhAnh;
@@ -15,5 +17,16 @@ public class User {
         this.matKhau = matKhau;
         this.phanQuyen = phanQuyen;
         this.hinhAnh = hinhAnh;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "taiKhoan='" + taiKhoan + '\'' +
+                ", ten='" + ten + '\'' +
+                ", matKhau='" + matKhau + '\'' +
+                ", phanQuyen='" + phanQuyen + '\'' +
+                ", hinhAnh=" + Arrays.toString(hinhAnh) +
+                '}';
     }
 }

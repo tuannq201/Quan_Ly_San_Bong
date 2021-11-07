@@ -18,6 +18,7 @@
             android:layout_width="320dp"
             android:layout_height="50dp"
             android:layout_margin="8dp"
+            android:background="#BCB8B8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +27,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/top10" />
+            android:src="@drawable/add" />
 
     </LinearLayout>
 
