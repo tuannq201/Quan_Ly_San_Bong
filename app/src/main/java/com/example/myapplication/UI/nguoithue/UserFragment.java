@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class UserFragment extends Fragment {
 
     UserDAO userDAO;
     User user;
+    EditText ed_1, ed_2, ed_3;
 
     CircleImageView circleImageView;
     ImageView iv_user_avata;
@@ -63,8 +65,10 @@ public class UserFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_user, container, false);
         iv_user_avata = v.findViewById(R.id.profile_image);
-
         circleImageView = v.findViewById(R.id.profile_image);
+        ed_1 = v.findViewById(R.id.ed_name_userf);
+        ed_2 = v.findViewById(R.id.ed_phone_userf);
+        ed_3 = v.findViewById(R.id.ed_pass_userf);
 
         setAvatar();
 
@@ -79,5 +83,8 @@ public class UserFragment extends Fragment {
             iv_user_avata.setImageBitmap(bitmap);
             circleImageView.setImageBitmap(bitmap);
         }
+        ed_1.setText(""+user.ten);
+        ed_2.setText(user.taiKhoan);
+        ed_3.setText(user.matKhau);
     }
 }

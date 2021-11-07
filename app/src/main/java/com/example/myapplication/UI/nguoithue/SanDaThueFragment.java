@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.example.myapplication.adapter.nguoi_thue_adapter.SDTAdapter;
 import com.example.myapplication.adapter.nguoi_thue_adapter.SanDaThueAdapter;
 import com.example.myapplication.dao.PhieuThueDAO;
 import com.example.myapplication.entity.PhieuThue;
@@ -37,6 +38,7 @@ public class SanDaThueFragment extends Fragment {
     ListView lv;
     SanDaThueAdapter adapter;
     RecyclerView rcv;
+    SDTAdapter sdtAdapter;
 
 
     public SanDaThueFragment() {
@@ -87,6 +89,10 @@ public class SanDaThueFragment extends Fragment {
         rcv.setLayoutManager(mLayoutManager);
         rcv.setItemAnimator(new DefaultItemAnimator());
         rcv.setAdapter(adapter);
+
+        lv = v.findViewById(R.id.lv_1111111);
+        sdtAdapter = new SDTAdapter(getContext(), phieuThueList);
+        lv.setAdapter(sdtAdapter);
         return v;
     }
 }
