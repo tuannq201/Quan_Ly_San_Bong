@@ -4,10 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -65,15 +64,7 @@ public class ListSanFragment extends Fragment {
             @Override
             public void onItemClick(San san) {
 // code thông tin sân
-                //Toast.makeText(getContext(), "Tên: "+ san.tenSan, Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getActivity(),CaSanFRM.class);
-//                startActivity(intent);
-                CaSanFragment caSanFragment = new CaSanFragment();
-                AppCompatActivity activity = (AppCompatActivity) getContext();
-                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_container, caSanFragment);
-                //transaction.addToBackStack(null);
-                transaction.commit();
+                Toast.makeText(getContext(), ""+ san.tenSan, Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -24,8 +24,6 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
     private List<San> listSan;
     private Context context;
     private ListSanFragment fragment;
-    private TextView tvTenSan, tvLoaiSan, tvGiaSan;
-    private ImageView imgSan;
     private ITFOnItenClick itfOnItenClick;
 
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_chu_san"
+    app:startDestination="@id/listSanFragment">
+
+    <fragment
+        android:id="@+id/caSanFragment"
+        android:name="com.example.myapplication.UI.chusan.CaSanFragment"
+        android:label="fragment_ca_san"
+        tools:layout="@layout/fragment_ca_san" />
+    <fragment
+        android:id="@+id/listSanFragment"
+        android:name="com.example.myapplication.UI.chusan.ListSanFragment"
+        android:label="fragment_list_san"
+        tools:layout="@layout/fragment_list_san" >
+        <action
+            android:id="@+id/action_listSanFragment_to_caSanFragment"
+            app:destination="@id/caSanFragment" />
+    </fragment>
+</navigation>

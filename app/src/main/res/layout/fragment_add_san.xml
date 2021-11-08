@@ -13,7 +13,7 @@
     <ImageView
         android:id="@+id/image_san"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:layout_marginTop="15dp"
         android:src="@drawable/avatar_default"
         app:civ_border_color="#FFFFFF"

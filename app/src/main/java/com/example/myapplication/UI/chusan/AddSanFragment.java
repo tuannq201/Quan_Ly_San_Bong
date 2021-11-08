@@ -99,6 +99,7 @@ public class AddSanFragment extends Fragment {
         CumSanDAO cumSanDAO = new CumSanDAO(getContext());
         listCumSan = new ArrayList<>();
         listCumSan = cumSanDAO.getAll();
+        spinnerCumSanAdapter = new SpinnerCumSanAdapter(getContext(), (ArrayList<CumSan>) listCumSan);
         spTenCumSan.setAdapter(spinnerCumSanAdapter);
         spTenCumSan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

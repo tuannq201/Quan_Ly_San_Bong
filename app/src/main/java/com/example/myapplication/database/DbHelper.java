@@ -60,13 +60,13 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(INSERT_User);
 
         String INSERT_San1 = "Insert into San(tenSan,giaSan,loaiSan,chuSan, maCumSan, anhSan) values " +
-                "('san 1','123456',5,'8888', 1,null)," +
-                "('san 2','123456',7,'8888', 1,null)," +
-                "('san 3','123456',5,'8888', 1,null)," +
-                "('san 4','123456',7,'8888', 1,null)," +
-                "('san 5','123456',5,'8888', 1,null)," +
-                "('san 6','123456',7,'8888', 1,null)," +
-                "('san 7','123456',5,'8888', 1,null)";
+                "('san 1','123456',5,'8888', '1',null)," +
+                "('san 2','123456',7,'8888', '1',null)," +
+                "('san 3','123456',5,'8888', '1',null)," +
+                "('san 4','123456',7,'8888', '1',null)," +
+                "('san 5','123456',5,'8888', '1',null)," +
+                "('san 6','123456',7,'8888', '1',null)," +
+                "('san 7','123456',5,'8888', '1',null)";
         db.execSQL(INSERT_San1);
 
         String INSERT_CumSan = "Insert into CumSan(tenCumSan,diaChi,chuSan) values " +
@@ -79,7 +79,6 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(1,'7777','8','2021-11-11',9999)," +
                 "(1,'7777','2','2021-11-11',9999)";
         db.execSQL(INSERT_PT);
-
 
 //        String INSERT_San = "Insert into San(tenSan,diaChi,giaSan,loaiSan,chuSan,anhSan) values " +
 //                "('5a','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +

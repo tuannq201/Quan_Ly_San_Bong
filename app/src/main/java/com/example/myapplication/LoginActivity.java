@@ -104,7 +104,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
     public void Login(){
         String phone_number = ed_phone_login.getText().toString().trim();
         String password = ed_password_login.getText().toString().trim();
