@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,14 +31,14 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChuSanAdapter extends ArrayAdapter<User> {
+public class ChuSanAdapter extends ArrayAdapter<User> implements Filterable {
     private Context context;
     ChuSanFragment fragment;
     private ArrayList<User> lists;
     TextView tvTen,tvSDT,tvPass;
     ImageView imgUser;
-
-    List<CaSan> listCaSan;
+    UserDAO userDAO;
+    private ArrayList<User> listSeach;
 
     public ChuSanAdapter(Context context, ChuSanFragment fragment, ArrayList<User> lists) {
         super(context, 0, lists);
@@ -52,7 +54,7 @@ public class ChuSanAdapter extends ArrayAdapter<User> {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.item_chu_san,null);
         }
-        UserDAO userDAO = new UserDAO(context);
+        userDAO = new UserDAO(context);
         final User item = lists.get(position);
         if (item != null) {
             imgUser = view.findViewById(R.id.imgChuSan);
@@ -75,9 +77,39 @@ public class ChuSanAdapter extends ArrayAdapter<User> {
             if (userDAO.getUser(item.taiKhoan).phanQuyen.equals("CS")) {
                 tvPass.setText("Mật khẩu: " + item.matKhau);
             }
-
         }
-
         return view;
     }
+//
+//    @NonNull
+//    @Override
+//    public Filter getFilter() {
+//        return new Filter() {
+//            @Override
+//            protected FilterResults performFiltering(CharSequence charSequence) {
+//                userDAO = new UserDAO(context);
+//                String strSeach = charSequence.toString();
+//                if (strSeach.isEmpty()){
+//                    listSeach = lists;
+//                }else{
+//                    List<User> list = new ArrayList<>();
+//                    for (User user: lists){
+//                        if(user.taiKhoan.contains(strSeach)){
+//                            list.add(user);
+//                        }
+//                    }
+//                    listSeach = (ArrayList<User>) list;
+//                }
+//                FilterResults filterResults = new FilterResults();
+//                filterResults.values= listSeach;
+//                return filterResults;
+//            }
+//
+//            @Override
+//            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+//                listSeach = (ArrayList<User>) filterResults.values;
+//                notifyDataSetChanged();
+//            }
+//        };
+//    }
 }

@@ -81,6 +81,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(1,'7777','2','2021-11-11',9999)";
         db.execSQL(INSERT_PT);
 
+
 //        String INSERT_San = "Insert into San(tenSan,diaChi,giaSan,loaiSan,chuSan,anhSan) values " +
 //                "('5a','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
 //                "('5b','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +

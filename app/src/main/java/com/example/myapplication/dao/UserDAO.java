@@ -65,15 +65,15 @@ public class UserDAO {
         }
     }
 
-    public List<User> getChuSan(){
-        String sql = "SELECT * FROM "+TABLE_NAME+ " WHERE phanQuyen = 'CS'";
-        return getData(sql);
-    }
-
-    public List<User> getNguoiThue(){
-        String sql = "SELECT * FROM "+TABLE_NAME+ " WHERE phanQuyen = 'NT'";
-        return getData(sql);
-    }
+//    public List<User> getChuSan(){
+//        String sql = "SELECT * FROM "+TABLE_NAME+ " WHERE phanQuyen = 'CS'";
+//        return getData(sql);
+//    }
+//
+//    public List<User> getNguoiThue(){
+//        String sql = "SELECT * FROM "+TABLE_NAME+ " WHERE phanQuyen = 'NT'";
+//        return getData(sql);
+//    }
     public List<User> getPhanQuyen(String PQ){
         String sql = "SELECT * FROM "+TABLE_NAME+ " WHERE phanQuyen =?";
         return getData(sql,PQ);
@@ -96,6 +96,7 @@ public class UserDAO {
             obj.phanQuyen = cursor.getString(cursor.getColumnIndex("phanQuyen"));
             obj.hinhAnh = cursor.getBlob(cursor.getColumnIndex("hinh"));
             list.add(obj);
+            Log.e("//---------", "getData: "+list.toString() );
         }
         return list;
 

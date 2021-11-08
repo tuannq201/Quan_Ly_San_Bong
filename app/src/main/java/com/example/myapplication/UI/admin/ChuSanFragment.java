@@ -5,6 +5,8 @@ import static android.app.Activity.RESULT_OK;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -30,6 +32,7 @@ import com.example.myapplication.ADadapter.ChuSanAdapter;
 import com.example.myapplication.ADadapter.NguoiThueAdapter;
 import com.example.myapplication.R;
 import com.example.myapplication.dao.UserDAO;
+import com.example.myapplication.database.DbHelper;
 import com.example.myapplication.entity.User;
 import com.google.android.material.textfield.TextInputEditText;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -37,6 +40,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ChuSanFragment extends Fragment {
@@ -73,6 +77,12 @@ public class ChuSanFragment extends Fragment {
     }
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+    }
+
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chu_san, container, false);
@@ -81,17 +91,31 @@ public class ChuSanFragment extends Fragment {
         dao = new UserDAO(getActivity());
 
         //Tim Kiem User
-        User user = new User();
         searchView = view.findViewById(R.id.svChuSan);
         CharSequence query = searchView.getQuery();
-        boolean isIconfied=searchView.isIconfiedByDefault();
-        searchView.setQueryHint(user.taiKhoan);
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                capNhatLvSeach();
-            }
-        });
+       searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+           @Override
+           public boolean onQueryTextSubmit(String s) {
+               s = searchView.getQuery().toString();
+               capNhatLvSeach(s);
+               if (s.isEmpty()){
+                   capNhatLv();
+               }
+               return false;
+           }
+
+           @Override
+           public boolean onQueryTextChange(String s) {
+                   s = searchView.getQuery().toString();
+                    capNhatLvSeach(s);
+               if (s.isEmpty()){
+                   capNhatLv();
+               }
+               return false;
+           }
+       });
+
+
 
 
         imgAdd.setOnClickListener(new View.OnClickListener() {
@@ -166,10 +190,9 @@ public class ChuSanFragment extends Fragment {
         adapter = new ChuSanAdapter(getActivity(),this,list);
         lv.setAdapter(adapter);
     }
-    void capNhatLvSeach(){
-        String taiKhoan;
-        taiKhoan = searchView.getQuery().toString();
-        list = (ArrayList<User>) dao.seachUser(taiKhoan);
+    void capNhatLvSeach(String str){
+        str = searchView.getQuery().toString();
+        list = (ArrayList<User>) dao.seachUser(str);
         adapter = new ChuSanAdapter(getActivity(),this,list);
         lv.setAdapter(adapter);
     }
