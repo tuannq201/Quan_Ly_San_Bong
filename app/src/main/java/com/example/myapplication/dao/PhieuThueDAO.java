@@ -7,8 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myapplication.database.DbHelper;
-import com.example.myapplication.entity.CaSan;
 import com.example.myapplication.entity.PhieuThue;
+import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.TrangThai;
 
 import java.text.SimpleDateFormat;
@@ -19,10 +19,11 @@ public class PhieuThueDAO {
 
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private SQLiteDatabase db;
-
+    Context context;
     public PhieuThueDAO(Context context){
         DbHelper dbHelper = new DbHelper(context);
         db = dbHelper.getWritableDatabase();
+        this.context = context;
     }
 
     public long insert(PhieuThue obj){
@@ -73,13 +74,17 @@ public class PhieuThueDAO {
         try {
             PhieuThue phieuThue = getData(sql, String.valueOf(maSan), ca, ngay).get(0);
             trangThai.maSan = phieuThue.maSan;
+            trangThai.tienSan = phieuThue.tienSan;
             trangThai.ca = phieuThue.caThue;
             trangThai.ngay = phieuThue.ngayThue;
-            trangThai.taiKhoan = "đã thuê";
+            trangThai.taiKhoan = phieuThue.nguoiThue;
         }catch (Exception e){
-            trangThai.maSan = 0;
-            trangThai.ca = "";
-            trangThai.ngay = "";
+            SanDAO sanDAO = new SanDAO(context);
+            San san = sanDAO.getID(String.valueOf(maSan));
+            trangThai.maSan = maSan;
+            trangThai.ca = ca;
+            trangThai.tienSan = san.giaSan;
+            trangThai.ngay = ngay;
             trangThai.taiKhoan = "chưa thuê";
         }
         return trangThai;

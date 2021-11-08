@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 public class DbHelper extends SQLiteOpenHelper {
     static final String dbName = "QLSB";
     static final int dbVision = 2;
-
     public DbHelper(@Nullable Context context) {
         super(context, dbName, null, dbVision);
     }
@@ -17,7 +16,7 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String create_CumSan = "CREATE TABLE CumSan" +
+        String create_CumSan = "CREATE TABLE CumSan"+
                 "(maCumSan INTEGER PRIMARY KEY AUTOINCREMENT , " +
                 "chuSan TEXT NOT NULL, " +
                 "diaChi TEXT NOT NULL, " +

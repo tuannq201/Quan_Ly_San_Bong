@@ -4,29 +4,20 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.myapplication.R;
-import com.example.myapplication.UI.admin.ChuSanFragment;
-import com.example.myapplication.UI.admin.NguoiThueFragment;
 import com.example.myapplication.UI.chusan.ListSanFragment;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.itf.ITFOnItenClick;
-import com.example.myapplication.util.ImageCover;
+import com.example.myapplication.util.Cover;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanViewHolder>{
@@ -59,15 +50,18 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
         holder.tvLoaiSan.setText("Loại Sân: "+ san.loaiSan);
         holder.tvGiaSan.setText("Giá sân: "+ san.giaSan+ "VND");
         try {
-            holder.imgSan.setImageBitmap(ImageCover.ByteToBitmap(san.anhSan));
+            holder.imgSan.setImageBitmap(Cover.ByteToBitmap(san.anhSan));
         }catch (Exception e){
 
         }
-        holder.layout.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 itfOnItenClick.onItemClick(san);
-                Toast.makeText(context, ""+san.tenSan, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Layout click", Toast.LENGTH_SHORT).show();
+//                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+//                CaSanFragment caSanFragment = new CaSanFragment();
+//                activity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_item_san,caSanFragment).addToBackStack(null).commit();
             }
         });
     }

@@ -20,20 +20,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.SpinnerCumSanAdapter;
 import com.example.myapplication.dao.CumSanDAO;
 import com.example.myapplication.dao.SanDAO;
 import com.example.myapplication.entity.CumSan;
 import com.example.myapplication.entity.San;
-import com.example.myapplication.entity.User;
-import com.example.myapplication.util.ImageCover;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+import com.example.myapplication.util.Cover;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -126,7 +121,7 @@ public class AddSanFragment extends Fragment {
                 san.tenSan = tenSan;
                 san.loaiSan = loaiSan;
                 san.giaSan = giaSan;
-                san.anhSan = ImageCover.imageViewToByteArray(imgSan);
+                san.anhSan = Cover.imageViewToByteArray(imgSan);
                 san.taiKhoan = phone;
                 san.maCumSan = maCumSan;
                 if (dao.insert(san) > 0){

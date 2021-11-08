@@ -17,6 +17,13 @@
         android:src="@drawable/br_sanbong" />
 
     <EditText
+        android:id="@+id/edCaThueDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <EditText
         android:id="@+id/edGioThueDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,21 +31,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/edKhuyenMaiDialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/edNgayThueDialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/edCaThueDialog"
+        android:id="@+id/edGiaThueDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -52,7 +45,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/edGiaThueDialog"
+        android:id="@+id/edKhuyenMaiDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"

@@ -4,23 +4,19 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.adapter.ListSanAdapter;
 import com.example.myapplication.dao.SanDAO;
 import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.itf.ITFOnItenClick;
-import com.example.myapplication.util.ImageCover;
+import com.example.myapplication.util.Cover;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SanDaThueAdapter extends RecyclerView.Adapter<SanDaThueAdapter.ViewHolder> {
@@ -56,7 +52,7 @@ public class SanDaThueAdapter extends RecyclerView.Adapter<SanDaThueAdapter.View
 //            diaChi = san.diaChi;
             loaiSan = san.loaiSan;
             hinh = san.anhSan;
-            holder.iv.setImageBitmap(ImageCover.ByteToBitmap(hinh));
+            holder.iv.setImageBitmap(Cover.ByteToBitmap(hinh));
         }catch (Exception e){
 
         }
