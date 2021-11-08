@@ -53,22 +53,27 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(create_PhieuThue);
 
 
-        String INSERT_User = "Insert into User(taiKhoan,ten,matKhau,phanQuyen,diachi,hinh) values " +
-                "('9999','Nhom 1 Dep Trai','123456','AD',,null)," +
+        String INSERT_User = "Insert into User(taiKhoan,hoTen,matKhau,phanQuyen,hinh) values " +
+                "('9999','Nhom 1 Dep Trai','123456','AD',null)," +
                 "('7777','Nhom 1 Dep Trai','123456','NT',null)," +
                 "('8888','Nhom 1 Dep Trai','123456','CS',null)";
         db.execSQL(INSERT_User);
 
-        String INSERT_San1 = "Insert into San(tenSan,diaChi,giaSan,loaiSan,chuSan, anhSan) values " +
-                "('san 1','Nhom 1 Dep Trai','123456',5,'8888', null)," +
-                "('san 2','Nhom 1 Dep Trai','123456',7,'8888', null)," +
-                "('san 3','Nhom 1 Dep Trai','123456',5,'8888', null)," +
-                "('san 4','Nhom 1 Dep Trai','123456',7,'8888', null)," +
-                "('san 5','Nhom 1 Dep Trai','123456',5,'8888', null)," +
-                "('san 6','Nhom 1 Dep Trai','123456',7,'8888', null)," +
-                "('san 7','Nhom 1 Dep Trai','123456',5,'8888', null)";
+        String INSERT_San1 = "Insert into San(tenSan,giaSan,loaiSan,chuSan, maCumSan, anhSan) values " +
+                "('san 1','123456',5,'8888', '1',null)," +
+                "('san 2','123456',7,'8888', '1',null)," +
+                "('san 3','123456',5,'8888', '1',null)," +
+                "('san 4','123456',7,'8888', '1',null)," +
+                "('san 5','123456',5,'8888', '1',null)," +
+                "('san 6','123456',7,'8888', '1',null)," +
+                "('san 7','123456',5,'8888', '1',null)";
         db.execSQL(INSERT_San1);
 
+        String INSERT_CumSan = "Insert into CumSan(tenCumSan,diaChi,chuSan) values " +
+                "('MinhToan','Nhom 1 Dep Trai','8888')," +
+                "('MinhToan2','Nhom 1 Dep Trai','8888')," +
+                "('MinhToan3','Nhom 1 Dep Trai','8888')";
+        db.execSQL(INSERT_CumSan);
         String INSERT_PT = "Insert into PhieuThue(maSan,nguoiThue,caThue,ngayThue,tienSan) values " +
                 "(1,'7777','5','2021-11-11',9999)," +
                 "(1,'7777','8','2021-11-11',9999)," +

@@ -29,6 +29,7 @@ public class SanDAO {
         values.put("loaiSan",String.valueOf(obj.loaiSan));
         values.put("tenSan",obj.tenSan);
         values.put("chuSan",obj.taiKhoan);
+        values.put("maCumSan", obj.maCumSan);
         values.put("anhSan",obj.anhSan);
         return db.insert("San",null,values);
     }
@@ -39,6 +40,7 @@ public class SanDAO {
             values.put("loaiSan",String.valueOf(obj.loaiSan));
             values.put("tenSan",obj.tenSan);
             values.put("chuSan",obj.taiKhoan);
+            values.put("maCumSan", obj.maCumSan);
             values.put("anhSan",obj.anhSan);
             return db.update("San",values,"maSan=?",new String[]{String.valueOf(obj.maSan)});
         }catch (Exception ex){
@@ -71,7 +73,8 @@ public class SanDAO {
             obj.maSan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("maSan")));
             obj.giaSan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("giaSan")));
             obj.tenSan = cursor.getString(cursor.getColumnIndex("tenSan"));
-            obj.loaiSan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("loaiSan")));
+            obj.loaiSan = cursor.getString(cursor.getColumnIndex("loaiSan"));
+            obj.maCumSan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("maCumSan")));
             obj.taiKhoan =cursor.getString(cursor.getColumnIndex("chuSan"));
             obj.anhSan = cursor.getBlob(cursor.getColumnIndex("anhSan"));
             list.add(obj);

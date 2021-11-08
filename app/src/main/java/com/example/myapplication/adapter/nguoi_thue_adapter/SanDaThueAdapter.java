@@ -49,7 +49,7 @@ public class SanDaThueAdapter extends RecyclerView.Adapter<SanDaThueAdapter.View
         PhieuThue phieuThue = phieuThueList.get(position);
         sanDAO = new SanDAO(context);
         String diaChi = "";
-        int loaiSan = 0;
+        String loaiSan = "";
         byte[] hinh;
         try {
             San san = sanDAO.getID(String.valueOf(phieuThue.maSan));
