@@ -20,12 +20,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.myapplication.ADadapter.ChuSanAdapter;
+import com.example.myapplication.ADadapter.NguoiThueAdapter;
 import com.example.myapplication.R;
 import com.example.myapplication.dao.UserDAO;
 import com.example.myapplication.entity.User;
@@ -74,10 +76,23 @@ public class ChuSanFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chu_san, container, false);
-        searchView = view.findViewById(R.id.svChuSan);
         imgAdd = view.findViewById(R.id.imgThemCS);
         lv = view.findViewById(R.id.lvChuSan);
         dao = new UserDAO(getActivity());
+
+        //Tim Kiem User
+        User user = new User();
+        searchView = view.findViewById(R.id.svChuSan);
+        CharSequence query = searchView.getQuery();
+        boolean isIconfied=searchView.isIconfiedByDefault();
+        searchView.setQueryHint(user.taiKhoan);
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                capNhatLvSeach();
+            }
+        });
+
 
         imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +101,6 @@ public class ChuSanFragment extends Fragment {
             }
         });
         capNhatLv();
-
 
 
         return view;
@@ -149,6 +163,13 @@ public class ChuSanFragment extends Fragment {
 
     void capNhatLv(){
         list = (ArrayList<User>) dao.getPhanQuyen("CS");
+        adapter = new ChuSanAdapter(getActivity(),this,list);
+        lv.setAdapter(adapter);
+    }
+    void capNhatLvSeach(){
+        String taiKhoan;
+        taiKhoan = searchView.getQuery().toString();
+        list = (ArrayList<User>) dao.seachUser(taiKhoan);
         adapter = new ChuSanAdapter(getActivity(),this,list);
         lv.setAdapter(adapter);
     }

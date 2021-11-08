@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 public class DbHelper extends SQLiteOpenHelper {
     static final String dbName = "QLSB";
     static final int dbVision = 2;
+
     public DbHelper(@Nullable Context context) {
         super(context, dbName, null, dbVision);
     }
@@ -16,7 +17,7 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String create_CumSan = "CREATE TABLE CumSan"+
+        String create_CumSan = "CREATE TABLE CumSan" +
                 "(maCumSan INTEGER PRIMARY KEY AUTOINCREMENT , " +
                 "chuSan TEXT NOT NULL, " +
                 "diaChi TEXT NOT NULL, " +
@@ -60,13 +61,13 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(INSERT_User);
 
         String INSERT_San1 = "Insert into San(tenSan,giaSan,loaiSan,chuSan, maCumSan, anhSan) values " +
-                "('san 1','123456',5,'8888', '1',null)," +
-                "('san 2','123456',7,'8888', '1',null)," +
-                "('san 3','123456',5,'8888', '1',null)," +
-                "('san 4','123456',7,'8888', '1',null)," +
-                "('san 5','123456',5,'8888', '1',null)," +
-                "('san 6','123456',7,'8888', '1',null)," +
-                "('san 7','123456',5,'8888', '1',null)";
+                "('san 1','123456',5,'8888', 1,null)," +
+                "('san 2','123456',7,'8888', 1,null)," +
+                "('san 3','123456',5,'8888', 1,null)," +
+                "('san 4','123456',7,'8888', 1,null)," +
+                "('san 5','123456',5,'8888', 1,null)," +
+                "('san 6','123456',7,'8888', 1,null)," +
+                "('san 7','123456',5,'8888', 1,null)";
         db.execSQL(INSERT_San1);
 
         String INSERT_CumSan = "Insert into CumSan(tenCumSan,diaChi,chuSan) values " +

@@ -12,8 +12,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 
 import com.example.myapplication.R;
+import com.example.myapplication.UI.admin.ChuSanFragment;
 import com.example.myapplication.UI.admin.NguoiThueFragment;
 import com.example.myapplication.dao.UserDAO;
 import com.example.myapplication.entity.User;
@@ -32,6 +34,7 @@ public class NguoiThueAdapter extends ArrayAdapter<User> {
         this.lists = lists;
         this.fragment = fragment;
     }
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

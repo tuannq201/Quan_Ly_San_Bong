@@ -30,7 +30,7 @@ public class UserDAO {
     public int insert(User user){
         ContentValues values = new ContentValues();
         values.put("taiKhoan", user.taiKhoan);
-        values.put("ten", user.hoTen);
+        values.put("hoTen", user.hoTen);
         values.put("matKhau", user.matKhau);
         values.put("phanQuyen", user.phanQuyen);
         values.put("hinh", user.hinhAnh);
@@ -39,7 +39,7 @@ public class UserDAO {
     }
     public int update(User user){
         ContentValues values = new ContentValues();
-        values.put("ten", user.hoTen);
+        values.put("hoTen", user.hoTen);
         values.put("matKhau", user.matKhau);
         values.put("phanQuyen", user.phanQuyen);
         values.put("hinh", user.hinhAnh);
@@ -79,6 +79,11 @@ public class UserDAO {
         return getData(sql,PQ);
     }
 
+    public List<User> seachUser(String TK){
+        String sql = "SELECT * FROM "+TABLE_NAME+ " WHERE taiKhoan =?";
+        return getData(sql,TK);
+    }
+
     @SuppressLint("Range")
     private List<User> getData(String sql , String...selectionArgs){
         List<User> list = new ArrayList<>();
@@ -86,13 +91,12 @@ public class UserDAO {
         while (cursor.moveToNext()){
             User obj = new User();
             obj.taiKhoan = cursor.getString(cursor.getColumnIndex("taiKhoan"));
-            obj.hoTen = cursor.getString(cursor.getColumnIndex("ten"));
+            obj.hoTen = cursor.getString(cursor.getColumnIndex("hoTen"));
             obj.matKhau = cursor.getString(cursor.getColumnIndex("matKhau"));
             obj.phanQuyen = cursor.getString(cursor.getColumnIndex("phanQuyen"));
             obj.hinhAnh = cursor.getBlob(cursor.getColumnIndex("hinh"));
             list.add(obj);
         }
-        Log.e("//=========", "getData: "+toString());
         return list;
 
     }
