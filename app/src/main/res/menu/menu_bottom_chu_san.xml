@@ -3,9 +3,9 @@
 
     <item android:title="Chọn Sân"
         android:id="@+id/nav_chon_san_cs"
-        android:icon="@drawable/avatar_default"/>
+        android:icon="@drawable/ic_baseline_home_24"/>
     <item
-        android:id="@+id/nav_thong_ke"
-        android:icon="@drawable/avatar_default"
-        android:title="Thống kê" />
+        android:id="@+id/nav_ca_nhan"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="Cá nhân" />
 </menu>

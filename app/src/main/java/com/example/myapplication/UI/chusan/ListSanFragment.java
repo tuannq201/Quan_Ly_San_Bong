@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -44,8 +45,6 @@ public class ListSanFragment extends Fragment {
         }
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,7 +63,8 @@ public class ListSanFragment extends Fragment {
         adapter = new ListSanAdapter(getActivity(), listSan, new ITFOnItenClick() {
             @Override
             public void onItemClick(San san) {
-
+// code thông tin sân
+                Toast.makeText(getContext(), ""+ san.tenSan, Toast.LENGTH_SHORT).show();
             }
 
             @Override

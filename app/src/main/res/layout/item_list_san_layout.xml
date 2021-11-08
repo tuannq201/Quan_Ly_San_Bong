@@ -29,7 +29,7 @@
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/img_san"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:layout_margin="5dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/br_sanbong"

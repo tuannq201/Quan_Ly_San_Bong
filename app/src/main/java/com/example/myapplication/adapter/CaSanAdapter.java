@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
 import com.example.myapplication.UI.chusan.CaSanFragment;
-import com.example.myapplication.dao.PhieuThueDAO;
 import com.example.myapplication.dao.SanDAO;
 import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
@@ -27,6 +26,7 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
     private Context context;
     private ArrayList<TrangThai> list;
     TextView tvTenCa,tvTrangThai,tvKhuyenMai;
+    
 
     public CaSanAdapter(Context context, ArrayList<TrangThai> list) {
         super(context, 0, list);
@@ -51,6 +51,7 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
 
         }
         return view;
+
     }
 
 }

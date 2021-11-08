@@ -189,7 +189,7 @@ public class LoginActivity extends AppCompatActivity {
                     String phone_number = ed_phone_number.getText().toString().trim();
                     String password = ed_password.getText().toString().trim();
                     User user = new User();
-                    user.ten = name;
+                    user.hoTen = name;
                     user.phanQuyen = PHAN_QUYEN;
                     user.taiKhoan = phone_number;
                     user.matKhau = password;

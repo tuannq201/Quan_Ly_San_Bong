@@ -1,10 +1,10 @@
 package com.example.myapplication.UI.chusan;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.CaSanAdapter;
 import com.example.myapplication.dao.PhieuThueDAO;
+import com.example.myapplication.entity.CaSan;
 import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.TrangThai;
 
@@ -21,11 +22,10 @@ import java.util.List;
 
 public class CaSanFragment extends Fragment {
     PhieuThueDAO dao;
-    PhieuThue item;
     List<PhieuThue> list;
-    PhieuThueDAO adapter;
-    //ArrayAdapter adapter;
+    CaSanAdapter adapter;
     GridView gridView;
+
     public CaSanFragment() {
 
     }
@@ -42,6 +42,7 @@ public class CaSanFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
