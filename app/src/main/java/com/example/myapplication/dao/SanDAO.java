@@ -28,7 +28,6 @@ public class SanDAO {
         values.put("giaSan",String.valueOf(obj.giaSan));
         values.put("loaiSan",String.valueOf(obj.loaiSan));
         values.put("tenSan",obj.tenSan);
-        values.put("diaChi",obj.diaChi);
         values.put("chuSan",obj.taiKhoan);
         values.put("anhSan",obj.anhSan);
         return db.insert("San",null,values);
@@ -39,7 +38,6 @@ public class SanDAO {
             values.put("giaSan",String.valueOf(obj.giaSan));
             values.put("loaiSan",String.valueOf(obj.loaiSan));
             values.put("tenSan",obj.tenSan);
-            values.put("diaChi",obj.diaChi);
             values.put("chuSan",obj.taiKhoan);
             values.put("anhSan",obj.anhSan);
             return db.update("San",values,"maSan=?",new String[]{String.valueOf(obj.maSan)});
@@ -73,7 +71,6 @@ public class SanDAO {
             obj.maSan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("maSan")));
             obj.giaSan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("giaSan")));
             obj.tenSan = cursor.getString(cursor.getColumnIndex("tenSan"));
-            obj.diaChi = cursor.getString(cursor.getColumnIndex("diaChi"));
             obj.loaiSan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("loaiSan")));
             obj.taiKhoan =cursor.getString(cursor.getColumnIndex("chuSan"));
             obj.anhSan = cursor.getBlob(cursor.getColumnIndex("anhSan"));

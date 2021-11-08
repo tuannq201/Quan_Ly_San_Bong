@@ -53,7 +53,7 @@ public class SanDaThueAdapter extends RecyclerView.Adapter<SanDaThueAdapter.View
         byte[] hinh;
         try {
             San san = sanDAO.getID(String.valueOf(phieuThue.maSan));
-            diaChi = san.diaChi;
+//            diaChi = san.diaChi;
             loaiSan = san.loaiSan;
             hinh = san.anhSan;
             holder.iv.setImageBitmap(ImageCover.ByteToBitmap(hinh));

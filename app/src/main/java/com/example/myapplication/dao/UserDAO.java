@@ -30,7 +30,7 @@ public class UserDAO {
     public int insert(User user){
         ContentValues values = new ContentValues();
         values.put("taiKhoan", user.taiKhoan);
-        values.put("ten", user.ten);
+        values.put("ten", user.hoTen);
         values.put("matKhau", user.matKhau);
         values.put("phanQuyen", user.phanQuyen);
         values.put("hinh", user.hinhAnh);
@@ -39,8 +39,7 @@ public class UserDAO {
     }
     public int update(User user){
         ContentValues values = new ContentValues();
-//        values.put("taiKhoan", user.taiKhoan);
-        values.put("ten", user.ten);
+        values.put("ten", user.hoTen);
         values.put("matKhau", user.matKhau);
         values.put("phanQuyen", user.phanQuyen);
         values.put("hinh", user.hinhAnh);
@@ -87,7 +86,7 @@ public class UserDAO {
         while (cursor.moveToNext()){
             User obj = new User();
             obj.taiKhoan = cursor.getString(cursor.getColumnIndex("taiKhoan"));
-            obj.ten = cursor.getString(cursor.getColumnIndex("ten"));
+            obj.hoTen = cursor.getString(cursor.getColumnIndex("ten"));
             obj.matKhau = cursor.getString(cursor.getColumnIndex("matKhau"));
             obj.phanQuyen = cursor.getString(cursor.getColumnIndex("phanQuyen"));
             obj.hinhAnh = cursor.getBlob(cursor.getColumnIndex("hinh"));

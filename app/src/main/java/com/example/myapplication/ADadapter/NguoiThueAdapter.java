@@ -53,7 +53,7 @@ public class NguoiThueAdapter extends ArrayAdapter<User> {
             }
             tvTen = view.findViewById(R.id.tvTenNT);
             if (userDAO.getUser(item.taiKhoan).phanQuyen.equals("NT")) {
-                tvTen.setText("Họ Và Tên: " + item.ten);
+                tvTen.setText("Họ Và Tên: " + item.hoTen);
             }
             tvSDT = view.findViewById(R.id.tvSDT);
             if (userDAO.getUser(item.taiKhoan).phanQuyen.equals("NT")) {

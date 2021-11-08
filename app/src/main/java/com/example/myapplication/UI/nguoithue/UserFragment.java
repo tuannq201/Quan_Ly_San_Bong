@@ -85,7 +85,7 @@ public class UserFragment extends Fragment {
             iv_user_avata.setImageBitmap(bitmap);
             circleImageView.setImageBitmap(bitmap);
         }
-        ed_1.setText(""+user.ten);
+        ed_1.setText(""+user.hoTen);
         ed_2.setText(user.taiKhoan);
         ed_3.setText(user.matKhau);
     }

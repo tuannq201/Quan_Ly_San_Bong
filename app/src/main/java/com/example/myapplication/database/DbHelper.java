@@ -16,13 +16,19 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
+        String create_CumSan = "CREATE TABLE CumSan"+
+                "(maCumSan INTEGER PRIMARY KEY AUTOINCREMENT , " +
+                "chuSan TEXT NOT NULL, " +
+                "diaChi TEXT NOT NULL, " +
+                "tenCumSan TEXT )";
+
+        db.execSQL(create_CumSan);
+
         String create_User = "CREATE TABLE User" +
                 "(taiKhoan TEXT PRIMARY KEY, " +
                 "hoTen TEXT NOT NULL," +
-                "tenCumSan TEXT NOT NULL," +
                 "matKhau TEXT NOT NULL," +
                 "phanQuyen TEXT NOT NULL, " +
-                "diaChi TEXT NOT NULL, " +
                 "hinh BLOB )";
         db.execSQL(create_User);
 
@@ -33,7 +39,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "giaSan INTEGER NOT NULL, " +
                 "loaiSan INTEGER NOT NULL, " +
                 "chuSan TEXT NOT NULL, " +
-                "tenCumSan TEXT NOT NULL," +
+                "maCumSan INTEGER NOT NULL ," +
                 "anhSan BLOB )";
         db.execSQL(create_San);
 
@@ -88,6 +94,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists User");
         db.execSQL("drop table if exists San");
         db.execSQL("drop table if exists PhieuThue");
+        db.execSQL("drop table if exists CumSan");
         onCreate(db);
     }
 }

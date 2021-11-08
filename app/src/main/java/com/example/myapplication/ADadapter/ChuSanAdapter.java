@@ -65,7 +65,7 @@ public class ChuSanAdapter extends ArrayAdapter<User> {
             }
             tvTen = view.findViewById(R.id.tvTenCS);
             if (userDAO.getUser(item.taiKhoan).phanQuyen.equals("CS")) {
-                tvTen.setText("Họ Và Tên: " + item.ten);
+                tvTen.setText("Họ Và Tên: " + item.hoTen);
             }
             tvSDT = view.findViewById(R.id.tvSDT);
             if (userDAO.getUser(item.taiKhoan).phanQuyen.equals("CS")) {
