@@ -6,7 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,10 +55,10 @@ public class ListSanFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_list_san, container, false);
         rcvSan = view.findViewById(R.id.list_san_chu_san);
         dao = new SanDAO(getActivity());
-        updateLV();
+        updateLV(view);
         return view;
     }
-    public void updateLV(){
+    public void updateLV(View view){
         listSan = (ArrayList<San>) dao.getAll();
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         rcvSan.setLayoutManager(mLayoutManager);
@@ -64,7 +67,15 @@ public class ListSanFragment extends Fragment {
             @Override
             public void onItemClick(San san) {
 // code thông tin sân
-                Toast.makeText(getContext(), ""+ san.tenSan, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), ""+ san.tenSan, Toast.LENGTH_SHORT).show();
+//                Navigation.findNavController(view).navigate(R.id.action_listSanFragment_to_caSanFragment);
+                CaSanFragment caSanFragment = new CaSanFragment();
+                AppCompatActivity activity = (AppCompatActivity) getContext();
+                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_container, caSanFragment);
+                //transaction.addToBackStack(null);
+                transaction.commit();
+
             }
 
             @Override

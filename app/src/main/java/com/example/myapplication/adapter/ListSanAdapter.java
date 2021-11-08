@@ -56,6 +56,7 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
             @Override
             public void onClick(View view) {
                 itfOnItenClick.onItemClick(san);
+
 //                Toast.makeText(context, "Layout click", Toast.LENGTH_SHORT).show();
 //                AppCompatActivity activity = (AppCompatActivity) view.getContext();
 //                CaSanFragment caSanFragment = new CaSanFragment();

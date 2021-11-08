@@ -19,4 +19,9 @@
             android:id="@+id/action_listSanFragment_to_caSanFragment"
             app:destination="@id/caSanFragment" />
     </fragment>
+    <activity
+        android:id="@+id/chuSanActivity"
+        android:name="com.example.myapplication.UI.chusan.ChuSanActivity"
+        android:label="activity_chu_san"
+        tools:layout="@layout/activity_chu_san" />
 </navigation>
