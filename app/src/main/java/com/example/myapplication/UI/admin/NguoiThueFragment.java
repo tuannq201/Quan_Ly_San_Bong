@@ -2,8 +2,10 @@ package com.example.myapplication.UI.admin;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -19,12 +21,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.myapplication.ADadapter.NguoiThueAdapter;
 import com.example.myapplication.ADadapter.NguoiThueAdapter;
 import com.example.myapplication.R;
 import com.example.myapplication.dao.UserDAO;
@@ -43,6 +47,7 @@ public class NguoiThueFragment extends Fragment {
     ImageView imgAdd;
     ListView lv;
     UserDAO dao;
+    User item;
     Dialog dialog;
     Button btn_camera, btn_album, btn_save;
     TextInputEditText ed_phone_number, ed_name, ed_password, ed_re_password;
@@ -74,17 +79,37 @@ public class NguoiThueFragment extends Fragment {
         imgAdd = view.findViewById(R.id.imgThemNT);
         lv = view.findViewById(R.id.lvNguoiThue);
         dao = new UserDAO(getContext());
+        capNhatLV();
 
+        //thêm mới user
         imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDialog();
+                openDialog(0);
             }
         });
-        capNhatLv();
+
+        //xóa user
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                item = list.get(i);
+                xoa();
+                return true;
+            }
+        });
+        //cập nhât user
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                item = list.get(i);
+                openDialog(1);
+            }
+        });
         return view;
     }
-    public void openDialog(){
+    //mở dialog
+    public void openDialog(final int type){
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_register_user);
         Window window = dialog.getWindow();
@@ -97,6 +122,15 @@ public class NguoiThueFragment extends Fragment {
         ed_phone_number = dialog.findViewById(R.id.ed_phone_number);
         ed_password = dialog.findViewById(R.id.ed_password);
         ed_re_password = dialog.findViewById(R.id.ed_re_password);
+        if (type != 0){
+            ed_phone_number.setText(item.taiKhoan);
+            ed_phone_number.setEnabled(false);
+            ed_name.setText(item.hoTen);
+            ed_password.setText(item.matKhau);
+            ed_re_password.setText(item.matKhau);
+            btn_save.setText("Cập Nhật");
+        }
+
 
         btn_camera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,22 +151,32 @@ public class NguoiThueFragment extends Fragment {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String name = ed_name.getText().toString().trim();
+                String phone_number = ed_phone_number.getText().toString().trim();
+                String password = ed_password.getText().toString().trim();
+                item = new User();
+                item.hoTen = name;
+                item.phanQuyen = PHAN_QUYEN;
+                item.taiKhoan = phone_number;
+                item.matKhau = password;
+                item.hinhAnh = imageViewToByteArray(iv_camera_result);
                 if (validate()){
-                    String name = ed_name.getText().toString().trim();
-                    String phone_number = ed_phone_number.getText().toString().trim();
-                    String password = ed_password.getText().toString().trim();
-                    User user = new User();
-                    user.hoTen = name;
-                    user.phanQuyen = PHAN_QUYEN;
-                    user.taiKhoan = phone_number;
-                    user.matKhau = password;
-                    user.hinhAnh = imageViewToByteArray(iv_camera_result);
-                    if (dao.insert(user) > 0){
-                        Toast.makeText(getContext(), "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
-                        capNhatLv();
-                        dialog.dismiss();
+                    if (type == 0){
+                        if (dao.insert(item) > 0){
+                            Toast.makeText(getContext(), "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
+                            capNhatLV();
+                            dialog.dismiss();
+                        }else {
+                            Toast.makeText(getContext(), "Tạo tài khoản không thành công", Toast.LENGTH_SHORT).show();
+                        }
                     }else {
-                        Toast.makeText(getContext(), "Tạo tài khoản không thành công", Toast.LENGTH_SHORT).show();
+                        if (dao.update(item) > 0){
+                            Toast.makeText(getContext(), "Cập nhật tài khoản thành công", Toast.LENGTH_SHORT).show();
+                            capNhatLV();
+                            dialog.dismiss();
+                        }else {
+                            Toast.makeText(getContext(), "Cập nhật khoản không thành công", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }
@@ -140,12 +184,46 @@ public class NguoiThueFragment extends Fragment {
         dialog.show();
     }
 
-    void capNhatLv(){
+    void capNhatLV(){
         list = (ArrayList<User>) dao.getPhanQuyen("NT");
         adapter = new NguoiThueAdapter(getActivity(),this,list);
         lv.setAdapter(adapter);
     }
+    //cập nhật LV khi đổ tìm kiếm
+    void capNhatLVSeach(String str){
+        str = searchView.getQuery().toString();
+        list = (ArrayList<User>) dao.seachUser(str,"NT");
+        adapter = new NguoiThueAdapter(getActivity(),this,list);
+        lv.setAdapter(adapter);
+    }
 
+    //show dialog xóa
+    public void xoa() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Xóa Chủ Sân");
+        builder.setMessage("Bạn có muốn xóa Không ?");
+        builder.setCancelable(true);
+        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dao.delete(item.taiKhoan);
+                capNhatLV();
+                dialogInterface.cancel();
+            }
+        });
+        builder.setNegativeButton(
+                "Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                }
+        );
+        AlertDialog alertDialog = builder.create();
+        builder.show();
+    }
+
+    //lấy đường dẫn của Img
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
@@ -153,6 +231,7 @@ public class NguoiThueFragment extends Fragment {
         return Uri.parse(path);
     }
 
+    //chuyển bitmap thành byte
     public byte[] imageViewToByteArray(ImageView iv){
         BitmapDrawable bitmapDrawable = (BitmapDrawable) iv.getDrawable();
         Bitmap bitmap = bitmapDrawable.getBitmap();
@@ -161,6 +240,7 @@ public class NguoiThueFragment extends Fragment {
         return byteArray.toByteArray();
     }
 
+    //open camera or thư viện
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -201,6 +281,7 @@ public class NguoiThueFragment extends Fragment {
             }
         }
     }
+    //kiểm tra nhập
     public boolean validate(){
         return true;
     }

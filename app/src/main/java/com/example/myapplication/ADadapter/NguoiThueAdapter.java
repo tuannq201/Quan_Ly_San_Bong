@@ -64,7 +64,7 @@ public class NguoiThueAdapter extends ArrayAdapter<User> {
             }
             tvPass = view.findViewById(R.id.tvPass);
             if (userDAO.getUser(item.taiKhoan).phanQuyen.equals("NT")) {
-                tvTen.setText("Mật khẩu: " + item.matKhau);
+                tvPass.setText("Mật khẩu: " + item.matKhau);
             }
 
         }

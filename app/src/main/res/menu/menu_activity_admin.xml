@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Chủ Sân"
+        android:id="@+id/nav_chu_san_admin"
+        android:icon="@drawable/avatar_default"/>
+    <item android:title="Người Thuê"
+        android:id="@+id/nav_nguoi_thue_admin"
+        android:icon="@drawable/avatar_default"/>
+
+</menu>

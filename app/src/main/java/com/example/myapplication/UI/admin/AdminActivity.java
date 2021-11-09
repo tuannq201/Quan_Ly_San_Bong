@@ -1,13 +1,20 @@
 package com.example.myapplication.UI.admin;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.myapplication.ADadapter.AdminAdapter;
 import com.example.myapplication.R;
+import com.example.myapplication.UI.nguoithue.SanDaThueFragment;
+import com.example.myapplication.UI.nguoithue.SanFragment;
+import com.example.myapplication.UI.nguoithue.UserFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -15,34 +22,37 @@ import com.google.android.material.tabs.TabLayoutMediator;
 public class AdminActivity extends AppCompatActivity {
 
     // Màn hình của Admin.
-
-    ViewPager2 vpAdmin;
-    TabLayout tlAdmin;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        vpAdmin = findViewById(R.id.vpAdmin);
-        tlAdmin = findViewById(R.id.tlAdmin);
-
-        AdminAdapter adapter = new AdminAdapter(AdminActivity.this);
-        vpAdmin.setAdapter(adapter);
-
-        new TabLayoutMediator(tlAdmin, vpAdmin, new TabLayoutMediator.TabConfigurationStrategy() {
+        loadFragment(new ChuSanFragment());
+        BottomNavigationView navigationView = (BottomNavigationView) findViewById(R.id.bnv_admin);
+        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                if (position==0){
-//                    tab.setIcon(R.drawable....);
-                    tab.setText("Chủ Sân");
-                }else{
-//                    tab.setIcon(R.drawable....);
-                    tab.setText("Người Thuê");
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment;
+                switch (item.getItemId()){
+                    case R.id.nav_chu_san_admin:
+                        fragment = new ChuSanFragment();
+                        loadFragment(fragment);
+                        return true;
+                    case R.id.nav_nguoi_thue_admin:
+                        fragment = new NguoiThueFragment();
+                        loadFragment(fragment);
+                        return true;
                 }
+                return false;
             }
-        }).attach();
+        });
 
-
+    }
+    private void loadFragment(Fragment fragment) {
+        // load fragment
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.cst_admin, fragment);
+        //transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 

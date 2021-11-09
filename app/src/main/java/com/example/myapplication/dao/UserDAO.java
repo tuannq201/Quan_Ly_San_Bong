@@ -46,6 +46,10 @@ public class UserDAO {
         return db.update(TABLE_NAME, values, "taiKhoan=?", new String[]{user.taiKhoan});
     }
 
+    public int delete(String id){
+        return db.delete("User","taiKhoan=?",new String[]{id});
+    }
+
     public User getUser(String taiKhoan){
         String sql = "SELECT * FROM "+TABLE_NAME+" WHERE taiKhoan=?";
         return getData(sql, taiKhoan).get(0);
@@ -79,8 +83,12 @@ public class UserDAO {
         return getData(sql,PQ);
     }
 
-    public List<User> seachUser(String TK){
-        String sql = "SELECT * FROM "+TABLE_NAME+ " WHERE taiKhoan =?";
+    public List<User> seachUser(String TK,String PQ){
+        String sql = "SELECT * FROM "+TABLE_NAME+ " WHERE taiKhoan =? AND phanQuyen =?";
+        return getData(sql,TK,PQ);
+    }
+    public List<User> seachUser1(String TK){
+        String sql = "SELECT * FROM "+TABLE_NAME+ " WHERE taiKhoan '";
         return getData(sql,TK);
     }
 
