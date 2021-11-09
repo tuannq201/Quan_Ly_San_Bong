@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:cardCornerRadius="40dp"
     android:orientation="vertical">
 
     <ImageView
@@ -16,59 +17,58 @@
         android:layout_marginBottom="21dp"
         android:src="@drawable/br_sanbong" />
 
-    <EditText
-        android:id="@+id/edCaThueDialog"
+    <TextView
+        android:id="@+id/tvCaThueDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="20dp"
+        android:text="TextView" />
 
-    <EditText
-        android:id="@+id/edGioThueDialog"
+    <TextView
+        android:id="@+id/tvGioThueDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="20dp"
+        android:text="TextView" />
 
-    <EditText
-        android:id="@+id/edGiaThueDialog"
+    <TextView
+        android:id="@+id/tvGiaThueDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="20dp"
+        android:text="TextView" />
 
-    <EditText
-        android:id="@+id/edTrangThaiDialog"
+    <TextView
+        android:id="@+id/tvTrangThaiDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="20dp"
+        android:text="TextView" />
 
-    <EditText
-        android:id="@+id/edKhuyenMaiDialog"
+    <TextView
+        android:id="@+id/tvKhuyenMaiDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="20dp"
+        android:text="TextView" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/btHuyDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
+            android:layout_gravity="center"
             android:text="Hủy" />
 
-        <Button
-            android:id="@+id/btThueDialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:text="THUÊ" />
     </LinearLayout>
 
 </LinearLayout>

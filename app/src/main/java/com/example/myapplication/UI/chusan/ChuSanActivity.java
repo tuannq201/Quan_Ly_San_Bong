@@ -1,28 +1,14 @@
 package com.example.myapplication.UI.chusan;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.widget.Toast;
-
-import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.UI.BottomNavigationBehavior;
-import com.example.myapplication.UI.nguoithue.SanDaThueFragment;
-import com.example.myapplication.UI.nguoithue.SanFragment;
-import com.example.myapplication.UI.nguoithue.UserFragment;
-import com.example.myapplication.entity.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -48,7 +34,7 @@ public class ChuSanActivity extends AppCompatActivity {
                         loadFragment(fragment);
                         return true;
                     case R.id.nav_ca_nhan:
-                        fragment = new CaSanFragment();
+                        fragment = new CaNhanOfChuSanFragment();
                         loadFragment(fragment);
                         return true;
                 }

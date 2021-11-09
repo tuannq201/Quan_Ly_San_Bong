@@ -7,10 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +17,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.SpinnerCumSanAdapter;
@@ -115,6 +115,7 @@ public class AddSanFragment extends Fragment {
         });
         btSave.setOnClickListener(v -> {
             if (validate()){
+                dao = new SanDAO(getContext());
                 String tenSan = edTenSan.getText().toString().trim();
                 String loaiSan = edLoaiSan.getText().toString().trim();
                 int giaSan = Integer.parseInt(edGiaSan.getText().toString().trim());
@@ -127,9 +128,13 @@ public class AddSanFragment extends Fragment {
                 san.maCumSan = maCumSan;
                 if (dao.insert(san) > 0){
                     Toast.makeText(getContext(), "Tạo sân thành công", Toast.LENGTH_SHORT).show();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_container,new ListSanFragment());
+                    transaction.commit();
                 }else {
                     Toast.makeText(getContext(), "Tạo sân không thành công", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
         return view;

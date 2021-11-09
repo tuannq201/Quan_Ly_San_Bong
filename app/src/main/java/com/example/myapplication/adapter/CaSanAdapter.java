@@ -1,6 +1,7 @@
 package com.example.myapplication.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +39,12 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
         final TrangThai item = list.get(position);
         if (item != null){
             tvTenCa = view.findViewById(R.id.tvTenCa);
-            tvTenCa.setText("Ca: "+ Cover.caToTime(String.valueOf(position+1)));
+            Log.e("//===","==========="+ Cover.caToTime(item.ca));
+            tvTenCa.setText("Ca: "+ Cover.caToTime(item.ca));
             tvTrangThai = view.findViewById(R.id.tvTrangThai);
             tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
-            //tvKhuyenMai = view.findViewById(R.id.tvKhuyenMai);
-
+            tvKhuyenMai = view.findViewById(R.id.tvKhuyenMai);
+            tvKhuyenMai.setText("Khuyến Mãi: "+Cover.KhuyenMai1(item.ca)+"%");
         }
         return view;
     }

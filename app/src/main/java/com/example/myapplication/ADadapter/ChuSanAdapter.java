@@ -1,15 +1,12 @@
 package com.example.myapplication.ADadapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,18 +15,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
-import com.example.myapplication.UI.admin.AdminActivity;
 import com.example.myapplication.UI.admin.ChuSanFragment;
-import com.example.myapplication.dao.PhieuThueDAO;
 import com.example.myapplication.dao.UserDAO;
-import com.example.myapplication.entity.CaSan;
-import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.User;
 
-import java.nio.BufferUnderflowException;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ChuSanAdapter extends ArrayAdapter<User> implements Filterable {
     private Context context;

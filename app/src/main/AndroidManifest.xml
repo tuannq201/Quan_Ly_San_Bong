@@ -32,9 +32,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UI.chusan.CaSanFRM"
-            android:exported="true" />
-        <activity
             android:name=".UI.admin.AdminActivity"
             android:exported="true">
             <intent-filter>
