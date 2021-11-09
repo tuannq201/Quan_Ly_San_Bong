@@ -6,6 +6,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
+import java.text.DecimalFormat;
 
 public class Cover {
 
@@ -71,5 +72,10 @@ public class Cover {
             return 30;
         }
         return 10;
+    }
+
+    public static String IntegerToVnd(int so){
+        DecimalFormat formatter = new DecimalFormat("###,###,###");
+        return formatter.format(so);
     }
 }

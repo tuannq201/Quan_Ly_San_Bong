@@ -5,9 +5,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 
 import com.example.myapplication.database.DbHelper;
@@ -54,6 +51,7 @@ public class UserDAO {
         String sql = "SELECT * FROM "+TABLE_NAME+" WHERE taiKhoan=?";
         return getData(sql, taiKhoan).get(0);
     }
+    
 
     public boolean checkLogin(String taiKhoan, String pass){
         String sql = "SELECT * FROM "+TABLE_NAME+" WHERE taiKhoan=? AND matKhau=?";

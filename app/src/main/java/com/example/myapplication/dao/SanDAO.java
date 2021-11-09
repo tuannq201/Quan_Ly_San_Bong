@@ -8,8 +8,10 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myapplication.database.DbHelper;
 import com.example.myapplication.entity.San;
+import com.example.myapplication.util.Cover;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SanDAO {
@@ -54,6 +56,40 @@ public class SanDAO {
     }
 
 
+    public List<San> getSanByCumSan(String maCumSan){
+        String sql = "SELECT * FROM San WHERE maCumSan=?";
+        return getData(sql, maCumSan);
+    }
+    public String loaiSanCumSan(String maCS){
+        List<San> sanList = getSanByCumSan(maCS);
+        StringBuilder builder = new StringBuilder();
+        if (sanList.size()>0){
+            builder.append(sanList.get(0).loaiSan);
+            for (int i=1; i<sanList.size();i++){
+                if (!builder.toString().contains(sanList.get(i).loaiSan)){
+                    builder.append(" ,"+sanList.get(i).loaiSan);
+                }
+            }
+            return builder.toString();
+        }
+
+        return "";
+    }
+    public String giaCumSan(String maCS){
+        List<San> sanList = getSanByCumSan(maCS);
+        List<Integer> listGia = new ArrayList<>();
+        for (int i=0;i<sanList.size();i++){
+            listGia.add(sanList.get(i).giaSan);
+        }
+        Collections.sort(listGia);
+        if (listGia.isEmpty()){
+            return "nulll";
+        }
+        if (listGia.size()==1){
+            return ""+Cover.IntegerToVnd(listGia.get(0));
+        }
+        return ""+ Cover.IntegerToVnd(listGia.get(0)) +"vnđ - "+Cover.IntegerToVnd(listGia.get(listGia.size()-1))+"vnđ";
+    }
 
     public San getID(String id){
         String sql = "SELECT * FROM San WHERE maSan=?";

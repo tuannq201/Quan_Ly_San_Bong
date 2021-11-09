@@ -12,16 +12,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.ListSanAdapter;
+import com.example.myapplication.adapter.nguoi_thue_adapter.CumSanAdapter;
+import com.example.myapplication.dao.CumSanDAO;
 import com.example.myapplication.dao.SanDAO;
+import com.example.myapplication.entity.CumSan;
 import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.itf.ITFOnItenClick;
+import com.example.myapplication.itf.ItemCumSanClick;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,10 +37,11 @@ import java.util.List;
  */
 public class SanFragment extends Fragment {
 
-    SanDAO sanDAO;
-    List<San> sanList;
+    CumSanDAO cumSanDAO;
+    List<CumSan> cumSanList;
     RecyclerView rcv;
-    ListSanAdapter adapter;
+    CumSanAdapter adapter;
+    SearchView sv;
     public SanFragment() {
         // Required empty public constructor
     }
@@ -48,9 +56,8 @@ public class SanFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sanDAO = new SanDAO(getContext());
-        sanList = sanDAO.getAll();
-        Toast.makeText(getContext(), ""+sanList.size(), Toast.LENGTH_SHORT).show();
+        cumSanDAO  = new CumSanDAO(getContext());
+        cumSanList = cumSanDAO.getAll();
 
     }
 
@@ -59,25 +66,54 @@ public class SanFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_san, container, false);
         rcv = v.findViewById(R.id.rcv_san_nguoi_thue);
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        sv = v.findViewById(R.id.sv_cum_san);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 1);
         rcv.setLayoutManager(mLayoutManager);
         rcv.setItemAnimator(new DefaultItemAnimator());
-        adapter = new ListSanAdapter(getContext(), sanList, new ITFOnItenClick() {
-            @Override
-            public void onItemClick(San san) {
-                //Toast.makeText(getContext(), ""+san.tenSan, Toast.LENGTH_SHORT).show();
-            }
 
-            @Override
-            public void onItemClick(PhieuThue phieuThue) {
-
-            }
-        });
         LayoutAnimationController animationController = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_animation_recycle_view);
         rcv.setLayoutAnimation(animationController);
-        rcv.setAdapter(adapter);
+        setRecycleView(cumSanList);
+
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                search(s);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String s) {
+                search(s);
+                return false;
+            }
+        });
 
 
         return v;
+    }
+
+    public void search(String s){
+        if (cumSanList.size()> 0){
+            List<CumSan> list = new ArrayList<>();
+            for (int i = 0;i<cumSanList.size();i++){
+                if (cumSanList.get(i).tenCumSan.toLowerCase(Locale.ROOT).contains(s) ||
+                        cumSanList.get(i).diaChi.toLowerCase(Locale.ROOT).contains(s) ||
+                        cumSanList.get(i).tenCumSan.contains(s) ||
+                        cumSanList.get(i).diaChi.contains(s)){
+                    list.add(cumSanList.get(i));
+                }
+            }
+            setRecycleView(list);
+        }
+    }
+
+    public void setRecycleView(List<CumSan> list){
+        adapter = new CumSanAdapter(getContext(), list, new ItemCumSanClick() {
+            @Override
+            public void onItemClick(CumSan cumSan) {
+                Toast.makeText(getContext(), ""+cumSan.tenCumSan, Toast.LENGTH_SHORT).show();
+            }
+        });
+        rcv.setAdapter(adapter);
     }
 }

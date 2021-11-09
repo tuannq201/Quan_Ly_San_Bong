@@ -85,21 +85,21 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void demo(){
-        PhieuThueDAO dao = new PhieuThueDAO(LoginActivity.this);
-        List<TrangThai> trangThais = new ArrayList<>();
-        for (int ca = 1;ca <= 12;ca++){
-            trangThais.add(dao.checkTrangThai(1, String.valueOf(ca), "2021-11-11"));
-
-        }
-
-        for (int i = 0;i < 12;i++){
-            String tt = "";
-            if (trangThais.get(i) != null){
-
-            }
-            Log.i("trangthai", "ca "+ (i+1)+" trang thái: "+trangThais.get(i).taiKhoan);
-
-        }
+//        PhieuThueDAO dao = new PhieuThueDAO(LoginActivity.this);
+//        List<TrangThai> trangThais = new ArrayList<>();
+//        for (int ca = 1;ca <= 12;ca++){
+//            trangThais.add(dao.checkTrangThai(1, String.valueOf(ca), "2021-11-11"));
+//
+//        }
+//
+//        for (int i = 0;i < 12;i++){
+//            String tt = "";
+//            if (trangThais.get(i) != null){
+//
+//            }
+//            Log.i("trangthai", "ca "+ (i+1)+" trang thái: "+trangThais.get(i).taiKhoan);
+//
+//        }
 
     }
 
