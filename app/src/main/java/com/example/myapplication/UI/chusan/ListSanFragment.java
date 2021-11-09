@@ -1,5 +1,6 @@
 package com.example.myapplication.UI.chusan;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,16 +67,7 @@ public class ListSanFragment extends Fragment {
         adapter = new ListSanAdapter(getActivity(), listSan, new ITFOnItenClick() {
             @Override
             public void onItemClick(San san) {
-// code thông tin sân
-//                Toast.makeText(getContext(), ""+ san.tenSan, Toast.LENGTH_SHORT).show();
-//                Navigation.findNavController(view).navigate(R.id.action_listSanFragment_to_caSanFragment);
-                CaSanFragment caSanFragment = new CaSanFragment();
-                AppCompatActivity activity = (AppCompatActivity) getContext();
-                FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_container, caSanFragment);
-                //transaction.addToBackStack(null);
-                transaction.commit();
-
+                onClickGoToCaSan(san);
             }
 
             @Override
@@ -84,6 +76,14 @@ public class ListSanFragment extends Fragment {
             }
         });
         rcvSan.setAdapter(adapter);
+    }
+
+    private void onClickGoToCaSan(San san) {
+        Intent intent = new Intent(this.getContext(), CaSanOfChuSanActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_san", san);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 }

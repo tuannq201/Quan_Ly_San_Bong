@@ -2,7 +2,9 @@ package com.example.myapplication.entity;
 
 import android.graphics.Bitmap;
 
-public class San {
+import java.io.Serializable;
+
+public class San implements Serializable {
     public int maSan, giaSan, maCumSan;
     public String tenSan, taiKhoan,loaiSan;
     public byte[] anhSan;
