@@ -85,8 +85,6 @@ public class ChuSanFragment extends Fragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -99,25 +97,18 @@ public class ChuSanFragment extends Fragment {
 
         //tìm user
         searchView = view.findViewById(R.id.svChuSan);
-        CharSequence query = searchView.getQuery();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
            @Override
            public boolean onQueryTextSubmit(String s) {
                s = searchView.getQuery().toString();
-               capNhatLVSeach(s);
-               if (s.isEmpty()){
-                   capNhatLV();
-               }
+               seachUser(s);
                return false;
            }
 
            @Override
            public boolean onQueryTextChange(String s) {
                    s = searchView.getQuery().toString();
-                    capNhatLVSeach(s);
-               if (s.isEmpty()){
-                   capNhatLV();
-               }
+                   seachUser(s);
                return false;
            }
        });
@@ -128,6 +119,18 @@ public class ChuSanFragment extends Fragment {
                 openDialog(0);
             }
         });
+        //tìm trong list
+//        String[] userList;
+//        for (int i = 0; i < userList.length; i++) {
+//            User animalNames = new User(userList[i]);
+//            // Binds all strings into an array
+//            list.add(animalNames);
+//        }
+//        adapter = new ListViewAdapter(this, arraylist);
+//        list.setAdapter(adapter);
+
+        // Locate the EditText in listview_main.xml
+
         //xóa user
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -146,6 +149,19 @@ public class ChuSanFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    public void seachUser(String TK){
+        List<User> list1 = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            User user = list.get(i);
+            String tk = user.taiKhoan;
+            if (tk.contains(TK)){
+                list1.add(user);
+            }
+        }
+        adapter = new ChuSanAdapter(getActivity(),this, (ArrayList<User>) list1);
+        lv.setAdapter(adapter);
     }
 
     //mở dialog
@@ -228,15 +244,6 @@ public class ChuSanFragment extends Fragment {
         adapter = new ChuSanAdapter(getActivity(),this,list);
         lv.setAdapter(adapter);
     }
-
-    //cập nhật LV khi tìm kiếm
-    void capNhatLVSeach(String str){
-        str = searchView.getQuery().toString();
-        list = (ArrayList<User>) dao.seachUser(str,"CS");
-        adapter = new ChuSanAdapter(getActivity(),this,list);
-        lv.setAdapter(adapter);
-    }
-
     //show dialog xóa
     public void xoa() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

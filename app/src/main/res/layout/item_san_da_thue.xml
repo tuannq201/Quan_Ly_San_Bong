@@ -35,7 +35,8 @@
                     android:text="Loại sân:"
                     android:textSize="14dp"
                     android:textStyle="bold"/>
-                <com.makeramen.roundedimageview.RoundedImageView
+
+                <ImageView
                     android:id="@+id/iv_san_ddk"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
