@@ -47,7 +47,9 @@ public class CumSanAdapter extends RecyclerView.Adapter<CumSanAdapter.CumSanView
 
     @Override
     public void onBindViewHolder(@NonNull CumSanViewHolder holder, int position) {
-
+//        if (position == cumSanList.size()-1){
+//            holder.cv.setVisibility(View.GONE);
+//        }
         CumSan cumSan = cumSanList.get(position);
         sanDAO = new SanDAO(context);
         holder.tv_1.setText("Địa chỉ: "+cumSan.diaChi);
@@ -56,7 +58,8 @@ public class CumSanAdapter extends RecyclerView.Adapter<CumSanAdapter.CumSanView
         holder.tv_4.setText("Giá: "+sanDAO.giaCumSan(String.valueOf(cumSan.maCumSan)));
         holder.tv_5.setText("Loại sân: "+sanDAO.loaiSanCumSan(String.valueOf(cumSan.maCumSan)));
         holder.cv.setOnClickListener(view -> {
-            Toast.makeText(context, ""+cumSan.tenCumSan, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, ""+cumSan.tenCumSan, Toast.LENGTH_SHORT).show();
+            itemCumSanClick.onItemClick(cumSan);
         });
     }
 

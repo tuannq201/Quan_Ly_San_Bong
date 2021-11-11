@@ -8,49 +8,129 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.myapplication.R;
+import com.example.myapplication.UI.chusan.ListSanFragment;
+import com.example.myapplication.dao.PhieuThueDAO;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class NguoiThueActivity extends AppCompatActivity {
 
+
+public class NguoiThueActivity extends AppCompatActivity implements SanFragment.ITFsendData {
+
+    PhieuThueDAO phieuThueDAO;
+
+    //MeowBottomNavigation meowBottomNavigation;
+    public static com.etebarian.meowbottomnavigation.MeowBottomNavigation meowBottomNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nguoi_thue);loadFragment(new SanFragment());
 
+        SharedPreferences pref = getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        String phone = pref.getString("PHONE","");
+        phieuThueDAO = new PhieuThueDAO(NguoiThueActivity.this);
 
+        meowBottomNavigation =(com.etebarian.meowbottomnavigation.MeowBottomNavigation) findViewById(R.id.meo_btn_nguoi_thue);
+        meowBottomNavigation.add(new com.etebarian.meowbottomnavigation.MeowBottomNavigation.Model(1, R.drawable.ic_home));
+        meowBottomNavigation.add(new com.etebarian.meowbottomnavigation.MeowBottomNavigation.Model(2, R.drawable.ic_notification));
+        meowBottomNavigation.add(new com.etebarian.meowbottomnavigation.MeowBottomNavigation.Model(3, R.drawable.ic_man_user));
 
-        BottomNavigationView navigationView = (BottomNavigationView) findViewById(R.id.bnv_nguoi_thue);
-        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        meowBottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragment;
-                switch (item.getItemId()){
-                    case R.id.nav_chon_san:
+            public void onShowItem(MeowBottomNavigation.Model item) {
+                Fragment fragment = null;
+                switch (item.getId()){
+                    case 1:
                         fragment = new SanFragment();
-                        loadFragment(fragment);
-                        return true;
-                    case R.id.nav_da_thue:
+                        break;
+                    case 2:
                         fragment = new SanDaThueFragment();
-                        loadFragment(fragment);
-                        return true;
-                    case R.id.nav_user:
+                        break;
+                    case 3:
                         fragment = new UserFragment();
-                        loadFragment(fragment);
-                        return true;
+                        break;
+
                 }
-                return false;
+                loadFragment(fragment);
             }
         });
+        meowBottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
+            @Override
+            public void onClickItem(MeowBottomNavigation.Model item) {
+                Fragment fragment = null;
+                switch (item.getId()){
+                    case 1:
+                        fragment = new SanFragment();
+                        break;
+                    case 2:
+                        fragment = new SanDaThueFragment();
+                        break;
+                    case 3:
+                        fragment = new UserFragment();
+                        break;
+
+                }
+                loadFragment(fragment);
+            }
+        });
+
+        meowBottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+            @Override
+            public void onReselectItem(MeowBottomNavigation.Model item) {
+                Fragment fragment = null;
+                switch (item.getId()){
+                    case 1:
+                        fragment = new SanFragment();
+                        break;
+                    case 2:
+                        fragment = new SanDaThueFragment();
+                        break;
+                    case 3:
+                        fragment = new UserFragment();
+                        break;
+
+                }
+                loadFragment(fragment);
+            }
+        });
+        meowBottomNavigation.show(1, true);
+        if (phieuThueDAO.getPhieuByUser(phone).size()>0){
+            meowBottomNavigation.setCount(2, String.valueOf(phieuThueDAO.getPhieuByUser(phone).size()));
+        }else {
+            meowBottomNavigation.clearCount(2);
+        }
+
     }
-    private void loadFragment(Fragment fragment) {
+    public void loadFragment(Fragment fragment) {
         // load fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.cst_nguoi_thue, fragment);
+        transaction.replace(R.id.frm_nguoi_thue, fragment);
         //transaction.addToBackStack(null);
         transaction.commit();
     }
 
+    @Override
+    public void sendData(int maCumSan) {
+
+        //fragment.updateLV(maCumSan);
+        //fragment.getMaCumSan(maCumSan);
+        //Toast.makeText(getApplicationContext(), "=============================="+maCumSan, Toast.LENGTH_SHORT).show();
+        Bundle bundle = new Bundle();
+        bundle.putString("ma", String.valueOf(maCumSan));
+        //fragment.setArguments(bundle);
+
+        SanCumSanFragment fragment = new SanCumSanFragment(maCumSan);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frm_nguoi_thue, fragment);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
+
+
+        //fragment.updateLV(maCumSan);
+    }
 }

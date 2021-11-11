@@ -55,7 +55,8 @@ public class UserFragment extends Fragment {
         String phone = pref.getString("PHONE","");
         String pass = pref.getString("PASSWORD","");
         user = userDAO.getUser(phone);
-        Toast.makeText(getContext(), ""+user.taiKhoan, Toast.LENGTH_SHORT).show();
+
+        //Toast.makeText(getContext(), ""+user.taiKhoan, Toast.LENGTH_SHORT).show();
 
 
 

@@ -86,14 +86,24 @@ public class DbHelper extends SQLiteOpenHelper{
                 "('cụm sân 2','Liên Chiểu - Đà Nẵng','8888')," +
                 "('cụm sân 3','Hải Châu - Đà Nẵng','8888')," +
                 "('cụm sân 4','Sơn Trà - Đà Nẵng','8888')," +
-                "('cụm sân 5','Thanh Khê - Đà Nẵng','8888')," +
+                "('cụm sân 5','Cẩm Lệ - Đà Nẵng','8888')," +
                 "('cụm sân 6','Liên Chiểu - Đà Nẵng','8888')," +
-                "('cụm sân 7','Liên Chiểu - Đà Nẵng','8888')";
+                "('cụm sân 7','Hải Châu - Đà Nẵng','8888')," +
+                "('cụm sân 8','Sơn Trà - Đà Nẵng','8888')," +
+                "('cụm sân 9','Cẩm Lệ - Đà Nẵng','8888')," +
+                "('cụm sân 10','Liên Chiểu - Đà Nẵng','8888')," +
+                "('cụm sân 11','Hải Châu - Đà Nẵng','8888')," +
+                "('cụm sân 12','Sơn Trà - Đà Nẵng','8888')," +
+                "('cụm sân 13','Thanh Khê - Đà Nẵng','8888')," +
+                "('cụm sân 14','Liên Chiểu - Đà Nẵng','8888')," +
+                "('cụm sân 15','Liên Chiểu - Đà Nẵng','8888')";
         db.execSQL(INSERT_CumSan);
         String INSERT_PT = "Insert into PhieuThue(maSan,nguoiThue,caThue,ngayThue,tienSan) values " +
-                "(1,'7777','5','2021-11-11',9999)," +
-                "(1,'7777','8','2021-11-11',9999)," +
-                "(1,'7777','2','2021-11-11',9999)";
+                "(1,'7777','1','2021-11-11',100000)," +
+                "(5,'7777','8','2021-11-11',100000)," +
+                "(3,'7777','5','2021-11-11',100000)," +
+                "(5,'7777','11','2021-11-11',100000)," +
+                "(7,'7777','2','2021-11-11',100000)";
         db.execSQL(INSERT_PT);
 
 //        String INSERT_San = "Insert into San(tenSan,diaChi,giaSan,loaiSan,chuSan,anhSan) values " +

@@ -7,11 +7,43 @@
     android:layout_height="match_parent"
     tools:context=".UI.nguoithue.NguoiThueActivity">
 
+
+    <FrameLayout
+        android:id="@+id/frm_nguoi_thue"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+        android:id="@+id/meo_btn_nguoi_thue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:mbn_backgroundBottomColor="#66BB6A"
+        app:mbn_circleColor="#FFFFFF"
+        app:mbn_countBackgroundColor="#FF7043"
+        app:mbn_countTextColor="#ffffff"
+        app:mbn_defaultIconColor="#FFFFFF"
+        android:outlineAmbientShadowColor="@color/black"
+        app:mbn_rippleColor="#5C6BC0"
+        app:mbn_selectedIconColor="#292C42"
+        app:mbn_shadowColor="#1f212121"
+        />
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_nguoi_thue"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:background="#03A9F4"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

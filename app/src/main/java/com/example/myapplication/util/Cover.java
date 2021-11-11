@@ -1,9 +1,18 @@
 package com.example.myapplication.util;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.widget.ImageView;
+
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.myapplication.R;
 
 import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
@@ -77,5 +86,16 @@ public class Cover {
     public static String IntegerToVnd(int so){
         DecimalFormat formatter = new DecimalFormat("###,###,###");
         return formatter.format(so);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static void loadFragment(Context context, Fragment fragment) {
+        // load fragment
+        FragmentManager manager = context.getSystemService(FragmentManager.class);
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.cst_nguoi_thue, fragment);
+        //transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

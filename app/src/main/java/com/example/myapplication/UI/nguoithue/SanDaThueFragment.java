@@ -63,7 +63,7 @@ public class SanDaThueFragment extends Fragment {
 
         try {
             phieuThueList = phieuThueDAO.getPhieuByUser(phone);
-            Toast.makeText(getContext(), ""+phieuThueList.size(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), ""+phieuThueList.size(), Toast.LENGTH_SHORT).show();
         }catch (Exception e){
         }
         adapter = new SanDaThueAdapter(getContext(), (ArrayList<PhieuThue>) phieuThueList, new ITFOnItenClick() {

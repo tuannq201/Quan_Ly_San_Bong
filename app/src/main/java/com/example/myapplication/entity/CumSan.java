@@ -1,6 +1,8 @@
 package com.example.myapplication.entity;
 
-public class CumSan {
+import java.io.Serializable;
+
+public class CumSan implements Serializable {
     public int maCumSan;
     public String tenCumSan,chuSan,diaChi;
 
