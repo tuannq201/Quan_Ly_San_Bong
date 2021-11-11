@@ -2,6 +2,7 @@ package com.example.myapplication.UI.chusan;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +30,7 @@ public class ChuSanActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment fragment;
                 switch (item.getItemId()){
-                    case R.id.nav_chon_san_cs:
+                    case R.id.nav_quan_ly_san_cs:
                         fragment = new ListSanFragment();
                         loadFragment(fragment);
                         return true;
@@ -41,16 +42,17 @@ public class ChuSanActivity extends AppCompatActivity {
                 return false;
             }
         });
-        fab.setOnClickListener(v -> {
-            loadFragment(new AddSanFragment());
-        });
+//        fab.setOnClickListener(v -> {
+//            loadFragment(new AddSanFragment());
+//        });
+//        fab.setVisibility(View.VISIBLE);
 
     }
     private void loadFragment(Fragment fragment) {
         // load fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
-        //transaction.addToBackStack(null);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 

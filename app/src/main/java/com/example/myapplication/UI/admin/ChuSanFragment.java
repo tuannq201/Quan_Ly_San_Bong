@@ -85,6 +85,8 @@ public class ChuSanFragment extends Fragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
     }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -97,6 +99,7 @@ public class ChuSanFragment extends Fragment {
 
         //tìm user
         searchView = view.findViewById(R.id.svChuSan);
+        CharSequence query = searchView.getQuery();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
            @Override
            public boolean onQueryTextSubmit(String s) {
@@ -107,8 +110,8 @@ public class ChuSanFragment extends Fragment {
 
            @Override
            public boolean onQueryTextChange(String s) {
-                   s = searchView.getQuery().toString();
-                   seachUser(s);
+               s = searchView.getQuery().toString();
+               seachUser(s);
                return false;
            }
        });
@@ -119,18 +122,6 @@ public class ChuSanFragment extends Fragment {
                 openDialog(0);
             }
         });
-        //tìm trong list
-//        String[] userList;
-//        for (int i = 0; i < userList.length; i++) {
-//            User animalNames = new User(userList[i]);
-//            // Binds all strings into an array
-//            list.add(animalNames);
-//        }
-//        adapter = new ListViewAdapter(this, arraylist);
-//        list.setAdapter(adapter);
-
-        // Locate the EditText in listview_main.xml
-
         //xóa user
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -150,7 +141,6 @@ public class ChuSanFragment extends Fragment {
         });
         return view;
     }
-
     public void seachUser(String TK){
         List<User> list1 = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
@@ -244,6 +234,7 @@ public class ChuSanFragment extends Fragment {
         adapter = new ChuSanAdapter(getActivity(),this,list);
         lv.setAdapter(adapter);
     }
+
     //show dialog xóa
     public void xoa() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

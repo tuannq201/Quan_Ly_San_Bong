@@ -3,16 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.26614583333333336" />
-        <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/drawable/ic_baseline_insights_24.xml" value="0.26614583333333336" />
-        <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/activity_chu_san.xml" value="0.25" />
-        <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/activity_nguoi_thue.xml" value="0.25" />
-        <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/activity_san_of_cum_san.xml" value="0.25" />
-        <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/fragment_list_san.xml" value="0.25" />
-        <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/fragment_nguoi_thue.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/fragment_san.xml" value="0.25" />
-        <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/fragment_san_cum_san.xml" value="0.25" />
-        <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/fragment_san_da_thue.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/item_cum_san.xml" value="0.536" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/item_list_san_layout.xml" value="0.25" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_admin.xml" value="0.3625" />

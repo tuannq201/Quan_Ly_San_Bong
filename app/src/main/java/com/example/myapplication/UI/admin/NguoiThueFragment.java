@@ -28,7 +28,6 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.example.myapplication.ADadapter.ChuSanAdapter;
 import com.example.myapplication.ADadapter.NguoiThueAdapter;
 import com.example.myapplication.ADadapter.NguoiThueAdapter;
 import com.example.myapplication.R;
@@ -40,7 +39,6 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 public class NguoiThueFragment extends Fragment {
     ArrayList<User> list;
@@ -91,24 +89,6 @@ public class NguoiThueFragment extends Fragment {
             }
         });
 
-        //tìm user
-        searchView = view.findViewById(R.id.svNguoiThue);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                s = searchView.getQuery().toString();
-                seachUser(s);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                s = searchView.getQuery().toString();
-                seachUser(s);
-                return false;
-            }
-        });
-
         //xóa user
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -127,19 +107,6 @@ public class NguoiThueFragment extends Fragment {
             }
         });
         return view;
-    }
-    //tìm user
-    public void seachUser(String TK){
-        List<User> list1 = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            User user = list.get(i);
-            String tk = user.taiKhoan;
-            if (tk.contains(TK)){
-                list1.add(user);
-            }
-        }
-        adapter = new NguoiThueAdapter(getActivity(),this, (ArrayList<User>) list1);
-        lv.setAdapter(adapter);
     }
     //mở dialog
     public void openDialog(final int type){
@@ -219,6 +186,13 @@ public class NguoiThueFragment extends Fragment {
 
     void capNhatLV(){
         list = (ArrayList<User>) dao.getPhanQuyen("NT");
+        adapter = new NguoiThueAdapter(getActivity(),this,list);
+        lv.setAdapter(adapter);
+    }
+    //cập nhật LV khi đổ tìm kiếm
+    void capNhatLVSeach(String str){
+        str = searchView.getQuery().toString();
+        list = (ArrayList<User>) dao.seachUser(str,"NT");
         adapter = new NguoiThueAdapter(getActivity(),this,list);
         lv.setAdapter(adapter);
     }

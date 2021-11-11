@@ -29,6 +29,7 @@ import com.example.myapplication.dao.SanDAO;
 import com.example.myapplication.entity.CumSan;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.util.Cover;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +71,9 @@ public class AddSanFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_san, container, false);
+
+//        FloatingActionButton fab = getActivity().findViewById(R.id.fab);
+//        fab.setVisibility(View.INVISIBLE);
         spTenCumSan = view.findViewById(R.id.sp_tenCumSan);
         edTenSan = view.findViewById(R.id.ed_ten_san);
         edLoaiSan = view.findViewById(R.id.ed_loai_san);

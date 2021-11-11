@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Chọn Sân"
-        android:id="@+id/nav_chon_san_cs"
+    <item android:title="Quản Lý Sân"
+        android:id="@+id/nav_quan_ly_san_cs"
         android:icon="@drawable/ic_baseline_home_24"/>
     <item
         android:id="@+id/nav_ca_nhan"

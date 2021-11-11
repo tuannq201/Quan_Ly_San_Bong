@@ -55,13 +55,17 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                itfOnItenClick.onItemClick(san);
+                itfOnItenClick.onItemClick(san, 0);
 
 //                Toast.makeText(context, "Layout click", Toast.LENGTH_SHORT).show();
 //                AppCompatActivity activity = (AppCompatActivity) view.getContext();
 //                CaSanFragment caSanFragment = new CaSanFragment();
 //                activity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_item_san,caSanFragment).addToBackStack(null).commit();
             }
+        });
+        holder.itemView.setOnLongClickListener(v -> {
+            itfOnItenClick.onItemClick(san, 1);
+            return true;
         });
     }
 

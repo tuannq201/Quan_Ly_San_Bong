@@ -85,6 +85,10 @@ public class UserDAO {
         String sql = "SELECT * FROM "+TABLE_NAME+ " WHERE taiKhoan =? AND phanQuyen =?";
         return getData(sql,TK,PQ);
     }
+    public List<User> seachUser1(String TK){
+        String sql = "SELECT * FROM "+TABLE_NAME+ " WHERE taiKhoan '";
+        return getData(sql,TK);
+    }
 
     @SuppressLint("Range")
     private List<User> getData(String sql , String...selectionArgs){

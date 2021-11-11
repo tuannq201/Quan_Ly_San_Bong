@@ -67,8 +67,10 @@ public class SanDaThueFragment extends Fragment {
         }catch (Exception e){
         }
         adapter = new SanDaThueAdapter(getContext(), (ArrayList<PhieuThue>) phieuThueList, new ITFOnItenClick() {
+
+
             @Override
-            public void onItemClick(San san) {
+            public void onItemClick(San san, int type) {
 
             }
 

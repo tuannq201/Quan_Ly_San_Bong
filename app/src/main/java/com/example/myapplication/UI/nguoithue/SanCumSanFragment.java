@@ -70,9 +70,10 @@ public class SanCumSanFragment extends Fragment {
         rcv.setLayoutManager(mLayoutManager);
         rcv.setItemAnimator(new DefaultItemAnimator());
         adapter = new ListSanAdapter(getActivity(), sanList, new ITFOnItenClick() {
+
             @Override
-            public void onItemClick(San san) {
-                onClickGoToCaSan(san);
+            public void onItemClick(San san, int type) {
+
             }
 
             @Override
