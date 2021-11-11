@@ -47,7 +47,7 @@ public class CumSanAdapter extends RecyclerView.Adapter<CumSanAdapter.CumSanView
 
     @Override
     public void onBindViewHolder(@NonNull CumSanViewHolder holder, int position) {
-//        if (position == cumSanList.size()-1){
+//        if (position == (cumSanList.size()-1)){
 //            holder.cv.setVisibility(View.GONE);
 //        }
         CumSan cumSan = cumSanList.get(position);

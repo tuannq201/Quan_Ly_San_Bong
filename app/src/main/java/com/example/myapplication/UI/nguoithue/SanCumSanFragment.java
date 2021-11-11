@@ -73,7 +73,7 @@ public class SanCumSanFragment extends Fragment {
 
             @Override
             public void onItemClick(San san, int type) {
-
+                onClickGoToCaSan(san);
             }
 
             @Override

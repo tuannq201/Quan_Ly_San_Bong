@@ -9,35 +9,23 @@
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="70dp"/>
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
+    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+        android:id="@+id/meo_btn_nguoi_thue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/white"
-        app:fabCradleMargin="10dp"
-        app:fabCradleRoundedCornerRadius="10dp"
-        app:hideOnScroll="true">
+        app:mbn_backgroundBottomColor="#BAF4CD"
+        app:mbn_circleColor="#FFFFFF"
+        app:mbn_countBackgroundColor="#FF7043"
+        app:mbn_countTextColor="#ffffff"
+        app:mbn_defaultIconColor="#FFFFFF"
+        android:outlineAmbientShadowColor="@color/black"
+        app:mbn_rippleColor="#5C6BC0"
+        app:mbn_selectedIconColor="#292C42"
+        app:mbn_shadowColor="#1f212121"
+        />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/nav_bottom_chu_san"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
-            android:layout_marginRight="15dp"
-            android:background="@color/white"
-            app:menu="@menu/menu_bottom_chu_san" />
-    </com.google.android.material.bottomappbar.BottomAppBar>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="@color/colorfab"
-        android:src="@drawable/ic_baseline_add_24"
-        app:layout_anchor="@+id/bottomAppBar"
-        app:maxImageSize="50dp" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

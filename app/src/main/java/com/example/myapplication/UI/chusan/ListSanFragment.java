@@ -1,8 +1,10 @@
 package com.example.myapplication.UI.chusan;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -20,11 +22,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
@@ -83,13 +87,28 @@ public class ListSanFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list_san, container, false);
 
-        FloatingActionButton fab = getActivity().findViewById(R.id.fab);
-        fab.setOnClickListener(v -> {
+        ImageView imaAdd = view.findViewById(R.id.img_add);
+        imaAdd.setOnClickListener(v -> {
             openDialog(0, san);
         });
         rcvSan = view.findViewById(R.id.list_san_chu_san);
         dao = new SanDAO(getActivity());
         updateLV();
+        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
+                0, ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                san = adapter.getItem(position);
+                delete();
+            }
+        });
+        helper.attachToRecyclerView(rcvSan);
         return view;
     }
     public void updateLV(){
@@ -112,6 +131,7 @@ public class ListSanFragment extends Fragment {
             }
         });
         rcvSan.setAdapter(adapter);
+
     }
 
     private void openDialog(int type, San san1) {
@@ -243,5 +263,29 @@ public class ListSanFragment extends Fragment {
             check = false;
         }
         return check;
+    }
+    public void delete() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Xóa Sân");
+        builder.setMessage("Bạn có muốn xóa Không ?");
+        builder.setCancelable(true);
+        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dao.delete(String.valueOf(san.maSan));
+                updateLV();
+                dialogInterface.cancel();
+            }
+        });
+        builder.setNegativeButton(
+                "Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                }
+        );
+        AlertDialog alertDialog = builder.create();
+        builder.show();
     }
 }

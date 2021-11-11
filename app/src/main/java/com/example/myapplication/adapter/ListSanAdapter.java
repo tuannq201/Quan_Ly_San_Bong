@@ -73,6 +73,16 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
     public int getItemCount() {
         return listSan.size();
     }
+    public San getItem(int position){
+        if (listSan == null || position > listSan.size()){
+            return null;
+        }
+        return listSan.get(position);
+    }
+    public void setList(List<San> listSan) {
+        this.listSan = listSan;
+        notifyDataSetChanged();
+    }
 
     public class ListsanViewHolder extends RecyclerView.ViewHolder{
         private TextView tvTenSan, tvLoaiSan, tvGiaSan;

@@ -16,7 +16,6 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="21dp"
         android:src="@drawable/br_sanbong" />
-
     <TextView
         android:id="@+id/tvCaThueDialog"
         android:layout_width="match_parent"
