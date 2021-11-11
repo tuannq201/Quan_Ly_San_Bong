@@ -150,11 +150,6 @@ public class SanFragment extends Fragment {
         adapter = new CumSanAdapter(getContext(), list, new ItemCumSanClick() {
             @Override
             public void onItemClick(CumSan cumSan) {
-                //Toast.makeText(getContext(), ""+cumSan.maCumSan, Toast.LENGTH_SHORT).show();
-//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                transaction.replace(R.id.cst_nguoi_thue, new ListSanFragment());
-//                transaction.addToBackStack(null);
-//                transaction.commit();
                 MeowBottomNavigation bottomNavigation = getActivity().findViewById(R.id.meo_btn_nguoi_thue);
                 bottomNavigation.setVisibility(View.GONE);
                 itFsendData.sendData(cumSan.maCumSan);

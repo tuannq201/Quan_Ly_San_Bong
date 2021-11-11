@@ -20,9 +20,8 @@ public class ChuSanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chu_san);
-
-        fab = findViewById(R.id.fab);
         loadFragment(new ListSanFragment());
+        fab = findViewById(R.id.fab);
         BottomNavigationView navigationView = (BottomNavigationView) findViewById(R.id.nav_bottom_chu_san);
         navigationView.setBackground(null);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

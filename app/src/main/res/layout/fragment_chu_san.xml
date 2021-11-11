@@ -10,15 +10,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         tools:ignore="MissingConstraints">
-
-        <SearchView
-            android:id="@+id/svChuSan"
+        <androidx.cardview.widget.CardView
             android:layout_width="320dp"
             android:layout_height="50dp"
-            android:layout_margin="8dp"
-            android:background="#BCB8B8"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_margin="5dp"
+            app:cardCornerRadius="15dp">
+
+            <SearchView
+                android:id="@+id/svChuSan"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:background="#FAFAFA"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.cardview.widget.CardView>
 
         <ImageView
             android:id="@+id/imgThemCS"
@@ -35,6 +40,8 @@
         android:id="@+id/lvChuSan"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="0dp"
         android:layout_marginTop="70dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"

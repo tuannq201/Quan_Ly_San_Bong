@@ -168,6 +168,7 @@ public class ListSanFragment extends Fragment {
             edTenSan.setText(san1.tenSan);
             edLoaiSan.setText(san1.loaiSan);
             edGiaSan.setText(""+san1.giaSan + "VND");
+            btSave.setText("Cập Nhật");
             for (int i=0;i<listCumSan.size();i++){
                 if (san1.maCumSan == (listCumSan.get(i).maCumSan)){
                     position = i;
