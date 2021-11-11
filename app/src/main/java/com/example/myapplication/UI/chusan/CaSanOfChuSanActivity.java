@@ -39,7 +39,7 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
         for (int i = 1; i <= 12 ; i++) {
             list1.add(phieuThueDAO.checkTrangThai(1, String.valueOf(i), "2021-11-11"));
         }
-        CaSanAdapter caSanAdapter = new CaSanAdapter(getApplication(), list1);
+        CaSanAdapter caSanAdapter = new CaSanAdapter(getApplication(), list1, "CS");
         gridView.setAdapter(caSanAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

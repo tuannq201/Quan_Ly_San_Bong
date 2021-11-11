@@ -21,12 +21,15 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
 
     private Context context;
     private ArrayList<TrangThai> list;
+    String type;
     TextView tvTenCa,tvTrangThai,tvKhuyenMai;
 
-    public CaSanAdapter(Context context, ArrayList<TrangThai> list) {
+    public CaSanAdapter(Context context, ArrayList<TrangThai> list, String type) {
         super(context, 0, list);
         this.context = context;
         this.list = list;
+        this.type = type;
+
     }
     @NonNull
     @Override
