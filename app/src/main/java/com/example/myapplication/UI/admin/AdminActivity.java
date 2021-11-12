@@ -12,17 +12,12 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.myapplication.ADadapter.AdminAdapter;
 import com.example.myapplication.R;
-import com.example.myapplication.UI.nguoithue.SanDaThueFragment;
-import com.example.myapplication.UI.nguoithue.SanFragment;
-import com.example.myapplication.UI.nguoithue.UserFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
+
 
 
 public class AdminActivity extends AppCompatActivity {
 
-    public static com.etebarian.meowbottomnavigation.MeowBottomNavigation meowBottomNavigation;
+    MeowBottomNavigation meowBottomNavigation;
 
     // Màn hình của Admin.
     @Override

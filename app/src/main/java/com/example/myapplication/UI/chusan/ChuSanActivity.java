@@ -9,44 +9,80 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.myapplication.R;
+import com.example.myapplication.UI.admin.ChuSanFragment;
+import com.example.myapplication.UI.admin.NguoiThueFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ChuSanActivity extends AppCompatActivity {
-
-    FloatingActionButton fab;
+    MeowBottomNavigation meowBottomNavigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chu_san);
-
-        fab = findViewById(R.id.fab);
-        loadFragment(new ListSanFragment());
-        BottomNavigationView navigationView = (BottomNavigationView) findViewById(R.id.nav_bottom_chu_san);
-        navigationView.setBackground(null);
-        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        loadFragment(new ChuSanFragment());
+        meowBottomNavigation =(com.etebarian.meowbottomnavigation.MeowBottomNavigation) findViewById(R.id.meo_btn_chusan);
+        meowBottomNavigation.add(new com.etebarian.meowbottomnavigation.MeowBottomNavigation.Model(1, R.drawable.ic_baseline_home_24));
+        meowBottomNavigation.add(new com.etebarian.meowbottomnavigation.MeowBottomNavigation.Model(2, R.drawable.ic_baseline_insights_24));
+        meowBottomNavigation.add(new com.etebarian.meowbottomnavigation.MeowBottomNavigation.Model(3, R.drawable.ic_baseline_account_circle_24));
+        meowBottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment fragment;
-                switch (item.getItemId()){
-                    case R.id.nav_quan_ly_san_cs:
+            public void onShowItem(MeowBottomNavigation.Model item) {
+                Fragment fragment = null;
+                switch (item.getId()){
+                    case 1:
                         fragment = new ListSanFragment();
-                        loadFragment(fragment);
-                        return true;
-                    case R.id.nav_ca_nhan:
+                        break;
+                    case 2:
+                        fragment = new ThongKeFragment();
+                        break;
+                    case 3:
                         fragment = new CaNhanOfChuSanFragment();
-                        loadFragment(fragment);
-                        return true;
+                        break;
                 }
-                return false;
+                loadFragment(fragment);
             }
         });
-//        fab.setOnClickListener(v -> {
-//            loadFragment(new AddSanFragment());
-//        });
-//        fab.setVisibility(View.VISIBLE);
+        meowBottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
+            @Override
+            public void onClickItem(MeowBottomNavigation.Model item) {
+                Fragment fragment = null;
+                switch (item.getId()){
+                    case 1:
+                        fragment = new ListSanFragment();
+                        break;
+                    case 2:
+                        fragment = new ThongKeFragment();
+                        break;
+                    case 3:
+                        fragment = new CaNhanOfChuSanFragment();
+                        break;
+                }
+                loadFragment(fragment);
+            }
+        });
 
+        meowBottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+            @Override
+            public void onReselectItem(MeowBottomNavigation.Model item) {
+                Fragment fragment = null;
+                switch (item.getId()){
+                    case 1:
+                        fragment = new ListSanFragment();
+                        break;
+                    case 2:
+                        fragment = new ThongKeFragment();
+                        break;
+                    case 3:
+                        fragment = new CaNhanOfChuSanFragment();
+                        break;
+                }
+                loadFragment(fragment);
+            }
+        });
+        meowBottomNavigation.show(1, true);
     }
     private void loadFragment(Fragment fragment) {
         // load fragment
