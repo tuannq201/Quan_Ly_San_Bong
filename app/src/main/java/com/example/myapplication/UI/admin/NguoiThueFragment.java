@@ -160,7 +160,7 @@ public class NguoiThueFragment extends Fragment {
                 item.taiKhoan = phone_number;
                 item.matKhau = password;
                 item.hinhAnh = imageViewToByteArray(iv_camera_result);
-                if (validate()){
+                if (validate()>0){
                     if (type == 0){
                         if (dao.insert(item) > 0){
                             Toast.makeText(getContext(), "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
@@ -281,9 +281,25 @@ public class NguoiThueFragment extends Fragment {
             }
         }
     }
-    //kiểm tra nhập
-    public boolean validate(){
-        return true;
+    public int validate(){
+        int check = 1 ;
+        if (ed_phone_number.getText().length() == 0 || ed_name.getText().length() == 0 || ed_password.getText().length() == 0 || ed_re_password.getText().length() == 0){
+            Toast.makeText(getContext(),"Bạn phải nhập đầy đủ thông tin !",Toast.LENGTH_LONG).show();
+            check = -1;
+        }else{
+            String sdt = ed_phone_number.getText().toString();
+            String regexSDT = "^(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})$";
+            if (sdt.matches(regexSDT) == false){
+                Toast.makeText(getContext(),"Số điện thoại không hợp lệ",Toast.LENGTH_LONG).show();
+                check = -1;
+            }
+        }
+        String pass = ed_password.getText().toString();
+        String rePass = ed_re_password.getText().toString();
+        if (!pass.equals(rePass)) {
+            Toast.makeText(getContext(), "Mật khẩu không trùng khớp", Toast.LENGTH_LONG).show();
+            check = -1;
+        }
+        return check;
     }
-
 }
