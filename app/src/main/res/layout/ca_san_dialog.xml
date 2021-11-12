@@ -1,73 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:cardCornerRadius="40dp"
-    android:orientation="vertical">
-
-    <ImageView
-
-        android:id="@+id/imgCaSanDialog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="21dp"
-        android:src="@drawable/br_sanbong" />
+    android:layout_height="match_parent">
     <TextView
-        android:id="@+id/tvCaThueDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="20dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/tvGioThueDialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="20dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/tvGiaThueDialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="20dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/tvTrangThaiDialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="20dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/tvKhuyenMaiDialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="20dp"
-        android:text="TextView" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btHuyDialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Hủy" />
-
-    </LinearLayout>
-
+        android:textSize="19sp"
+        android:text="hihihih"/>
 </LinearLayout>

@@ -15,7 +15,6 @@ import com.example.myapplication.adapter.CaSanAdapter;
 import com.example.myapplication.dao.PhieuThueDAO;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.TrangThai;
-import com.example.myapplication.util.Cover;
 
 import java.util.ArrayList;
 
@@ -53,25 +52,25 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
 
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.ca_san_dialog);
-        edGioThueDialog = dialog.findViewById(R.id.tvGioThueDialog);
-        edGiaThueDialog = dialog.findViewById(R.id.tvGiaThueDialog);
-        edCaThueDialog = dialog.findViewById(R.id.tvCaThueDialog);
-        edKhuyenMaiDialog = dialog.findViewById(R.id.tvKhuyenMaiDialog);
-        //edNgayThueDialog = dialog.findViewById(R.id.tvNgayThueDialog);
-        edTrangThaiDialog = dialog.findViewById(R.id.tvTrangThaiDialog);
-        btnHuyDialog=dialog.findViewById(R.id.btHuyDialog);
-
-
-        edGiaThueDialog.setText("Giá Thuê: "+item.tienSan);
-        edCaThueDialog.setText("Tên Ca: "+item.ca);
-        edGioThueDialog.setText("Giờ Thuê: "+ Cover.caToTime(String.valueOf(item.ca)));
-        edTrangThaiDialog.setText("Trạng Thái: "+item.taiKhoan);
-        btnHuyDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+//        edGioThueDialog = dialog.findViewById(R.id.tvGioThueDialog);
+//        edGiaThueDialog = dialog.findViewById(R.id.tvGiaThueDialog);
+//        edCaThueDialog = dialog.findViewById(R.id.tvCaThueDialog);
+//        edKhuyenMaiDialog = dialog.findViewById(R.id.tvKhuyenMaiDialog);
+//        //edNgayThueDialog = dialog.findViewById(R.id.tvNgayThueDialog);
+//        edTrangThaiDialog = dialog.findViewById(R.id.tvTrangThaiDialog);
+//        btnHuyDialog=dialog.findViewById(R.id.btnHuyDialog);
+//
+//
+//        edGiaThueDialog.setText("Giá Thuê: "+item.tienSan);
+//        edCaThueDialog.setText("Tên Ca: "+item.ca);
+//        edGioThueDialog.setText("Giờ Thuê: "+ Cover.caToTime(String.valueOf(item.ca)));
+//        edTrangThaiDialog.setText("Trạng Thái: "+item.taiKhoan);
+//        btnHuyDialog.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                dialog.dismiss();
+//            }
+//        });
         dialog.show();
     }
 }
