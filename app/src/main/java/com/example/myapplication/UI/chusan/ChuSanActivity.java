@@ -1,10 +1,6 @@
 package com.example.myapplication.UI.chusan;
 
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -12,9 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.admin.ChuSanFragment;
-import com.example.myapplication.UI.admin.NguoiThueFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 public class ChuSanActivity extends AppCompatActivity {
     MeowBottomNavigation meowBottomNavigation;
