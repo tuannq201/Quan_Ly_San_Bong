@@ -56,7 +56,9 @@ public class DbHelper extends SQLiteOpenHelper{
         String INSERT_User = "Insert into User(taiKhoan,hoTen,matKhau,phanQuyen,hinh) values " +
                 "('9999','Nhom 1 Dep Trai','123456','AD',null)," +
                 "('7777','Nhom 1 Dep Trai','123456','NT',null)," +
-                "('8888','Nhom 1 Dep Trai','123456','CS',null)";
+                "('8888','Nhom 1 Dep Trai','123456','CS',null)," +
+                "('88123','Nhom 1 Dep Trai','123456','CS',null)," +
+                "('88456','Nhom 1 Dep Trai','123456','CS',null)";
         db.execSQL(INSERT_User);
 
         String INSERT_San1 = "Insert into San(tenSan,giaSan,loaiSan,chuSan, maCumSan, anhSan) values " +
@@ -71,14 +73,14 @@ public class DbHelper extends SQLiteOpenHelper{
                 "('san 3','250000',5,'8888', '4',null)," +
                 "('san 4','200000',7,'8888', '4',null)," +
                 "('san 5','150000',5,'8888', '4',null)," +
-                "('san 6','120000',7,'8888', '6',null)," +
-                "('san 1','250000',5,'8888', '6',null)," +
-                "('san 2','250000',7,'8888', '6',null)," +
-                "('san 3','150000',5,'8888', '7',null)," +
-                "('san 4','220000',7,'8888', '7',null)," +
-                "('san 5','220000',5,'8888', '7',null)," +
-                "('san 6','220000',7,'8888', '7',null)," +
-                "('san 7','150000',5,'8888', '7',null)";
+                "('san 6','120000',7,'88456', '6',null)," +
+                "('san 1','250000',5,'88456', '6',null)," +
+                "('san 2','250000',7,'88456', '6',null)," +
+                "('san 3','150000',5,'88456', '7',null)," +
+                "('san 4','220000',7,'88123', '7',null)," +
+                "('san 5','220000',5,'88123', '7',null)," +
+                "('san 6','220000',7,'88123', '7',null)," +
+                "('san 7','150000',5,'88123', '7',null)";
         db.execSQL(INSERT_San1);
 
         String INSERT_CumSan = "Insert into CumSan(tenCumSan,diaChi,chuSan) values " +

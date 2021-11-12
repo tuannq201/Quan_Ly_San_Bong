@@ -54,7 +54,10 @@ public class SanDAO {
         String sql = "SELECT * FROM San";
         return getData(sql);
     }
-
+    public List<San> getAllByIDChuSan(String taiKhoan){
+        String sql = "SELECT * FROM San WHERE chuSan = ?";
+        return getData(sql, taiKhoan);
+    }
 
     public List<San> getSanByCumSan(String maCumSan){
         String sql = "SELECT * FROM San WHERE maCumSan=?";
