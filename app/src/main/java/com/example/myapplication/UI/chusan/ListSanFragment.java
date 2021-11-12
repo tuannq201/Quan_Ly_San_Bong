@@ -1,5 +1,7 @@
 package com.example.myapplication.UI.chusan;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -36,6 +38,7 @@ import com.example.myapplication.adapter.ListSanAdapter;
 import com.example.myapplication.adapter.SpinnerCumSanAdapter;
 import com.example.myapplication.dao.CumSanDAO;
 import com.example.myapplication.dao.SanDAO;
+import com.example.myapplication.dao.UserDAO;
 import com.example.myapplication.entity.CumSan;
 import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
@@ -112,7 +115,9 @@ public class ListSanFragment extends Fragment {
         return view;
     }
     public void updateLV(){
-        listSan = (ArrayList<San>) dao.getAll();
+        SharedPreferences pref = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        String phone = pref.getString("PHONE","");
+        listSan = (ArrayList<San>) dao.getAllByIDChuSan(phone);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         rcvSan.setLayoutManager(mLayoutManager);
         rcvSan.setItemAnimator(new DefaultItemAnimator());
