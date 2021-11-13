@@ -1,13 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Chọn Sân"
-        android:id="@+id/nav_chon_san"
-        android:icon="@drawable/avatar_default"/>
-    <item android:title="Đã Thuê"
-        android:id="@+id/nav_da_thue"
-        android:icon="@drawable/avatar_default"/>
-    <item android:title="tài khoản"
-        android:id="@+id/nav_user"
-        android:icon="@drawable/avatar_default"/>
+
+<!-- bottom_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home_nt"
+        android:icon="@drawable/ic_home"
+        android:title="trang chủ"
+        app:cnb_iconColor="@color/white"/>
+    <item
+        android:id="@+id/notifi_nt"
+        android:icon="@drawable/ic_notification"
+        android:title="thông báo"
+        app:cnb_iconColor="@color/white"/>
+    <item
+        android:id="@+id/user_nt"
+        android:icon="@drawable/ic_man_user"
+        android:title="tài khoản"
+        app:cnb_iconColor="@color/white" />
 </menu>
+
+

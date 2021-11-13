@@ -8,6 +8,12 @@
     tools:context=".UI.nguoithue.NguoiThueActivity">
 
 
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/bottom_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:cnb_orientationMode="vertical"
+        tools:ignore="MissingClass,MissingConstraints" />
     <FrameLayout
         android:id="@+id/frm_nguoi_thue"
         android:layout_width="match_parent"
@@ -20,22 +26,42 @@
 
     </FrameLayout>
 
-    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
-        android:id="@+id/meo_btn_nguoi_thue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+<!--    <com.etebarian.meowbottomnavigation.MeowBottomNavigation-->
+<!--        android:id="@+id/meo_btn_nguoi_thue"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:mbn_backgroundBottomColor="#66BB6A"-->
+<!--        app:mbn_circleColor="#FFFFFF"-->
+<!--        app:mbn_countBackgroundColor="#FF7043"-->
+<!--        app:mbn_countTextColor="#ffffff"-->
+<!--        app:mbn_defaultIconColor="#FFFFFF"-->
+<!--        android:outlineAmbientShadowColor="@color/black"-->
+<!--        app:mbn_rippleColor="#5C6BC0"-->
+<!--        app:mbn_selectedIconColor="#292C42"-->
+<!--        app:mbn_shadowColor="#1f212121"-->
+<!--        />-->
+
+
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/chip_navi_nguoi_thue"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        app:cnb_addBottomInset="false"
+        app:cnb_addLeftInset="false"
+        app:cnb_addRightInset="false"
+        app:cnb_addTopInset="false"
+        app:cnb_badgeColor="#FFA726"
+        app:cnb_iconSize="24dp"
+        app:cnb_menuResource="@menu/menu_activity_nguoi_thue"
+        app:cnb_orientationMode="horizontal"
+        app:cnb_radius="8dp"
+        android:background="#66BB6A"
+        app:cnb_unselectedColor="#ECE8E8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:mbn_backgroundBottomColor="#66BB6A"
-        app:mbn_circleColor="#FFFFFF"
-        app:mbn_countBackgroundColor="#FF7043"
-        app:mbn_countTextColor="#ffffff"
-        app:mbn_defaultIconColor="#FFFFFF"
-        android:outlineAmbientShadowColor="@color/black"
-        app:mbn_rippleColor="#5C6BC0"
-        app:mbn_selectedIconColor="#292C42"
-        app:mbn_shadowColor="#1f212121"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
