@@ -95,9 +95,6 @@ public class ChuSanFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_chu_san, container, false);
         imgAdd = view.findViewById(R.id.imgThemCS);
         lv = view.findViewById(R.id.lvChuSan);
-//        Animation animation = AnimationUtils
-//                .loadAnimation(getActivity(), R.anim.anim_user);
-//        lv.setAnimation(animation);
         dao = new UserDAO(getActivity());
         capNhatLV();
 
