@@ -67,6 +67,7 @@ public class ListSanFragment extends Fragment {
     public static final int REQUEST_CODE_CAMERA = 0;
     public static final int REQUEST_CODE_FOLDER = 1;
     private int position;
+    String phone;
 
     public ListSanFragment() {
     }
@@ -79,9 +80,8 @@ public class ListSanFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
+        SharedPreferences pref = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        phone = pref.getString("PHONE","");
     }
 
     @Override
@@ -115,9 +115,6 @@ public class ListSanFragment extends Fragment {
         return view;
     }
     public void updateLV(){
-        SharedPreferences pref = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
-        String phone = pref.getString("PHONE","");
-        listSan = (ArrayList<San>) dao.getAllByIDChuSan(phone);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         rcvSan.setLayoutManager(mLayoutManager);
         rcvSan.setItemAnimator(new DefaultItemAnimator());
@@ -212,7 +209,6 @@ public class ListSanFragment extends Fragment {
                 san.loaiSan = loaiSan;
                 san.giaSan = giaSan;
                 san.anhSan = Cover.imageViewToByteArray(imgSan);
-                san.taiKhoan = phone;
                 san.maCumSan = maCumSan;
                 if (type ==0){
                     if (dao.insert(san) > 0){
@@ -226,9 +222,6 @@ public class ListSanFragment extends Fragment {
                 }else {
                     if (dao.update(san) > 0){
                         Toast.makeText(getContext(), "Sửa sân thành công", Toast.LENGTH_SHORT).show();
-//                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                        transaction.replace(R.id.frame_container,new ListSanFragment());
-//                        transaction.commit();
                     }else {
                         Toast.makeText(getContext(), "Sửa sân không thành công", Toast.LENGTH_SHORT).show();
                     }

@@ -22,7 +22,8 @@
                 android:id="@+id/spn_chonCumSan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="10" />
+                android:layout_weight="10"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <ImageView
                 android:id="@+id/img_add"
