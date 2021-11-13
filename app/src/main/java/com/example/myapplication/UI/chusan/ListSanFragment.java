@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,16 +59,17 @@ public class ListSanFragment extends Fragment {
     ListSanAdapter adapter;
     San san;
     EditText edTenSan, edLoaiSan, edGiaSan;
-    Spinner spTenCumSan;
+    Spinner spTenCumSan, spnChonSan;
     Button btSave, btAlbum, btCamera;
     ImageView imgSan;
     List<CumSan> listCumSan;
-    int maCumSan;
+    int maCumSan, maCumSanHienTai;
     SpinnerCumSanAdapter spinnerCumSanAdapter;
     public static final int REQUEST_CODE_CAMERA = 0;
     public static final int REQUEST_CODE_FOLDER = 1;
     private int position;
     String phone;
+    private CumSanDAO cumSanDao;
 
     public ListSanFragment() {
     }
@@ -96,7 +98,9 @@ public class ListSanFragment extends Fragment {
         });
         rcvSan = view.findViewById(R.id.list_san_chu_san);
         dao = new SanDAO(getActivity());
-        updateLV();
+        cumSanDao = new CumSanDAO(getContext());
+        spnChonSan = view.findViewById(R.id.spn_chonCumSan);
+        setSpinner();
         ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
                 0, ItemTouchHelper.RIGHT) {
             @Override
@@ -114,11 +118,45 @@ public class ListSanFragment extends Fragment {
         helper.attachToRecyclerView(rcvSan);
         return view;
     }
-    public void updateLV(){
+
+    private void setSpinner() {
+        listCumSan = new ArrayList<>();
+        listCumSan = cumSanDao.getCSByChuSan(phone);
+
+        listSan = new ArrayList<>();
+        listCumSan.add(0, new CumSan(-1, "ALL"));
+        Toast.makeText(getContext(), ""+listCumSan.size(), Toast.LENGTH_SHORT).show();
+        spinnerCumSanAdapter = new SpinnerCumSanAdapter(getContext(), (ArrayList<CumSan>) listCumSan);
+        spnChonSan.setAdapter(spinnerCumSanAdapter);
+        spnChonSan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                maCumSanHienTai = listCumSan.get(position).maCumSan;
+                if (maCumSanHienTai == -1){
+                    //listCumSan.remove(0);
+                    for (int i = 0; i< listCumSan.size(); i++){
+                        List<San> listS = dao.getSanByCumSan(String.valueOf(listCumSan.get(i).maCumSan));
+                        Log.i("------", ""+ listS.size());
+                        listSan.addAll(listS);
+                    }
+                    Log.i("------", ""+ listSan.size());
+                }else {
+                    listSan = dao.getSanByCumSan(String.valueOf(maCumSanHienTai));
+                }
+                updateLV(listSan);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    public void updateLV(List<San> sanList){
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         rcvSan.setLayoutManager(mLayoutManager);
         rcvSan.setItemAnimator(new DefaultItemAnimator());
-        adapter = new ListSanAdapter(getActivity(), listSan, new ITFOnItenClick() {
+        adapter = new ListSanAdapter(getActivity(), sanList, new ITFOnItenClick() {
             @Override
             public void onItemClick(San san, int type) {
                 if (type ==0){
@@ -150,8 +188,7 @@ public class ListSanFragment extends Fragment {
         btAlbum = dialog.findViewById(R.id.btn_albuml);
         btSave = dialog.findViewById(R.id.btn_save);
 
-        SharedPreferences pref = getActivity().getSharedPreferences("USER_FILE", Context.MODE_PRIVATE);
-        String phone = pref.getString("PHONE","");
+
 
 
         btCamera.setOnClickListener(new View.OnClickListener() {
@@ -213,9 +250,6 @@ public class ListSanFragment extends Fragment {
                 if (type ==0){
                     if (dao.insert(san) > 0){
                         Toast.makeText(getContext(), "Tạo sân thành công", Toast.LENGTH_SHORT).show();
-//                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                        transaction.replace(R.id.frame_container,new ListSanFragment());
-//                        transaction.commit();
                     }else {
                         Toast.makeText(getContext(), "Tạo sân không thành công", Toast.LENGTH_SHORT).show();
                     }
@@ -226,7 +260,9 @@ public class ListSanFragment extends Fragment {
                         Toast.makeText(getContext(), "Sửa sân không thành công", Toast.LENGTH_SHORT).show();
                     }
                 }
-                updateLV();
+                if (maCumSan == maCumSanHienTai){
+                    updateLV(dao.getSanByCumSan(String.valueOf(maCumSanHienTai)));
+                }
                 dialog.dismiss();
             }
         });
@@ -271,7 +307,7 @@ public class ListSanFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dao.delete(String.valueOf(san.maSan));
-                updateLV();
+                updateLV(listSan);
                 dialogInterface.cancel();
             }
         });

@@ -10,7 +10,7 @@
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="70dp"/>
+        android:layout_marginBottom="55dp"/>
 
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:id="@+id/meo_btn_chusan"

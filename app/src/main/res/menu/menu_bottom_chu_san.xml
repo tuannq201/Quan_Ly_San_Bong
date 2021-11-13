@@ -4,17 +4,17 @@
 
     <item
         android:id="@+id/nav_trang_chu_cs"
-        android:icon="@drawable/ic_home"
-        android:title="trang chủ"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Trang Chủ"
         app:cnb_iconColor="@color/white"/>
     <item
         android:id="@+id/nav_thong_ke_cs"
         android:icon="@drawable/ic_baseline_insights_24"
-        android:title="thống kê"
+        android:title="Thống Kê"
         app:cnb_iconColor="@color/white"/>
     <item
         android:id="@+id/nav_ca_nhan_cs"
         android:icon="@drawable/ic_baseline_account_circle_24"
-        android:title="tài khoản"
+        android:title="Tài Khoản"
         app:cnb_iconColor="@color/white"/>
 </menu>
