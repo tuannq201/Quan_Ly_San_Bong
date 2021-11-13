@@ -6,20 +6,19 @@ import java.io.Serializable;
 
 public class San implements Serializable {
     public int maSan, giaSan, maCumSan;
-    public String tenSan, taiKhoan,loaiSan;
+    public String tenSan,loaiSan;
     public byte[] anhSan;
 
     public San(){
 
     }
 
-    public San(int maSan, int giaSan, String loaiSan, String tenSan, String taiKhoan, int maCumSan, byte[] anhSan) {
+    public San(int maSan, int giaSan, int maCumSan, String tenSan, String loaiSan, byte[] anhSan) {
         this.maSan = maSan;
         this.giaSan = giaSan;
-        this.loaiSan = loaiSan;
-        this.tenSan = tenSan;
-        this.taiKhoan = taiKhoan;
         this.maCumSan = maCumSan;
+        this.tenSan = tenSan;
+        this.loaiSan = loaiSan;
         this.anhSan = anhSan;
     }
 }

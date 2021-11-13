@@ -10,6 +10,7 @@
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/activity_nguoi_thue.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/activity_san_of_cum_san.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/ca_san_dialog.xml" value="0.25" />
+        <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/cum_san_item_spinner.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/fragment_add_san.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/fragment_list_san.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/fragment_nguoi_thue.xml" value="0.25" />
@@ -18,7 +19,7 @@
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/fragment_san_da_thue.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/fragment_user.xml" value="0.4" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/item_ca_san.xml" value="0.25" />
-        <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/item_cum_san.xml" value="0.536" />
+        <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/item_cum_san.xml" value="0.6" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/item_list_san_layout.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/item_san_da_thue.xml" value="0.4" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/menu/menu_activity_admin.xml" value="0.25" />

@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myapplication.database.DbHelper;
+import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.util.Cover;
 
@@ -27,7 +28,6 @@ public class SanDAO {
         values.put("giaSan",String.valueOf(obj.giaSan));
         values.put("loaiSan",String.valueOf(obj.loaiSan));
         values.put("tenSan",obj.tenSan);
-        values.put("chuSan",obj.taiKhoan);
         values.put("maCumSan", obj.maCumSan);
         values.put("anhSan",obj.anhSan);
         return db.insert("San",null,values);
@@ -38,7 +38,6 @@ public class SanDAO {
             values.put("giaSan",String.valueOf(obj.giaSan));
             values.put("loaiSan",String.valueOf(obj.loaiSan));
             values.put("tenSan",obj.tenSan);
-            values.put("chuSan",obj.taiKhoan);
             values.put("maCumSan", obj.maCumSan);
             values.put("anhSan",obj.anhSan);
             return db.update("San",values,"maSan=?",new String[]{String.valueOf(obj.maSan)});
@@ -47,6 +46,8 @@ public class SanDAO {
         return -1;
     }
 
+
+
     public int delete(String id){
         return db.delete("San","maSan=?",new String[]{id});
     }
@@ -54,10 +55,10 @@ public class SanDAO {
         String sql = "SELECT * FROM San";
         return getData(sql);
     }
-    public List<San> getAllByIDChuSan(String taiKhoan){
-        String sql = "SELECT * FROM San WHERE chuSan = ?";
-        return getData(sql, taiKhoan);
-    }
+//    public List<San> getAllByIDChuSan(String taiKhoan){
+//        String sql = "SELECT * FROM San WHERE chuSan = ?";
+//        return getData(sql, taiKhoan);
+//    }
 
     public List<San> getSanByCumSan(String maCumSan){
         String sql = "SELECT * FROM San WHERE maCumSan=?";
@@ -111,7 +112,6 @@ public class SanDAO {
             obj.tenSan = cursor.getString(cursor.getColumnIndex("tenSan"));
             obj.loaiSan = cursor.getString(cursor.getColumnIndex("loaiSan"));
             obj.maCumSan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("maCumSan")));
-            obj.taiKhoan =cursor.getString(cursor.getColumnIndex("chuSan"));
             obj.anhSan = cursor.getBlob(cursor.getColumnIndex("anhSan"));
             list.add(obj);
         }

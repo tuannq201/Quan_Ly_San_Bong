@@ -38,7 +38,6 @@ public class DbHelper extends SQLiteOpenHelper{
                 "tenSan TEXT NOT NULL, " +
                 "giaSan INTEGER NOT NULL, " +
                 "loaiSan INTEGER NOT NULL, " +
-                "chuSan TEXT NOT NULL, " +
                 "maCumSan INTEGER NOT NULL ," +
                 "anhSan BLOB )";
         db.execSQL(create_San);
@@ -49,7 +48,9 @@ public class DbHelper extends SQLiteOpenHelper{
                 "nguoiThue TEXT NOT NULL, " +
                 "caThue TEXT NOT NULL, " +
                 "ngayThue TEXT NOT NULL, " +
-                "tienSan INTEGER NOT NULL)";
+                "tienSan INTEGER NOT NULL, " +
+                "danhGia INTEGER, " +//:0-chưa đánh giá; 1-đã đánh giá
+                "sao INTEGER)";// 1-5 sao
         db.execSQL(create_PhieuThue);
 
 
@@ -72,51 +73,51 @@ public class DbHelper extends SQLiteOpenHelper{
                 "('0555555555','Nhom 1 Dep Trai','123456','CS',null)";
         db.execSQL(INSERT_User);
 
-        String INSERT_San1 = "Insert into San(tenSan,giaSan,loaiSan,chuSan, maCumSan, anhSan) values " +
-                "('san 1','150000',5,'0888888888', '1',null)," +
-                "('san 2','120000',7,'0888888888', '1',null)," +
-                "('san 3','120000',5,'0888888888', '1',null)," +
-                "('san 4','150000',7,'0888888888', '2',null)," +
-                "('san 5','120000',5,'0888888888', '2',null)," +
-                "('san 6','200000',7,'0888888888', '2',null)," +
-                "('san 1','150000',5,'0888888888', '3',null)," +
-                "('san 2','200000',7,'0888888888', '3',null)," +
-                "('san 3','250000',5,'0888888888', '4',null)," +
-                "('san 4','200000',7,'0888888888', '4',null)," +
-                "('san 5','150000',5,'0888888888', '4',null)," +
-                "('san 6','120000',7,'0555555555', '6',null)," +
-                "('san 1','250000',5,'0555555555', '6',null)," +
-                "('san 2','250000',7,'0555555555', '6',null)," +
-                "('san 3','150000',5,'0555555555', '7',null)," +
-                "('san 4','220000',7,'0333333333', '7',null)," +
-                "('san 5','220000',5,'0333333333', '7',null)," +
-                "('san 6','220000',7,'0333333333', '7',null)," +
-                "('san 7','150000',5,'0333333333', '7',null)";
+        String INSERT_San1 = "Insert into San(tenSan,giaSan,loaiSan, maCumSan, anhSan) values " +
+                "('san 1','150000',5, 1,null)," +
+                "('san 2','120000',7, 1,null)," +
+                "('san 3','120000',5, 1,null)," +
+                "('san 4','150000',7, 2,null)," +
+                "('san 5','120000',5, 2,null)," +
+                "('san 6','200000',7, 2,null)," +
+                "('san 7','150000',5, 3,null)," +
+                "('san 8','200000',7, 3,null)," +
+                "('san 9','250000',5, 4,null)," +
+                "('san 10','200000',7, 4,null)," +
+                "('san 11','150000',5, 4,null)," +
+                "('san 12','120000',7, 6,null)," +
+                "('san 13','250000',5, 6,null)," +
+                "('san 14','250000',7, 6,null)," +
+                "('san 15','150000',5, 7,null)," +
+                "('san 16','220000',7, 7,null)," +
+                "('san 17','220000',5, 7,null)," +
+                "('san 18','220000',7, 7,null)," +
+                "('san 19','150000',5, 7,null)";
         db.execSQL(INSERT_San1);
 
         String INSERT_CumSan = "Insert into CumSan(tenCumSan,diaChi,chuSan) values " +
                 "('cụm sân 1','Cẩm Lệ - Đà Nẵng','0888888888')," +
                 "('cụm sân 2','Liên Chiểu - Đà Nẵng','0888888888')," +
                 "('cụm sân 3','Hải Châu - Đà Nẵng','0888888888')," +
-                "('cụm sân 4','Sơn Trà - Đà Nẵng','0888888888')," +
+                "('cụm sân 4','Sơn Trà - Đà Nẵng','0333333331')," +
                 "('cụm sân 5','Cẩm Lệ - Đà Nẵng','0888888888')," +
-                "('cụm sân 6','Liên Chiểu - Đà Nẵng','0888888888')," +
+                "('cụm sân 6','Liên Chiểu - Đà Nẵng','0333333331')," +
                 "('cụm sân 7','Hải Châu - Đà Nẵng','0888888888')," +
                 "('cụm sân 8','Sơn Trà - Đà Nẵng','0888888888')," +
                 "('cụm sân 9','Cẩm Lệ - Đà Nẵng','0888888888')," +
                 "('cụm sân 10','Liên Chiểu - Đà Nẵng','0888888888')," +
-                "('cụm sân 11','Hải Châu - Đà Nẵng','0888888888')," +
+                "('cụm sân 11','Hải Châu - Đà Nẵng','0333333336')," +
                 "('cụm sân 12','Sơn Trà - Đà Nẵng','0888888888')," +
-                "('cụm sân 13','Thanh Khê - Đà Nẵng','0888888888')," +
+                "('cụm sân 13','Thanh Khê - Đà Nẵng','0333333336')," +
                 "('cụm sân 14','Liên Chiểu - Đà Nẵng','0888888888')," +
                 "('cụm sân 15','Liên Chiểu - Đà Nẵng','0888888888')";
         db.execSQL(INSERT_CumSan);
-        String INSERT_PT = "Insert into PhieuThue(maSan,nguoiThue,caThue,ngayThue,tienSan) values " +
-                "(1,'0777777777','1','2021-11-11',100000)," +
-                "(5,'0777777777','8','2021-11-11',100000)," +
-                "(3,'0777777777','5','2021-11-11',100000)," +
-                "(5,'0777777777','11','2021-11-11',100000)," +
-                "(7,'0777777777','2','2021-11-11',100000)";
+        String INSERT_PT = "Insert into PhieuThue(maSan,nguoiThue,caThue,ngayThue,tienSan, danhGia, sao) values " +
+                "(1,'0777777777','1','2021-11-11',100000, null, null)," +
+                "(5,'0777777777','8','2021-11-11',100000, null, null)," +
+                "(3,'0777777777','5','2021-11-11',100000, null, null)," +
+                "(5,'0777777777','11','2021-11-11',100000, null, null)," +
+                "(7,'0777777777','2','2021-11-11',100000, null, null)";
         db.execSQL(INSERT_PT);
 
 //        String INSERT_San = "Insert into San(tenSan,diaChi,giaSan,loaiSan,chuSan,anhSan) values " +

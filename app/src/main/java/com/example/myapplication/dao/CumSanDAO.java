@@ -48,6 +48,16 @@ public class CumSanDAO {
     }
 
 
+    public List<CumSan> getAll1(){
+        String sql = "SELECT * FROM CumSan WHERE maCumSan > 4 INNER JOIN San ON CumSan.maCumSan = San.maCumSan WHERE San.maCumSan IS NOT NULL";
+        return getData(sql);
+    }
+    public List<CumSan> getCSByChuSan(String chuSan){
+        String sql = "SELECT * FROM CumSan WHERE chuSan = ?";
+        return getData(sql, chuSan);
+    }
+
+
     public CumSan getCumSanBySan(String maSan){
         String sql = "SELECT * FROM CumSan INNER JOIN San ON CumSan.maCumSan = San.maCumSan WHERE San.maSan=?";
         return getData(sql, maSan).get(0);

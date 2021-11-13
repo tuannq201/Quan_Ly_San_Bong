@@ -38,7 +38,6 @@ public class SpinnerCumSanAdapter extends ArrayAdapter<CumSan> {
             tvMaCumSan = view.findViewById(R.id.text_spinner_maCumSan);
             tvTenCumSan = view.findViewById(R.id.text_spinner_tenCumSan);
 
-            tvMaCumSan.setText(cumSan.maCumSan+ ". ");
             tvTenCumSan.setText(cumSan.tenCumSan);
         }
         return view;
@@ -55,7 +54,6 @@ public class SpinnerCumSanAdapter extends ArrayAdapter<CumSan> {
             tvMaCumSan = view.findViewById(R.id.text_spinner_maCumSan);
             tvTenCumSan = view.findViewById(R.id.text_spinner_tenCumSan);
 
-            tvMaCumSan.setText(cumSan.maCumSan+ ". ");
             tvTenCumSan.setText(cumSan.tenCumSan);
         }
         return view;

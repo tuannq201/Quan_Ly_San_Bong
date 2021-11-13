@@ -128,7 +128,6 @@ public class AddSanFragment extends Fragment {
                 san.loaiSan = loaiSan;
                 san.giaSan = giaSan;
                 san.anhSan = Cover.imageViewToByteArray(imgSan);
-                san.taiKhoan = phone;
                 san.maCumSan = maCumSan;
                 if (dao.insert(san) > 0){
                     Toast.makeText(getContext(), "Tạo sân thành công", Toast.LENGTH_SHORT).show();
