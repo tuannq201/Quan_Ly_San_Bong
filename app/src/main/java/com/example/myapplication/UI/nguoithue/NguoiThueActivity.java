@@ -15,7 +15,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.UI.chusan.ListSanFragment;
 import com.example.myapplication.dao.PhieuThueDAO;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 
 public class NguoiThueActivity extends AppCompatActivity implements SanFragment.ITFsendData {
@@ -34,23 +34,93 @@ public class NguoiThueActivity extends AppCompatActivity implements SanFragment.
         String phone = pref.getString("PHONE","");
         phieuThueDAO = new PhieuThueDAO(NguoiThueActivity.this);
 
-        meowBottomNavigation =(com.etebarian.meowbottomnavigation.MeowBottomNavigation) findViewById(R.id.meo_btn_nguoi_thue);
-        meowBottomNavigation.add(new com.etebarian.meowbottomnavigation.MeowBottomNavigation.Model(1, R.drawable.ic_home));
-        meowBottomNavigation.add(new com.etebarian.meowbottomnavigation.MeowBottomNavigation.Model(2, R.drawable.ic_notification));
-        meowBottomNavigation.add(new com.etebarian.meowbottomnavigation.MeowBottomNavigation.Model(3, R.drawable.ic_man_user));
+//
+//        meowBottomNavigation =(com.etebarian.meowbottomnavigation.MeowBottomNavigation) findViewById(R.id.meo_btn_nguoi_thue);
+//        meowBottomNavigation.add(new com.etebarian.meowbottomnavigation.MeowBottomNavigation.Model(1, R.drawable.ic_home));
+//        meowBottomNavigation.add(new com.etebarian.meowbottomnavigation.MeowBottomNavigation.Model(2, R.drawable.ic_notification));
+//        meowBottomNavigation.add(new com.etebarian.meowbottomnavigation.MeowBottomNavigation.Model(3, R.drawable.ic_man_user));
+//
+//        meowBottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
+//            @Override
+//            public void onShowItem(MeowBottomNavigation.Model item) {
+//                Fragment fragment = null;
+//                switch (item.getId()){
+//                    case 1:
+//                        fragment = new SanFragment();
+//                        break;
+//                    case 2:
+//                        fragment = new SanDaThueFragment();
+//                        break;
+//                    case 3:
+//                        fragment = new UserFragment();
+//                        break;
+//
+//                }
+//                loadFragment(fragment);
+//            }
+//        });
+//        meowBottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
+//            @Override
+//            public void onClickItem(MeowBottomNavigation.Model item) {
+//                Fragment fragment = null;
+//                switch (item.getId()){
+//                    case 1:
+//                        fragment = new SanFragment();
+//                        break;
+//                    case 2:
+//                        fragment = new SanDaThueFragment();
+//                        break;
+//                    case 3:
+//                        fragment = new UserFragment();
+//                        break;
+//
+//                }
+//                loadFragment(fragment);
+//            }
+//        });
+//
+//        meowBottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+//            @Override
+//            public void onReselectItem(MeowBottomNavigation.Model item) {
+//                Fragment fragment = null;
+//                switch (item.getId()){
+//                    case 1:
+//                        fragment = new SanFragment();
+//                        break;
+//                    case 2:
+//                        fragment = new SanDaThueFragment();
+//                        break;
+//                    case 3:
+//                        fragment = new UserFragment();
+//                        break;
+//
+//                }
+//                loadFragment(fragment);
+//            }
+//        });
+//        meowBottomNavigation.show(1, true);
+//        if (phieuThueDAO.getPhieuByUser(phone).size()>0){
+//            meowBottomNavigation.setCount(2, String.valueOf(phieuThueDAO.getPhieuByUser(phone).size()));
+//        }else {
+//            meowBottomNavigation.clearCount(2);
+//        }
 
-        meowBottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
+        ChipNavigationBar chipNavigationBar = findViewById(R.id.chip_navi_nguoi_thue);
+        chipNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
-            public void onShowItem(MeowBottomNavigation.Model item) {
+            public void onItemSelected(int id) {
                 Fragment fragment = null;
-                switch (item.getId()){
-                    case 1:
+                switch (id){
+                    case R.id.home_nt:
+                        chipNavigationBar.showBadge(R.id.notifi_nt, phieuThueDAO.getPhieuByUser(phone).size());
                         fragment = new SanFragment();
                         break;
-                    case 2:
+                    case R.id.notifi_nt:
+                        chipNavigationBar.showBadge(R.id.notifi_nt);
                         fragment = new SanDaThueFragment();
                         break;
-                    case 3:
+                    case R.id.user_nt:
+                        chipNavigationBar.showBadge(R.id.notifi_nt, phieuThueDAO.getPhieuByUser(phone).size());
                         fragment = new UserFragment();
                         break;
 
@@ -58,51 +128,8 @@ public class NguoiThueActivity extends AppCompatActivity implements SanFragment.
                 loadFragment(fragment);
             }
         });
-        meowBottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
-            @Override
-            public void onClickItem(MeowBottomNavigation.Model item) {
-                Fragment fragment = null;
-                switch (item.getId()){
-                    case 1:
-                        fragment = new SanFragment();
-                        break;
-                    case 2:
-                        fragment = new SanDaThueFragment();
-                        break;
-                    case 3:
-                        fragment = new UserFragment();
-                        break;
+        chipNavigationBar.setItemSelected(R.id.home_nt, true);
 
-                }
-                loadFragment(fragment);
-            }
-        });
-
-        meowBottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
-            @Override
-            public void onReselectItem(MeowBottomNavigation.Model item) {
-                Fragment fragment = null;
-                switch (item.getId()){
-                    case 1:
-                        fragment = new SanFragment();
-                        break;
-                    case 2:
-                        fragment = new SanDaThueFragment();
-                        break;
-                    case 3:
-                        fragment = new UserFragment();
-                        break;
-
-                }
-                loadFragment(fragment);
-            }
-        });
-        meowBottomNavigation.show(1, true);
-        if (phieuThueDAO.getPhieuByUser(phone).size()>0){
-            meowBottomNavigation.setCount(2, String.valueOf(phieuThueDAO.getPhieuByUser(phone).size()));
-        }else {
-            meowBottomNavigation.clearCount(2);
-        }
 
     }
     public void loadFragment(Fragment fragment) {

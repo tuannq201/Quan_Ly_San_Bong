@@ -72,7 +72,7 @@ public class SanDaThueAdapter extends RecyclerView.Adapter<SanDaThueAdapter.View
         TextView tv_1, tv_2, tv_3, tv_4, tv_5;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_1 = itemView.findViewById(R.id.tv_dia_chi_san_ddk);
+            tv_1 = itemView.findViewById(R.id.tv_ten_cum_san_ddk);
             tv_2 = itemView.findViewById(R.id.tv_thoi_gian_ddk);
             tv_3 = itemView.findViewById(R.id.tv_loai_san_ddk);
             tv_4 = itemView.findViewById(R.id.tv_gia_san_ddk);

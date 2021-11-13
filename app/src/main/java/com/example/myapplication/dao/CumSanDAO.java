@@ -48,6 +48,10 @@ public class CumSanDAO {
     }
 
 
+    public CumSan getCumSanBySan(String maSan){
+        String sql = "SELECT * FROM CumSan INNER JOIN San ON CumSan.maCumSan = San.maCumSan WHERE San.maSan=?";
+        return getData(sql, maSan).get(0);
+    }
 
 
     public CumSan getID(String id){

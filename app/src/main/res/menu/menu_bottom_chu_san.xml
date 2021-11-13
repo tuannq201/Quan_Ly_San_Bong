@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Quản Lý Sân"
-        android:id="@+id/nav_quan_ly_san_cs"
-        android:icon="@drawable/ic_baseline_home_24"/>
     <item
-        android:id="@+id/nav_ca_nhan"
+        android:id="@+id/nav_trang_chu_cs"
+        android:icon="@drawable/ic_home"
+        android:title="trang chủ"/>
+    <item
+        android:id="@+id/nav_thong_ke_cs"
+        android:icon="@drawable/ic_baseline_insights_24"
+        android:title="thống kê" />
+    <item
+        android:id="@+id/nav_ca_nhan_cs"
         android:icon="@drawable/ic_baseline_account_circle_24"
-        android:title="Cá nhân" />
+        android:title="tài khoản" />
 </menu>

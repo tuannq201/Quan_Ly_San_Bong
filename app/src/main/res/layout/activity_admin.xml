@@ -33,6 +33,27 @@
         android:outlineAmbientShadowColor="@color/black"
         app:mbn_rippleColor="#5C6BC0"
         app:mbn_selectedIconColor="#292C42"
+        android:visibility="gone"
         app:mbn_shadowColor="#1f212121"
         />
+
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/chip_navi_admin"
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_height="55dp"
+        app:cnb_addBottomInset="false"
+        app:cnb_addLeftInset="false"
+        app:cnb_addRightInset="false"
+        app:cnb_addTopInset="false"
+        app:cnb_badgeColor="#FFA726"
+        app:cnb_iconSize="24dp"
+        app:cnb_menuResource="@menu/menu_activity_admin"
+        app:cnb_orientationMode="horizontal"
+        app:cnb_radius="8dp"
+        android:background="#66BB6A"
+        app:cnb_unselectedColor="#ECE8E8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,6 +35,7 @@ import com.example.myapplication.entity.San;
 import com.example.myapplication.itf.ITFOnItenClick;
 import com.example.myapplication.itf.ItemCumSanClick;
 import com.example.myapplication.util.Cover;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -129,8 +130,8 @@ public class SanFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        MeowBottomNavigation bo = getActivity().findViewById(R.id.meo_btn_nguoi_thue);
-        bo.setVisibility(View.VISIBLE);
+        ChipNavigationBar chip = getActivity().findViewById(R.id.chip_navi_nguoi_thue);
+        chip.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -150,8 +151,8 @@ public class SanFragment extends Fragment {
         adapter = new CumSanAdapter(getContext(), list, new ItemCumSanClick() {
             @Override
             public void onItemClick(CumSan cumSan) {
-                MeowBottomNavigation bottomNavigation = getActivity().findViewById(R.id.meo_btn_nguoi_thue);
-                bottomNavigation.setVisibility(View.GONE);
+                ChipNavigationBar chip = getActivity().findViewById(R.id.chip_navi_nguoi_thue);
+                chip.setVisibility(View.GONE);
                 itFsendData.sendData(cumSan.maCumSan);
             }
         });

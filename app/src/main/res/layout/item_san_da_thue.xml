@@ -27,14 +27,14 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_dia_chi_san_ddk"
+                    android:id="@+id/tv_ten_cum_san_ddk"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="4dp"
-                    android:text="Loại sân:"
+                    android:text="Tên cụm sân"
                     android:textSize="14dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/iv_san_ddk"
