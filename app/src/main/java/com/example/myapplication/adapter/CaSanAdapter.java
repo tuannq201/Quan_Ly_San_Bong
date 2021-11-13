@@ -42,7 +42,7 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
         final TrangThai item = list.get(position);
         if (item != null){
             tvTenCa = view.findViewById(R.id.tvTenCa);
-            Log.e("//===","==========="+ Cover.caToTime(item.ca));
+            //Log.e("//===","==========="+ Cover.caToTime(item.ca));
             tvTenCa.setText("Ca: "+ Cover.caToTime(item.ca));
             tvTrangThai = view.findViewById(R.id.tvTrangThai);
             tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
