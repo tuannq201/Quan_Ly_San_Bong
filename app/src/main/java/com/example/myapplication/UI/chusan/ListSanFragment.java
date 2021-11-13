@@ -84,6 +84,7 @@ public class ListSanFragment extends Fragment {
         super.onCreate(savedInstanceState);
         SharedPreferences pref = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
         phone = pref.getString("PHONE","");
+
     }
 
     @Override
@@ -100,6 +101,8 @@ public class ListSanFragment extends Fragment {
         dao = new SanDAO(getActivity());
         cumSanDao = new CumSanDAO(getContext());
         spnChonSan = view.findViewById(R.id.spn_chonCumSan);
+        listCumSan = new ArrayList<>();
+        listCumSan = cumSanDao.getCSByChuSan(phone);
         setSpinner();
         ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
                 0, ItemTouchHelper.RIGHT) {
@@ -120,32 +123,17 @@ public class ListSanFragment extends Fragment {
     }
 
     private void setSpinner() {
-        listCumSan = new ArrayList<>();
-        listCumSan = cumSanDao.getCSByChuSan(phone);
-
         listSan = new ArrayList<>();
-        listCumSan.add(0, new CumSan(-1, "ALL"));
-        Toast.makeText(getContext(), ""+listCumSan.size(), Toast.LENGTH_SHORT).show();
         spinnerCumSanAdapter = new SpinnerCumSanAdapter(getContext(), (ArrayList<CumSan>) listCumSan);
         spnChonSan.setAdapter(spinnerCumSanAdapter);
         spnChonSan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 maCumSanHienTai = listCumSan.get(position).maCumSan;
-                if (maCumSanHienTai == -1){
-                    //listCumSan.remove(0);
-                    for (int i = 0; i< listCumSan.size(); i++){
-                        List<San> listS = dao.getSanByCumSan(String.valueOf(listCumSan.get(i).maCumSan));
-                        Log.i("------", ""+ listS.size());
-                        listSan.addAll(listS);
-                    }
-                    Log.i("------", ""+ listSan.size());
-                }else {
-                    listSan = dao.getSanByCumSan(String.valueOf(maCumSanHienTai));
-                }
+                Toast.makeText(getContext(), ""+maCumSanHienTai, Toast.LENGTH_SHORT).show();
+                listSan = dao.getSanByCumSan(String.valueOf(maCumSanHienTai));
                 updateLV(listSan);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -165,7 +153,6 @@ public class ListSanFragment extends Fragment {
                     openDialog(1, san);
                 }
             }
-
             @Override
             public void onItemClick(PhieuThue phieuThue) {
             }
@@ -173,7 +160,6 @@ public class ListSanFragment extends Fragment {
         rcvSan.setAdapter(adapter);
 
     }
-
     private void openDialog(int type, San san1) {
         Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_add_san);
@@ -187,9 +173,6 @@ public class ListSanFragment extends Fragment {
         btCamera = dialog.findViewById(R.id.btn_camera);
         btAlbum = dialog.findViewById(R.id.btn_albuml);
         btSave = dialog.findViewById(R.id.btn_save);
-
-
-
 
         btCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,7 +209,7 @@ public class ListSanFragment extends Fragment {
         if (type != 0){
             edTenSan.setText(san1.tenSan);
             edLoaiSan.setText(san1.loaiSan);
-            edGiaSan.setText(""+san1.giaSan + "VND");
+            edGiaSan.setText(""+san1.giaSan);
             btSave.setText("Cập Nhật");
             for (int i=0;i<listCumSan.size();i++){
                 if (san1.maCumSan == (listCumSan.get(i).maCumSan)){
@@ -254,6 +237,7 @@ public class ListSanFragment extends Fragment {
                         Toast.makeText(getContext(), "Tạo sân không thành công", Toast.LENGTH_SHORT).show();
                     }
                 }else {
+                    san.maSan = san1.maSan;
                     if (dao.update(san) > 0){
                         Toast.makeText(getContext(), "Sửa sân thành công", Toast.LENGTH_SHORT).show();
                     }else {
@@ -261,8 +245,9 @@ public class ListSanFragment extends Fragment {
                     }
                 }
                 if (maCumSan == maCumSanHienTai){
-                    updateLV(dao.getSanByCumSan(String.valueOf(maCumSanHienTai)));
+                    listSan = dao.getSanByCumSan(String.valueOf(maCumSan));
                 }
+                updateLV(listSan);
                 dialog.dismiss();
             }
         });

@@ -46,7 +46,7 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
         San san = listSan.get(position);
         holder.tvTenSan.setText("Tên Sân: "+ san.tenSan);
         holder.tvLoaiSan.setText("Loại Sân: "+ san.loaiSan);
-        holder.tvGiaSan.setText("Giá sân: "+ san.giaSan+ "VND");
+        holder.tvGiaSan.setText("Giá sân: "+ san.giaSan);
         try {
             holder.imgSan.setImageBitmap(Cover.ByteToBitmap(san.anhSan));
         }catch (Exception e){
