@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -65,9 +67,12 @@ public class ChuSanAdapter extends ArrayAdapter<User> implements Filterable {
             }
             tvPass = view.findViewById(R.id.tvPass);
             if (userDAO.getUser(item.taiKhoan).phanQuyen.equals("CS")) {
-                tvPass.setText("Mật khẩu: " + item.matKhau);
+                tvPass.setText("Mật khẩu: ******");
             }
         }
+        Animation animation = AnimationUtils
+                .loadAnimation(getContext(), R.anim.anim_user);
+        view.setAnimation(animation);
         return view;
     }
 }

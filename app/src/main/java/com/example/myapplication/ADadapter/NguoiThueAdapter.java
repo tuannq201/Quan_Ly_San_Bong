@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -64,10 +66,13 @@ public class NguoiThueAdapter extends ArrayAdapter<User> {
             }
             tvPass = view.findViewById(R.id.tvPass);
             if (userDAO.getUser(item.taiKhoan).phanQuyen.equals("NT")) {
-                tvPass.setText("Mật khẩu: " + item.matKhau);
+                tvPass.setText("Mật khẩu: ******");
             }
 
         }
+        Animation animation = AnimationUtils
+                .loadAnimation(getContext(), R.anim.anim_user);
+        view.setAnimation(animation);
         return view;
     }
 }

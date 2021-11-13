@@ -17,6 +17,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -24,6 +25,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -91,6 +95,9 @@ public class ChuSanFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_chu_san, container, false);
         imgAdd = view.findViewById(R.id.imgThemCS);
         lv = view.findViewById(R.id.lvChuSan);
+//        Animation animation = AnimationUtils
+//                .loadAnimation(getActivity(), R.anim.anim_user);
+//        lv.setAnimation(animation);
         dao = new UserDAO(getActivity());
         capNhatLV();
 
