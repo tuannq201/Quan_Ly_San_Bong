@@ -183,7 +183,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validate()){
+                if (validate()>0){
                     String name = ed_name.getText().toString().trim();
                     String phone_number = ed_phone_number.getText().toString().trim();
                     String password = ed_password.getText().toString().trim();
@@ -274,7 +274,25 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-    public boolean validate(){
-        return true;
+    public int validate(){
+        int check = 1 ;
+        if (ed_phone_number.getText().length() == 0 || ed_name.getText().length() == 0 || ed_password.getText().length() == 0 || ed_re_password.getText().length() == 0){
+            Toast.makeText(getApplicationContext(),"Bạn phải nhập đầy đủ thông tin !",Toast.LENGTH_LONG).show();
+            check = -1;
+        }else{
+            String sdt = ed_phone_number.getText().toString();
+            String regexSDT = "^(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})$";
+            if (sdt.matches(regexSDT) == false){
+                Toast.makeText(getApplicationContext(),"Số điện thoại không hợp lệ",Toast.LENGTH_LONG).show();
+                check = -1;
+            }
+        }
+        String pass = ed_password.getText().toString();
+        String rePass = ed_re_password.getText().toString();
+        if (!pass.equals(rePass)) {
+            Toast.makeText(getApplicationContext(), "Mật khẩu không trùng khớp", Toast.LENGTH_LONG).show();
+            check = -1;
+        }
+        return check;
     }
 }

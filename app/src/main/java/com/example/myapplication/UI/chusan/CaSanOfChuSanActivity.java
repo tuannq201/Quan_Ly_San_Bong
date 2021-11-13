@@ -61,7 +61,7 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
         edKhuyenMaiDialog = dialog.findViewById(R.id.tvKhuyenMaiDialog);
         //edNgayThueDialog = dialog.findViewById(R.id.tvNgayThueDialog);
         edTrangThaiDialog = dialog.findViewById(R.id.tvTrangThaiDialog);
-        btnHuyDialog=dialog.findViewById(R.id.btHuyDialog);
+        btnHuyDialog=dialog.findViewById(R.id.btnHuyDialog);
 
 
         edGiaThueDialog.setText("Giá Thuê: "+item.tienSan);

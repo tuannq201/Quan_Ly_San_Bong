@@ -51,6 +51,7 @@ public class UserDAO {
         String sql = "SELECT * FROM "+TABLE_NAME+" WHERE taiKhoan=?";
         return getData(sql, taiKhoan).get(0);
     }
+
     
 
     public boolean checkLogin(String taiKhoan, String pass){

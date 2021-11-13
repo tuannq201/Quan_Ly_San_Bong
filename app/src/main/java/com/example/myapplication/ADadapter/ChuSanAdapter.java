@@ -70,36 +70,4 @@ public class ChuSanAdapter extends ArrayAdapter<User> implements Filterable {
         }
         return view;
     }
-//
-//    @NonNull
-//    @Override
-//    public Filter getFilter() {
-//        return new Filter() {
-//            @Override
-//            protected FilterResults performFiltering(CharSequence charSequence) {
-//                userDAO = new UserDAO(context);
-//                String strSeach = charSequence.toString();
-//                if (strSeach.isEmpty()){
-//                    listSeach = lists;
-//                }else{
-//                    List<User> list = new ArrayList<>();
-//                    for (User user: lists){
-//                        if(user.taiKhoan.contains(strSeach)){
-//                            list.add(user);
-//                        }
-//                    }
-//                    listSeach = (ArrayList<User>) list;
-//                }
-//                FilterResults filterResults = new FilterResults();
-//                filterResults.values= listSeach;
-//                return filterResults;
-//            }
-//
-//            @Override
-//            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-//                listSeach = (ArrayList<User>) filterResults.values;
-//                notifyDataSetChanged();
-//            }
-//        };
-//    }
 }
