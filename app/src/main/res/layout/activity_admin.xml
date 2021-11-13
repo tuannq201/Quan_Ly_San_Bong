@@ -18,25 +18,6 @@
 
     </FrameLayout>
 
-    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
-        android:id="@+id/meo_bvn_admin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:mbn_backgroundBottomColor="#66BB6A"
-        app:mbn_circleColor="#FFFFFF"
-        app:mbn_countBackgroundColor="#FF7043"
-        app:mbn_countTextColor="#ffffff"
-        app:mbn_defaultIconColor="#FFFFFF"
-        android:outlineAmbientShadowColor="@color/black"
-        app:mbn_rippleColor="#5C6BC0"
-        app:mbn_selectedIconColor="#292C42"
-        android:visibility="gone"
-        app:mbn_shadowColor="#1f212121"
-        />
-
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/chip_navi_admin"
         android:layout_width="match_parent"
@@ -52,7 +33,7 @@
         app:cnb_orientationMode="horizontal"
         app:cnb_radius="8dp"
         android:background="#66BB6A"
-        app:cnb_unselectedColor="#ECE8E8"
+        app:cnb_unselectedColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

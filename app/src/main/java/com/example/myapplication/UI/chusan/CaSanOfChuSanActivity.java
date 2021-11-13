@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,11 +34,12 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
         if (bundle == null){
         }
         San san = (San) bundle.get("object_san");
+        Toast.makeText(this, "Ma San: "+ san.maSan, Toast.LENGTH_SHORT).show();
         gridView = findViewById(R.id.grCaSan);
         PhieuThueDAO phieuThueDAO = new PhieuThueDAO(getApplication());
         ArrayList<TrangThai> list1 = new ArrayList<>();
         for (int i = 1; i <= 12 ; i++) {
-            list1.add(phieuThueDAO.checkTrangThai(1, String.valueOf(i), "2021-11-11"));
+            list1.add(phieuThueDAO.checkTrangThai(san.maSan, String.valueOf(i), "2021-11-11"));
         }
         CaSanAdapter caSanAdapter = new CaSanAdapter(getApplication(), list1, "CS");
         gridView.setAdapter(caSanAdapter);
