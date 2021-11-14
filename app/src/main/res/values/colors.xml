@@ -12,5 +12,6 @@
     <color name="color_tab_3">#4C8A8B</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorfab">#61E849</color>
+    <color name="holo_red">#FA0707</color>
 
 </resources>

@@ -40,11 +40,15 @@
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/item_san_da_thue.xml" value="0.536" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/item_san_da_thue_user.xml" value="0.264" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/menu/menu_activity_nguoi_thue.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable-v24/gradient 2.xml" value="0.18333333333333332" />
+        <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.18333333333333332" />
         <entry key="app/src/main/res/layout/activity_chu_san.xml" value="0.259963768115942" />
         <entry key="app/src/main/res/layout/ca_san_dialog 2.xml" value="0.25769927536231885" />
         <entry key="app/src/main/res/layout/ca_san_dialog.xml" value="0.23550724637681159" />
+        <entry key="app/src/main/res/layout/fragment_list_san.xml" value="0.12360688956433637" />
         <entry key="app/src/main/res/layout/item_ca_san.xml" value="0.23550724637681159" />
         <entry key="app/src/main/res/layout/item_lich_san.xml" value="0.23550724637681159" />
+        <entry key="app/src/main/res/layout/item_list_san_cs_layout.xml" value="0.1408514492753623" />
         <entry key="app/src/main/res/layout/item_list_san_layout.xml" value="0.20416666666666666" />
       </map>
     </option>

@@ -7,11 +7,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chauthai.swipereveallayout.SwipeRevealLayout;
+import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.example.myapplication.R;
 import com.example.myapplication.UI.chusan.ListSanFragment;
 import com.example.myapplication.entity.San;
@@ -23,8 +26,9 @@ import java.util.List;
 public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanViewHolder>{
     private List<San> listSan;
     private Context context;
-    private ListSanFragment fragment;
+//    private ListSanFragment fragment;
     private ITFOnItenClick itfOnItenClick;
+    private ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
 
 
     public ListSanAdapter(Context context, List<San> listSan, ITFOnItenClick itfOnItenClick) {
@@ -37,13 +41,16 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
     @Override
     public ListsanViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_list_san_layout, parent, false);
+                .inflate(R.layout.item_list_san_cs_layout, parent, false);
         return new ListsanViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ListsanViewHolder holder, int position) {
         San san = listSan.get(position);
+        if (san == null){
+            return;
+        }
         holder.tvTenSan.setText("Tên Sân: "+ san.tenSan);
         holder.tvLoaiSan.setText("Loại Sân: "+ san.loaiSan);
         holder.tvGiaSan.setText("Giá sân: "+ san.giaSan);
@@ -67,6 +74,15 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
             itfOnItenClick.onItemClick(san, 1);
             return true;
         });
+        viewBinderHelper.bind(holder.swipeRevealLayout, String.valueOf(san.maSan));
+        holder.layoutDelete.setOnClickListener(v -> {
+            itfOnItenClick.onItemClick(san, 2);
+        });
+//
+//        holder.layoutDelete.setOnClickListener(v -> {
+//            Toast.makeText(context.getApplicationContext(), ""+holder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
+////            fragment.delete(String.valueOf(holder.getAdapterPosition()));
+//        });
     }
 
     @Override
@@ -87,8 +103,9 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
     public class ListsanViewHolder extends RecyclerView.ViewHolder{
         private TextView tvTenSan, tvLoaiSan, tvGiaSan;
         private ImageView imgSan;
-        public CardView cv;
-        public LinearLayout layout;
+        private LinearLayout layoutDelete;
+        private SwipeRevealLayout swipeRevealLayout;
+//        private LinearLayout layout;
         public int position;
 
         public ListsanViewHolder(@NonNull View itemView) {
@@ -97,7 +114,8 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
             tvLoaiSan = itemView.findViewById(R.id.text_loai_san);
             tvGiaSan = itemView.findViewById(R.id.text_gia_san);
             imgSan = itemView.findViewById(R.id.img_san);
-            layout = itemView.findViewById(R.id.layout_item_san);
+            layoutDelete = itemView.findViewById(R.id.layout_delete);
+            swipeRevealLayout = itemView.findViewById(R.id.layout_item_san);
 //            cv = (CardView) itemView;
         }
     }

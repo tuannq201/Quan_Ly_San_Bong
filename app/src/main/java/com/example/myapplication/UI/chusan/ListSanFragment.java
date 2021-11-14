@@ -104,21 +104,24 @@ public class ListSanFragment extends Fragment {
         listCumSan = new ArrayList<>();
         listCumSan = cumSanDao.getCSByChuSan(phone);
         setSpinner();
-        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
-                0, ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                int position = viewHolder.getAdapterPosition();
-                san = adapter.getItem(position);
-                delete();
-            }
-        });
-        helper.attachToRecyclerView(rcvSan);
+//        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
+//                0, ItemTouchHelper.RIGHT) {
+//            @Override
+//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+//                int position = viewHolder.getAdapterPosition();
+//                san = adapter.getItem(position);
+//                delete(String.valueOf(position));
+////                adapter.notifyDataSetChanged();
+////                updateLV(listSan);
+//
+//            }
+//        });
+//        helper.attachToRecyclerView(rcvSan);
         return view;
     }
 
@@ -149,14 +152,17 @@ public class ListSanFragment extends Fragment {
             public void onItemClick(San san, int type) {
                 if (type ==0){
                     onClickGoToCaSan(san);
-                }else {
+                }else if (type == 1){
                     openDialog(1, san);
+                }else {
+                    delete(String.valueOf(san.maSan));
                 }
             }
             @Override
             public void onItemClick(PhieuThue phieuThue) {
             }
         });
+        adapter.notifyDataSetChanged();
         rcvSan.setAdapter(adapter);
 
     }
@@ -283,27 +289,23 @@ public class ListSanFragment extends Fragment {
         }
         return check;
     }
-    public void delete() {
+    public void delete(String id) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Xóa Sân");
         builder.setMessage("Bạn có muốn xóa Không ?");
         builder.setCancelable(true);
-        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dao.delete(String.valueOf(san.maSan));
-                updateLV(listSan);
-                dialogInterface.cancel();
+        builder.setPositiveButton("Có", (dialog, which) ->{
+            dao.delete(id);
+            if (maCumSan == maCumSanHienTai){
+                listSan = dao.getSanByCumSan(String.valueOf(maCumSan));
             }
+            Log.i("======",""+listSan.size());
+            updateLV(listSan);
+            dialog.cancel();
+        } );
+        builder.setNegativeButton("Không", (dialog, which) ->{
+            dialog.cancel();
         });
-        builder.setNegativeButton(
-                "Không", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                }
-        );
         AlertDialog alertDialog = builder.create();
         builder.show();
     }
