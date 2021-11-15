@@ -152,9 +152,11 @@ public class ListSanFragment extends Fragment {
             public void onItemClick(San san, int type) {
                 if (type ==0){
                     onClickGoToCaSan(san);
-                }else if (type == 1){
+                }
+                if (type == 1){
                     openDialog(1, san);
-                }else {
+                }
+                if (type == 2){
                     delete(String.valueOf(san.maSan));
                 }
             }

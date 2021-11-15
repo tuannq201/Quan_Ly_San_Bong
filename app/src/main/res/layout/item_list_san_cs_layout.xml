@@ -2,7 +2,7 @@
 <com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_item_san"
+    android:id="@+id/swip_layout_item_san"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:mode="same_level"
@@ -32,6 +32,7 @@
             android:layout_marginBottom="20dp"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/layout_cs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

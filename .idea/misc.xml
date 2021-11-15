@@ -3,20 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../layout/custom_preview.xml" value="0.18055555555555555" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/drawable/gradian_user.xml" value="0.3728205128205128" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/drawable/ic_home.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_admin.xml" value="0.3625" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_login.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_nguoi_thue.xml" value="0.1" />
-        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_thong_ke_thu_nhap.xml" value="0.203125" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/ca_san_dialog.xml" value="0.3625" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/dialog_add_san.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/dialog_register_user.xml" value="0.22" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_chu_san.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_nguoi_thue.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_san_cum_san.xml" value="0.1762917933130699" />
-        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_thong_ke.xml" value="0.25" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_user.xml" value="0.3625" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/item_chu_san.xml" value="0.33" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/item_cum_san.xml" value="0.1" />
@@ -42,11 +41,16 @@
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/item_san_da_thue.xml" value="0.536" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/layout/item_san_da_thue_user.xml" value="0.264" />
         <entry key="..\:/ass_du_an_1/app/src/main/res/menu/menu_activity_nguoi_thue.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable-v24/gradient 2.xml" value="0.18333333333333332" />
+        <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.18333333333333332" />
         <entry key="app/src/main/res/layout/activity_chu_san.xml" value="0.259963768115942" />
         <entry key="app/src/main/res/layout/ca_san_dialog 2.xml" value="0.25769927536231885" />
         <entry key="app/src/main/res/layout/ca_san_dialog.xml" value="0.23550724637681159" />
+        <entry key="app/src/main/res/layout/fragment_list_san.xml" value="0.12360688956433637" />
+        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.13677536231884058" />
         <entry key="app/src/main/res/layout/item_ca_san.xml" value="0.23550724637681159" />
         <entry key="app/src/main/res/layout/item_lich_san.xml" value="0.23550724637681159" />
+        <entry key="app/src/main/res/layout/item_list_san_cs_layout.xml" value="0.1408514492753623" />
         <entry key="app/src/main/res/layout/item_list_san_layout.xml" value="0.20416666666666666" />
       </map>
     </option>
