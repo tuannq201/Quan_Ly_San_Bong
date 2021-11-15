@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper{
     static final String dbName = "QLSB";
-    static final int dbVision = 2;
+    static final int dbVision = 6;
     public DbHelper(@Nullable Context context) {
         super(context, dbName, null, dbVision);
     }
@@ -47,12 +47,19 @@ public class DbHelper extends SQLiteOpenHelper{
                 "maSan INTEGER NOT NULL, " +
                 "nguoiThue TEXT NOT NULL, " +
                 "caThue TEXT NOT NULL, " +
-                "ngayThue TEXT NOT NULL, " +
+                "ngayThue DATE NOT NULL, " +
                 "tienSan INTEGER NOT NULL, " +
                 "danhGia INTEGER, " +//:0-chưa đánh giá; 1-đã đánh giá
                 "sao INTEGER)";// 1-5 sao
         db.execSQL(create_PhieuThue);
 
+//        String create_KhuyenMai = "CREATE TABLE KhuyenMai" +
+//                "(maKM INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "cumSan TEXT NOT NULL, " +
+//                "dieuKien TEXT, " +
+//                "khuyenMai IMTEGER NOT NULL, " +
+//                "apDung TEXT)";
+//        db.execSQL(create_KhuyenMai);
 
         String INSERT_User = "Insert into User(taiKhoan,hoTen,matKhau,phanQuyen,hinh) values " +
                 "('0999999999','Nhom 1 Dep Trai','123456','AD',null)," +
@@ -112,12 +119,22 @@ public class DbHelper extends SQLiteOpenHelper{
                 "('cụm sân 14','Liên Chiểu - Đà Nẵng','0888888888')," +
                 "('cụm sân 15','Liên Chiểu - Đà Nẵng','0888888888')";
         db.execSQL(INSERT_CumSan);
+
+
         String INSERT_PT = "Insert into PhieuThue(maSan,nguoiThue,caThue,ngayThue,tienSan, danhGia, sao) values " +
-                "(1,'0777777777','1','2021-11-11',100000, null, null)," +
-                "(5,'0777777777','8','2021-11-11',100000, null, null)," +
-                "(3,'0777777777','5','2021-11-11',100000, null, null)," +
-                "(5,'0777777777','11','2021-11-11',100000, null, null)," +
-                "(7,'0777777777','2','2021-11-11',100000, null, null)";
+                "(1,'0777777777','1','11-11-2021',100000, 1, 5)," +
+                "(5,'0777777773','8','11-11-2021',100000, 1, 4)," +
+                "(3,'0777777777','5','11-11-2021',100000, 1, 5)," +
+                "(5,'0777777777','11','11-11-2021',100000, 1, 4)," +
+                "(1,'0777777777','1','12-11-2021',100000, 1, 5)," +
+                "(5,'0777777771','8','12-11-2021',100000, 1, 4)," +
+                "(3,'0777777771','5','13-11-2021',100000, 1, 5)," +
+                "(1,'0777777771','11','15-11-2021',100000, 1, 4)," +
+                "(1,'0777777774','1','17-11-2021',100000, 1, 5)," +
+                "(5,'0777777774','8','17-11-2021',100000, 1, 4)," +
+                "(3,'0777777775','5','17-11-2021',100000, 1, 5)," +
+                "(5,'0777777775','11','19-11-2021',100000, 1, 4)," +
+                "(7,'0777777775','2','19-11-2021',100000, 1, 4)";
         db.execSQL(INSERT_PT);
 
 //        String INSERT_San = "Insert into San(tenSan,diaChi,giaSan,loaiSan,chuSan,anhSan) values " +

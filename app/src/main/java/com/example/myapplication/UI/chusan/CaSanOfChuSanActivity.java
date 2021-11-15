@@ -51,6 +51,9 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
     private void openDialog(){
 
         dialog = new Dialog(this);

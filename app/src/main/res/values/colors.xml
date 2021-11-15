@@ -13,5 +13,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorfab">#61E849</color>
     <color name="holo_red">#FA0707</color>
+    <color name="gray">#D6D7D8</color>
 
 </resources>

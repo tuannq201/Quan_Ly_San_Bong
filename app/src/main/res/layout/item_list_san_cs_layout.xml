@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <androidx.cardview.widget.CardView
-            android:id="@+id/card_view"
+            android:id="@+id/cv_san"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -57,9 +57,9 @@
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/img_san"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitXY"
                         android:src="@drawable/br_sanbong"
                         app:riv_corner_radius="5dp"
                         tools:ignore="MissingClass" />
@@ -90,11 +90,35 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="4dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginBottom="5dp"
                         android:text="Giá sân:"
                         android:textColor="@color/colorAccent"
                         android:textSize="12dp"
                         android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RatingBar
+                            android:id="@+id/rb_san"
+                            style="@style/Widget.AppCompat.RatingBar.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:rating="4" />
+
+                        <TextView
+                            android:id="@+id/tv_soDanhGiaSan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="99"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
 

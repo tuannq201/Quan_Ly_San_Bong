@@ -98,4 +98,16 @@ public class Cover {
         //transaction.addToBackStack(null);
         transaction.commit();
     }
+
+    public static String formater(int y, int m, int d){
+        String strDate = "";
+        m = m+1;
+        String strY = String.valueOf(y);
+        String strM = (m < 10)?"0"+m:String.valueOf(m);
+        String strD = (d < 10)?"0"+d:String.valueOf(d);
+        strDate = strD+"-"+strM+"-"+strY;
+        return strDate;
+    }
+
+
 }

@@ -1,11 +1,13 @@
 package com.example.myapplication.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,7 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
 
     private Context context;
     private ArrayList<TrangThai> list;
+    private LinearLayout layout;
     String type;
     TextView tvTenCa,tvTrangThai,tvKhuyenMai;
 
@@ -31,6 +34,7 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
         this.type = type;
 
     }
+    @SuppressLint("ResourceAsColor")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -41,11 +45,22 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
         }
         final TrangThai item = list.get(position);
         if (item != null){
+            layout = view.findViewById(R.id.layout_item_ca_san);
             tvTenCa = view.findViewById(R.id.tvTenCa);
-            //Log.e("//===","==========="+ Cover.caToTime(item.ca));
             tvTenCa.setText("Ca: "+ Cover.caToTime(item.ca));
             tvTrangThai = view.findViewById(R.id.tvTrangThai);
-            tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
+            if (type.equals("CS")){
+                tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
+            }else {
+                //người thuê
+
+                tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
+                if (item.taiKhoan.contains("0")){
+                    //layout.setBackgroundColor(R.color.purple_500);
+                    tvTrangThai.setText("Trạng Thái: đã thuê");
+                }
+            }
+
             tvKhuyenMai = view.findViewById(R.id.tvKhuyenMai);
             tvKhuyenMai.setText("Khuyến Mãi: "+Cover.KhuyenMai1(item.ca)+"%");
         }

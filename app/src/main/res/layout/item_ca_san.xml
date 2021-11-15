@@ -14,7 +14,8 @@
         app:cardCornerRadius="10dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/layout_item_ca_san"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical">
@@ -25,59 +26,50 @@
                 android:layout_height="60dp"
 
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="6dp"
                 android:src="@drawable/football" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvTenCa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="sans-serif"
                     android:text="TextView"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="8dp"
-                android:orientation="vertical">
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/tvTrangThai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="sans-serif"
                     android:text="TextView"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="14sp" />
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/tvKhuyenMai"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:fontFamily="sans-serif"
                     android:text="TextView"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="#FF0000"
-                    android:textSize="14sp" />
+                    android:textSize="13dp" />
             </LinearLayout>
 
         </LinearLayout>
