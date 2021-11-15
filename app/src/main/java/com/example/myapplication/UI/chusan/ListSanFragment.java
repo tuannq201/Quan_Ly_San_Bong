@@ -129,6 +129,7 @@ public class ListSanFragment extends Fragment {
         listSan = new ArrayList<>();
         spinnerCumSanAdapter = new SpinnerCumSanAdapter(getContext(), (ArrayList<CumSan>) listCumSan);
         spnChonSan.setAdapter(spinnerCumSanAdapter);
+        spnChonSan.setDropDownVerticalOffset(70);
         spnChonSan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
