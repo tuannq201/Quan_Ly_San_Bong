@@ -78,6 +78,20 @@ public class PhieuThueDAO {
         }
         return 10;
     }
+    @SuppressLint("Range")
+    public int thuNhap(String ngay){
+        String sql = "SELECT SUM(tienSan) as thuNhapNgay FROM PhieuThue WHERE ngayThue =?";
+        List<Integer> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery(sql,new String[]{ngay});
+        while (cursor.moveToNext()){
+            try{
+                list.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("thuNhapNgay"))));
+            }catch (Exception e){
+                list.add(0);
+            }
+        }
+        return list.get(0);
+    }
 
 //    public int soDanhGiaCumSan(String maCumSan){
 //        SanDAO sanDAO = new SanDAO(context);
