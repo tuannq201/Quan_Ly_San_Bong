@@ -57,7 +57,7 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
         });
         holder.tvTenSan.setText("Tên Sân: "+ san.tenSan);
         holder.tvLoaiSan.setText("Loại Sân: "+ san.loaiSan);
-        holder.tvGiaSan.setText("Giá sân: "+ san.giaSan);
+        holder.tvGiaSan.setText("Giá sân: "+ Cover.IntegerToVnd(san.giaSan) + " VNĐ");
         try {
             holder.imgSan.setImageBitmap(Cover.ByteToBitmap(san.anhSan));
         }catch (Exception e){

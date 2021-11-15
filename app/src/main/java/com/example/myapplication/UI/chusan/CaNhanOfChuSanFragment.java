@@ -30,7 +30,7 @@ public class CaNhanOfChuSanFragment extends Fragment {
 
     UserDAO userDAO;
     User user;
-    EditText ed_1, ed_2, ed_3;
+    EditText ed_1, ed_2, ed_3, ed_4;
 
     CircleImageView circleImageView;
     ImageView iv_user_avata;
@@ -59,13 +59,13 @@ public class CaNhanOfChuSanFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_user, container, false);
+        View v = inflater.inflate(R.layout.activity_ca_san_of_chu_san, container, false);
         iv_user_avata = v.findViewById(R.id.profile_image);
         circleImageView = v.findViewById(R.id.profile_image);
         ed_1 = v.findViewById(R.id.ed_name_userf);
         ed_2 = v.findViewById(R.id.ed_phone_userf);
         ed_3 = v.findViewById(R.id.ed_pass_userf);
-
+        ed_4 = v.findViewById(R.id.ed_cumsan);
         setAvatar();
 
         return v;
