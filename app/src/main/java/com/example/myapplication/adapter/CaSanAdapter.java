@@ -49,18 +49,19 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
             tvTenCa = view.findViewById(R.id.tvTenCa);
             tvTenCa.setText("Ca: "+ Cover.caToTime(item.ca));
             tvTrangThai = view.findViewById(R.id.tvTrangThai);
+
             if (type.equals("CS")){
                 tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
             }else {
                 //người thuê
-
                 tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
                 if (item.taiKhoan.contains("0")){
-                    //layout.setBackgroundColor(R.color.purple_500);
                     tvTrangThai.setText("Trạng Thái: đã thuê");
                 }
             }
-
+            if (type.equals("NT")){
+                layout.setBackgroundColor(item.color);
+            }
             tvKhuyenMai = view.findViewById(R.id.tvKhuyenMai);
             tvKhuyenMai.setText("Khuyến Mãi: "+Cover.KhuyenMai1(item.ca)+"%");
         }

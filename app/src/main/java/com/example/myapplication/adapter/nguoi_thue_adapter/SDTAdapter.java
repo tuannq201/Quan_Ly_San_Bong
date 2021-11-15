@@ -55,6 +55,7 @@ public class SDTAdapter extends ArrayAdapter<PhieuThue> {
                 tv_2.setText("Địa chỉ: "+cumSanDAO.getCumSanBySan(String.valueOf(phieuThue.maSan)).diaChi);
                 tv_3.setText("Loại sân: sân "+sanDAO.getID(String.valueOf(phieuThue.maSan)).loaiSan);
                 tv_4.setText("Giá: "+ Cover.IntegerToVnd(phieuThue.tienSan)+"vnđ");
+                tv_3.setText(""+phieuThue.ngayThue);
             }catch (Exception e){
                 tv_1.setText("hhhhhhhh");
                 tv_2.setText("hhhhhhhh");

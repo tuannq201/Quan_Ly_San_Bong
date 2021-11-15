@@ -5,7 +5,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 
+import com.example.myapplication.R;
 import com.example.myapplication.database.DbHelper;
 import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
@@ -30,7 +32,7 @@ public class PhieuThueDAO {
         ContentValues values = new ContentValues();
         values.put("nguoiThue", obj.nguoiThue);
         values.put("maSan",String.valueOf(obj.maSan));
-        values.put("ngayThue",simpleDateFormat.format(obj.ngayThue));
+        values.put("ngayThue",obj.ngayThue);
         values.put("caThue",obj.caThue);
         values.put("tienSan",String.valueOf(obj.tienSan));
         values.put("danhGia", String.valueOf(obj.danhGia));
@@ -149,6 +151,7 @@ public class PhieuThueDAO {
             trangThai.ca = phieuThue.caThue;
             trangThai.ngay = phieuThue.ngayThue;
             trangThai.taiKhoan = phieuThue.nguoiThue;
+            trangThai.color = Color.parseColor("#C6C4C4");
         }catch (Exception e){
             SanDAO sanDAO = new SanDAO(context);
             San san = sanDAO.getID(String.valueOf(maSan));
@@ -157,6 +160,7 @@ public class PhieuThueDAO {
             trangThai.tienSan = san.giaSan;
             trangThai.ngay = ngay;
             trangThai.taiKhoan = "chưa thuê";
+            trangThai.color = Color.parseColor("#ffffff");
         }
         return trangThai;
     }

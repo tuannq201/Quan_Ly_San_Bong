@@ -31,6 +31,7 @@ import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.TrangThai;
 import com.example.myapplication.entity.User;
+import com.example.myapplication.util.Cover;
 import com.google.android.material.textfield.TextInputEditText;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;

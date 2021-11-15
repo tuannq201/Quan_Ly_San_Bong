@@ -1,11 +1,15 @@
 package com.example.myapplication.UI.nguoithue;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +24,7 @@ import com.example.myapplication.adapter.CaSanAdapter;
 import com.example.myapplication.dao.CumSanDAO;
 import com.example.myapplication.dao.PhieuThueDAO;
 import com.example.myapplication.dao.SanDAO;
+import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.TrangThai;
 import com.example.myapplication.util.Cover;
@@ -46,11 +51,14 @@ public class CaSanFragment extends Fragment {
     SanDAO sanDAO;
     ArrayList<TrangThai> list;
     Dialog dialog;
-    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-    SimpleDateFormat format2 = new SimpleDateFormat("hh:mm");
+    SimpleDateFormat formatNgay = new SimpleDateFormat("dd-MM-yyyy");
+    SimpleDateFormat formatGio = new SimpleDateFormat("HH:mm");
     TextView tv_cumSan_tenSan, tv_diachi, tv_giaSan, tv_gia_thue, tv_thoiGian, btn_huy_thue, btn_thue, tv_km;
     String ngay = "";
     TrangThai trangThai;
+    String phone;
+    int posNow = 0;
+    Date now;
 
     public CaSanFragment(San san, String type) {//type: CS or NT
         this.san = san;
@@ -70,6 +78,8 @@ public class CaSanFragment extends Fragment {
         sanDAO = new SanDAO(getContext());
         cumSanDAO = new CumSanDAO(getContext());
 
+        SharedPreferences pref = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        phone = pref.getString("PHONE","");
     }
 
     @Override
@@ -80,9 +90,10 @@ public class CaSanFragment extends Fragment {
         tv_san_ngay = v.findViewById(R.id.tv_san_ngay);
         btn_chon_ngay = v.findViewById(R.id.btn_chonNgay);
 
-        Date now = new Date();
-        ngay = format.format(now);
-        tv_san_ngay.setText(""+san.tenSan+" ,"+ngay+" ,"+format2.format(now));
+        now = new Date();
+        ngay = formatNgay.format(now);
+        posNow = Cover.dateToPos(formatNgay.format(now), "", 1);
+        tv_san_ngay.setText(""+san.tenSan+" ,"+ngay+" ,"+ formatGio.format(now));
         btn_chon_ngay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,12 +114,23 @@ public class CaSanFragment extends Fragment {
         });
 
         list = new ArrayList<>();
-        setCaSan(format.format(now));
+        setCaSan(formatNgay.format(now));
 
         return v;
     }
 
     public void openDialog(int ca){
+        if (ngay.equals(formatNgay.format(now))){
+            //Toast.makeText(getContext(), ""+ngay+" "+formatNgay.format(now), Toast.LENGTH_SHORT).show();
+            if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
+                Toast.makeText(getContext(), "đã quá thời gian thuê!!!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+        if (trangThai.taiKhoan.contains("0")){
+            Toast.makeText(getContext(), "Ca "+ca+" đã được thuê, vui lòng chọn ca khác ", Toast.LENGTH_SHORT).show();
+            return;
+        }
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_thue_san);
         tv_cumSan_tenSan = dialog.findViewById(R.id.tv_cumSan_thue);
@@ -129,8 +151,25 @@ public class CaSanFragment extends Fragment {
         int thanhToan = san.giaSan - san.giaSan * Cover.KhuyenMai1(String.valueOf(ca)) / 100;
         tv_km.setText("Khuyến mãi: "+km+"%");
         tv_gia_thue.setText("Giá thuê: "+Cover.IntegerToVnd(thanhToan)+"vnđ");
+
         btn_huy_thue.setOnClickListener(view -> {
             dialog.dismiss();
+        });
+        btn_thue.setOnClickListener(view -> {
+            PhieuThue phieuThue = new PhieuThue();
+            phieuThue.nguoiThue = phone;
+            phieuThue.ngayThue = ngay;
+            phieuThue.caThue = String.valueOf(ca);
+            phieuThue.maSan = san.maSan;
+            phieuThue.tienSan = thanhToan;
+            if (phieuThueDAO.insert(phieuThue) > 0){
+                Toast.makeText(getContext(), "Thuê thành công", Toast.LENGTH_SHORT).show();
+                setCaSan(ngay);
+                dialog.dismiss();
+            }else {
+                Toast.makeText(getContext(), "Đã có lỗi xảy ra, vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
+            }
+
         });
 
 
@@ -147,6 +186,13 @@ public class CaSanFragment extends Fragment {
             public void onDateSet(DatePicker datePicker, int y, int m, int d) {
                 tv_san_ngay.setText(""+san.tenSan+" ,"+Cover.formater(y, m, d));
                 ngay = Cover.formater(y, m, d);
+                if (Cover.dateToPos(ngay, "", 1) < posNow){
+                    Toast.makeText(getContext(), "Vui lòng chọn ngày khác!!!", Toast.LENGTH_SHORT).show();
+                    ngay = formatNgay.format(now);
+                }else if ((Cover.dateToPos(ngay, "", 1) > (posNow + 7))){
+                    Toast.makeText(getContext(), "Chỉ được thuê sân trước 7 ngày\nvui lòng chọn ngày khác!!!", Toast.LENGTH_SHORT).show();
+                    ngay = formatNgay.format(now);
+                }
                 setCaSan(ngay);
             }
         },year, month, day);
@@ -157,9 +203,12 @@ public class CaSanFragment extends Fragment {
         list.clear();
         //Toast.makeText(getContext(), ""+ngay, Toast.LENGTH_SHORT).show();
         for (int i = 1; i <= 12 ; i++) {
-            list.add(phieuThueDAO.checkTrangThai(san.maSan, String.valueOf(i), ngay));
+            TrangThai trangThai = phieuThueDAO.checkTrangThai(san.maSan, String.valueOf(i), ngay);
+            list.add(trangThai);
         }
         caSanAdapter = new CaSanAdapter(getContext(), list, type);
         grv.setAdapter(caSanAdapter);
     }
+
+
 }
