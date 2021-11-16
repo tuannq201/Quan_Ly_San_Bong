@@ -1,7 +1,6 @@
 package com.example.myapplication.UI.chusan;
 
 import static android.content.Context.MODE_PRIVATE;
-
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -59,7 +58,7 @@ public class CaNhanOfChuSanFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_ca_san_of_chu_san, container, false);
+        View v = inflater.inflate(R.layout.fragment_ca_nhan_of_chu_san, container, false);
         iv_user_avata = v.findViewById(R.id.profile_image);
         circleImageView = v.findViewById(R.id.profile_image);
         ed_1 = v.findViewById(R.id.ed_name_userf);

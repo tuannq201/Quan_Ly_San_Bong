@@ -1,7 +1,6 @@
 package com.example.myapplication.UI.nguoithue;
 
 import static android.content.Context.MODE_PRIVATE;
-
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.dao.UserDAO;
@@ -69,9 +67,9 @@ public class UserFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_user, container, false);
         iv_user_avata = v.findViewById(R.id.profile_image);
         circleImageView = v.findViewById(R.id.profile_image);
-        ed_1 = v.findViewById(R.id.ed_name_userf);
-        ed_2 = v.findViewById(R.id.ed_phone_userf);
-        ed_3 = v.findViewById(R.id.ed_pass_userf);
+        ed_1 = v.findViewById(R.id.ed_name_user);
+        ed_2 = v.findViewById(R.id.ed_phone_user);
+        ed_3 = v.findViewById(R.id.ed_pass_user);
 
         setAvatar();
 

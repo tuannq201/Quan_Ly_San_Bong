@@ -35,7 +35,7 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/ed_name_userf"
+                android:id="@+id/ed_name_user"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
@@ -56,9 +56,9 @@
                 android:layout_marginStart="11dp"
                 android:foregroundGravity="center_vertical"
                 android:src="@drawable/user"
-                app:layout_constraintBottom_toBottomOf="@+id/ed_name_userf"
+                app:layout_constraintBottom_toBottomOf="@+id/ed_name_user"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/ed_name_userf" />
+                app:layout_constraintTop_toTopOf="@+id/ed_name_user" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -79,7 +79,7 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/ed_phone_userf"
+                android:id="@+id/ed_phone_user"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
@@ -99,7 +99,7 @@
                 android:layout_height="28dp"
                 android:layout_marginStart="11dp"
                 android:src="@drawable/telephone"
-                app:layout_constraintBottom_toBottomOf="@+id/ed_phone_userf"
+                app:layout_constraintBottom_toBottomOf="@+id/ed_phone_user"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -122,7 +122,7 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/ed_pass_userf"
+                android:id="@+id/ed_pass_user"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/transparent"
@@ -142,9 +142,9 @@
                 android:layout_height="28dp"
                 android:layout_marginStart="11dp"
                 android:src="@drawable/key"
-                app:layout_constraintBottom_toBottomOf="@+id/ed_pass_userf"
+                app:layout_constraintBottom_toBottomOf="@+id/ed_pass_user"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/ed_pass_userf" />
+                app:layout_constraintTop_toTopOf="@+id/ed_pass_user" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
