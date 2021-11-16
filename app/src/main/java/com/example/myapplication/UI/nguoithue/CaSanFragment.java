@@ -162,6 +162,8 @@ public class CaSanFragment extends Fragment {
             phieuThue.caThue = String.valueOf(ca);
             phieuThue.maSan = san.maSan;
             phieuThue.tienSan = thanhToan;
+            phieuThue.danhGia = 0;
+            phieuThue.sao = 0;
             if (phieuThueDAO.insert(phieuThue) > 0){
                 Toast.makeText(getContext(), "Thuê thành công", Toast.LENGTH_SHORT).show();
                 setCaSan(ngay);

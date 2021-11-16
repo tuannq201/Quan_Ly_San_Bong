@@ -119,6 +119,9 @@ public class Cover {
         Log.i("=====", y+" "+m+" "+d);
         if (type == 0){
             //pos = ngay + ca
+            if (ca.length() == 1){
+                ca = "0"+ca;
+            }
             String strPos = y+m+d+ca;
             return Integer.parseInt(strPos);
         }

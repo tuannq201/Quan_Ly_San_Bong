@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.dao.SanDAO;
 import com.example.myapplication.entity.PhieuThue;
@@ -53,6 +54,12 @@ public class SanDaThueAdapter extends RecyclerView.Adapter<SanDaThueAdapter.View
             loaiSan = san.loaiSan;
             hinh = san.anhSan;
             holder.iv.setImageBitmap(Cover.ByteToBitmap(hinh));
+//            Glide.with(context).load(R.drawable.br_sanbong)
+//                    .apply(bitmapTransform(new BlurTransformation(22)))
+//                    .into((ImageView) view.findViewById(R.id.imBg));
+
+
+
         }catch (Exception e){
 
         }

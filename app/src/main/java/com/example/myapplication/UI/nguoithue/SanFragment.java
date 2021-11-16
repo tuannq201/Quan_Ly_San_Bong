@@ -111,20 +111,20 @@ public class SanFragment extends Fragment {
 
 
     public void search(String s){
-        if (s.length()>0){
             if (cumSanList.size()> 0){
                 List<CumSan> list = new ArrayList<>();
                 for (int i = 0;i<cumSanList.size();i++){
-                    if (cumSanList.get(i).tenCumSan.toLowerCase(Locale.ROOT).contains(s) ||
-                            cumSanList.get(i).diaChi.toLowerCase(Locale.ROOT).contains(s) ||
-                            cumSanList.get(i).tenCumSan.contains(s) ||
-                            cumSanList.get(i).diaChi.contains(s)){
-                        list.add(cumSanList.get(i));
+                    if (s != null && cumSanList.get(i).tenCumSan != null && cumSanList.get(i).diaChi != null){
+                        s = s.toLowerCase();
+                        String ten = cumSanList.get(i).tenCumSan.toLowerCase();
+                        String diaChi = cumSanList.get(i).diaChi.toLowerCase();
+                        if (ten.contains(s) || diaChi.contains(s)){
+                            list.add(cumSanList.get(i));
+                        }
                     }
                 }
                 setRecycleView(list);
             }
-        }
     }
 
     @Override

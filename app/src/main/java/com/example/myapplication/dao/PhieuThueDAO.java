@@ -40,19 +40,16 @@ public class PhieuThueDAO {
         return db.insert("PhieuThue",null,values);
     }
     public int update(PhieuThue obj){
-        try {
             ContentValues values = new ContentValues();
+            values.put("maPT",String.valueOf(obj.maPT));
             values.put("nguoiThue", obj.nguoiThue);
             values.put("maSan",String.valueOf(obj.maSan));
-            values.put("ngayThue",simpleDateFormat.format(obj.ngayThue));
+            values.put("ngayThue",obj.ngayThue);
             values.put("caThue",obj.caThue);
             values.put("tienSan",String.valueOf(obj.tienSan));
             values.put("danhGia", String.valueOf(obj.danhGia));
             values.put("sao", String.valueOf(obj.sao));
             return db.update("PhieuThue",values,"maPT=?",new String[]{String.valueOf(obj.maPT)});
-        }catch (Exception ex){
-        }
-        return -1;
     }
     public int delete(String id){
         return db.delete("PhieuThue","maPT=?",new String[]{id});
@@ -178,6 +175,8 @@ public class PhieuThueDAO {
             obj.tienSan = Integer.parseInt(cursor.getString(cursor.getColumnIndex("tienSan")));
             obj.ngayThue = cursor.getString(cursor.getColumnIndex("ngayThue"));
             obj.nguoiThue = cursor.getString(cursor.getColumnIndex("nguoiThue"));
+            obj.danhGia = Integer.parseInt(cursor.getString(cursor.getColumnIndex("danhGia")));
+            obj.sao = Integer.parseInt(cursor.getString(cursor.getColumnIndex("sao")));
 
             list.add(obj);
         }

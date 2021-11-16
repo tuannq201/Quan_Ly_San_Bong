@@ -29,4 +29,19 @@ public class PhieuThue {
         this.caThue = caThue;
         this.ngayThue = ngayThue;
     }
+
+    @Override
+    public String toString() {
+        return "PhieuThue{" +
+                "maPT=" + maPT +
+                ", maSan=" + maSan +
+                ", tienSan=" + tienSan +
+                ", danhGia=" + danhGia +
+                ", sao=" + sao +
+                ", position=" + position +
+                ", nguoiThue='" + nguoiThue + '\'' +
+                ", caThue='" + caThue + '\'' +
+                ", ngayThue='" + ngayThue + '\'' +
+                '}';
+    }
 }
