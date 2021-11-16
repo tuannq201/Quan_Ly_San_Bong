@@ -2,6 +2,7 @@ package com.example.myapplication.UI.admin;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +20,6 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 
 public class AdminActivity extends AppCompatActivity {
-
 
     // Màn hình của Admin.
     @Override

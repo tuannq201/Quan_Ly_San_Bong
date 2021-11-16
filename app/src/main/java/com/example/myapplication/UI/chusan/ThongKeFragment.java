@@ -2,14 +2,32 @@ package com.example.myapplication.UI.chusan;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.anychart.AnyChart;
+import com.anychart.AnyChartView;
+import com.anychart.chart.common.dataentry.DataEntry;
+import com.anychart.chart.common.dataentry.ValueDataEntry;
+import com.anychart.charts.Cartesian;
+import com.anychart.core.cartesian.series.Column;
+import com.anychart.enums.Anchor;
+import com.anychart.enums.HoverMode;
+import com.anychart.enums.Position;
+import com.anychart.enums.TooltipPositionMode;
+import com.anychart.graphics.vector.text.FontStyle;
 import com.example.myapplication.R;
+import com.example.myapplication.dao.PhieuThueDAO;
+import com.example.myapplication.entity.PhieuThue;
+import com.example.myapplication.entity.User;
+import com.example.myapplication.util.Cover;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
@@ -22,12 +40,17 @@ import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 
 public class ThongKeFragment extends Fragment {
 
-    BarChart barChart;
+    AnyChartView anyChartView;
+    TextView tvThuNhap;
 
 
     public ThongKeFragment() {
@@ -48,51 +71,61 @@ public class ThongKeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_thong_ke, container, false);
-//        btnTK = view.findViewById(R.id.btnThongKe);
-//        btnTK.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(getActivity(),ThongKeThuNhapActivity.class));
-//            }
-//        });
-         barChart = view.findViewById(R.id.barChart);
+        anyChartView = view.findViewById(R.id.chartThongKe);
+        tvThuNhap = view.findViewById(R.id.tvThuNhap);
 
-        ArrayList<BarEntry> list = new ArrayList<>();
-        list.add(new BarEntry(1,300));
-        list.add(new BarEntry(2,200));
-        list.add(new BarEntry(3,600));
-        list.add(new BarEntry(4,400));
-        list.add(new BarEntry(5,450));
-        list.add(new BarEntry(6,700));
-        list.add(new BarEntry(7,400));
 
-        String[] dayOfWeek = new String[] {"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
-        XAxis xAxis = barChart.getXAxis();
-        xAxis.setValueFormatter(new ngayBieuDo(dayOfWeek));
-        xAxis.setPosition(XAxis.XAxisPosition.BOTH_SIDED);
+        Cartesian cartesian = AnyChart.column();
+        PhieuThueDAO dao = new PhieuThueDAO(getContext());
+        Date now;
+        Date newDate;
+        int i;
+        ArrayList<String> list = new ArrayList<>();
+        List<DataEntry> data = new ArrayList<>();
+        int sum = 0;
+        for (i = 7; i >= 1; i--) {
+            now = new Date();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(now);
+            calendar.add(Calendar.DAY_OF_YEAR, -i);
+            newDate = calendar.getTime();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            simpleDateFormat.format(now);
+            Log.e("//======", "onCreateView: "+simpleDateFormat.format(newDate));
+            list.add(simpleDateFormat.format(newDate));
+            int thu = dao.thuNhap(simpleDateFormat.format(newDate));
+            data.add(new ValueDataEntry(simpleDateFormat.format(newDate), thu));
+            sum = sum + thu;
+        }
+        tvThuNhap.setText("Thu Nhập Một Tuần Gần Nhất :"+ Cover.IntegerToVnd(sum)+" VNĐ");
 
-        BarDataSet barDataSet = new BarDataSet(list,"Thu nhập tuần trước");
-        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-        barDataSet.setValueTextColor(Color.BLACK);
-        barDataSet.setValueTextSize(16f);
+        Column column = cartesian.column(data);
 
-        BarData barData = new BarData(barDataSet);
-        barChart.setFitBars(true);
-        barChart.setData(barData);
-        barChart.getDescription().setText("");
-        barChart.animateY(2000);
+        column.tooltip()
+                .titleFormat("{%X}")
+                .position(Position.CENTER_BOTTOM)
+                .anchor(Anchor.CENTER_BOTTOM)
+                .offsetX(5d)
+                .offsetY(5d)
+                .fontColor("#FFFFFF")
+                .format("{%Value}{groupsSeparator: } VNĐ");
+        column.color("#39A459");
+
+        cartesian.animation(true);
+        cartesian.yScale().minimum(0d);
+
+        cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: } VNĐ");
+        cartesian.yAxis(0).labels().fontColor("#000000");
+        cartesian.yAxis(0).labels().fontStyle();
+
+        cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
+        cartesian.interactivity().hoverMode(HoverMode.BY_X);
+
+        cartesian.xAxis(0).title("Ngày Trong Tuần");
+
+        anyChartView.setChart(cartesian);
+
         return view;
-    }
-    public class ngayBieuDo extends ValueFormatter implements IAxisValueFormatter{
 
-        private String[] mValues;
-        public ngayBieuDo(String[] values){
-            this.mValues = values;
-        }
-
-        @Override
-        public String getFormattedValue(float value, AxisBase axis) {
-            return mValues[(int)value];
-        }
     }
 }

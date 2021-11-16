@@ -55,6 +55,7 @@ dependencies {
 
     //thư viện biểu đồ
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
 
     //thư viện làm mờ ảnh
     implementation 'com.github.bumptech.glide:glide:4.12.0'
