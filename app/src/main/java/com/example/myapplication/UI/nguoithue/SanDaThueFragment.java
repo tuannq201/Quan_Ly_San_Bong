@@ -50,7 +50,6 @@ public class SanDaThueFragment extends Fragment {
     SDTAdapter sdtAdapter;
     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     int posNow = 0;
-    PhieuThue phieuThue;
     Dialog dialog;
     CumSanDAO cumSanDAO;
     SanDAO sanDAO;
@@ -149,7 +148,8 @@ public class SanDaThueFragment extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                phieuThue = phieuThueList.get(pos);
+                //Toast.makeText(getContext(), ""+pos, Toast.LENGTH_SHORT).show();
+                PhieuThue phieuThue = list.get(pos);
                 dialog_danhGia(phieuThue);
             }
         });
@@ -157,10 +157,7 @@ public class SanDaThueFragment extends Fragment {
     int rating = 0;
     boolean dDG = false;
     public void dialog_danhGia(PhieuThue pt){
-        if (pt.danhGia == 1){
-            Toast.makeText(getContext(), "Đã đánh giá", Toast.LENGTH_SHORT).show();
-            //return;
-        }
+
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_danh_gia);
         tv_tenSan_dg = dialog.findViewById(R.id.tv_ten_dialog_danhGia);
@@ -172,6 +169,27 @@ public class SanDaThueFragment extends Fragment {
         String cumSan = cumSanDAO.getCumSanBySan(String.valueOf(pt.maSan)).tenCumSan;
         String san = sanDAO.getID(String.valueOf(pt.maSan)).tenSan;
         tv_tenSan_dg.setText("Sân :"+cumSan+" - "+san);
+
+        if (pt.danhGia == 1){
+            Toast.makeText(getContext(), "Đã đánh giá", Toast.LENGTH_SHORT).show();
+            rb_dg.setRating(pt.sao);
+            if (pt.sao <= 1){
+                tv_dg.setText("tệ!!!");
+            }else
+            if (pt.sao <= 2){
+                tv_dg.setText("trung bình!!!");
+            }else
+            if (pt.sao <= 3){
+                tv_dg.setText("khá!!!");
+            }else
+            if (pt.sao <= 4){
+                tv_dg.setText("tốt!!!");
+            }else
+            {
+                tv_dg.setText("rất tốt!!!");
+            }
+            //return;
+        }
          rb_dg.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
              @Override
              public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {

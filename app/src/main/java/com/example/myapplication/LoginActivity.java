@@ -79,7 +79,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         checkRemember();
-
         demo();
 
     }

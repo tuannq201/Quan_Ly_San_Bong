@@ -1,5 +1,6 @@
 package com.example.myapplication.UI.nguoithue;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -19,6 +20,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -55,6 +60,9 @@ public class SanFragment extends Fragment {
     CumSanAdapter adapter;
     SearchView sv;
     ITFsendData itFsendData;
+    Dialog dialog;
+    ImageView iv_chonDD;
+    ListView lv_dia_diem;
 
     public interface ITFsendData {
         void sendData(int maCumSan);
@@ -84,6 +92,7 @@ public class SanFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_san, container, false);
         rcv = v.findViewById(R.id.rcv_san_nguoi_thue);
         sv = v.findViewById(R.id.sv_cum_san);
+        iv_chonDD = v.findViewById(R.id.iv_chondd);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 1);
         rcv.setLayoutManager(mLayoutManager);
         rcv.setItemAnimator(new DefaultItemAnimator());
@@ -105,14 +114,18 @@ public class SanFragment extends Fragment {
             }
         });
 
+        iv_chonDD.setOnClickListener(view -> {
+            openDialogCDD();
+        });
+        openDialogCDD();
 
         return v;
     }
 
 
-    public void search(String s){
+    public int search(String s){
+        List<CumSan> list = new ArrayList<>();
             if (cumSanList.size()> 0){
-                List<CumSan> list = new ArrayList<>();
                 for (int i = 0;i<cumSanList.size();i++){
                     if (s != null && cumSanList.get(i).tenCumSan != null && cumSanList.get(i).diaChi != null){
                         s = s.toLowerCase();
@@ -125,6 +138,7 @@ public class SanFragment extends Fragment {
                 }
                 setRecycleView(list);
             }
+            return list.size();
     }
 
     @Override
@@ -157,6 +171,52 @@ public class SanFragment extends Fragment {
             }
         });
         rcv.setAdapter(adapter);
+    }
+
+    public void openDialogCDD(){
+        dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.dialog_chon_dia_diem);
+        lv_dia_diem = dialog.findViewById(R.id.lv_dialog_chon_dd);
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Tất cả");
+        list.add("Quận Cẩm Lệ");
+        list.add("Quận Hải Châu");
+        list.add("Quận Liên Chiểu");
+        list.add("Quận Ngũ Hành Sơn");
+        list.add("Quận Sơn Trà");
+        list.add("Quận Thanh Khê");
+        list.add("Huyện Hòa Vang");
+        list.add("Huyện Trường Sa");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, list);
+
+        lv_dia_diem.setAdapter(adapter);
+
+        lv_dia_diem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                String textSV = "";
+                if (pos == 0){
+                    dialog.dismiss();
+                    search("");
+                }else {
+                    String dd = list.get(pos);
+                    int a = dd.indexOf(" ");
+                    textSV = dd.substring(a, dd.length()).trim();
+                    if (search(textSV) == 0){
+                        Toast.makeText(getContext(), "không có sân nào tại "+textSV+"\nvui lòng chọn địa điểm khác!!!", Toast.LENGTH_SHORT).show();
+                    }else {
+                        dialog.dismiss();
+                    }
+
+                }
+
+
+            }
+        });
+
+        dialog.show();
     }
 
 }

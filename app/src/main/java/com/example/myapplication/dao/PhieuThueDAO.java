@@ -138,6 +138,11 @@ public class PhieuThueDAO {
         return list;
     }
 
+    public int getByDate(String maNT, String date){
+        String sql = "SELECT * FROM PhieuThue WHERE nguoiThue=? AND ngayThue>?";
+        return getData(sql, maNT, date).size();
+    }
+
     public TrangThai checkTrangThai(int maSan, String ca, String ngay){
         String sql = "SELECT * FROM PhieuThue WHERE maSan=? AND caThue=? AND ngayThue=?";
         TrangThai trangThai = new TrangThai();

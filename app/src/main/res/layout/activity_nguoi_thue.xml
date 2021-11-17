@@ -14,15 +14,16 @@
         android:layout_height="match_parent"
         app:cnb_orientationMode="vertical"
         tools:ignore="MissingClass,MissingConstraints" />
+
     <FrameLayout
         android:id="@+id/frm_nguoi_thue"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="70dp">
+        app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
 
@@ -48,7 +49,8 @@
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/chip_navi_nguoi_thue"
         android:layout_width="0dp"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
+        android:background="#66BB6A"
         app:cnb_addBottomInset="false"
         app:cnb_addLeftInset="false"
         app:cnb_addRightInset="false"
@@ -58,7 +60,6 @@
         app:cnb_menuResource="@menu/menu_activity_nguoi_thue"
         app:cnb_orientationMode="horizontal"
         app:cnb_radius="8dp"
-        android:background="#66BB6A"
         app:cnb_unselectedColor="#ECE8E8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
