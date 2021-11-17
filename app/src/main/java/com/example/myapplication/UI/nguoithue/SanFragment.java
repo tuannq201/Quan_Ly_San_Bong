@@ -56,12 +56,14 @@ public class SanFragment extends Fragment {
 
     CumSanDAO cumSanDAO;
     List<CumSan> cumSanList;
+    List<CumSan> listCS;
     RecyclerView rcv;
     CumSanAdapter adapter;
     SearchView sv;
     ITFsendData itFsendData;
     Dialog dialog;
     ImageView iv_chonDD;
+    SanDAO sanDAO;
     ListView lv_dia_diem;
 
     public interface ITFsendData {
@@ -82,7 +84,15 @@ public class SanFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         cumSanDAO  = new CumSanDAO(getContext());
-        cumSanList = cumSanDAO.getAll();
+        sanDAO = new SanDAO(getContext());
+        cumSanList = new ArrayList<>();
+        listCS = cumSanDAO.getAll();
+        for (int i = 0;i<listCS.size();i++){
+            String maCS = String.valueOf(listCS.get(i).maCumSan);
+            if (sanDAO.getSanByCumSan(maCS).size() > 0){
+                cumSanList.add(listCS.get(i));
+            }
+        }
 
     }
 
@@ -118,11 +128,6 @@ public class SanFragment extends Fragment {
             openDialogCDD(getContext());
         });
 
-//        if (NguoiThueActivity.count == 0){
-//            openDialogCDD(getContext());
-//            NguoiThueActivity.count++;
-//        }
-
 
         return v;
     }
@@ -130,7 +135,6 @@ public class SanFragment extends Fragment {
 
 
     public int search(String s){
-        cumSanList = cumSanDAO.getAll();
         List<CumSan> list = new ArrayList<>();
             if (cumSanList.size()> 0){
                 for (int i = 0;i<cumSanList.size();i++){
@@ -155,9 +159,9 @@ public class SanFragment extends Fragment {
         ChipNavigationBar chip = getActivity().findViewById(R.id.chip_navi_nguoi_thue);
         chip.setVisibility(View.VISIBLE);
 
-        if (NguoiThueActivity.ddiaiemDC.length() > 2){
-            search(NguoiThueActivity.ddiaiemDC);
-        }
+
+        search(NguoiThueActivity.ddiaiemDC);
+
     }
 
     @Override
@@ -217,17 +221,17 @@ public class SanFragment extends Fragment {
                 if (pos == 0){
                     dialog.dismiss();
                     search("");
+                    NguoiThueActivity.ddiaiemDC = textSV;
                 }else {
                     String dd = list.get(pos);
                     int a = dd.indexOf(" ");
                     textSV = dd.substring(a, dd.length()).trim();
                     if (search(textSV) == 0){
-                        if (NguoiThueActivity.ddiaiemDC.length() > 2){
-                            search(NguoiThueActivity.ddiaiemDC);
-                        }
-                        Toast.makeText(context, "không có sân nào tại "+textSV+"\nvui lòng chọn địa điểm khác!!!", Toast.LENGTH_SHORT).show();
+                        search(NguoiThueActivity.ddiaiemDC);
+                        Toast.makeText(context, "không có sân nào tại "+dd+"\nvui lòng chọn địa điểm khác!!!", Toast.LENGTH_SHORT).show();
                     }else {
                         NguoiThueActivity.ddiaiemDC = textSV;
+                        sv.setQuery(textSV, false);
                         dialog.dismiss();
                     }
                 }
