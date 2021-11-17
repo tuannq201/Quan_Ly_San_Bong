@@ -1,6 +1,5 @@
 package com.example.myapplication.UI.nguoithue;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
-import com.example.myapplication.UI.chusan.CaSanOfChuSanActivity;
 import com.example.myapplication.adapter.ListSanAdapter;
+import com.example.myapplication.dao.PhieuThueDAO;
 import com.example.myapplication.dao.SanDAO;
 import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
@@ -35,10 +34,11 @@ public class SanCumSanFragment extends Fragment {
 
     RecyclerView rcv;
     TextView tenCS;
-    List<San> sanList;
+    List<San> sanList, listSanA;
     public int maCS;
     ListSanAdapter adapter;
-    SanDAO dao;
+    SanDAO sanDAO;
+    PhieuThueDAO phieuThueDAO;
 
     public SanCumSanFragment(int maCumSan) {
         this.maCS = maCumSan;
@@ -53,7 +53,8 @@ public class SanCumSanFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dao = new SanDAO(getContext());
+        sanDAO = new SanDAO(getContext());
+        phieuThueDAO = new PhieuThueDAO(getContext());
 
     }
 
@@ -63,11 +64,19 @@ public class SanCumSanFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_san_cum_san, container, false);
         rcv = v.findViewById(R.id.rcv_san_cumSan_nt);
         tenCS = v.findViewById(R.id.tv_cum_san_nt);
+        sanList = new ArrayList<>();
         updateLV(maCS);
         return v;
     }
     public void updateLV(int ma){
-        sanList = (ArrayList<San>) dao.getSanByCumSan(String.valueOf(ma));
+        listSanA = (ArrayList<San>) sanDAO.getSanByCumSan(String.valueOf(ma));
+        for (int i = 0;i<listSanA.size();i++){
+            San san = listSanA.get(i);
+            san.soDanhGia = phieuThueDAO.soDanhGiaSan(String.valueOf(san.maSan));
+            san.soSao = phieuThueDAO.soSaoSan(String.valueOf(san.maSan));
+
+            sanList.add(san);
+        }
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         rcv.setLayoutManager(mLayoutManager);
         rcv.setItemAnimator(new DefaultItemAnimator());
@@ -77,6 +86,7 @@ public class SanCumSanFragment extends Fragment {
             public void onItemClick(San san, int type) {
 
                 onClickGoToCaSan(san);
+                Toast.makeText(getContext(), ""+san.soSao, Toast.LENGTH_SHORT).show();
 
             }
 

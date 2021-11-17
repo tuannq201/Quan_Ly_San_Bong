@@ -33,6 +33,7 @@ import com.example.myapplication.UI.chusan.ListSanFragment;
 import com.example.myapplication.adapter.ListSanAdapter;
 import com.example.myapplication.adapter.nguoi_thue_adapter.CumSanAdapter;
 import com.example.myapplication.dao.CumSanDAO;
+import com.example.myapplication.dao.PhieuThueDAO;
 import com.example.myapplication.dao.SanDAO;
 import com.example.myapplication.entity.CumSan;
 import com.example.myapplication.entity.PhieuThue;
@@ -64,6 +65,7 @@ public class SanFragment extends Fragment {
     Dialog dialog;
     ImageView iv_chonDD;
     SanDAO sanDAO;
+    PhieuThueDAO phieuThueDAO;
     ListView lv_dia_diem;
 
     public interface ITFsendData {
@@ -84,15 +86,19 @@ public class SanFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         cumSanDAO  = new CumSanDAO(getContext());
+        phieuThueDAO = new PhieuThueDAO(getContext());
         sanDAO = new SanDAO(getContext());
         cumSanList = new ArrayList<>();
         listCS = cumSanDAO.getAll();
         for (int i = 0;i<listCS.size();i++){
-            String maCS = String.valueOf(listCS.get(i).maCumSan);
-            if (sanDAO.getSanByCumSan(maCS).size() > 0){
+            CumSan cumSan = listCS.get(i);
+            cumSan.soDanhGia = phieuThueDAO.soDanhGiaCumSan(String.valueOf(cumSan.maCumSan));
+            cumSan.soSao = phieuThueDAO.soSaoCumSan(String.valueOf(cumSan.maCumSan));
+            if (sanDAO.getSanByCumSan(String.valueOf(cumSan.maCumSan)).size() > 0){
                 cumSanList.add(listCS.get(i));
             }
         }
+
 
     }
 
@@ -188,6 +194,7 @@ public class SanFragment extends Fragment {
             public void onItemClick(CumSan cumSan) {
                 ChipNavigationBar chip = getActivity().findViewById(R.id.chip_navi_nguoi_thue);
                 chip.setVisibility(View.GONE);
+                Toast.makeText(getContext(), ""+cumSan.soDanhGia+" sao: "+cumSan.soSao, Toast.LENGTH_SHORT).show();
                 itFsendData.sendData(cumSan.maCumSan);
             }
         });

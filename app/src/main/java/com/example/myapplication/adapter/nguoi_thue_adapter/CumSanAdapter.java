@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +58,8 @@ public class CumSanAdapter extends RecyclerView.Adapter<CumSanAdapter.CumSanView
         holder.tv_3.setText("Số sân: "+sanDAO.getSanByCumSan(String.valueOf(cumSan.maCumSan)).size());
         holder.tv_4.setText("Giá: "+sanDAO.giaCumSan(String.valueOf(cumSan.maCumSan)));
         holder.tv_5.setText("Loại sân: "+sanDAO.loaiSanCumSan(String.valueOf(cumSan.maCumSan)));
+        holder.tv_soDG.setText("  "+cumSan.soDanhGia);
+        holder.ratingBar.setRating((float) cumSan.soSao / (float) cumSan.soDanhGia);
         holder.cv.setOnClickListener(view -> {
             //Toast.makeText(context, ""+cumSan.tenCumSan, Toast.LENGTH_SHORT).show();
             itemCumSanClick.onItemClick(cumSan);
@@ -71,8 +74,9 @@ public class CumSanAdapter extends RecyclerView.Adapter<CumSanAdapter.CumSanView
     }
 
     public class CumSanViewHolder extends RecyclerView.ViewHolder{
-        private TextView tv_1, tv_2, tv_3, tv_4, tv_5;
+        private TextView tv_1, tv_2, tv_3, tv_4, tv_5, tv_soDG;
         private ImageView imgSan;
+        private RatingBar ratingBar;
         public CardView cv;
         public LinearLayout layout;
 
@@ -85,6 +89,8 @@ public class CumSanAdapter extends RecyclerView.Adapter<CumSanAdapter.CumSanView
             imgSan = itemView.findViewById(R.id.iv_cumsan);
             cv = itemView.findViewById(R.id.cv_item_cumsan);
             tv_5 = itemView.findViewById(R.id.tv_loaisan_cumsan);
+            tv_soDG = itemView.findViewById(R.id.tv_soDanhGia_cum_san);
+            ratingBar = itemView.findViewById(R.id.rb_cum_san);
         }
     }
 

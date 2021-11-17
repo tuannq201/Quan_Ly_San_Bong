@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +58,9 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
         });
         holder.tvTenSan.setText("Tên Sân: "+ san.tenSan);
         holder.tvLoaiSan.setText("Loại Sân: "+ san.loaiSan);
-        holder.tvGiaSan.setText("Giá sân: "+ san.giaSan);
+        holder.tvGiaSan.setText("Giá sân: "+ Cover.IntegerToVnd(san.giaSan)+"vnđ");
+        holder.tvSoDanhGia.setText("  "+san.soDanhGia);
+        holder.ratingBar.setRating((float) san.soSao / (float) san.soDanhGia);
         try {
             holder.imgSan.setImageBitmap(Cover.ByteToBitmap(san.anhSan));
         }catch (Exception e){
@@ -94,10 +97,11 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
     }
 
     public class ListsanViewHolder extends RecyclerView.ViewHolder{
-        private TextView tvTenSan, tvLoaiSan, tvGiaSan;
+        private TextView tvTenSan, tvLoaiSan, tvGiaSan, tvSoDanhGia;
         private ImageView imgSan;
         private LinearLayout layoutDelete, layout;
         private SwipeRevealLayout swipeRevealLayout;
+        private RatingBar ratingBar;
 //        private LinearLayout layout;
         public int position;
 
@@ -110,6 +114,8 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
             layoutDelete = itemView.findViewById(R.id.layout_delete);
             swipeRevealLayout = itemView.findViewById(R.id.swip_layout_item_san);
             layout = itemView.findViewById(R.id.layout_cs);
+            ratingBar = itemView.findViewById(R.id.rb_san);
+            tvSoDanhGia = itemView.findViewById(R.id.tv_soDanhGiaSan);
 //            cv = (CardView) itemView;
         }
     }

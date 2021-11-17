@@ -64,19 +64,41 @@ public class PhieuThueDAO {
         String sql = "SELECT * FROM PhieuThue WHERE maSan=? AND danhGia = 1";
         return getData(sql, maSan).size();
     }
-    public float danhGiaSan(String maSan){
-        String sql = "SELECT * FROM PhieuThue WHERE maSan=? AND danhGia = 1";
-        List<PhieuThue> phieuThues = getData(sql, maSan);
-        if (phieuThues.size() > 0){
-            int soDanhGia = phieuThues.size();
-            int soSao = 0;
-            for (int i = 0;i<soDanhGia;i++){
-                soSao += phieuThues.get(i).sao;
+    @SuppressLint("Range")
+    public int soSaoSan(String maSan){
+        String sql = "SELECT SUM(sao) as soSao FROM PhieuThue WHERE maSan=? AND danhGia = 1";
+        List<Integer> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery(sql,new String[]{maSan});
+        while (cursor.moveToNext()){
+            try{
+                list.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("soSao"))));
+            }catch (Exception e){
+                list.add(0);
             }
-            return (float) soSao / (float) soDanhGia;
         }
-        return 10;
+        return list.get(0);
     }
+
+    public int soDanhGiaCumSan(String maCS){
+        String sql = "SELECT * FROM PhieuThue INNER JOIN San ON PhieuThue.maSan = San.maSan WHERE San.maCumSan=? AND PhieuThue.danhGia = 1";
+        return getData(sql, maCS).size();
+    }
+
+    @SuppressLint("Range")
+    public int soSaoCumSan(String maSan){
+        String sql = "SELECT SUM(sao) as soSao FROM PhieuThue INNER JOIN San ON PhieuThue.maSan = San.maSan WHERE San.maCumSan=? AND PhieuThue.danhGia = 1";
+        List<Integer> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery(sql,new String[]{maSan});
+        while (cursor.moveToNext()){
+            try{
+                list.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("soSao"))));
+            }catch (Exception e){
+                list.add(0);
+            }
+        }
+        return list.get(0);
+    }
+
     @SuppressLint("Range")
     public int thuNhap(String ngay){
         String sql = "SELECT SUM(tienSan) as thuNhapNgay FROM PhieuThue WHERE ngayThue =?";
@@ -90,39 +112,6 @@ public class PhieuThueDAO {
             }
         }
         return list.get(0);
-    }
-
-//    public int soDanhGiaCumSan(String maCumSan){
-//        SanDAO sanDAO = new SanDAO(context);
-//        List<San> sanList = sanDAO.getSanByCumSan(maCumSan);
-//        int soSan = 0;
-//        if (sanList.size() > 0){
-//            for (int i = 0;i<soSan;i++){
-//                if (danhGiaSan(String.valueOf(sanList.get(i).maSan)) <= 5){
-//                    soSan++;
-//                    soSao += danhGiaSan(String.valueOf(sanList.get(i).maSan));
-//                }
-//            }
-//
-//            return
-//        }
-//    }
-    public float danhGiaCumSan(String maCumSan){
-        SanDAO sanDAO = new SanDAO(context);
-        List<San> sanList = sanDAO.getSanByCumSan(maCumSan);
-        int soSan = 0;
-        float soSao = 0;
-        if (sanList.size() > 0){
-            for (int i = 0;i<soSan;i++){
-                if (danhGiaSan(String.valueOf(sanList.get(i).maSan)) <= 5){
-                    soSan++;
-                    soSao += danhGiaSan(String.valueOf(sanList.get(i).maSan));
-                }
-            }
-
-            return soSao / (float) soSan;
-        }
-        return 10;
     }
 
 
