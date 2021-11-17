@@ -99,7 +99,7 @@ public class SanFragment extends Fragment {
 
         LayoutAnimationController animationController = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_animation_recycle_view);
         rcv.setLayoutAnimation(animationController);
-        setRecycleView(cumSanList);
+        setRecycleView(getContext(), cumSanList);
 
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -115,15 +115,22 @@ public class SanFragment extends Fragment {
         });
 
         iv_chonDD.setOnClickListener(view -> {
-            openDialogCDD();
+            openDialogCDD(getContext());
         });
-        openDialogCDD();
+
+//        if (NguoiThueActivity.count == 0){
+//            openDialogCDD(getContext());
+//            NguoiThueActivity.count++;
+//        }
+
 
         return v;
     }
 
 
+
     public int search(String s){
+        cumSanList = cumSanDAO.getAll();
         List<CumSan> list = new ArrayList<>();
             if (cumSanList.size()> 0){
                 for (int i = 0;i<cumSanList.size();i++){
@@ -136,7 +143,7 @@ public class SanFragment extends Fragment {
                         }
                     }
                 }
-                setRecycleView(list);
+                setRecycleView(getContext(), list);
             }
             return list.size();
     }
@@ -144,8 +151,13 @@ public class SanFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
         ChipNavigationBar chip = getActivity().findViewById(R.id.chip_navi_nguoi_thue);
         chip.setVisibility(View.VISIBLE);
+
+        if (NguoiThueActivity.ddiaiemDC.length() > 2){
+            search(NguoiThueActivity.ddiaiemDC);
+        }
     }
 
     @Override
@@ -158,11 +170,16 @@ public class SanFragment extends Fragment {
     public void onStart() {
         super.onStart();
         itFsendData = (ITFsendData) getActivity();
+
+        if (NguoiThueActivity.count == 0){
+            openDialogCDD(getContext());
+            NguoiThueActivity.count++;
+        }
     }
 
-    public void setRecycleView(List<CumSan> list){
-        cumSanList.add(new CumSan());
-        adapter = new CumSanAdapter(getContext(), list, new ItemCumSanClick() {
+    public void setRecycleView(Context context, List<CumSan> list){
+        //cumSanList.add(new CumSan());
+        adapter = new CumSanAdapter(context, list, new ItemCumSanClick() {
             @Override
             public void onItemClick(CumSan cumSan) {
                 ChipNavigationBar chip = getActivity().findViewById(R.id.chip_navi_nguoi_thue);
@@ -173,8 +190,8 @@ public class SanFragment extends Fragment {
         rcv.setAdapter(adapter);
     }
 
-    public void openDialogCDD(){
-        dialog = new Dialog(getContext());
+    public void openDialogCDD(Context context){
+        dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialog_chon_dia_diem);
         lv_dia_diem = dialog.findViewById(R.id.lv_dialog_chon_dd);
 
@@ -205,14 +222,15 @@ public class SanFragment extends Fragment {
                     int a = dd.indexOf(" ");
                     textSV = dd.substring(a, dd.length()).trim();
                     if (search(textSV) == 0){
-                        Toast.makeText(getContext(), "không có sân nào tại "+textSV+"\nvui lòng chọn địa điểm khác!!!", Toast.LENGTH_SHORT).show();
+                        if (NguoiThueActivity.ddiaiemDC.length() > 2){
+                            search(NguoiThueActivity.ddiaiemDC);
+                        }
+                        Toast.makeText(context, "không có sân nào tại "+textSV+"\nvui lòng chọn địa điểm khác!!!", Toast.LENGTH_SHORT).show();
                     }else {
+                        NguoiThueActivity.ddiaiemDC = textSV;
                         dialog.dismiss();
                     }
-
                 }
-
-
             }
         });
 

@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
         String password = ed_password_login.getText().toString().trim();
         if (userDAO.checkLogin(phone_number, password)){
             remember();
-            Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
             if (userDAO.getUser(phone_number).phanQuyen.equals("AD")){
                 startActivity(new Intent(LoginActivity.this, AdminActivity.class));
             }
