@@ -115,6 +115,22 @@ public class PhieuThueDAO {
     }
 
 
+    @SuppressLint("Range")
+    public int AllTienThueNT(String nguoiThue){
+        String sql = "SELECT SUM(tienSan) as allTienThueNT FROM PhieuThue WHERE nguoiThue =?";
+        List<Integer> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery(sql,new String[]{nguoiThue});
+        while (cursor.moveToNext()){
+            try{
+                list.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("allTienThueNT"))));
+            }catch (Exception e){
+                list.add(0);
+            }
+        }
+        return list.get(0);
+    }
+
+
     public PhieuThue getID(String id){
         String sql = "SELECT * FROM PhieuThue WHERE maPT=?";
         List<PhieuThue> list = getData(sql,id);

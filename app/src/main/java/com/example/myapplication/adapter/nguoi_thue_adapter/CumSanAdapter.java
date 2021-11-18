@@ -54,7 +54,7 @@ public class CumSanAdapter extends RecyclerView.Adapter<CumSanAdapter.CumSanView
         CumSan cumSan = cumSanList.get(position);
         sanDAO = new SanDAO(context);
         holder.tv_1.setText("Địa chỉ: "+cumSan.diaChi);
-        holder.tv_2.setText("Sân: "+cumSan.tenCumSan);
+        holder.tv_2.setText(""+cumSan.tenCumSan);
         holder.tv_3.setText("Số sân: "+sanDAO.getSanByCumSan(String.valueOf(cumSan.maCumSan)).size());
         holder.tv_4.setText("Giá: "+sanDAO.giaCumSan(String.valueOf(cumSan.maCumSan)));
         holder.tv_5.setText("Loại sân: "+sanDAO.loaiSanCumSan(String.valueOf(cumSan.maCumSan)));

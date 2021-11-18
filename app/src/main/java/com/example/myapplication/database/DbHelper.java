@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper{
     static final String dbName = "QLSB";
-    static final int dbVision = 1;
+    static final int dbVision = 4;
     public DbHelper(@Nullable Context context) {
         super(context, dbName, null, dbVision);
     }
@@ -103,21 +103,32 @@ public class DbHelper extends SQLiteOpenHelper{
         db.execSQL(INSERT_San1);
 
         String INSERT_CumSan = "Insert into CumSan(tenCumSan,diaChi,chuSan) values " +
-                "('cụm sân 1','Cẩm Lệ - Đà Nẵng','0888888888')," +
-                "('cụm sân 2','Liên Chiểu - Đà Nẵng','0888888888')," +
-                "('cụm sân 3','Hải Châu - Đà Nẵng','0888888888')," +
-                "('cụm sân 4','Sơn Trà - Đà Nẵng','0333333331')," +
-                "('cụm sân 5','Cẩm Lệ - Đà Nẵng','0888888888')," +
-                "('cụm sân 6','Liên Chiểu - Đà Nẵng','0333333331')," +
-                "('cụm sân 7','Hải Châu - Đà Nẵng','0888888888')," +
-                "('cụm sân 8','Sơn Trà - Đà Nẵng','0888888888')," +
-                "('cụm sân 9','Cẩm Lệ - Đà Nẵng','0888888888')," +
-                "('cụm sân 10','Liên Chiểu - Đà Nẵng','0888888888')," +
-                "('cụm sân 11','Hải Châu - Đà Nẵng','0333333336')," +
-                "('cụm sân 12','Sơn Trà - Đà Nẵng','0888888888')," +
-                "('cụm sân 13','Thanh Khê - Đà Nẵng','0333333336')," +
-                "('cụm sân 14','Liên Chiểu - Đà Nẵng','0888888888')," +
-                "('cụm sân 15','Liên Chiểu - Đà Nẵng','0888888888')";
+                "('Sân Bóng Đá Chuyên Việt - Hoà Khánh','151 Âu Cơ, Hoà Khánh Bắc, Liên Chiểu, Đà Nẵng','0888888888')," +
+                "('Sân Bóng Manchester United','59 Đ. Ngô Thì Nhậm, Hoà Khánh Nam, Liên Chiểu, Đà Nẵng','0888888888')," +
+                "('Sân Bóng đá 360','911 Nguyễn Lương Bằng, Hoà Hiệp Nam, Liên Chiểu, Đà Nẵng','0888888888')," +
+                "('Sân Bóng Liên Chiểu - Nhật Nga','522 Nguyễn Lương Bằng, Hoà Hiệp Nam, Liên Chiểu, Đà Nẵng','0333333331')," +
+                "('Sân bóng nhân tạo Nam Cao','347X+C74, Hoà Khánh Nam, Liên Chiểu, Đà Nẵng','0888888888')," +
+                "('Sân Bóng Ngọc Thạch','K207 Đ. Phạm Như Xương, Hoà Khánh Nam, Liên Chiểu, Đà Nẵng','0333333331')," +
+                "('Sân bóng An Trung','An Trung 3, An Hải Tây, Sơn Trà, Đà Nẵng','0888888888')," +
+                "('Sân bóng đá T20','Mỹ Khê 4, Phước Mỹ, Sơn Trà, Đà Nẵng','0888888888')," +
+                "('Sân bóng Harmony','Phạm Văn Đồng, An Hải Bắc, Sơn Trà, Đà Nẵng','0888888888')," +
+                "('Sân bóng đá Chuyên Việt','98 Tiểu La, Hòa Thuận Đông, Hải Châu, Đà Nẵng','0888888888')," +
+                "('Sân bóng đá Trang Hoàng','86 Duy Tân, Hòa Thuận Nam, Hải Châu, Đà Nẵng','0333333336')," +
+                "('Sân bóng đá Duy Tân','Hòa Thuận Đông, Hải Châu, Đà Nẵng','0888888888')," +
+                "('Sân Bóng đá An Phúc 2','409 Trưng Nữ Vương, Hòa Thuận Nam, Hải Châu, Đà Nẵng','0333333336')," +
+                "('Sân bóng đá Mỹ Nhật Quang','498 Nguyễn Hữu Thọ, Khuê Trung, Cẩm Lệ, Đà Nẵng','0888888888')," +
+
+                "('Sân Bóng Đá Mini Việt Hàn','Hoà Hải, Ngũ Hành Sơn, Đà Nẵng','0888888888')," +
+                "('Sân Bóng Đá Thép Việt','Đ. Nghiêm Xuân Yêm, Khuê Mỹ, Ngũ Hành Sơn, Đà Nẵng','0888888888')," +
+                "('Sân bóng đá Minh Hà','Bắc Mỹ Phú, Ngũ Hành Sơn, Đà Nẵng','0888888888')," +
+                "('Sân bóng đá mini Bế Văn Đàn','Bế Văn Đàn, Chính Gián, Thanh Khê, Đà Nẵng','0333333336')," +
+                "('Sân bóng đá An Hà 1','243 Trường Chinh, An Khê, Thanh Khê, Đà Nẵng','0888888888')," +
+                "('Sân Bóng đá An Phúc 1','303 Trưng Nữ Vương, Hòa Thuận Nam, Hải Châu, Đà Nẵng','0333333336')," +
+
+                "('Sân Bóng Đá Hòa Hán','Đ. Tôn Đản, Hoà Thọ Tây, Cẩm Lệ, Đà Nẵng','0888888888')," +
+                "('Sân Bóng Đá Mini Tuấn Nhàn','Nguyễn Văn Tạo, Hoà An, Cẩm Lệ, Đà Nẵng','0888888888')," +
+
+                "('cụ15','Liên Chiểu - Đà Nẵng','0888888888')";
         db.execSQL(INSERT_CumSan);
 
 

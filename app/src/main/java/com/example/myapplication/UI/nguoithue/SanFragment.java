@@ -194,7 +194,7 @@ public class SanFragment extends Fragment {
             public void onItemClick(CumSan cumSan) {
                 ChipNavigationBar chip = getActivity().findViewById(R.id.chip_navi_nguoi_thue);
                 chip.setVisibility(View.GONE);
-                Toast.makeText(getContext(), ""+cumSan.soDanhGia+" sao: "+cumSan.soSao, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), ""+cumSan.soDanhGia+" sao: "+cumSan.soSao, Toast.LENGTH_SHORT).show();
                 itFsendData.sendData(cumSan.maCumSan);
             }
         });
@@ -238,7 +238,6 @@ public class SanFragment extends Fragment {
                         Toast.makeText(context, "không có sân nào tại "+dd+"\nvui lòng chọn địa điểm khác!!!", Toast.LENGTH_SHORT).show();
                     }else {
                         NguoiThueActivity.ddiaiemDC = textSV;
-                        sv.setQuery(textSV, false);
                         dialog.dismiss();
                     }
                 }

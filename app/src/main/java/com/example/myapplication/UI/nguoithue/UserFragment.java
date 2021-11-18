@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,10 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.dao.PhieuThueDAO;
 import com.example.myapplication.dao.UserDAO;
 import com.example.myapplication.entity.User;
+import com.example.myapplication.util.Cover;
+import com.google.android.material.textfield.TextInputEditText;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -28,11 +33,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UserFragment extends Fragment {
 
     UserDAO userDAO;
+    PhieuThueDAO phieuThueDAO;
     User user;
-    EditText ed_1, ed_2, ed_3;
+    EditText ed_1, ed_2;
+    EditText ed_3;
+    TextView tv_san, tv_tienThue;
 
     CircleImageView circleImageView;
     ImageView iv_user_avata;
+    String phone;
     public UserFragment() {
         // Required empty public constructor
     }
@@ -49,8 +58,9 @@ public class UserFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         userDAO = new UserDAO(getContext());
+        phieuThueDAO = new PhieuThueDAO(getContext());
         SharedPreferences pref = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
-        String phone = pref.getString("PHONE","");
+        phone = pref.getString("PHONE","");
         String pass = pref.getString("PASSWORD","");
         user = userDAO.getUser(phone);
 
@@ -70,6 +80,8 @@ public class UserFragment extends Fragment {
         ed_1 = v.findViewById(R.id.ed_name_user);
         ed_2 = v.findViewById(R.id.ed_phone_user);
         ed_3 = v.findViewById(R.id.ed_pass_user);
+        tv_san = v.findViewById(R.id.tv_tk_soSan_use);
+        tv_tienThue = v.findViewById(R.id.tv_tk_soTien_use);
 
         setAvatar();
 
@@ -87,5 +99,7 @@ public class UserFragment extends Fragment {
         ed_1.setText(""+user.hoTen);
         ed_2.setText(user.taiKhoan);
         ed_3.setText(user.matKhau);
+        tv_san.setText("Sân đã thuê: "+phieuThueDAO.getPhieuByUser(phone).size()+" sân");
+        tv_tienThue.setText("Tổng tiền: "+ Cover.IntegerToVnd(phieuThueDAO.AllTienThueNT(phone))+"vnđ");
     }
 }

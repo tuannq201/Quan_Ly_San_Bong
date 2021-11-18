@@ -86,7 +86,7 @@ public class SanCumSanFragment extends Fragment {
             public void onItemClick(San san, int type) {
 
                 onClickGoToCaSan(san);
-                Toast.makeText(getContext(), ""+san.soSao, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), ""+san.soSao, Toast.LENGTH_SHORT).show();
 
             }
 
