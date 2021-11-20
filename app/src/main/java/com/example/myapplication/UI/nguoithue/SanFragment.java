@@ -237,6 +237,7 @@ public class SanFragment extends Fragment {
                         search(NguoiThueActivity.ddiaiemDC);
                         Toast.makeText(context, "không có sân nào tại "+dd+"\nvui lòng chọn địa điểm khác!!!", Toast.LENGTH_SHORT).show();
                     }else {
+                        Toast.makeText(getContext(), "tìm thấy "+search(textSV)+" kết quả", Toast.LENGTH_SHORT).show();
                         NguoiThueActivity.ddiaiemDC = textSV;
                         dialog.dismiss();
                     }

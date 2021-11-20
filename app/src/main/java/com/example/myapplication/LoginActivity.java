@@ -9,13 +9,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -85,9 +88,11 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void demo(){
-        String a = Cover.getCompleteAddressString(LoginActivity.this, 16.075800, 108.169860);
-        Log.i("iiiii", ""+a);
-        Toast.makeText(getApplicationContext(), ""+a, Toast.LENGTH_SHORT).show();
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+
+        Log.i("nnnnn", ""+size.x+" "+size.y);
 
     }
 
