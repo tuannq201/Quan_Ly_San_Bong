@@ -92,9 +92,11 @@ public class DemoNTFragment extends Fragment {
                 int ca = i/soSan + 1;
                 int ngay = i%soSan;
                 String san = sanList.get(ngay).tenSan;
-
-
-                Toast.makeText(getContext(), "ca: "+ca+" ;sân: "+san+" tiền sân: "+ Cover.IntegerToVnd(trangThais.get(i).tienSan), Toast.LENGTH_SHORT).show();
+                String tt = "trống";
+                if(trangThais.get(i).taiKhoan.contains("0")){
+                    tt = "đã thuê";
+                }
+                Toast.makeText(getContext(), tt+" ca:"+ca+" sân:"+san+" tiền sân:"+ Cover.IntegerToVnd(trangThais.get(i).tienSan)+"vnd", Toast.LENGTH_SHORT).show();
             }
         });
 

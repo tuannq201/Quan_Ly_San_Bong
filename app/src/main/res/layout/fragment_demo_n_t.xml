@@ -10,6 +10,8 @@
         android:id="@+id/nt_gridview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:horizontalSpacing="2dp"
+        android:verticalSpacing="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
