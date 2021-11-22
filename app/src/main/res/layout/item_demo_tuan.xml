@@ -10,5 +10,5 @@
         android:id="@+id/iv_demo_tuan"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        app:srcCompat="@drawable/ic_soccer_ball_gray" />
+        app:srcCompat="@drawable/ic_plus" />
 </LinearLayout>

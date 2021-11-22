@@ -26,6 +26,7 @@ public class NguoiThueActivity extends AppCompatActivity implements SanFragment.
     PhieuThueDAO phieuThueDAO;
     SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     public static int count = 0;
+    public static int count1 = 0;
     public static String ddiaiemDC = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {

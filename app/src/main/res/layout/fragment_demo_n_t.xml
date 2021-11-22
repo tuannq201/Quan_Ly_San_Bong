@@ -8,34 +8,34 @@
 
     <GridView
         android:id="@+id/nt_gridview"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:horizontalSpacing="2dp"
+        android:horizontalSpacing="0dp"
         android:verticalSpacing="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout_nt"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="50dp"
+        android:id="@+id/linearLayout_nt"
+        android:layout_width="200px"
         android:layout_height="0dp"
         android:background="#CCC9C9"
+        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/nt_gridview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/tv_nt1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:text="Ca 1"
             tools:layout_weight="1" />
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/tv_nt2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -43,7 +43,7 @@
             tools:layout_weight="1" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/tv_nt3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -51,7 +51,7 @@
             tools:layout_weight="1" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/tv_nt4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -59,7 +59,7 @@
             tools:layout_weight="1" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/tv_nt5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -67,7 +67,7 @@
             tools:layout_weight="1" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/tv_nt6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -75,7 +75,7 @@
             tools:layout_weight="1" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/tv_nt7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -83,7 +83,7 @@
             tools:layout_weight="1" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/tv_nt8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -91,7 +91,7 @@
             tools:layout_weight="1" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/tv_nt9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -99,7 +99,7 @@
             tools:layout_weight="1" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/tv_nt10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -107,7 +107,7 @@
             tools:layout_weight="1" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tv_nt11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -115,7 +115,7 @@
             tools:layout_weight="1" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tv_nt12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
