@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -21,9 +22,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.UI.admin.AdminActivity;
 import com.example.myapplication.UI.chusan.ChuSanActivity;
 import com.example.myapplication.UI.nguoithue.NguoiThueActivity;
@@ -34,6 +37,7 @@ import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.TrangThai;
 import com.example.myapplication.entity.User;
+import com.example.myapplication.util.BlurTransformation;
 import com.example.myapplication.util.Cover;
 import com.google.android.material.textfield.TextInputEditText;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -51,7 +55,8 @@ public class LoginActivity extends AppCompatActivity {
     Button btn_login, btn_camera, btn_album, btn_save, btn_register;
     ImageView iv_camera_result;
     CheckBox chk_remember;
-    TextInputEditText ed_phone_number, ed_name, ed_password, ed_re_password, ed_phone_login, ed_password_login;
+    TextInputEditText  ed_name, ed_password,ed_phone_number ,ed_re_password;
+    EditText ed_phone_login, ed_password_login;
     public static final int REQUEST_CODE_CAMERA = 0;
     public static final int REQUEST_CODE_FOLDER = 1;
     public static final String PHAN_QUYEN = "NT";
@@ -60,6 +65,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        ImageView imageView = findViewById(R.id.nenLogin);
+
         btn_login = findViewById(R.id.btn_login);
         ed_password_login = findViewById(R.id.ed_password_login);
         ed_phone_login = findViewById(R.id.ed_phone_number_login);

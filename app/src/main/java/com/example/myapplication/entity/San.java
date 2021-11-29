@@ -10,7 +10,6 @@ public class San implements Serializable {
     public byte[] anhSan;
 
     public San(){
-
     }
 
     public San(int maSan, int giaSan, int maCumSan, String tenSan, String loaiSan, byte[] anhSan) {

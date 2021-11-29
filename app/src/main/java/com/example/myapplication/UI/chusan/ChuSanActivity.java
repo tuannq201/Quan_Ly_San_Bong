@@ -42,7 +42,7 @@ public class ChuSanActivity extends AppCompatActivity {
                         fragment = new ThongKeFragment();
                         break;
                     case R.id.nav_ca_nhan_cs:
-                        fragment = new CaNhanOfChuSanFragment();
+                        fragment = new TongQuanFragment();
                         break;
 
                 }

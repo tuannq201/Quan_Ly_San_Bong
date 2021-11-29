@@ -103,10 +103,10 @@ public class DbHelper extends SQLiteOpenHelper{
         db.execSQL(INSERT_San1);
 
         String INSERT_CumSan = "Insert into CumSan(tenCumSan,diaChi,chuSan) values " +
-                "('Sân Bóng Đá Chuyên Việt - Hoà Khánh','151 Âu Cơ, Hoà Khánh Bắc, Liên Chiểu, Đà Nẵng','0888888888')," +
+                "('Sân Bóng Đá Chuyên Việt','151 Âu Cơ, Hoà Khánh Bắc, Liên Chiểu, Đà Nẵng','0888888888')," +
                 "('Sân Bóng Manchester United','59 Đ. Ngô Thì Nhậm, Hoà Khánh Nam, Liên Chiểu, Đà Nẵng','0888888888')," +
                 "('Sân Bóng đá 360','911 Nguyễn Lương Bằng, Hoà Hiệp Nam, Liên Chiểu, Đà Nẵng','0888888888')," +
-                "('Sân Bóng Liên Chiểu - Nhật Nga','522 Nguyễn Lương Bằng, Hoà Hiệp Nam, Liên Chiểu, Đà Nẵng','0333333331')," +
+                "('Sân Bóng Liên Chiểu','522 Nguyễn Lương Bằng, Hoà Hiệp Nam, Liên Chiểu, Đà Nẵng','0333333331')," +
                 "('Sân bóng nhân tạo Nam Cao','347X+C74, Hoà Khánh Nam, Liên Chiểu, Đà Nẵng','0888888888')," +
                 "('Sân Bóng Ngọc Thạch','K207 Đ. Phạm Như Xương, Hoà Khánh Nam, Liên Chiểu, Đà Nẵng','0333333331')," +
                 "('Sân bóng An Trung','An Trung 3, An Hải Tây, Sơn Trà, Đà Nẵng','0888888888')," +
@@ -117,18 +117,15 @@ public class DbHelper extends SQLiteOpenHelper{
                 "('Sân bóng đá Duy Tân','Hòa Thuận Đông, Hải Châu, Đà Nẵng','0888888888')," +
                 "('Sân Bóng đá An Phúc 2','409 Trưng Nữ Vương, Hòa Thuận Nam, Hải Châu, Đà Nẵng','0333333336')," +
                 "('Sân bóng đá Mỹ Nhật Quang','498 Nguyễn Hữu Thọ, Khuê Trung, Cẩm Lệ, Đà Nẵng','0888888888')," +
-
                 "('Sân Bóng Đá Mini Việt Hàn','Hoà Hải, Ngũ Hành Sơn, Đà Nẵng','0888888888')," +
                 "('Sân Bóng Đá Thép Việt','Đ. Nghiêm Xuân Yêm, Khuê Mỹ, Ngũ Hành Sơn, Đà Nẵng','0888888888')," +
                 "('Sân bóng đá Minh Hà','Bắc Mỹ Phú, Ngũ Hành Sơn, Đà Nẵng','0888888888')," +
                 "('Sân bóng đá mini Bế Văn Đàn','Bế Văn Đàn, Chính Gián, Thanh Khê, Đà Nẵng','0333333336')," +
                 "('Sân bóng đá An Hà 1','243 Trường Chinh, An Khê, Thanh Khê, Đà Nẵng','0888888888')," +
                 "('Sân Bóng đá An Phúc 1','303 Trưng Nữ Vương, Hòa Thuận Nam, Hải Châu, Đà Nẵng','0333333336')," +
-
                 "('Sân Bóng Đá Hòa Hán','Đ. Tôn Đản, Hoà Thọ Tây, Cẩm Lệ, Đà Nẵng','0888888888')," +
                 "('Sân Bóng Đá Mini Tuấn Nhàn','Nguyễn Văn Tạo, Hoà An, Cẩm Lệ, Đà Nẵng','0888888888')," +
-
-                "('cụ15','Liên Chiểu - Đà Nẵng','0888888888')";
+                "('Sân Bóng Đá Nhàn','Liên Chiểu - Đà Nẵng','0888888888')";
         db.execSQL(INSERT_CumSan);
 
 
