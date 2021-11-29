@@ -1,6 +1,9 @@
 package com.example.myapplication.UI.chusan;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -50,11 +53,15 @@ public class TongQuanFragment extends Fragment {
     int posNow = 0;
     TrangThai trangThai;
     Spinner spCum,spSan;
+    TongQuanAdapter tongQuanAdapter;
     SpinnerCumSanAdapter spinnerCumSanAdapter;
     SpinnerSanAdapter spinnerSanAdapter;
     int maCumSan, maSan;
+    int maSanHienTai;
+    int maCumSanHienTai;
     List<CumSan> listCumSan;
     List<San> listSan;
+    String phone;
 
 
 
@@ -70,6 +77,8 @@ public class TongQuanFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences pref = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        phone = pref.getString("PHONE","");
     }
 
     @Override
@@ -85,17 +94,16 @@ public class TongQuanFragment extends Fragment {
         now = new Date();
         ngay = formatNgay.format(now);
         posNow = Cover.dateToPos(formatNgay.format(now), "", 1);
-        tvNgay.setText("Ngày: "+ formatNgay.format(now));
+        tvNgay.setText(formatNgay.format(now));
         btnChonNgay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 chonNgay();
             }
         });
-
         CumSanDAO cumSanDAO = new CumSanDAO(getContext());
         listCumSan = new ArrayList<>();
-        listCumSan = cumSanDAO.getAll();
+        listCumSan = cumSanDAO.getCSByChuSan(phone);
         spinnerCumSanAdapter = new SpinnerCumSanAdapter(getContext(), (ArrayList<CumSan>) listCumSan);
         spCum.setAdapter(spinnerCumSanAdapter);
         spCum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -103,7 +111,8 @@ public class TongQuanFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 maCumSan = listCumSan.get(position).maCumSan;
                 String tenCumSan = listCumSan.get(position).tenCumSan;
-                int maCumSanHienTai = listCumSan.get(position).maCumSan;
+                maCumSanHienTai = listCumSan.get(position).maCumSan;
+                Log.e("//", "onItemSelected: "+maCumSanHienTai);
                 updateSpinnerSan(String.valueOf(maCumSanHienTai));
 
             }
@@ -111,26 +120,35 @@ public class TongQuanFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
         return view;
     }
     public void updateSpinnerSan(String maCumSanChonSan){
         sanDAO = new SanDAO(getContext());
         listSan = new ArrayList<>();
         listSan = sanDAO.getSanByCumSan(String.valueOf(maCumSanChonSan));
-        Log.e("//", "updateSpinnerSan: "+listSan.size() );
         spinnerSanAdapter = new SpinnerSanAdapter(getContext(), (ArrayList<San>) listSan);
         spSan.setAdapter(spinnerSanAdapter);
         spSan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 maSan = listSan.get(position).maSan;
+                maSanHienTai = maSan;
                 String tenSan = listSan.get(position).tenSan;
+                setCaSan(ngay);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+    }
+    public void setCaSan(String ngay){
+        list.clear();
+        for (int i = 1; i <= 12 ; i++) {
+            TrangThai trangThai = phieuThueDAO.checkTrangThai(maSanHienTai, String.valueOf(i), ngay);
+            list.add(trangThai);
+        }
+        tongQuanAdapter = new TongQuanAdapter(getContext(), list);
+        lvTQ.setAdapter(tongQuanAdapter);
     }
     public void chonNgay(){
         Calendar calendar = Calendar.getInstance();
@@ -140,8 +158,9 @@ public class TongQuanFragment extends Fragment {
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int y, int m, int d) {
-                tvNgay.setText("Ngày: "+Cover.formater(y, m, d));
-                ngay = Cover.formater(y, m, d);
+                tvNgay.setText(Cover.formater(y,m,d));
+                ngay = Cover.formater(y,m,d);
+                setCaSan(Cover.formater(y,m,d));
             }
         },year, month, day);
         datePickerDialog.show();

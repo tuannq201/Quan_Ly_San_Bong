@@ -34,6 +34,13 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
         this.type = type;
 
     }
+
+    public CaSanAdapter(Context context, ArrayList<TrangThai> list) {
+        super(context, 0, list);
+        this.context = context;
+        this.list = list;
+    }
+
     @SuppressLint("ResourceAsColor")
     @NonNull
     @Override

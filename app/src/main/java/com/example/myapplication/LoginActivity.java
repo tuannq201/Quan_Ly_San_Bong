@@ -66,8 +66,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        ImageView imageView = findViewById(R.id.nenLogin);
-
         btn_login = findViewById(R.id.btn_login);
         ed_password_login = findViewById(R.id.ed_password_login);
         ed_phone_login = findViewById(R.id.ed_phone_number_login);
@@ -106,8 +104,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void Login(){
-        String phone_number = ed_phone_login.getText().toString().trim();
-        String password = ed_password_login.getText().toString().trim();
+        String phone_number = ed_phone_login.getText().toString();
+        String password = ed_password_login.getText().toString();
         if (userDAO.checkLogin(phone_number, password)){
             remember();
             //Toast.makeText(getApplicationContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();

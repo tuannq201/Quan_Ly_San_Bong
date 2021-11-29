@@ -103,7 +103,6 @@ public class UserDAO {
             obj.phanQuyen = cursor.getString(cursor.getColumnIndex("phanQuyen"));
             obj.hinhAnh = cursor.getBlob(cursor.getColumnIndex("hinh"));
             list.add(obj);
-            Log.e("//---------", "getData: "+list.toString() );
         }
         return list;
 

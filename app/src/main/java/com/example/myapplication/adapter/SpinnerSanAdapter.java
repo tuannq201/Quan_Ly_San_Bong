@@ -22,7 +22,7 @@ public class SpinnerSanAdapter extends ArrayAdapter<San> {
     TextView tvTenSan;
 
     public SpinnerSanAdapter(@NonNull Context context, ArrayList<San> listS) {
-        super(context,0);
+        super(context,0,listS);
         this.context = context;
         this.listS = listS;
     }

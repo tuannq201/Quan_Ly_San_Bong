@@ -19,7 +19,6 @@ import java.util.List;
 
 public class PhieuThueDAO {
 
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private SQLiteDatabase db;
     Context context;
     public PhieuThueDAO(Context context){
@@ -166,7 +165,7 @@ public class PhieuThueDAO {
             trangThai.ca = ca;
             trangThai.tienSan = san.giaSan;
             trangThai.ngay = ngay;
-            trangThai.taiKhoan = "chưa thuê";
+            trangThai.taiKhoan = "Chưa Thuê";
             trangThai.color = Color.parseColor("#ffffff");
         }
         return trangThai;

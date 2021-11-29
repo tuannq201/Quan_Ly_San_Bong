@@ -62,22 +62,22 @@ public class DbHelper extends SQLiteOpenHelper{
 //        db.execSQL(create_KhuyenMai);
 
         String INSERT_User = "Insert into User(taiKhoan,hoTen,matKhau,phanQuyen,hinh) values " +
-                "('0999999999','Nhom 1 Dep Trai','123456','AD',null)," +
-                "('0777777777','Nhom 1 Dep Trai','123456','NT',null)," +
-                "('0777777771','Nhom 1 Dep Trai','123456','NT',null)," +
-                "('0777777772','Nhom 1 Dep Trai','123456','NT',null)," +
-                "('0777777773','Nhom 1 Dep Trai','123456','NT',null)," +
-                "('0777777774','Nhom 1 Dep Trai','123456','NT',null)," +
-                "('0777777775','Nhom 1 Dep Trai','123456','NT',null)," +
-                "('0777777776','Nhom 1 Dep Trai','123456','NT',null)," +
-                "('0888888888','Nhom 1 Dep Trai','123456','CS',null)," +
-                "('0333333333','Nhom 1 Dep Trai','123456','CS',null)," +
-                "('0333333331','Nhom 1 Dep Trai','123456','CS',null)," +
-                "('0333333332','Nhom 1 Dep Trai','123456','CS',null)," +
-                "('0333333334','Nhom 1 Dep Trai','123456','CS',null)," +
-                "('0333333335','Nhom 1 Dep Trai','123456','CS',null)," +
-                "('0333333336','Nhom 1 Dep Trai','123456','CS',null)," +
-                "('0555555555','Nhom 1 Dep Trai','123456','CS',null)";
+                "('0999999999','Admin','123456','AD',null)," +
+                "('0777777777','Nguyễn Phúc Ngân','123456','NT',null)," +
+                "('0777777771','Nguyễn Văn Vinh','123456','NT',null)," +
+                "('0777777772','Nguyễn Quốc Tuấn','123456','NT',null)," +
+                "('0777777773','Nguyễn Hoài Lương','123456','NT',null)," +
+                "('0777777774','Nguyễn Quốc Tún','123456','NT',null)," +
+                "('0777777775','Lê Hoài Như','123456','NT',null)," +
+                "('0777777776','Nguyễn Quốc Tuấn','123456','NT',null)," +
+                "('0888888888','Nguyễn Hoài Lương','123456','CS',null)," +
+                "('0333333333','Nguyễn Hoài Trâm','123456','CS',null)," +
+                "('0333333331','Nguyễn Đức Lương','123456','CS',null)," +
+                "('0333333332','Văn Vinh Nguyễn','123456','CS',null)," +
+                "('0333333334','Nguyễn Ngân Phúc','123456','CS',null)," +
+                "('0333333335','Nguyễn Tuấn Quốc','123456','CS',null)," +
+                "('0333333336','Nguyễn Văn Nam','123456','CS',null)," +
+                "('0555555555','Nguyễn Ngọc Anh','123456','CS',null)";
         db.execSQL(INSERT_User);
 
         String INSERT_San1 = "Insert into San(tenSan,giaSan,loaiSan, maCumSan, anhSan) values " +
@@ -105,55 +105,55 @@ public class DbHelper extends SQLiteOpenHelper{
         String INSERT_CumSan = "Insert into CumSan(tenCumSan,diaChi,chuSan) values " +
                 "('Sân Bóng Đá Chuyên Việt','151 Âu Cơ, Hoà Khánh Bắc, Liên Chiểu, Đà Nẵng','0888888888')," +
                 "('Sân Bóng Manchester United','59 Đ. Ngô Thì Nhậm, Hoà Khánh Nam, Liên Chiểu, Đà Nẵng','0888888888')," +
-                "('Sân Bóng đá 360','911 Nguyễn Lương Bằng, Hoà Hiệp Nam, Liên Chiểu, Đà Nẵng','0888888888')," +
+                "('Sân Bóng đá 360','911 Nguyễn Lương Bằng, Hoà Hiệp Nam, Liên Chiểu, Đà Nẵng','0888888822')," +
                 "('Sân Bóng Liên Chiểu','522 Nguyễn Lương Bằng, Hoà Hiệp Nam, Liên Chiểu, Đà Nẵng','0333333331')," +
-                "('Sân bóng nhân tạo Nam Cao','347X+C74, Hoà Khánh Nam, Liên Chiểu, Đà Nẵng','0888888888')," +
+                "('Sân bóng nhân tạo Nam Cao','347X+C74, Hoà Khánh Nam, Liên Chiểu, Đà Nẵng','0888888883')," +
                 "('Sân Bóng Ngọc Thạch','K207 Đ. Phạm Như Xương, Hoà Khánh Nam, Liên Chiểu, Đà Nẵng','0333333331')," +
-                "('Sân bóng An Trung','An Trung 3, An Hải Tây, Sơn Trà, Đà Nẵng','0888888888')," +
-                "('Sân bóng đá T20','Mỹ Khê 4, Phước Mỹ, Sơn Trà, Đà Nẵng','0888888888')," +
-                "('Sân bóng Harmony','Phạm Văn Đồng, An Hải Bắc, Sơn Trà, Đà Nẵng','0888888888')," +
-                "('Sân bóng đá Chuyên Việt','98 Tiểu La, Hòa Thuận Đông, Hải Châu, Đà Nẵng','0888888888')," +
+                "('Sân bóng An Trung','An Trung 3, An Hải Tây, Sơn Trà, Đà Nẵng','0888888883')," +
+                "('Sân bóng đá T20','Mỹ Khê 4, Phước Mỹ, Sơn Trà, Đà Nẵng','0888888884')," +
+                "('Sân bóng Harmony','Phạm Văn Đồng, An Hải Bắc, Sơn Trà, Đà Nẵng','0888888884')," +
+                "('Sân bóng đá Chuyên Việt','98 Tiểu La, Hòa Thuận Đông, Hải Châu, Đà Nẵng','0888888884')," +
                 "('Sân bóng đá Trang Hoàng','86 Duy Tân, Hòa Thuận Nam, Hải Châu, Đà Nẵng','0333333336')," +
-                "('Sân bóng đá Duy Tân','Hòa Thuận Đông, Hải Châu, Đà Nẵng','0888888888')," +
+                "('Sân bóng đá Duy Tân','Hòa Thuận Đông, Hải Châu, Đà Nẵng','0888888885')," +
                 "('Sân Bóng đá An Phúc 2','409 Trưng Nữ Vương, Hòa Thuận Nam, Hải Châu, Đà Nẵng','0333333336')," +
-                "('Sân bóng đá Mỹ Nhật Quang','498 Nguyễn Hữu Thọ, Khuê Trung, Cẩm Lệ, Đà Nẵng','0888888888')," +
-                "('Sân Bóng Đá Mini Việt Hàn','Hoà Hải, Ngũ Hành Sơn, Đà Nẵng','0888888888')," +
-                "('Sân Bóng Đá Thép Việt','Đ. Nghiêm Xuân Yêm, Khuê Mỹ, Ngũ Hành Sơn, Đà Nẵng','0888888888')," +
-                "('Sân bóng đá Minh Hà','Bắc Mỹ Phú, Ngũ Hành Sơn, Đà Nẵng','0888888888')," +
+                "('Sân bóng đá Mỹ Nhật Quang','498 Nguyễn Hữu Thọ, Khuê Trung, Cẩm Lệ, Đà Nẵng','0888888885')," +
+                "('Sân Bóng Đá Mini Việt Hàn','Hoà Hải, Ngũ Hành Sơn, Đà Nẵng','0888888588')," +
+                "('Sân Bóng Đá Thép Việt','Đ. Nghiêm Xuân Yêm, Khuê Mỹ, Ngũ Hành Sơn, Đà Nẵng','0888888884')," +
+                "('Sân bóng đá Minh Hà','Bắc Mỹ Phú, Ngũ Hành Sơn, Đà Nẵng','0888888588')," +
                 "('Sân bóng đá mini Bế Văn Đàn','Bế Văn Đàn, Chính Gián, Thanh Khê, Đà Nẵng','0333333336')," +
-                "('Sân bóng đá An Hà 1','243 Trường Chinh, An Khê, Thanh Khê, Đà Nẵng','0888888888')," +
+                "('Sân bóng đá An Hà 1','243 Trường Chinh, An Khê, Thanh Khê, Đà Nẵng','0888888881')," +
                 "('Sân Bóng đá An Phúc 1','303 Trưng Nữ Vương, Hòa Thuận Nam, Hải Châu, Đà Nẵng','0333333336')," +
-                "('Sân Bóng Đá Hòa Hán','Đ. Tôn Đản, Hoà Thọ Tây, Cẩm Lệ, Đà Nẵng','0888888888')," +
-                "('Sân Bóng Đá Mini Tuấn Nhàn','Nguyễn Văn Tạo, Hoà An, Cẩm Lệ, Đà Nẵng','0888888888')," +
-                "('Sân Bóng Đá Nhàn','Liên Chiểu - Đà Nẵng','0888888888')";
+                "('Sân Bóng Đá Hòa Hán','Đ. Tôn Đản, Hoà Thọ Tây, Cẩm Lệ, Đà Nẵng','0888888882')," +
+                "('Sân Bóng Đá Mini Tuấn Nhàn','Nguyễn Văn Tạo, Hoà An, Cẩm Lệ, Đà Nẵng','0888888883')," +
+                "('Sân Bóng Đá Nhàn','Liên Chiểu - Đà Nẵng','0888888881')";
         db.execSQL(INSERT_CumSan);
 
 
         String INSERT_PT = "Insert into PhieuThue(maSan,nguoiThue,caThue,ngayThue,tienSan, danhGia, sao) values " +
-                "(1,'0777777777','1','11-11-2021',100000, 1, 5)," +
-                "(5,'0777777773','8','11-11-2021',100000, 1, 4)," +
-                "(3,'0777777777','5','11-11-2021',100000, 1, 5)," +
-                "(5,'0777777777','11','11-11-2021',100000, 1, 4)," +
-                "(1,'0777777777','1','12-11-2021',100000, 1, 5)," +
-                "(5,'0777777771','8','12-11-2021',100000, 1, 4)," +
-                "(3,'0777777771','5','13-11-2021',100000, 1, 5)," +
-                "(1,'0777777771','11','15-11-2021',100000, 1, 4)," +
-                "(1,'0777777774','1','17-11-2021',100000, 1, 5)," +
-                "(5,'0777777774','8','17-11-2021',100000, 1, 4)," +
-                "(3,'0777777775','5','17-11-2021',100000, 1, 5)," +
-                "(5,'0777777775','11','19-11-2021',100000, 1, 4)," +
-                "(7,'0777777775','2','19-11-2021',100000, 1, 4)";
+                "(1,'0777777777','1','30-11-2021',100000, 1, 5)," +
+                "(5,'0777777773','8','30-11-2021',100000, 1, 4)," +
+                "(3,'0777777777','5','30-11-2021',100000, 1, 5)," +
+                "(5,'0777777777','11','30-11-2021',100000, 1, 4)," +
+                "(1,'0777777777','1','01-12-2021',100000, 1, 5)," +
+                "(5,'0777777771','8','01-12-2021',100000, 1, 4)," +
+                "(3,'0777777771','5','02-12-2021',100000, 1, 5)," +
+                "(1,'0777777771','11','03-12-2021',100000, 1, 4)," +
+                "(1,'0777777774','1','04-12-2021',100000, 1, 5)," +
+                "(5,'0777777774','8','29-11-2021',100000, 1, 4)," +
+                "(3,'0777777775','5','28-11-2021',100000, 1, 5)," +
+                "(5,'0777777775','11','28-11-2021',100000, 1, 4)," +
+                "(7,'0777777775','2','29-11-2021',100000, 1, 4)";
         db.execSQL(INSERT_PT);
 
 //        String INSERT_San = "Insert into San(tenSan,diaChi,giaSan,loaiSan,chuSan,anhSan) values " +
-//                "('5a','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
-//                "('5b','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
-//                "('5c','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
-//                "('5d','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
-//                "('5e','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
-//                "('5f','12 Au Co Da Nang',200000,5,'Nhom 1 Dep Trai',null)," +
-//                "('7a','12 Au Co Da Nang',300000,7,'Nhom 1 Dep Trai',null)," +
-//                "('7b','12 Au Co Da Nang',300000,7,'Nhom 1 Dep Trai',null)";
+//                "('5a','12 Au Co Da Nang',200000,5,'Nguyễn Hoài Lương',null)," +
+//                "('5b','12 Au Co Da Nang',200000,5,'Nguyễn Hoài Lương',null)," +
+//                "('5c','12 Au Co Da Nang',200000,5,'Nguyễn Hoài Lương',null)," +
+//                "('5d','12 Au Co Da Nang',200000,5,'Nguyễn Hoài Lương',null)," +
+//                "('5e','12 Au Co Da Nang',200000,5,'Nguyễn Hoài Lương',null)," +
+//                "('5f','12 Au Co Da Nang',200000,5,'Nguyễn Hoài Lương',null)," +
+//                "('7a','12 Au Co Da Nang',300000,7,'Nguyễn Hoài Lương',null)," +
+//                "('7b','12 Au Co Da Nang',300000,7,'Nguyễn Hoài Lương',null)";
 //        db.execSQL(INSERT_San);
 
     }
