@@ -75,9 +75,6 @@ public class TongQuanAdapter extends ArrayAdapter<TrangThai> {
                 tv_2.setText("hhhhhhhh");
                 tv_3.setText("hhhhhhhh");
             }
-            Animation animation = AnimationUtils
-                    .loadAnimation(getContext(), R.anim.anim_user);
-            v.setAnimation(animation);
         }return v;
     }
 }

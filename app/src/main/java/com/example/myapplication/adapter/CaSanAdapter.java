@@ -56,12 +56,10 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
             tvTenCa = view.findViewById(R.id.tvTenCa);
             tvTenCa.setText("Ca: "+ Cover.caToTime(item.ca));
             tvTrangThai = view.findViewById(R.id.tvTrangThai);
-
             if (type.equals("CS")){
                 tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
             }else {
-                //người thuê
-                tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
+//                tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
                 if (item.taiKhoan.contains("0")){
                     tvTrangThai.setText("Trạng Thái: đã thuê");
                 }
