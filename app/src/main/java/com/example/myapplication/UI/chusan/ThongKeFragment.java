@@ -1,13 +1,9 @@
 package com.example.myapplication.UI.chusan;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -22,23 +18,9 @@ import com.anychart.enums.Anchor;
 import com.anychart.enums.HoverMode;
 import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
-import com.anychart.graphics.vector.text.FontStyle;
 import com.example.myapplication.R;
 import com.example.myapplication.dao.PhieuThueDAO;
-import com.example.myapplication.entity.PhieuThue;
-import com.example.myapplication.entity.User;
 import com.example.myapplication.util.Cover;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.formatter.ValueFormatter;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -91,7 +73,7 @@ public class ThongKeFragment extends Fragment {
             newDate = calendar.getTime();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
             simpleDateFormat.format(now);
-            Log.e("//======", "onCreateView: "+simpleDateFormat.format(newDate));
+            //Log.e("//======", "onCreateView: "+simpleDateFormat.format(newDate));
             list.add(simpleDateFormat.format(newDate));
             int thu = dao.thuNhap(simpleDateFormat.format(newDate));
             data.add(new ValueDataEntry(simpleDateFormat.format(newDate), thu));

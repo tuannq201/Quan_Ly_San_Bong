@@ -3,11 +3,11 @@ package com.example.myapplication.UI.chusan;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.CaSanAdapter;
 import com.example.myapplication.dao.PhieuThueDAO;
+import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.TrangThai;
 import com.example.myapplication.util.Cover;
@@ -27,13 +28,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CaSanOfChuSanActivity extends AppCompatActivity {
-    Button btnHuyDialog,btnThueDialog,btnDate;
-    TextView edGioThueDialog,edKhuyenMaiDialog,edNgayThueDialog,edCaThueDialog,edTrangThaiDialog,edGiaThueDialog;
+    Button btnCapNhat,btnGiuSanDialog,btnDate;
+    EditText edGioThueDialog,edKhuyenMaiDialog,edNgayThueDialog,edCaThueDialog,edTrangThaiDialog,edGiaThueDialog;
     Dialog dialog;
     TrangThai item;
     GridView gridView;
     SimpleDateFormat formatNgay = new SimpleDateFormat("dd-MM-yyyy");
     TextView edDate;
+    PhieuThue itemPT;
     String ngay = "";
     int posNow = 0;
     San san;
@@ -48,12 +50,16 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle == null){
         }
-        phieuThueDAO = new PhieuThueDAO(getApplication());
         san = (San) bundle.get("object_san");
         Toast.makeText(this, "Ma San: "+ san.maSan, Toast.LENGTH_SHORT).show();
         gridView = findViewById(R.id.grCaSan);
         btnDate = findViewById(R.id.btnDate);
         edDate=findViewById(R.id.tvDate);
+        phieuThueDAO = new PhieuThueDAO(getApplication());
+
+        for (int i = 1; i <= 12 ; i++) {
+            list1.add(phieuThueDAO.checkTrangThai(san.maSan, String.valueOf(i), "2021-11-11"));
+        }
         CaSanAdapter caSanAdapter = new CaSanAdapter(getApplication(), list1, "CS");
         gridView.setAdapter(caSanAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,19 +89,16 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
         edKhuyenMaiDialog = dialog.findViewById(R.id.tvKhuyenMaiDialog);
         //edNgayThueDialog = dialog.findViewById(R.id.tvNgayThueDialog);
         edTrangThaiDialog = dialog.findViewById(R.id.tvTrangThaiDialog);
-        btnHuyDialog=dialog.findViewById(R.id.btnHuyDialog);
+        btnGiuSanDialog = dialog.findViewById(R.id.btnGiuSan);
 
 
-        edGiaThueDialog.setText("Giá Thuê: "+item.tienSan);
-        edCaThueDialog.setText("Tên Ca: "+item.ca);
-        edGioThueDialog.setText("Giờ Thuê: "+ Cover.caToTime(String.valueOf(item.ca)));
-        edTrangThaiDialog.setText("Trạng Thái: "+item.taiKhoan);
-        btnHuyDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        edGiaThueDialog.setText("   Giá Thuê: "+item.tienSan);
+        edCaThueDialog.setText("   Tên Ca: "+item.ca);
+        edGioThueDialog.setText("   Giờ Thuê: "+ Cover.caToTime(String.valueOf(item.ca)));
+        edTrangThaiDialog.setText("   Trạng Thái: "+item.taiKhoan);
+        edKhuyenMaiDialog.setText("   Khuyến Mãi:"+Cover.KhuyenMai1(item.ca)+"%");
+
+
         dialog.show();
     }
     public void chonNgay(){
@@ -108,6 +111,7 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int y, int m, int d) {
                 edDate.setText("       "+Cover.formater(y, m, d));
                 ngay = Cover.formater(y, m, d);
+
                 setCaSan(ngay);
             }
         },year, month, day);
@@ -115,12 +119,15 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
     }
     public void setCaSan(String ngay){
         list1.clear();
+        //Toast.makeText(getContext(), ""+ngay, Toast.LENGTH_SHORT).show();
         for (int i = 1; i <= 12 ; i++) {
             TrangThai trangThai = phieuThueDAO.checkTrangThai(san.maSan, String.valueOf(i), ngay);
             list1.add(trangThai);
         }
-        CaSanAdapter caSanAdapter = new CaSanAdapter(getApplication(), list1, "CS");
-        gridView.setAdapter(caSanAdapter);
+        //caSanAdapter = new CaSanAdapter(getContext(), list, type);
+        //gridView.setAdapter(caSanAdapter);
+    }
+    private void capNhatPT(){
 
     }
 }

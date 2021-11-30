@@ -2,7 +2,6 @@ package com.example.myapplication.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +55,7 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
             tvTenCa = view.findViewById(R.id.tvTenCa);
             tvTenCa.setText("Ca: "+ Cover.caToTime(item.ca));
             tvTrangThai = view.findViewById(R.id.tvTrangThai);
+            tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
             if (type.equals("CS")){
                 tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
             }else {
