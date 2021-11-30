@@ -83,11 +83,11 @@ public class ThongKeFragment extends Fragment {
         ArrayList<String> list = new ArrayList<>();
         List<DataEntry> data = new ArrayList<>();
         int sum = 0;
-        for (i = 7; i >= 1; i--) {
+        for (i = 1; i <= 7; i++) {
             now = new Date();
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(now);
-            calendar.add(Calendar.DAY_OF_YEAR, -i);
+            calendar.add(Calendar.DAY_OF_YEAR, +i);
             newDate = calendar.getTime();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
             simpleDateFormat.format(now);
