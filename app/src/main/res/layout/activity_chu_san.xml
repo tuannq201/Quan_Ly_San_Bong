@@ -10,9 +10,8 @@
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
-        android:layout_height="677dp"
+        android:layout_height="match_parent"
         android:layout_marginBottom="55dp">
-
     </FrameLayout>
 
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation

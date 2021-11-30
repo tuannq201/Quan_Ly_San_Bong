@@ -15,6 +15,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -53,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
     Dialog dialog;
     Button btn_login, btn_camera, btn_album, btn_save, btn_register;
-    ImageView iv_camera_result;
+    ImageView iv_camera_result, imgShowPass;
     CheckBox chk_remember;
     TextInputEditText  ed_name, ed_password,ed_phone_number ,ed_re_password;
     EditText ed_phone_login, ed_password_login;
@@ -61,11 +63,22 @@ public class LoginActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_FOLDER = 1;
     public static final String PHAN_QUYEN = "NT";
     UserDAO userDAO;
+    int count = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        imgShowPass = findViewById(R.id.show_pass);
+        imgShowPass.setOnClickListener(v -> {
+            if (count %2 == 0){
+                ed_password_login.setTransformationMethod(null);
+                count++;
+            }else {
+                ed_password_login.setTransformationMethod(new PasswordTransformationMethod());
+                count++;
+            }
+        });
         btn_login = findViewById(R.id.btn_login);
         ed_password_login = findViewById(R.id.ed_password_login);
         ed_phone_login = findViewById(R.id.ed_phone_number_login);

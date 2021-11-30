@@ -27,8 +27,6 @@ public class ChuSanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chu_san);
 
-
-
         ChipNavigationBar chipNavigationBar = findViewById(R.id.chip_navi_chu_san);
         chipNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
@@ -36,13 +34,16 @@ public class ChuSanActivity extends AppCompatActivity {
                 Fragment fragment = null;
                 switch (id){
                     case R.id.nav_trang_chu_cs:
+                        fragment = new TongQuanFragment();
+                        break;
+                    case R.id.nav_san:
                         fragment = new ListSanFragment();
                         break;
                     case R.id.nav_thong_ke_cs:
                         fragment = new ThongKeFragment();
                         break;
                     case R.id.nav_ca_nhan_cs:
-                        fragment = new TongQuanFragment();
+                        fragment = new CaNhanOfChuSanFragment();
                         break;
 
                 }
@@ -51,7 +52,6 @@ public class ChuSanActivity extends AppCompatActivity {
         });
         chipNavigationBar.setItemSelected(R.id.nav_trang_chu_cs, true);
     }
-
 
     private void loadFragment(Fragment fragment) {
         // load fragment

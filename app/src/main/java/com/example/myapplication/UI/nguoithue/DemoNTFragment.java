@@ -1,28 +1,16 @@
 package com.example.myapplication.UI.nguoithue;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
-import android.util.Size;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
@@ -53,11 +41,7 @@ public class DemoNTFragment extends Fragment {
     int soSan = 0;//số sân của cụm sân
     List<San> sanList;
     SanDAO sanDAO;
-    int rongMH = 0;
     int maCumSan = 7;
-    int rongItemGridView = 0;
-    int rongGridView = 0;
-    int caoGridView = 0;
     public DemoNTFragment() {
         // Required empty public constructor
     }
@@ -71,7 +55,6 @@ public class DemoNTFragment extends Fragment {
         return fragment;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,21 +73,7 @@ public class DemoNTFragment extends Fragment {
                 trangThais.add(trangThai);
             }
         }
-
-        Display display = getContext().getDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        rongMH = size.x;
     }
-
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -113,27 +82,6 @@ public class DemoNTFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_demo_n_t, container, false);
         gridView = v.findViewById(R.id.nt_gridview);
         gridView.setNumColumns(soSan);
-        LinearLayout layout = v.findViewById(R.id.linearLayout_nt);
-
-
-            gridView.getViewTreeObserver().addOnGlobalLayoutListener(
-                    new ViewTreeObserver.OnGlobalLayoutListener(){
-
-                        @Override
-                        public void onGlobalLayout() {
-                            caoGridView = gridView.getHeight();
-                            rongGridView = gridView.getWidth();
-                            //Log.i("ooooo", ""+"width: "+mWidth+"   height: "+mHeight);
-                            abc(caoGridView, rongGridView, v);
-                            ViewGroup.LayoutParams layoutParams = gridView.getLayoutParams();
-                            layoutParams.width = (rongMH)/6 * soSan;
-                            gridView.setLayoutParams(layoutParams);
-                            ViewGroup.LayoutParams layoutParams1 = layout.getLayoutParams();
-                            layoutParams1.width = (rongMH)/6;
-                            layout.setLayoutParams(layoutParams1);
-                        }
-                    });
-
 
 
         demoAdapter = new DemoAdapter(getContext(), trangThais);
@@ -152,33 +100,7 @@ public class DemoNTFragment extends Fragment {
             }
         });
 
-
         return v;
-    }
-
-    public void abc(int grHeigh, int grWidth, View v){
-        TextView t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12;
-        t1 = v.findViewById(R.id.tv_nt1);
-        t2 = v.findViewById(R.id.tv_nt2);
-        t3 = v.findViewById(R.id.tv_nt3);
-        t4 = v.findViewById(R.id.tv_nt4);
-        t5 = v.findViewById(R.id.tv_nt5);
-        t6 = v.findViewById(R.id.tv_nt6);
-        t7 = v.findViewById(R.id.tv_nt7);
-        t8 = v.findViewById(R.id.tv_nt8);
-        t9 = v.findViewById(R.id.tv_nt9);
-        t10 = v.findViewById(R.id.tv_nt10);
-        t11 = v.findViewById(R.id.tv_nt11);
-        t12 = v.findViewById(R.id.tv_nt12);
-        List<TextView> list = new ArrayList<>();
-        list.add(t1);list.add(t2);list.add(t3);list.add(t4);list.add(t5);list.add(t6);list.add(t7);list.add(t8);list.add(t9);list.add(t10);list.add(t11);list.add(t12);
-        for (int i = 0;i<list.size();i++){
-            ViewGroup.LayoutParams params = list.get(i).getLayoutParams();
-            params.height = grHeigh / 12;
-            list.get(i).setLayoutParams(params);
-            list.get(i).setText(""+(i+1));
-            //Toast.makeText(getContext(), ""+grHeigh/12, Toast.LENGTH_SHORT).show();
-        }
     }
 
 

@@ -72,9 +72,7 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
         edDate.setText("       "+formatNgay.format(now));
         setCaSan(formatNgay.format(now));
     }
-
-
-
+    
     private void openDialog(){
 
         dialog = new Dialog(this);

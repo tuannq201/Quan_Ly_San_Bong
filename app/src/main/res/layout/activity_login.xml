@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".LoginActivity"
-    >
+    tools:context=".LoginActivity">
     <com.jgabrielfreitas.core.BlurImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -82,12 +81,20 @@
 
             <EditText
                 android:id="@+id/ed_password_login"
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:background="@android:color/transparent"
                 android:hint="Mật khẩu"
                 android:inputType="textPassword" />
+
+            <ImageView
+                android:id="@+id/show_pass"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_baseline_remove_red_eye_24" />
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
