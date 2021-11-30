@@ -81,6 +81,35 @@ public class Cover {
         }
         return gia;
     }
+    public static int KhuyenMaiTheoPhanTram(int phanTram,int gia){
+        if (phanTram == 10){
+            return gia - gia*10/100;
+        }
+        if (phanTram == 20){
+            return gia - gia*20/100;
+        }
+        if (phanTram == 30){
+            return gia - gia*30/100;
+        }
+        if (phanTram == 40){
+            return gia - gia*40/100;
+        }
+        if (phanTram == 50){
+            return gia - gia*50/100;
+        }
+        if (phanTram == 60){
+            return gia - gia*60/100;
+        }
+        if (phanTram == 70){
+            return gia - gia*70/100;
+        }if (phanTram == 80){
+            return gia - gia*80/100;
+        }
+        if (phanTram == 90){
+            return gia - gia*90/100;
+        }
+        return gia;
+    }
     public static int KhuyenMai1(String ca){
         if (ca.equals("4")||ca.equals("5")||ca.equals("6")||ca.equals("7")){
             return 30;

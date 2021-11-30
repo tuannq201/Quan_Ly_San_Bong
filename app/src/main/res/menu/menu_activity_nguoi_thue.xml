@@ -4,17 +4,17 @@
     <item
         android:id="@+id/home_nt"
         android:icon="@drawable/ic_home"
-        android:title="trang chủ"
+        android:title="Trang Chủ"
         app:cnb_iconColor="@color/white"/>
     <item
         android:id="@+id/notifi_nt"
-        android:icon="@drawable/ic_notification"
-        android:title="thông báo"
-        app:cnb_iconColor="@color/white"/>
+        android:icon="@drawable/history_icon"
+        android:title="Thông Báo"
+        app:cnb_iconColor="@color/white" />
     <item
         android:id="@+id/user_nt"
         android:icon="@drawable/ic_man_user"
-        android:title="tài khoản"
+        android:title="Tài Khoản"
         app:cnb_iconColor="@color/white" />
 </menu>
 

@@ -121,7 +121,6 @@ public class CaSanFragment extends Fragment {
 
     public void openDialog(int ca){
         if (ngay.equals(formatNgay.format(now))){
-            //Toast.makeText(getContext(), ""+ngay+" "+formatNgay.format(now), Toast.LENGTH_SHORT).show();
             if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
                 Toast.makeText(getContext(), "đã quá thời gian thuê!!!", Toast.LENGTH_SHORT).show();
                 return;
@@ -188,10 +187,14 @@ public class CaSanFragment extends Fragment {
             public void onDateSet(DatePicker datePicker, int y, int m, int d) {
                 tv_san_ngay.setText(""+san.tenSan+" ,"+Cover.formater(y, m, d));
                 ngay = Cover.formater(y, m, d);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(now);
+                calendar.add(Calendar.DAY_OF_YEAR, +7);
+                int posAdd7 = Cover.dateToPos(formatNgay.format(calendar.getTime()), "", 1);
                 if (Cover.dateToPos(ngay, "", 1) < posNow){
                     Toast.makeText(getContext(), "Vui lòng chọn ngày khác!!!", Toast.LENGTH_SHORT).show();
                     ngay = formatNgay.format(now);
-                }else if ((Cover.dateToPos(ngay, "", 1) > (posNow + 7))){
+                }else if ((Cover.dateToPos(ngay , "", 1) > (posAdd7))){
                     Toast.makeText(getContext(), "Chỉ được thuê sân trước 7 ngày\nvui lòng chọn ngày khác!!!", Toast.LENGTH_SHORT).show();
                     ngay = formatNgay.format(now);
                 }

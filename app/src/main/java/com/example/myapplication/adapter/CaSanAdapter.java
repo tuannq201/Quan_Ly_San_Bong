@@ -59,7 +59,7 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
             if (type.equals("CS")){
                 tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
             }else {
-//                tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
+                tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
                 if (item.taiKhoan.contains("0")){
                     tvTrangThai.setText("Trạng Thái: đã thuê");
                 }
