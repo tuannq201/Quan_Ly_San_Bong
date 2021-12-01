@@ -28,6 +28,16 @@
         android:stepSize="1"
         tools:ignore="SpeakableTextPresentCheck" />
 
+    <EditText
+        android:id="@+id/ed_phanHoi_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="đánh giá"
+        android:inputType="textMultiLine"
+        android:lines="3" />
+
     <TextView
         android:id="@+id/btn_gui_danhGia"
         android:layout_width="wrap_content"
