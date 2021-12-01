@@ -18,6 +18,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.adapter.ListSanAdapter;
 import com.example.myapplication.dao.PhieuThueDAO;
 import com.example.myapplication.dao.SanDAO;
+import com.example.myapplication.entity.CumSan;
 import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.itf.ITFOnItenClick;
@@ -74,7 +75,6 @@ public class SanCumSanFragment extends Fragment {
             San san = listSanA.get(i);
             san.soDanhGia = phieuThueDAO.soDanhGiaSan(String.valueOf(san.maSan));
             san.soSao = phieuThueDAO.soSaoSan(String.valueOf(san.maSan));
-
             sanList.add(san);
         }
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -89,6 +89,10 @@ public class SanCumSanFragment extends Fragment {
             }
             @Override
             public void onItemClick(PhieuThue phieuThue) {
+            }
+
+            @Override
+            public void onItemClick(CumSan cumSan, int type) {
             }
         });
         rcv.setAdapter(adapter);

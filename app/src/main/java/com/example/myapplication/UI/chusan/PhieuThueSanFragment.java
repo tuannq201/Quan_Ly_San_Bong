@@ -167,12 +167,14 @@ public class PhieuThueSanFragment extends Fragment {
         adapter = new RecyclerTenSanTableAdapter(getActivity(), sanList, new ITFOnItenClick() {
             @Override
             public void onItemClick(San san, int type) {
-
             }
 
             @Override
             public void onItemClick(PhieuThue phieuThue) {
+            }
 
+            @Override
+            public void onItemClick(CumSan cumSan, int type) {
             }
         });
         adapter.notifyDataSetChanged();

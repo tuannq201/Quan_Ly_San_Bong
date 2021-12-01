@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@drawable/border_layout">
+            <LinearLayout
+                android:id="@+id/layout_cum_san"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/text_tenCum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="Tên cụm"
+                    android:paddingLeft="10dp"
+                    android:textSize="16dp"
+                    android:textColor="#737373"
+                    android:minHeight="35dp"
+                    android:gravity="center|left"
+                    android:background="@drawable/shake_bottom_layout"/>
+                <TextView
+                    android:id="@+id/text_diaChi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="Địa chỉ"
+                    android:paddingLeft="10dp"
+                    android:textSize="16dp"
+                    android:textColor="#737373"
+                    android:minHeight="35dp"
+                    android:gravity="center|left"
+                    android:background="@drawable/shake_bottom_layout"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                app:srcCompat="@drawable/ic__564505_close_delete_exit_remove_icon" />
+        </LinearLayout>
+</LinearLayout>

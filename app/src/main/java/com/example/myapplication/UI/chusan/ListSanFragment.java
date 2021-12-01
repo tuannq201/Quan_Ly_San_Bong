@@ -58,7 +58,6 @@ public class ListSanFragment extends Fragment {
     SanDAO dao;
     List<San> listSan;
     ListSanAdapter adapter;
-    PhieuThueDAO phieuThueDAO;
     San san;
     EditText edTenSan, edLoaiSan, edGiaSan;
     Spinner spTenCumSan, spnChonSan;
@@ -72,6 +71,7 @@ public class ListSanFragment extends Fragment {
     private int position;
     String phone;
     private CumSanDAO cumSanDao;
+    PhieuThueDAO phieuThueDAO;
 
     public ListSanFragment() {
     }
@@ -86,7 +86,6 @@ public class ListSanFragment extends Fragment {
         super.onCreate(savedInstanceState);
         SharedPreferences pref = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
         phone = pref.getString("PHONE","");
-        phieuThueDAO = new PhieuThueDAO(getContext());
 
     }
 
@@ -106,8 +105,8 @@ public class ListSanFragment extends Fragment {
         spnChonSan = view.findViewById(R.id.spn_chonCumSan);
         listCumSan = new ArrayList<>();
         listCumSan = cumSanDao.getCSByChuSan(phone);
+        phieuThueDAO = new PhieuThueDAO(getContext());
         setSpinner();
-
         return view;
     }
 
@@ -115,22 +114,19 @@ public class ListSanFragment extends Fragment {
         listSan = new ArrayList<>();
         spinnerCumSanAdapter = new SpinnerCumSanAdapter(getContext(), (ArrayList<CumSan>) listCumSan);
         spnChonSan.setAdapter(spinnerCumSanAdapter);
-        spnChonSan.setDropDownVerticalOffset(70);
+        spnChonSan.setDropDownVerticalOffset(80);
         spnChonSan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 maCumSanHienTai = listCumSan.get(position).maCumSan;
                 listSan = dao.getSanByCumSan(String.valueOf(maCumSanHienTai));
-
                 List<San> listSanRS = new ArrayList<>();
                 for (int i = 0;i<listSan.size();i++){
                     San san = listSan.get(i);
                     san.soDanhGia = phieuThueDAO.soDanhGiaSan(String.valueOf(san.maSan));
                     san.soSao = phieuThueDAO.soSaoSan(String.valueOf(san.maSan));
-
                     listSanRS.add(san);
                 }
-
                 updateLV(listSanRS);
             }
             @Override
@@ -140,7 +136,6 @@ public class ListSanFragment extends Fragment {
     }
 
     public void updateLV(List<San> sanList){
-
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         rcvSan.setLayoutManager(mLayoutManager);
         rcvSan.setItemAnimator(new DefaultItemAnimator());
@@ -159,6 +154,10 @@ public class ListSanFragment extends Fragment {
             }
             @Override
             public void onItemClick(PhieuThue phieuThue) {
+            }
+
+            @Override
+            public void onItemClick(CumSan cumSan, int type) {
             }
         });
         adapter.notifyDataSetChanged();
@@ -195,8 +194,6 @@ public class ListSanFragment extends Fragment {
             }
         });
         CumSanDAO cumSanDAO = new CumSanDAO(getContext());
-        listCumSan = new ArrayList<>();
-        listCumSan = cumSanDAO.getAll();
         spinnerCumSanAdapter = new SpinnerCumSanAdapter(getContext(), (ArrayList<CumSan>) listCumSan);
         spTenCumSan.setAdapter(spinnerCumSanAdapter);
         spTenCumSan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

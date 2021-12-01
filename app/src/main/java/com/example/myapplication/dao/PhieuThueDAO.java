@@ -59,7 +59,12 @@ public class PhieuThueDAO {
 
     public int soDanhGiaSan(String maSan){
         String sql = "SELECT * FROM PhieuThue WHERE maSan=? AND danhGia = 1";
-        return getData(sql, maSan).size();
+        try {
+            return getData(sql, maSan).size();
+        }catch (Exception e){
+            return 1;
+        }
+
     }
     @SuppressLint("Range")
     public int soSaoSan(String maSan){
