@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -55,6 +56,7 @@ public class SanDaThueFragment extends Fragment {
     SanDAO sanDAO;
 
     TextView tv_tenSan_dg, tv_dg, btn_dg;
+    EditText ed_danh_gia_text;
     RatingBar rb_dg;
     String phone = "";
 
@@ -164,6 +166,7 @@ public class SanDaThueFragment extends Fragment {
         tv_dg = dialog.findViewById(R.id.tv_rating_dialog_danhGia);
         btn_dg = dialog.findViewById(R.id.btn_gui_danhGia);
         rb_dg = dialog.findViewById(R.id.rb_dialog_danhGia);
+        ed_danh_gia_text = dialog.findViewById(R.id.ed_phanHoi_text);
 
         //tv_tenSan_dg.setText(""+pt.toString());
         String cumSan = cumSanDAO.getCumSanBySan(String.valueOf(pt.maSan)).tenCumSan;
@@ -189,6 +192,9 @@ public class SanDaThueFragment extends Fragment {
                 tv_dg.setText("rất tốt!!!");
             }
             //return;
+        }
+        if (pt.phanHoi != null){
+            ed_danh_gia_text.setText(pt.phanHoi);
         }
          rb_dg.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
              @Override
@@ -227,6 +233,7 @@ public class SanDaThueFragment extends Fragment {
                  phieuThue.tienSan = pt.tienSan;
                  phieuThue.danhGia = 1;
                  phieuThue.sao = rating;
+                 phieuThue.phanHoi = ed_danh_gia_text.getText().toString().trim();
                  if (phieuThueDAO.update(phieuThue) > 0){
                      Toast.makeText(getContext(), "Gửi đánh giá thành công!!!", Toast.LENGTH_SHORT).show();
                      setListView();
