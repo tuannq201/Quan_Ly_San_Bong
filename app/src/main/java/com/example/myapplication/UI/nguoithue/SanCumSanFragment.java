@@ -84,15 +84,11 @@ public class SanCumSanFragment extends Fragment {
 
             @Override
             public void onItemClick(San san, int type) {
-
                 onClickGoToCaSan(san);
                 //Toast.makeText(getContext(), ""+san.soSao, Toast.LENGTH_SHORT).show();
-
             }
-
             @Override
             public void onItemClick(PhieuThue phieuThue) {
-
             }
         });
         rcv.setAdapter(adapter);

@@ -9,6 +9,7 @@ import android.graphics.Color;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.DbHelper;
+import com.example.myapplication.entity.DanhGia;
 import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.TrangThai;
@@ -79,12 +80,16 @@ public class PhieuThueDAO {
         String sql = "SELECT * FROM PhieuThue INNER JOIN San ON PhieuThue.maSan = San.maSan WHERE San.maCumSan=? AND PhieuThue.danhGia = 1";
         return getData(sql, maCS).size();
     }
+    public int soLuotThueCumSan(String maCS){
+        String sql = "SELECT * FROM PhieuThue INNER JOIN San ON PhieuThue.maSan = San.maSan WHERE San.maCumSan=?";
+        return getData(sql, maCS).size();
+    }
 
     @SuppressLint("Range")
-    public int soSaoCumSan(String maSan){
+    public int soSaoCumSan(String maCS){
         String sql = "SELECT SUM(sao) as soSao FROM PhieuThue INNER JOIN San ON PhieuThue.maSan = San.maSan WHERE San.maCumSan=? AND PhieuThue.danhGia = 1";
         List<Integer> list = new ArrayList<>();
-        Cursor cursor = db.rawQuery(sql,new String[]{maSan});
+        Cursor cursor = db.rawQuery(sql,new String[]{maCS});
         while (cursor.moveToNext()){
             try{
                 list.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("soSao"))));
@@ -124,6 +129,12 @@ public class PhieuThueDAO {
             }
         }
         return list.get(0);
+    }
+
+
+    public List<PhieuThue> getPhieuThueCumSan(String maCS){
+        String sql = "SELECT * FROM PhieuThue INNER JOIN San ON PhieuThue.maSan = San.maSan WHERE San.maCumSan=?";
+        return getData(sql, maCS);
     }
 
 

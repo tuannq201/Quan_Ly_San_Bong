@@ -62,7 +62,10 @@ public class CumSanAdapter extends RecyclerView.Adapter<CumSanAdapter.CumSanView
         holder.ratingBar.setRating((float) cumSan.soSao / (float) cumSan.soDanhGia);
         holder.cv.setOnClickListener(view -> {
             //Toast.makeText(context, ""+cumSan.tenCumSan, Toast.LENGTH_SHORT).show();
-            itemCumSanClick.onItemClick(cumSan);
+            itemCumSanClick.onItemClick(cumSan, "san");
+        });
+        holder.btn_show_dg.setOnClickListener(view -> {
+            itemCumSanClick.onItemClick(cumSan, "show");
         });
     }
 
@@ -74,7 +77,7 @@ public class CumSanAdapter extends RecyclerView.Adapter<CumSanAdapter.CumSanView
     }
 
     public class CumSanViewHolder extends RecyclerView.ViewHolder{
-        private TextView tv_1, tv_2, tv_3, tv_4, tv_5, tv_soDG;
+        private TextView tv_1, tv_2, tv_3, tv_4, tv_5, tv_soDG, btn_show_dg;
         private ImageView imgSan;
         private RatingBar ratingBar;
         public CardView cv;
@@ -91,6 +94,7 @@ public class CumSanAdapter extends RecyclerView.Adapter<CumSanAdapter.CumSanView
             tv_5 = itemView.findViewById(R.id.tv_loaisan_cumsan);
             tv_soDG = itemView.findViewById(R.id.tv_soDanhGia_cum_san);
             ratingBar = itemView.findViewById(R.id.rb_cum_san);
+            btn_show_dg = itemView.findViewById(R.id.btn_show_danh_gia_cs);
         }
     }
 

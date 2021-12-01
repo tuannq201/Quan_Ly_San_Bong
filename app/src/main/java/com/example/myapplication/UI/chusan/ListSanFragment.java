@@ -38,6 +38,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.adapter.ListSanAdapter;
 import com.example.myapplication.adapter.SpinnerCumSanAdapter;
 import com.example.myapplication.dao.CumSanDAO;
+import com.example.myapplication.dao.PhieuThueDAO;
 import com.example.myapplication.dao.SanDAO;
 import com.example.myapplication.dao.UserDAO;
 import com.example.myapplication.entity.CumSan;
@@ -57,6 +58,7 @@ public class ListSanFragment extends Fragment {
     SanDAO dao;
     List<San> listSan;
     ListSanAdapter adapter;
+    PhieuThueDAO phieuThueDAO;
     San san;
     EditText edTenSan, edLoaiSan, edGiaSan;
     Spinner spTenCumSan, spnChonSan;
@@ -84,6 +86,7 @@ public class ListSanFragment extends Fragment {
         super.onCreate(savedInstanceState);
         SharedPreferences pref = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
         phone = pref.getString("PHONE","");
+        phieuThueDAO = new PhieuThueDAO(getContext());
 
     }
 
@@ -104,24 +107,7 @@ public class ListSanFragment extends Fragment {
         listCumSan = new ArrayList<>();
         listCumSan = cumSanDao.getCSByChuSan(phone);
         setSpinner();
-//        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
-//                0, ItemTouchHelper.RIGHT) {
-//            @Override
-//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-//                int position = viewHolder.getAdapterPosition();
-//                san = adapter.getItem(position);
-//                delete(String.valueOf(position));
-////                adapter.notifyDataSetChanged();
-////                updateLV(listSan);
-//
-//            }
-//        });
-//        helper.attachToRecyclerView(rcvSan);
+
         return view;
     }
 
@@ -134,9 +120,18 @@ public class ListSanFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 maCumSanHienTai = listCumSan.get(position).maCumSan;
-                Toast.makeText(getContext(), ""+maCumSanHienTai, Toast.LENGTH_SHORT).show();
                 listSan = dao.getSanByCumSan(String.valueOf(maCumSanHienTai));
-                updateLV(listSan);
+
+                List<San> listSanRS = new ArrayList<>();
+                for (int i = 0;i<listSan.size();i++){
+                    San san = listSan.get(i);
+                    san.soDanhGia = phieuThueDAO.soDanhGiaSan(String.valueOf(san.maSan));
+                    san.soSao = phieuThueDAO.soSaoSan(String.valueOf(san.maSan));
+
+                    listSanRS.add(san);
+                }
+
+                updateLV(listSanRS);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -145,6 +140,7 @@ public class ListSanFragment extends Fragment {
     }
 
     public void updateLV(List<San> sanList){
+
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         rcvSan.setLayoutManager(mLayoutManager);
         rcvSan.setItemAnimator(new DefaultItemAnimator());
