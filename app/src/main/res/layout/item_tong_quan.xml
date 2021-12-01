@@ -13,7 +13,7 @@
             android:id="@+id/tvCaSan"
             android:layout_width="130dp"
             android:layout_height="40dp"
-            android:background="#979797"
+            android:background="#BFBFBF"
             android:gravity="center"
             android:text="Ca Sân"
             android:textSize="16sp" />
@@ -31,10 +31,10 @@
             android:id="@+id/tvTrangThaiTQ"
             android:layout_width="130dp"
             android:layout_height="40dp"
+            android:background="#BFBFBF"
             android:gravity="center"
-            android:background="#979797"
             android:text="Trạng Thái"
             android:textSize="16sp"
-            />
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

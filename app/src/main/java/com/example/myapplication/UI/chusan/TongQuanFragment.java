@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.ADadapter.ChuSanAdapter;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.CaSanAdapter;
 import com.example.myapplication.adapter.SpinnerCumSanAdapter;
@@ -30,6 +31,7 @@ import com.example.myapplication.dao.SanDAO;
 import com.example.myapplication.entity.CumSan;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.TrangThai;
+import com.example.myapplication.entity.User;
 import com.example.myapplication.util.Cover;
 
 import java.text.SimpleDateFormat;
@@ -41,7 +43,7 @@ import java.util.List;
 
 public class TongQuanFragment extends Fragment {
 
-    TextView tvNgay, btnChonNgay;
+    TextView tvNgay, btnChonNgay,tvTongNgay;
     ListView lvTQ;
     ArrayList<TrangThai> list = new ArrayList<>();
     PhieuThueDAO phieuThueDAO;
@@ -88,6 +90,7 @@ public class TongQuanFragment extends Fragment {
         phieuThueDAO = new PhieuThueDAO(getContext());
         lvTQ = view.findViewById(R.id.lvTQ);
         tvNgay = view.findViewById(R.id.tvNgayTQ);
+        tvTongNgay = view.findViewById(R.id.tvTongNgay);
         btnChonNgay = view.findViewById(R.id.btnNgayTQ);
         spCum = view.findViewById(R.id.spCumSan);
         spSan = view.findViewById(R.id.spSan);
@@ -135,6 +138,7 @@ public class TongQuanFragment extends Fragment {
                 maSanHienTai = maSan;
                 String tenSan = listSan.get(position).tenSan;
                 setCaSan(ngay);
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -147,6 +151,7 @@ public class TongQuanFragment extends Fragment {
             TrangThai trangThai = phieuThueDAO.checkTrangThai(maSanHienTai, String.valueOf(i), ngay);
             list.add(trangThai);
         }
+        ThuNhapNgay();
         tongQuanAdapter = new TongQuanAdapter(getContext(), list);
         lvTQ.setAdapter(tongQuanAdapter);
     }
@@ -164,5 +169,17 @@ public class TongQuanFragment extends Fragment {
             }
         },year, month, day);
         datePickerDialog.show();
+    }
+    public void ThuNhapNgay(){
+        int tongNgay=0;
+        for (int i = 0; i < list.size(); i++) {
+            TrangThai trangThai = list.get(i);
+            int tien = trangThai.tienSan;
+            String tt = trangThai.taiKhoan;
+            if (tt.contains("0")){
+                tongNgay = tongNgay + tien;
+            }
+        }
+        tvTongNgay.setText("Tổng thu nhập ngày: "+Cover.IntegerToVnd(tongNgay)+" VNĐ");
     }
 }

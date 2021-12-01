@@ -40,14 +40,11 @@ public class PhieuThueDAO {
     }
     public int update(PhieuThue obj){
             ContentValues values = new ContentValues();
-            values.put("maPT",String.valueOf(obj.maPT));
-            values.put("nguoiThue", obj.nguoiThue);
+            values.put("nguoiThue",obj.nguoiThue);
             values.put("maSan",String.valueOf(obj.maSan));
             values.put("ngayThue",obj.ngayThue);
             values.put("caThue",obj.caThue);
             values.put("tienSan",String.valueOf(obj.tienSan));
-            values.put("danhGia", String.valueOf(obj.danhGia));
-            values.put("sao", String.valueOf(obj.sao));
             return db.update("PhieuThue",values,"maPT=?",new String[]{String.valueOf(obj.maPT)});
     }
     public int delete(String id){
@@ -157,6 +154,7 @@ public class PhieuThueDAO {
             trangThai.ca = phieuThue.caThue;
             trangThai.ngay = phieuThue.ngayThue;
             trangThai.taiKhoan = phieuThue.nguoiThue;
+            trangThai.maPT = phieuThue.maPT;
             trangThai.color = Color.parseColor("#C6C4C4");
         }catch (Exception e){
             SanDAO sanDAO = new SanDAO(context);
