@@ -6,6 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.nguoithue.NguoiThueActivity">
+    <com.jgabrielfreitas.core.BlurImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/nenapp"
+        app:radius="4"
+        android:scaleType="fitXY"
+        />
 
 
     <com.ismaeldivita.chipnavigation.ChipNavigationBar

@@ -5,10 +5,6 @@
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.2574074074074074" />
         <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/dialog_danh_gia.xml" value="0.4" />
-        <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/dialog_show_danh_gia.xml" value="0.4" />
-        <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/item_cum_san.xml" value="0.4" />
-        <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/item_list_san_cs_layout.xml" value="0.25" />
-        <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/item_show_danh_gia.xml" value="0.4" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/drawable/br_textview.xml" value="0.26614583333333336" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/drawable/ic_soccer_ball_black.xml" value="0.26614583333333336" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/drawable/ic_soccer_ball_gray.xml" value="0.26614583333333336" />
@@ -24,20 +20,27 @@
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/item_list_san_cs_layout.xml" value="0.6" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/item_san_da_thue.xml" value="0.4" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/layout/item_san_da_thuebgjhdcjhgfbf.xml" value="0.25" />
+        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/drawable/button.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/drawable/gradian_user.xml" value="0.3728205128205128" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/drawable/ic_home.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/drawable/spn.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_admin.xml" value="0.3625" />
+        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_ca_san_of_chu_san.xml" value="0.3625" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_chu_san.xml" value="0.3578125" />
-        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_login.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
-        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_nguoi_thue.xml" value="0.1" />
+        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/activity_nguoi_thue.xml" value="0.25" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/ca_san_dialog.xml" value="0.3625" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/dialog_add_san.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/dialog_register_user.xml" value="0.22" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_ca_nhan_of_chu_san.xml" value="0.2046875" />
+        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_ca_san.xml" value="0.3625" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_chu_san.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_list_san.xml" value="0.1" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_nguoi_thue.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_san.xml" value="0.2803442028985507" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_san_cum_san.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_san_da_thue.xml" value="0.3625" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_thong_ke.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_tong_quan.xml" value="0.3625" />
         <entry key="..\:/Users/Luong Nguyen/Desktop/DA1/app/src/main/res/layout/fragment_user.xml" value="0.3625" />

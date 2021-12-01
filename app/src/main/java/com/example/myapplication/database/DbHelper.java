@@ -3,10 +3,14 @@ package com.example.myapplication.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.anychart.chart.common.dataentry.ValueDataEntry;
+
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DbHelper extends SQLiteOpenHelper{

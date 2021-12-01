@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:id="@+id/layout_chu_san"
     tools:context=".UI.chusan.ChuSanActivity">
-
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"

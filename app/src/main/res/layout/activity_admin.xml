@@ -6,17 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.nguoithue.NguoiThueActivity">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarAD"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        tools:ignore="MissingConstraints" />
-
-
     <FrameLayout
         android:id="@+id/frm_admin"
         android:layout_width="match_parent"

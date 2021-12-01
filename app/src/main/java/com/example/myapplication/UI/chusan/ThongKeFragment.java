@@ -1,5 +1,6 @@
 package com.example.myapplication.UI.chusan;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -104,8 +105,8 @@ public class ThongKeFragment extends Fragment {
         cartesian.interactivity().hoverMode(HoverMode.BY_X);
 
         cartesian.xAxis(0).title("Ngày Trong Tuần");
-
         anyChartView.setChart(cartesian);
+
 
         return view;
 

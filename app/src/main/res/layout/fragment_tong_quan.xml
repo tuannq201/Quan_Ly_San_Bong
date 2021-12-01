@@ -5,6 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.chusan.TongQuanFragment">
+    <com.jgabrielfreitas.core.BlurImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/nenapp"
+        app:radius="4"
+        android:scaleType="fitXY"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="Sân 1, ngày 21-11-2021"
-                android:textColor="@color/black"
+                android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +44,7 @@
                 android:background="#FFCA28"
                 android:padding="5dp"
                 android:text="Chọn Ngày"
-                android:textColor="@color/white"
+                android:textColor="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:ignore="MissingConstraints,TextContrastCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -45,15 +52,17 @@
         <Spinner
             android:id="@+id/spCumSan"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_margin="5dp"
+            android:background="@drawable/spn"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Spinner
             android:id="@+id/spSan"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp" />
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/spn" />
 
         <TextView
             android:id="@+id/tvTongNgay"
@@ -62,6 +71,7 @@
             android:layout_margin="5dp"
             android:text="Thu Nhập Ngày: "
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold" />
 

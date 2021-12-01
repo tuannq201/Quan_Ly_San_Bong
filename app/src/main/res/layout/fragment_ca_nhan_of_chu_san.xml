@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".UI.chusan.CaNhanOfChuSanFragment">
+    <com.jgabrielfreitas.core.BlurImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/nenapp"
+        app:radius="4"
+        android:scaleType="fitXY"
+        />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"

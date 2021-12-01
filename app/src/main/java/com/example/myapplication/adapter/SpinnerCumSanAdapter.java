@@ -51,7 +51,6 @@ public class SpinnerCumSanAdapter extends ArrayAdapter<CumSan> {
         CumSan cumSan = listC.get(position);
         if (cumSan != null){
             tvTenCumSan = view.findViewById(R.id.text_spinner_tenCumSan);
-
             tvTenCumSan.setText(cumSan.tenCumSan);
         }
         return view;
