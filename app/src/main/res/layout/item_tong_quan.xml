@@ -13,25 +13,27 @@
             android:id="@+id/tvCaSan"
             android:layout_width="130dp"
             android:layout_height="40dp"
-            android:background="#BFBFBF"
+            android:background="#FFFFFF"
             android:gravity="center"
             android:text="Ca Sân"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvGiaSan"
             android:layout_width="130dp"
             android:layout_height="40dp"
+            android:background="#CFCFCF"
             android:gravity="center"
             android:text="Giá Thuê"
-            android:textSize="16sp"
-            />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvTrangThaiTQ"
             android:layout_width="130dp"
             android:layout_height="40dp"
-            android:background="#BFBFBF"
+            android:background="#A3A4A5"
             android:gravity="center"
             android:text="Trạng Thái"
             android:textSize="16sp"
