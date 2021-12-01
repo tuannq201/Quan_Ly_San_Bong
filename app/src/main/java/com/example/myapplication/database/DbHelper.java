@@ -6,6 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DbHelper extends SQLiteOpenHelper{
     static final String dbName = "QLSB";
     static final int dbVision = 4;
@@ -82,25 +85,25 @@ public class DbHelper extends SQLiteOpenHelper{
         db.execSQL(INSERT_User);
 
         String INSERT_San1 = "Insert into San(tenSan,giaSan,loaiSan, maCumSan, anhSan) values " +
-                "('san 1','150000',5, 1,null)," +
-                "('san 2','120000',7, 1,null)," +
-                "('san 3','120000',5, 1,null)," +
-                "('san 4','150000',7, 2,null)," +
-                "('san 5','120000',5, 2,null)," +
-                "('san 6','200000',7, 2,null)," +
-                "('san 7','150000',5, 3,null)," +
-                "('san 8','200000',7, 3,null)," +
-                "('san 9','250000',5, 4,null)," +
-                "('san 10','200000',7, 4,null)," +
-                "('san 11','150000',5, 4,null)," +
-                "('san 12','120000',7, 6,null)," +
-                "('san 13','250000',5, 6,null)," +
-                "('san 14','250000',7, 6,null)," +
-                "('san 15','150000',5, 7,null)," +
-                "('san 16','220000',7, 7,null)," +
-                "('san 17','220000',5, 7,null)," +
-                "('san 18','220000',7, 7,null)," +
-                "('san 19','150000',5, 7,null)";
+                "('Sân 5A','150000',5, 1,null)," +
+                "('Sân 7A','200000',7, 1,null)," +
+                "('Sân 5B','150000',5, 1,null)," +
+                "('Sân 7B','200000',7, 1,null)," +
+                "('Sân 5A','150000',5, 2,null)," +
+                "('Sân 7A','200000',7, 2,null)," +
+                "('Sân 5A','150000',5, 3,null)," +
+                "('Sân 7A','200000',7, 3,null)," +
+                "('Sân 5A','250000',5, 4,null)," +
+                "('Sân 7A','200000',7, 4,null)," +
+                "('Sân 5B','150000',5, 4,null)," +
+                "('Sân 7A','200000',7, 5,null)," +
+                "('Sân 7B','250000',7, 5,null)," +
+                "('Sân 7C','250000',7, 5,null)," +
+                "('Sân 5A','150000',5, 6,null)," +
+                "('Sân 5B','220000',5, 6,null)," +
+                "('Sân 5C','220000',5, 6,null)," +
+                "('Sân 7A','220000',7, 7,null)," +
+                "('Sân 5A','150000',5, 7,null)";
         db.execSQL(INSERT_San1);
 
         String INSERT_CumSan = "Insert into CumSan(tenCumSan,diaChi,chuSan) values " +
@@ -130,32 +133,27 @@ public class DbHelper extends SQLiteOpenHelper{
         db.execSQL(INSERT_CumSan);
 
 
+        Date now = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String ngay = simpleDateFormat.format(now);
         String INSERT_PT = "Insert into PhieuThue(maSan,nguoiThue,caThue,ngayThue,tienSan, danhGia, sao, phanHoi) values " +
-                "(1,'0777777777','1','30-11-2021',100000, 1, 5, 'giá hợp lí, sân ok')," +
-                "(5,'0777777773','8','30-11-2021',100000, 1, 2, 'mặt sân xấu')," +
-                "(3,'0777777777','5','30-11-2021',100000, 1, 5, 'ok')," +
-                "(5,'0777777777','11','30-11-2021',100000, 1, 5, 'giá rẻ, sân đẹp')," +
-                "(1,'0777777777','1','01-12-2021',100000, 1, 5, 'ok')," +
-                "(5,'0777777771','8','01-12-2021',100000, 1, 4, 'ok')," +
-                "(3,'0777777771','5','02-12-2021',100000, 1, 5, 'ok')," +
-                "(1,'0777777771','11','03-12-2021',100000, 1, 2, 'giá quá cao')," +
-                "(1,'0777777774','1','04-12-2021',100000, 1, 5, 'ok')," +
-                "(5,'0777777774','8','29-11-2021',100000, 1, 4, 'ok')," +
-                "(3,'0777777775','5','28-11-2021',100000, 1, 5, 'ok')," +
-                "(5,'0777777775','11','28-11-2021',100000, 1, 4, 'ok')," +
-                "(7,'0777777775','2','29-11-2021',100000, 1, 4, 'ok')";
+                "(1,'0777777777','1','"+ngay+"',150000, 1, 5, 'Giá hợp lí, sân ok')," +
+                "(1,'0777777773','2','"+ngay+"',200000, 1, 2, 'Mặt sân xấu')," +
+                "(1,'0777777777','3','"+ngay+"',150000, 1, 5, 'Ok')," +
+                "(1,'0777777777','5','"+ngay+"',150000, 1, 5, 'Giá rẻ, sân đẹp')," +
+                "(2,'0777777777','6','"+ngay+"',150000, 1, 5, 'Ok')," +
+                "(2,'0777777771','9','"+ngay+"',200000, 1, 4, 'Ok')," +
+                "(2,'0777777771','10','"+ngay+"',150000, 1, 5, 'Ok')," +
+                "(2,'0777777771','3','"+ngay+"',150000, 1, 2, 'Sân đẹp')," +
+                "(3,'0777777774','1','"+ngay+"',150000, 1, 5, 'Ok')," +
+                "(3,'0777777774','3','"+ngay+"',200000, 1, 4, 'Ok')," +
+                "(3,'0777777775','6','"+ngay+"',150000, 1, 5, 'Ok')," +
+                "(3,'0777777775','7','"+ngay+"',200000, 1, 4, 'Ok')," +
+                "(4,'0777777775','1','"+ngay+"',200000, 1, 4, 'Ok')," +
+                "(4,'0777777775','3','"+ngay+"',200000, 1, 4, 'Ok')," +
+                "(4,'0777777775','4','"+ngay+"',200000, 1, 4, 'Ok')," +
+                "(4,'0777777775','6','"+ngay+"',200000, 1, 4, 'Ok')";
         db.execSQL(INSERT_PT);
-
-//        String INSERT_San = "Insert into San(tenSan,diaChi,giaSan,loaiSan,chuSan,anhSan) values " +
-//                "('5a','12 Au Co Da Nang',200000,5,'Nguyễn Hoài Lương',null)," +
-//                "('5b','12 Au Co Da Nang',200000,5,'Nguyễn Hoài Lương',null)," +
-//                "('5c','12 Au Co Da Nang',200000,5,'Nguyễn Hoài Lương',null)," +
-//                "('5d','12 Au Co Da Nang',200000,5,'Nguyễn Hoài Lương',null)," +
-//                "('5e','12 Au Co Da Nang',200000,5,'Nguyễn Hoài Lương',null)," +
-//                "('5f','12 Au Co Da Nang',200000,5,'Nguyễn Hoài Lương',null)," +
-//                "('7a','12 Au Co Da Nang',300000,7,'Nguyễn Hoài Lương',null)," +
-//                "('7b','12 Au Co Da Nang',300000,7,'Nguyễn Hoài Lương',null)";
-//        db.execSQL(INSERT_San);
 
     }
 
