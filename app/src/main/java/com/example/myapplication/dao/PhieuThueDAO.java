@@ -30,6 +30,7 @@ public class PhieuThueDAO {
     public long insert(PhieuThue obj){
         ContentValues values = new ContentValues();
         values.put("nguoiThue", obj.nguoiThue);
+        values.put("phanHoi", obj.phanHoi);
         values.put("maSan",String.valueOf(obj.maSan));
         values.put("ngayThue",obj.ngayThue);
         values.put("caThue",obj.caThue);
@@ -41,6 +42,7 @@ public class PhieuThueDAO {
     public int update(PhieuThue obj){
             ContentValues values = new ContentValues();
             values.put("maPT",String.valueOf(obj.maPT));
+            values.put("phanHoi", obj.phanHoi);
             values.put("nguoiThue", obj.nguoiThue);
             values.put("maSan",String.valueOf(obj.maSan));
             values.put("ngayThue",obj.ngayThue);
@@ -186,7 +188,7 @@ public class PhieuThueDAO {
             obj.nguoiThue = cursor.getString(cursor.getColumnIndex("nguoiThue"));
             obj.danhGia = Integer.parseInt(cursor.getString(cursor.getColumnIndex("danhGia")));
             obj.sao = Integer.parseInt(cursor.getString(cursor.getColumnIndex("sao")));
-
+            obj.phanHoi = cursor.getString(cursor.getColumnIndex("phanHoi"));
             list.add(obj);
         }
         return list;
