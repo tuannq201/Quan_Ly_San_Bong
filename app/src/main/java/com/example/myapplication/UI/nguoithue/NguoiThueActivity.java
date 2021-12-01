@@ -55,7 +55,7 @@ public class NguoiThueActivity extends AppCompatActivity implements SanFragment.
                         break;
                     case R.id.user_nt:
                         chipNavigationBar.showBadge(R.id.notifi_nt, phieuThueDAO.getByDate(phone, format.format(now)));
-                        fragment = new DemoNTFragment();
+                        fragment = new UserFragment();
                         break;
 
                 }
