@@ -164,47 +164,48 @@ public class Cover {
 
 
     public static long NgayCaGioToPos(String ngay,String ca, String gio){
-        String posDate = String.valueOf(dateToPos(ngay, ca, 1));
+        String posDate = String.valueOf(dateToPos(ngay, ca, 1));//= ngày
         String posGio = "";
         if (gio.length() == 5){
             posGio = gio.replaceAll(":", "");
             String rs = posDate + posGio;
             return Long.parseLong(rs);
         }
-        if (ca == "1"){
+        ca = ca.trim();
+        if (ca.equals("1")){
             posGio = "0700";
         }
-        if (ca == "2"){
+        if (ca.equals("2")){
             posGio = "0815";
         }
-        if (ca == "3"){
+        if (ca.equals("3")){
             posGio = "0930";
         }
-        if (ca == "4"){
+        if (ca.equals("4")){
             posGio = "1045";
         }
-        if (ca == "5"){
+        if (ca.equals("5")){
             posGio = "1200";
         }
-        if (ca == "6"){
+        if (ca.equals("6")){
             posGio = "1315";
         }
-        if (ca == "7"){
+        if (ca.equals("7")){
             posGio = "1430";
         }
-        if (ca == "8"){
+        if (ca.equals("8")){
             posGio = "1545";
         }
-        if (ca == "9"){
+        if (ca.equals("9")){
             posGio = "1700";
         }
-        if (ca == "10"){
+        if (ca.equals("10")){
             posGio = "1815";
         }
-        if (ca == "11"){
+        if (ca.equals("11")){
             posGio = "1930";
         }
-        if (ca == "12"){
+        if (ca.equals("12")){
             posGio = "2045";
         }
         String rs = posDate+posGio;

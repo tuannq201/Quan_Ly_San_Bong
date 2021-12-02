@@ -58,6 +58,8 @@ public class SanDaThueFragment extends Fragment {
     CumSanDAO cumSanDAO;
     SanDAO sanDAO;
 
+    SimpleDateFormat formatNgay = new SimpleDateFormat("dd-MM-yyyy");
+    SimpleDateFormat formatGio = new SimpleDateFormat("HH:mm");
     TextView tv_tenSan_dg, tv_dg, btn_dg;
     EditText ed_danh_gia_text;
     RatingBar rb_dg;
@@ -140,8 +142,13 @@ public class SanDaThueFragment extends Fragment {
         sdtAdapter = new SDTAdapter(getContext(), list, new ITFClickPhieuThue() {
             @Override
             public void OnClick(PhieuThue phieuThue) {
-                Toast.makeText(getContext(), ""+phieuThue.maPT, Toast.LENGTH_SHORT).show();
-                delete(String.valueOf(phieuThue.maPT));
+                //Toast.makeText(getContext(), ""+phieuThue.maPT, Toast.LENGTH_SHORT).show();
+                if (validateDel(phieuThue.caThue, phieuThue.ngayThue)){
+                    delete(String.valueOf(phieuThue.maPT));
+                }else {
+                    Toast.makeText(getContext(), "Không thể hủy", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         lv.setAdapter(sdtAdapter);
@@ -280,5 +287,20 @@ public class SanDaThueFragment extends Fragment {
 
 
         dialog.show();
+    }
+
+    public boolean validateDel(String ca, String ngay){
+        Date now = new Date();
+        int caInt = Integer.parseInt(ca);
+        if (caInt > 2){
+            ca = String.valueOf(caInt-2);
+        }
+        long posNow = Cover.NgayCaGioToPos(formatNgay.format(now), ca, formatGio.format(now));
+        long posPT = Cover.NgayCaGioToPos(ngay, ca, "");
+        Log.i("-----", "now "+posNow+" pt "+posPT+" rs:"+(posNow-posPT));
+        if (posNow <= posPT){
+            return true;
+        }
+        return false;
     }
 }
