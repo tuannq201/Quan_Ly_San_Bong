@@ -55,20 +55,27 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
             tvTenCa = view.findViewById(R.id.tvTenCa);
             tvTenCa.setText("Ca: "+ Cover.caToTime(item.ca));
             tvTrangThai = view.findViewById(R.id.tvTrangThai);
-            tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
-            if (type.equals("CS")){
-                tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
+//            tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
+//            if (type.equals("CS")){
+//                tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
+//            }else {
+//                if (item.taiKhoan.contains("0")){
+//                    tvTrangThai.setText("Trạng Thái: đã thuê");
+//                    layout.setBackgroundColor(item.color);
+//                }
+//            }
+//            if (type.equals("NT")){
+//
+//            }
+            if (item.taiKhoan.contains("0")){
+                tvTrangThai.setText("Trạng Thái: Đã Thuê");
             }else {
-                tvTrangThai.setText("Trạng Thái: "+item.taiKhoan);
-                if (item.taiKhoan.contains("0")){
-                    tvTrangThai.setText("Trạng Thái: đã thuê");
-                }
+                tvTrangThai.setText("Trạng Thái: Chưa Thuê");
             }
-            if (type.equals("NT")){
-                layout.setBackgroundColor(item.color);
-            }
+            layout.setBackgroundColor(item.color);
             tvKhuyenMai = view.findViewById(R.id.tvKhuyenMai);
             tvKhuyenMai.setText("Khuyến Mãi: "+Cover.KhuyenMai1(item.ca)+"%");
+
         }
         return view;
     }

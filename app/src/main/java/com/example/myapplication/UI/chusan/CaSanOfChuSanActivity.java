@@ -2,6 +2,7 @@ package com.example.myapplication.UI.chusan;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,40 +30,55 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CaSanOfChuSanActivity extends AppCompatActivity {
-    Button btnCapNhat,btnCapNhatDialog,btnDate;
-    EditText edGioThueDialog,edKhuyenMaiDialog,edNgayThueDialog,edCaThueDialog,edTrangThaiDialog,edGiaThueDialog;
+    Button btnGiuSanDialog,btnDate;
+    EditText edGioThueDialog,edKhuyenMaiDialog,edCaThueDialog,edTrangThaiDialog,edGiaThueDialog;
     Dialog dialog;
     TrangThai item;
     GridView gridView;
     SimpleDateFormat formatNgay = new SimpleDateFormat("dd-MM-yyyy");
+    SimpleDateFormat formatGio = new SimpleDateFormat("HH:mm");
     TextView edDate;
-    PhieuThue itemPT;
     String ngay = "";
-    int posNow = 0;
+    String phone;
+    String type = "";
     San san;
-
+//    public CaSanOfChuSanActivity(String type){
+//        this.type=type;
+//    }
     ArrayList<TrangThai> list1 = new ArrayList<>();
     PhieuThueDAO phieuThueDAO ;
-    Date now = new Date();
+    Date now;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ca_san_of_chu_san);
-        Bundle bundle = getIntent().getExtras();
-        if (bundle == null){
-        }
-        san = (San) bundle.get("object_san");
-        Toast.makeText(this, "Ma San: "+ san.maSan, Toast.LENGTH_SHORT).show();
+        // ÁNh xạ
         gridView = findViewById(R.id.grCaSan);
         btnDate = findViewById(R.id.btnDate);
         edDate=findViewById(R.id.tvDate);
+
+        SharedPreferences pref = getApplication().getSharedPreferences("USER_FILE", MODE_PRIVATE);
+        phone = pref.getString("PHONE","");
+
+        Bundle bundle = getIntent().getExtras();
+        san = (San) bundle.get("object_san");
+        Toast.makeText(this, "Ma San: "+ san.maSan, Toast.LENGTH_SHORT).show();
+
+
+        now = new Date();
+        ngay = formatNgay.format(now);
+
         phieuThueDAO = new PhieuThueDAO(getApplication());
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                item = list1.get(i);
-                openDialog();
+                if (type.equals("NT")){
+
+                }else {
+                    item = list1.get(i);
+                    openDialog((i + 1));
+                }
             }
         });
         btnDate.setOnClickListener(new View.OnClickListener() {
@@ -71,12 +87,22 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
                 chonNgay();
             }
         });
+        list1 = new ArrayList<>();
         edDate.setText("       "+formatNgay.format(now));
         setCaSan(formatNgay.format(now));
     }
     
-    private void openDialog(){
-
+    private void openDialog(int ca){
+        if (ngay.equals(formatNgay.format(now))){
+            if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
+                Toast.makeText(getApplication(), "đã quá thời gian thuê!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+        if (item.taiKhoan.contains("0")){
+            Toast.makeText(getApplication(), "Ca "+ca+" đã được thuê, vui lòng chọn ca khác ", Toast.LENGTH_SHORT).show();
+            return;
+        }
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.ca_san_dialog);
         edGioThueDialog = dialog.findViewById(R.id.tvGioThueDialog);
@@ -85,7 +111,7 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
         edKhuyenMaiDialog = dialog.findViewById(R.id.tvKhuyenMaiDialog);
         //edNgayThueDialog = dialog.findViewById(R.id.tvNgayThueDialog);
         edTrangThaiDialog = dialog.findViewById(R.id.tvTrangThaiDialog);
-        btnCapNhatDialog = dialog.findViewById(R.id.btnCapNhat);
+        btnGiuSanDialog = dialog.findViewById(R.id.btnGiuSan);
 
 
         edGiaThueDialog.setText("   Giá Thuê: "+item.tienSan);
@@ -94,11 +120,24 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
         edTrangThaiDialog.setText("   Trạng Thái: "+item.taiKhoan);
         edKhuyenMaiDialog.setText(""+Cover.KhuyenMai1(item.ca));
 
-        btnCapNhatDialog.setOnClickListener(new View.OnClickListener() {
+        btnGiuSanDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateKM();
-                dialog.dismiss();
+                PhieuThue phieuThue = new PhieuThue();
+                phieuThue.nguoiThue = phone;
+                phieuThue.ngayThue = ngay;
+                phieuThue.caThue = String.valueOf(ca);
+                phieuThue.maSan = san.maSan;
+                phieuThue.tienSan = item.tienSan;
+                phieuThue.danhGia = 0;
+                phieuThue.sao = 0;
+                if (phieuThueDAO.insert(phieuThue) > 0){
+                    Toast.makeText(getApplication(), "Giữ sân thành công", Toast.LENGTH_SHORT).show();
+                    setCaSan(ngay);
+                    dialog.dismiss();
+                }else {
+                    Toast.makeText(getApplication(), "Đã có lỗi xảy ra, vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
