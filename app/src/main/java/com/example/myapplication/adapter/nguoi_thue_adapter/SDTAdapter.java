@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.dao.CumSanDAO;
 import com.example.myapplication.dao.SanDAO;
 import com.example.myapplication.entity.PhieuThue;
+import com.example.myapplication.itf.ITFClickPhieuThue;
 import com.example.myapplication.util.BlurTransformation;
 import com.example.myapplication.util.Cover;
 
@@ -34,11 +36,13 @@ public class SDTAdapter extends ArrayAdapter<PhieuThue> {
     SanDAO sanDAO;
     TextView tv_1, tv_2, tv_3, tv_4, tv_5, tv_danhGia;
     RatingBar rb;
-    ImageView iv, iv_start_rating;
-    public SDTAdapter(@NonNull Context context, List<PhieuThue> list) {
+    ImageView iv, iv_start_rating, iv_del;
+    ITFClickPhieuThue itfClickPhieuThue;
+    public SDTAdapter(@NonNull Context context, List<PhieuThue> list, ITFClickPhieuThue itfClickPhieuThue) {
         super(context, 0, list);
         this.context = context;
         this.list = list;
+        this.itfClickPhieuThue = itfClickPhieuThue;
     }
 
     @NonNull
@@ -61,6 +65,7 @@ public class SDTAdapter extends ArrayAdapter<PhieuThue> {
             iv = v.findViewById(R.id.iv_san_ddk);
             tv_danhGia = v.findViewById(R.id.tv_danh_gia_ddk);
             rb = v.findViewById(R.id.rb_danhGia_nt);
+            iv_del = v.findViewById(R.id.iv_xoa_sdt);
             iv_start_rating = v.findViewById(R.id.iv_open_rating_nt);
 
             try {
@@ -90,6 +95,10 @@ public class SDTAdapter extends ArrayAdapter<PhieuThue> {
                 tv_danhGia.setVisibility(View.VISIBLE);
                 rb.setRating((float) phieuThue.sao);
             }
+
+            iv_del.setOnClickListener(view -> {
+                itfClickPhieuThue.OnClick(phieuThue);
+            });
 
 
         }return v;

@@ -2,6 +2,7 @@ package com.example.myapplication.UI.nguoithue;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,7 @@ import com.example.myapplication.dao.PhieuThueDAO;
 import com.example.myapplication.dao.SanDAO;
 import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
+import com.example.myapplication.itf.ITFClickPhieuThue;
 import com.example.myapplication.itf.ITFOnItenClick;
 import com.example.myapplication.util.Cover;
 
@@ -134,7 +137,13 @@ public class SanDaThueFragment extends Fragment {
             }
         });
 
-        sdtAdapter = new SDTAdapter(getContext(), list);
+        sdtAdapter = new SDTAdapter(getContext(), list, new ITFClickPhieuThue() {
+            @Override
+            public void OnClick(PhieuThue phieuThue) {
+                Toast.makeText(getContext(), ""+phieuThue.maPT, Toast.LENGTH_SHORT).show();
+                delete(String.valueOf(phieuThue.maPT));
+            }
+        });
         lv.setAdapter(sdtAdapter);
 
         for (int i=0;i<list.size();i++){
@@ -156,6 +165,29 @@ public class SanDaThueFragment extends Fragment {
             }
         });
     }
+
+    public void delete(String id) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Hủy thuê");
+        builder.setMessage("Bạn có muốn hủy Không ?");
+        builder.setCancelable(true);
+        builder.setPositiveButton("Có", (dialog, which) ->{
+            if (phieuThueDAO.delete(id) > 0){
+                Toast.makeText(getContext(), "Đã hủy sân", Toast.LENGTH_SHORT).show();
+                setListView();
+            }else {
+                Toast.makeText(getContext(), "Hủy thất bại", Toast.LENGTH_SHORT).show();
+            }
+            dialog.cancel();
+        } );
+        builder.setNegativeButton("Không", (dialog, which) ->{
+            dialog.cancel();
+        });
+        AlertDialog alertDialog = builder.create();
+        builder.show();
+    }
+
+
     int rating = 0;
     boolean dDG = false;
     public void dialog_danhGia(PhieuThue pt){

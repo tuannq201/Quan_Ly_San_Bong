@@ -169,7 +169,6 @@ public class SanFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
         ChipNavigationBar chip = getActivity().findViewById(R.id.chip_navi_nguoi_thue);
         chip.setVisibility(View.VISIBLE);
 

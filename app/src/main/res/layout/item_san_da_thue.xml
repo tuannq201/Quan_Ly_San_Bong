@@ -162,6 +162,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/star" />
 
+                <ImageView
+                    android:id="@+id/iv_xoa_sdt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic__564505_close_delete_exit_remove_icon" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
