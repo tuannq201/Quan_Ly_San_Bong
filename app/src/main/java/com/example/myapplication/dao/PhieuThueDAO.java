@@ -34,6 +34,7 @@ public class PhieuThueDAO {
         values.put("tienSan",String.valueOf(obj.tienSan));
         values.put("danhGia", String.valueOf(obj.danhGia));
         values.put("sao", String.valueOf(obj.sao));
+        values.put("phanHoi", obj.phanHoi);
         return db.insert("PhieuThue",null,values);
     }
     public int update(PhieuThue obj){
@@ -43,6 +44,9 @@ public class PhieuThueDAO {
             values.put("ngayThue",obj.ngayThue);
             values.put("caThue",obj.caThue);
             values.put("tienSan",String.valueOf(obj.tienSan));
+            values.put("danhGia", String.valueOf(obj.danhGia));
+            values.put("sao", String.valueOf(obj.sao));
+            values.put("phanHoi", obj.phanHoi);
             return db.update("PhieuThue",values,"maPT=?",new String[]{String.valueOf(obj.maPT)});
     }
     public int delete(String id){
@@ -197,6 +201,7 @@ public class PhieuThueDAO {
             obj.nguoiThue = cursor.getString(cursor.getColumnIndex("nguoiThue"));
             obj.danhGia = Integer.parseInt(cursor.getString(cursor.getColumnIndex("danhGia")));
             obj.sao = Integer.parseInt(cursor.getString(cursor.getColumnIndex("sao")));
+            obj.phanHoi = cursor.getString(cursor.getColumnIndex("phanHoi"));
 
             list.add(obj);
         }
