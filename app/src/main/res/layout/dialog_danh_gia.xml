@@ -36,13 +36,13 @@
         android:gravity="start|top"
         android:hint="đánh giá"
         android:inputType="textMultiLine"
-        android:lines="3" />
+        android:lines="1" />
 
     <TextView
         android:id="@+id/btn_gui_danhGia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/black"
+        android:background="@color/teal_700"
         android:text="Gửi phản hồi"
         android:textColor="@color/white" />
 

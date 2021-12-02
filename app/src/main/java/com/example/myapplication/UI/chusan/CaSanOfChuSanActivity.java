@@ -93,16 +93,12 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
     }
     
     private void openDialog(int ca){
-        if (ngay.equals(formatNgay.format(now))){
-            if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
-                Toast.makeText(getApplication(), "đã quá thời gian thuê!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        }
-        if (item.taiKhoan.contains("0")){
-            Toast.makeText(getApplication(), "Ca "+ca+" đã được thuê, vui lòng chọn ca khác ", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//            if (ngay.equals(formatNgay.format(now))){
+//                if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
+//                    Toast.makeText(getApplication(), "đã quá thời gian thuê!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//            }
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.ca_san_dialog);
         edGioThueDialog = dialog.findViewById(R.id.tvGioThueDialog);
@@ -131,34 +127,24 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
                 phieuThue.tienSan = item.tienSan;
                 phieuThue.danhGia = 0;
                 phieuThue.sao = 0;
-                if (phieuThueDAO.insert(phieuThue) > 0){
-                    Toast.makeText(getApplication(), "Giữ sân thành công", Toast.LENGTH_SHORT).show();
-                    setCaSan(ngay);
+                if (item.taiKhoan.contains("0")){
+                    Toast.makeText(getApplicationContext(),"Ca sân đã được thuê !",Toast.LENGTH_LONG).show();
                     dialog.dismiss();
-                }else {
-                    Toast.makeText(getApplication(), "Đã có lỗi xảy ra, vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
+                    return;
+                }else{
+                    if (phieuThueDAO.insert(phieuThue) > 0){
+                        Toast.makeText(getApplication(), "Giữ sân thành công !", Toast.LENGTH_SHORT).show();
+                        setCaSan(ngay);
+                        dialog.dismiss();
+                    }else {
+                        Toast.makeText(getApplication(), "Đã có lỗi xảy ra, vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
 
 
         dialog.show();
-    }
-    public void updateKM(){
-        int phanTram = Integer.parseInt(edKhuyenMaiDialog.getText().toString());
-        int tienSan = item.tienSan;
-        item.tienSan = Cover.KhuyenMaiTheoPhanTram(phanTram,tienSan);
-        PhieuThue phieuThue = new PhieuThue();
-        phieuThue.maPT = item.maPT;
-            Log.e("////", "updateKM: "+item.maPT );
-        phieuThue.nguoiThue = item.taiKhoan;
-        phieuThue.ngayThue = ngay;
-        phieuThue.caThue = item.ca;
-        phieuThue.maSan = item.maSan;
-        phieuThue.tienSan = item.tienSan;
-        phieuThueDAO.update(phieuThue);
-        Log.e("////", "updateKM: "+phieuThueDAO.update(phieuThue));
-        edKhuyenMaiDialog.setText("   Khuyến Mãi:"+phanTram+"%");
     }
     public void chonNgay(){
         Calendar calendar = Calendar.getInstance();
@@ -178,7 +164,6 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
     }
     public void setCaSan(String ngay){
         list1.clear();
-        //Toast.makeText(getContext(), ""+ngay, Toast.LENGTH_SHORT).show();
         for (int i = 1; i <= 12 ; i++) {
             TrangThai trangThai = phieuThueDAO.checkTrangThai(san.maSan, String.valueOf(i), ngay);
             list1.add(trangThai);
