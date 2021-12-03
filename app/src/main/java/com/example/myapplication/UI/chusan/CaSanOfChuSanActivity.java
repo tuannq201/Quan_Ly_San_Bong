@@ -94,10 +94,6 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
     
     private void openDialog(int ca){
 //            if (ngay.equals(formatNgay.format(now))){
-//                if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
-//                    Toast.makeText(getApplication(), "đã quá thời gian thuê!", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
 //            }
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.ca_san_dialog);
@@ -127,6 +123,11 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
                 phieuThue.tienSan = item.tienSan;
                 phieuThue.danhGia = 0;
                 phieuThue.sao = 0;
+                if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
+                    Toast.makeText(getApplication(), "Đã quá thời gian thuê!", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                    return;
+                }
                 if (item.taiKhoan.contains("0")){
                     Toast.makeText(getApplicationContext(),"Ca sân đã được thuê !",Toast.LENGTH_LONG).show();
                     dialog.dismiss();
