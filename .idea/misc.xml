@@ -78,7 +78,9 @@
         <entry key="app/src/main/res/layout/ca_san_dialog.xml" value="0.335" />
         <entry key="app/src/main/res/layout/cum_san_item_spinner.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_add_san.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialog_edit_thong_tin.xml" value="0.12360688956433637" />
         <entry key="app/src/main/res/layout/dialog_register_user.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_add_san.xml" value="0.12360688956433637" />
         <entry key="app/src/main/res/layout/fragment_ca_nhan_of_chu_san.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_demo_n_t.xml" value="0.12360688956433637" />
         <entry key="app/src/main/res/layout/fragment_list_san.xml" value="0.165" />
