@@ -45,8 +45,8 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="sans-serif"
                     android:text="TextView"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="13dp" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/tvKhuyenMai"

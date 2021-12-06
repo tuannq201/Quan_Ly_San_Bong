@@ -146,8 +146,6 @@ public class SanFragment extends Fragment {
         return v;
     }
 
-
-
     public int search(String s){
         List<CumSan> list = new ArrayList<>();
             if (cumSanList.size()> 0){

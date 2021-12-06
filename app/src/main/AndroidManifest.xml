@@ -18,9 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         <activity
-            android:name=".UI.chusan.CumSanActivity"
-            android:exported="false" />
-        <activity
             android:name=".UI.chusan.CaSanOfChuSanActivity"
             android:exported="false" />
         <activity

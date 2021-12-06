@@ -146,8 +146,8 @@ public class CaSanFragment extends Fragment {
         tv_diachi.setText("Địa chỉ: "+cumSanDAO.getCumSanBySan(String.valueOf(san.maSan)).diaChi);
         tv_thoiGian.setText(""+Cover.caToTime(String.valueOf(ca))+" ngày: "+ngay);
         tv_giaSan.setText("Giá sân: "+Cover.IntegerToVnd(san.giaSan)+"vnđ");
-        int km = Cover.KhuyenMai1(String.valueOf(ca));
-        int thanhToan = san.giaSan - san.giaSan * Cover.KhuyenMai1(String.valueOf(ca)) / 100;
+        int km = trangThai.soKM;
+        int thanhToan = san.giaSan - (san.giaSan * km / 100);
         tv_km.setText("Khuyến mãi: "+km+"%");
         tv_gia_thue.setText("Giá thuê: "+Cover.IntegerToVnd(thanhToan)+"vnđ");
 
@@ -161,6 +161,7 @@ public class CaSanFragment extends Fragment {
             phieuThue.caThue = String.valueOf(ca);
             phieuThue.maSan = san.maSan;
             phieuThue.tienSan = thanhToan;
+            phieuThue.soKM = km;
             phieuThue.danhGia = 0;
             phieuThue.sao = 0;
             if (phieuThueDAO.insert(phieuThue) > 0){

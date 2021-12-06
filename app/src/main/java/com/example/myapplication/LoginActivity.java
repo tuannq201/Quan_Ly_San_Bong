@@ -110,11 +110,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void demo(){
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
+        PhieuThueDAO phieuThueDAO = new PhieuThueDAO(LoginActivity.this);
+        TrangThai trangThai = phieuThueDAO.checkTrangThai(1, "4","06-12-2021" );
+        Log.i("nnnnn", ""+trangThai.toString());
 
-        Log.i("nnnnn", ""+size.x+" "+size.y);
 
     }
 

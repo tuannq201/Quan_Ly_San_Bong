@@ -66,7 +66,7 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
             }
             layout.setBackgroundColor(item.color);
             tvKhuyenMai = view.findViewById(R.id.tvKhuyenMai);
-            tvKhuyenMai.setText("Khuyến Mãi: "+Cover.KhuyenMai1(item.ca)+"%");
+            tvKhuyenMai.setText("Khuyến Mãi: "+item.soKM+"%");
 
         }
         return view;

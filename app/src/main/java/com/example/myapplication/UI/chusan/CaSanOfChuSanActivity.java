@@ -18,7 +18,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.CaSanAdapter;
+import com.example.myapplication.dao.KhuyenMaiDAO;
 import com.example.myapplication.dao.PhieuThueDAO;
+import com.example.myapplication.entity.KhuyenMai;
 import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.TrangThai;
@@ -30,7 +32,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CaSanOfChuSanActivity extends AppCompatActivity {
-    Button btnDate;
+    Button btnGiuSanDialog,btnDate, btnHuy;
+    TextView tvGioThueDialog,tvCaThueDialog,tvTrangThaiDialog,tvGiaThueDialog,tvKhuyenMaiDialog;
+    EditText edKhuyenMaiDialog;
     Dialog dialog;
     TrangThai item;
     GridView gridView;
@@ -41,6 +45,10 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
     String phone;
     String type = "";
     San san;
+    KhuyenMaiDAO khuyenMaiDAO;
+//    public CaSanOfChuSanActivity(String type){
+//        this.type=type;
+//    }
     ArrayList<TrangThai> list1 = new ArrayList<>();
     PhieuThueDAO phieuThueDAO ;
     Date now;
@@ -65,7 +73,19 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
         ngay = formatNgay.format(now);
 
         phieuThueDAO = new PhieuThueDAO(getApplication());
+        khuyenMaiDAO = new KhuyenMaiDAO(getApplication());
 
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (type.equals("NT")){
+
+                }else {
+                    item = list1.get(i);
+                    openDialog((i + 1));
+                }
+            }
+        });
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +96,55 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
         edDate.setText("       "+formatNgay.format(now));
         setCaSan(formatNgay.format(now));
     }
+    
+    private void openDialog(int ca){
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.ca_san_dialog);
+        tvGioThueDialog = dialog.findViewById(R.id.tvGioThueDialog);
+        tvGiaThueDialog = dialog.findViewById(R.id.tvGiaThueDialog);
+        tvCaThueDialog = dialog.findViewById(R.id.tvCaThueDialog);
+        tvKhuyenMaiDialog = dialog.findViewById(R.id.tvKhuyenMaiDialog);
+        //edNgayThueDialog = dialog.findViewById(R.id.tvNgayThueDialog);
+        tvTrangThaiDialog = dialog.findViewById(R.id.tvTrangThaiDialog);
+        edKhuyenMaiDialog = dialog.findViewById(R.id.edKhuyenMaiDialog);
+        btnGiuSanDialog = dialog.findViewById(R.id.btnGiuSan);
+        btnHuy = dialog.findViewById(R.id.btnHuy);
 
+
+        tvGiaThueDialog.setText("Giá Thuê: "+item.tienSan);
+        tvCaThueDialog.setText("Tên Ca: "+item.ca);
+        tvGioThueDialog.setText("Giờ Thuê: "+ Cover.caToTime(String.valueOf(item.ca)));
+        tvTrangThaiDialog.setText("Trạng Thái: "+item.taiKhoan);
+        tvKhuyenMaiDialog.setText("Khuyến Mãi(%): ");
+        edKhuyenMaiDialog.setText(""+ item.soKM);
+
+        btnHuy.setOnClickListener(v -> {
+            dialog.cancel();
+        });
+        btnGiuSanDialog.setText("Cập Nhập");
+        btnGiuSanDialog.setOnClickListener(v -> {
+            if (item.taiKhoan.contains("0")){
+                Toast.makeText(getApplication(), "Ca sân đã được thuê không thể sửa", Toast.LENGTH_SHORT).show();
+                dialog.cancel();
+                return;
+            }else {
+                int maKM = Integer.parseInt(edKhuyenMaiDialog.getText().toString());
+                KhuyenMai khuyenMai = new KhuyenMai();
+                khuyenMai.soKM = maKM;
+                khuyenMai.maSan = san.maSan;
+                khuyenMai.ca = item.ca;
+                khuyenMai.ngay = ngay;
+                if (khuyenMaiDAO.insert(khuyenMai) >0){
+                    Toast.makeText(getApplication(), "Cập Nhập Thành Công", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getApplication(), "Cập Nhập Thất Bại", Toast.LENGTH_SHORT).show();
+                }
+                dialog.dismiss();
+            }
+            setCaSan(ngay);
+        });
+        dialog.show();
+    }
     public void chonNgay(){
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);

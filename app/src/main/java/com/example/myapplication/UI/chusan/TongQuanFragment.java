@@ -67,13 +67,11 @@ public class TongQuanFragment extends Fragment {
     int maCumSanHienTai;
     List<CumSan> listCumSan;
     List<San> listSan;
-    San san;
     String phone;
     Dialog dialog;
-    Button btnGiuSanDialog;
-    EditText edGioThueDialog,edCaThueDialog,edTrangThaiDialog,edGiaThueDialog;
-
-
+    Button btnGiuSanDialog, btnHuy;
+    TextView edGioThueDialog,edCaThueDialog,edTrangThaiDialog,edGiaThueDialog, tvKhuyenMaiDialog;
+    EditText edKhuyenMaiDialog;
 
     public TongQuanFragment() {
     }
@@ -124,7 +122,7 @@ public class TongQuanFragment extends Fragment {
                 maCumSan = listCumSan.get(position).maCumSan;
                 String tenCumSan = listCumSan.get(position).tenCumSan;
                 maCumSanHienTai = listCumSan.get(position).maCumSan;
-                Log.e("//", "onItemSelected: "+maCumSanHienTai);
+//                Log.e("//", "onItemSelected: "+maCumSanHienTai);
                 updateSpinnerSan(String.valueOf(maCumSanHienTai));
             }
             @Override
@@ -175,8 +173,8 @@ public class TongQuanFragment extends Fragment {
     public void setCaSan(String ngay){
         list.clear();
         for (int i = 1; i <= 12 ; i++) {
-            TrangThai trangThai = phieuThueDAO.checkTrangThai(maSanHienTai, String.valueOf(i), ngay);
-            list.add(trangThai);
+            item = phieuThueDAO.checkTrangThai(maSanHienTai, String.valueOf(i), ngay);
+            list.add(item);
         }
         ThuNhapNgay();
         tongQuanAdapter = new TongQuanAdapter(getContext(), list);
@@ -201,9 +199,9 @@ public class TongQuanFragment extends Fragment {
     public void ThuNhapNgay(){
         int tongNgay=0;
         for (int i = 0; i < list.size(); i++) {
-            TrangThai trangThai = list.get(i);
-            int tien = trangThai.tienSan;
-            String tt = trangThai.taiKhoan;
+            item = list.get(i);
+            int tien = item.tienSan;
+            String tt = item.taiKhoan;
             if (tt.contains("0")){
                 tongNgay = tongNgay + tien;
             }
@@ -217,13 +215,21 @@ public class TongQuanFragment extends Fragment {
         edGiaThueDialog = dialog.findViewById(R.id.tvGiaThueDialog);
         edCaThueDialog = dialog.findViewById(R.id.tvCaThueDialog);
         edTrangThaiDialog = dialog.findViewById(R.id.tvTrangThaiDialog);
+        tvKhuyenMaiDialog = dialog.findViewById(R.id.tvKhuyenMaiDialog);
+        edKhuyenMaiDialog = dialog.findViewById(R.id.edKhuyenMaiDialog);
         btnGiuSanDialog = dialog.findViewById(R.id.btnGiuSan);
-
+        btnHuy = dialog.findViewById(R.id.btnHuy);
 
         edGiaThueDialog.setText("   Giá Thuê: "+item.tienSan);
         edCaThueDialog.setText("   Tên Ca: "+item.ca);
         edGioThueDialog.setText("   Giờ Thuê: "+ Cover.caToTime(String.valueOf(item.ca)));
         edTrangThaiDialog.setText("   Trạng Thái: "+item.taiKhoan);
+        tvKhuyenMaiDialog.setText("Khuyến Mãi(%): ");
+        edKhuyenMaiDialog.setText(""+item.soKM);
+        edKhuyenMaiDialog.setEnabled(false);
+        btnHuy.setOnClickListener(v -> {
+            dialog.cancel();
+        });
         btnGiuSanDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -235,7 +241,7 @@ public class TongQuanFragment extends Fragment {
                 phieuThue.tienSan = item.tienSan;
                 phieuThue.danhGia = 0;
                 phieuThue.sao = 0;
-
+                phieuThue.soKM = item.soKM;
                 if (ngay.equals(formatNgay.format(now))){
                     if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
                         Toast.makeText(getContext(), "Đã vượt quá thời gian của ca thuê!!!", Toast.LENGTH_SHORT).show();

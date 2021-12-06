@@ -55,19 +55,20 @@ public class DbHelper extends SQLiteOpenHelper{
                 "nguoiThue TEXT NOT NULL, " +
                 "caThue TEXT NOT NULL, " +
                 "ngayThue DATE NOT NULL, " +
+                "soKM INTEGER NOT NULL, " +
                 "tienSan INTEGER NOT NULL, " +
                 "danhGia INTEGER, " +//:0-chưa đánh giá; 1-đã đánh giá
                 "sao INTEGER, " +
                 "phanHoi TEXT)";// 1-5 sao
         db.execSQL(create_PhieuThue);
 
-//        String create_KhuyenMai = "CREATE TABLE KhuyenMai" +
-//                "(maKM INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                "cumSan TEXT NOT NULL, " +
-//                "dieuKien TEXT, " +
-//                "khuyenMai IMTEGER NOT NULL, " +
-//                "apDung TEXT)";
-//        db.execSQL(create_KhuyenMai);
+        String create_KhuyenMai = "CREATE TABLE KHUYENMAI" +
+                "(maID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "soKM INTEGER NOT NULL, " +
+                "maSan INTEGER NOT NULL, " +
+                "caThue TEXT NOT NULL, "+
+                "ngayThue DATE NOT NULL)";
+        db.execSQL(create_KhuyenMai);
 
         String INSERT_User = "Insert into User(taiKhoan,hoTen,matKhau,phanQuyen,hinh) values " +
                 "('0999999999','Admin','123456','AD',null)," +
@@ -140,23 +141,23 @@ public class DbHelper extends SQLiteOpenHelper{
         Date now = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String ngay = simpleDateFormat.format(now);
-        String INSERT_PT = "Insert into PhieuThue(maSan,nguoiThue,caThue,ngayThue,tienSan, danhGia, sao, phanHoi) values " +
-                "(1,'0777777777','1','"+ngay+"',150000, 1, 5, 'Giá hợp lí, sân ok')," +
-                "(1,'0777777773','2','"+ngay+"',200000, 1, 2, 'Mặt sân xấu')," +
-                "(1,'0777777777','3','"+ngay+"',150000, 1, 5, 'Ok')," +
-                "(1,'0777777777','5','"+ngay+"',150000, 1, 5, 'Giá rẻ, sân đẹp')," +
-                "(2,'0777777777','6','"+ngay+"',150000, 1, 5, 'Ok')," +
-                "(2,'0777777771','9','"+ngay+"',200000, 1, 4, 'Ok')," +
-                "(2,'0777777771','10','"+ngay+"',150000, 1, 5, 'Ok')," +
-                "(2,'0777777771','3','"+ngay+"',150000, 1, 2, 'Sân đẹp')," +
-                "(3,'0777777774','1','"+ngay+"',150000, 1, 5, 'Ok')," +
-                "(3,'0777777774','3','"+ngay+"',200000, 1, 4, 'Ok')," +
-                "(3,'0777777775','6','"+ngay+"',150000, 1, 5, 'Ok')," +
-                "(3,'0777777775','7','"+ngay+"',200000, 1, 4, 'Ok')," +
-                "(4,'0777777775','1','"+ngay+"',200000, 1, 4, 'Ok')," +
-                "(4,'0777777775','3','"+ngay+"',200000, 1, 4, 'Ok')," +
-                "(4,'0777777775','4','"+ngay+"',200000, 1, 4, 'Ok')," +
-                "(4,'0777777775','6','"+ngay+"',200000, 1, 4, 'Ok')";
+        String INSERT_PT = "Insert into PhieuThue(maSan,nguoiThue,caThue,ngayThue,soKM,tienSan, danhGia, sao, phanHoi) values " +
+                "(1,'0777777777','1','"+ngay+"',0,150000, 1, 5, 'Giá hợp lí, sân ok')," +
+                "(1,'0777777773','2','"+ngay+"',0,200000, 1, 2, 'Mặt sân xấu')," +
+                "(1,'0777777777','3','"+ngay+"',0,150000, 1, 5, 'Ok')," +
+                "(1,'0777777777','5','"+ngay+"',0,150000, 1, 5, 'Giá rẻ, sân đẹp')," +
+                "(2,'0777777777','6','"+ngay+"',0,150000, 1, 5, 'Ok')," +
+                "(2,'0777777771','9','"+ngay+"',0,200000, 1, 4, 'Ok')," +
+                "(2,'0777777771','10','"+ngay+"',0,150000, 1, 5, 'Ok')," +
+                "(2,'0777777771','3','"+ngay+"',0,150000, 1, 2, 'Sân đẹp')," +
+                "(3,'0777777774','1','"+ngay+"',0,150000, 1, 5, 'Ok')," +
+                "(3,'0777777774','3','"+ngay+"',0,200000, 1, 4, 'Ok')," +
+                "(3,'0777777775','6','"+ngay+"',0,150000, 1, 5, 'Ok')," +
+                "(3,'0777777775','7','"+ngay+"',0,200000, 1, 4, 'Ok')," +
+                "(4,'0777777775','1','"+ngay+"',0,200000, 1, 4, 'Ok')," +
+                "(4,'0777777775','3','"+ngay+"',0,200000, 1, 4, 'Ok')," +
+                "(4,'0777777775','4','"+ngay+"',0,200000, 1, 4, 'Ok')," +
+                "(4,'0777777775','6','"+ngay+"',0,200000, 1, 4, 'Ok')";
         db.execSQL(INSERT_PT);
 
     }
@@ -167,6 +168,7 @@ public class DbHelper extends SQLiteOpenHelper{
         db.execSQL("drop table if exists San");
         db.execSQL("drop table if exists PhieuThue");
         db.execSQL("drop table if exists CumSan");
+        db.execSQL("drop table if exists KhuyenMai");
         onCreate(db);
     }
 }

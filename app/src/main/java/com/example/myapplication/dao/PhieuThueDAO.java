@@ -6,8 +6,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.util.Log;
 
 import com.example.myapplication.database.DbHelper;
+import com.example.myapplication.entity.KhuyenMai;
 import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.TrangThai;
@@ -18,6 +20,7 @@ import java.util.List;
 public class PhieuThueDAO {
 
     private SQLiteDatabase db;
+    KhuyenMaiDAO khuyenMaiDAO;
     Context context;
     public PhieuThueDAO(Context context){
         DbHelper dbHelper = new DbHelper(context);
@@ -35,19 +38,21 @@ public class PhieuThueDAO {
         values.put("danhGia", String.valueOf(obj.danhGia));
         values.put("sao", String.valueOf(obj.sao));
         values.put("phanHoi", obj.phanHoi);
+        values.put("soKM", String.valueOf(obj.soKM));
         return db.insert("PhieuThue",null,values);
     }
     public int update(PhieuThue obj){
-            ContentValues values = new ContentValues();
-            values.put("nguoiThue",obj.nguoiThue);
-            values.put("maSan",String.valueOf(obj.maSan));
-            values.put("ngayThue",obj.ngayThue);
-            values.put("caThue",obj.caThue);
-            values.put("tienSan",String.valueOf(obj.tienSan));
-            values.put("danhGia", String.valueOf(obj.danhGia));
-            values.put("sao", String.valueOf(obj.sao));
-            values.put("phanHoi", obj.phanHoi);
-            return db.update("PhieuThue",values,"maPT=?",new String[]{String.valueOf(obj.maPT)});
+        ContentValues values = new ContentValues();
+        values.put("nguoiThue",obj.nguoiThue);
+        values.put("maSan",String.valueOf(obj.maSan));
+        values.put("ngayThue",obj.ngayThue);
+        values.put("caThue",obj.caThue);
+        values.put("tienSan",String.valueOf(obj.tienSan));
+        values.put("danhGia", String.valueOf(obj.danhGia));
+        values.put("sao", String.valueOf(obj.sao));
+        values.put("phanHoi", obj.phanHoi);
+        values.put("soKM", String.valueOf(obj.soKM));
+        return db.update("PhieuThue",values,"maPT=?",new String[]{String.valueOf(obj.maPT)});
     }
     public int delete(String id){
         return db.delete("PhieuThue","maPT=?",new String[]{id});
@@ -173,9 +178,24 @@ public class PhieuThueDAO {
             trangThai.taiKhoan = phieuThue.nguoiThue;
             trangThai.maPT = phieuThue.maPT;
             trangThai.color = Color.parseColor("#C6C4C4");
+            trangThai.soKM = phieuThue.soKM;
         }catch (Exception e){
             SanDAO sanDAO = new SanDAO(context);
+            khuyenMaiDAO = new KhuyenMaiDAO(context);
             San san = sanDAO.getID(String.valueOf(maSan));
+            try {
+                KhuyenMai khuyenMai = khuyenMaiDAO.getKhuyenMai(maSan, ngay, ca);
+                trangThai.soKM = khuyenMai.soKM;
+            }catch (Exception e1){
+                if (ca.equals("4")||ca.equals("5")||ca.equals("6")||ca.equals("7")){
+                    trangThai.soKM = 20;
+                    Log.i("nnnnn", ""+trangThai.soKM);
+                }else {
+                    trangThai.soKM = 0;
+                }
+
+            }
+
             trangThai.maSan = maSan;
             trangThai.ca = ca;
             trangThai.tienSan = san.giaSan;
@@ -202,7 +222,7 @@ public class PhieuThueDAO {
             obj.danhGia = Integer.parseInt(cursor.getString(cursor.getColumnIndex("danhGia")));
             obj.sao = Integer.parseInt(cursor.getString(cursor.getColumnIndex("sao")));
             obj.phanHoi = cursor.getString(cursor.getColumnIndex("phanHoi"));
-
+            obj.soKM = Integer.parseInt(cursor.getString(cursor.getColumnIndex("soKM")));
             list.add(obj);
         }
         return list;

@@ -4,10 +4,11 @@ public class PhieuThue {
     public int maPT, maSan,tienSan, danhGia, sao, position;
     public String nguoiThue, caThue;
     public String ngayThue, phanHoi;
+    public int soKM;
     public PhieuThue() {
     }
 
-    public PhieuThue(int maPT, int maSan, int tienSan, int danhGia, int sao, String nguoiThue, String caThue, String ngayThue) {
+    public PhieuThue(int maPT, int maSan, int tienSan, int danhGia, int sao, String nguoiThue, String caThue, String ngayThue, int soKM) {
         this.maPT = maPT;
         this.maSan = maSan;
         this.tienSan = tienSan;
@@ -16,9 +17,10 @@ public class PhieuThue {
         this.nguoiThue = nguoiThue;
         this.caThue = caThue;
         this.ngayThue = ngayThue;
+        this.soKM = soKM;
     }
 
-    public PhieuThue(int maPT, int maSan, int tienSan, int danhGia, int sao, int position, String nguoiThue, String caThue, String ngayThue) {
+    public PhieuThue(int maPT, int maSan, int tienSan, int danhGia, int sao, int position, String nguoiThue, String caThue, String ngayThue, int soKM) {
         this.maPT = maPT;
         this.maSan = maSan;
         this.tienSan = tienSan;
@@ -28,9 +30,10 @@ public class PhieuThue {
         this.nguoiThue = nguoiThue;
         this.caThue = caThue;
         this.ngayThue = ngayThue;
+        this.soKM = soKM;
     }
 
-    public PhieuThue(int maPT, int maSan, int tienSan, int danhGia, int sao, int position, String nguoiThue, String caThue, String ngayThue, String phanHoi) {
+    public PhieuThue(int maPT, int maSan, int tienSan, int danhGia, int sao, int position, String nguoiThue, String caThue, String ngayThue, String phanHoi, int soKM) {
         this.maPT = maPT;
         this.maSan = maSan;
         this.tienSan = tienSan;
@@ -41,6 +44,7 @@ public class PhieuThue {
         this.caThue = caThue;
         this.ngayThue = ngayThue;
         this.phanHoi = phanHoi;
+        this.soKM = soKM;
     }
 
     @Override
@@ -55,6 +59,7 @@ public class PhieuThue {
                 ", nguoiThue='" + nguoiThue + '\'' +
                 ", caThue='" + caThue + '\'' +
                 ", ngayThue='" + ngayThue + '\'' +
+                ", maKM='" +soKM + '\'' +
                 '}';
     }
 }
