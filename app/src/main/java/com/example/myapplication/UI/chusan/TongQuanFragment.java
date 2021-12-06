@@ -3,6 +3,7 @@ package com.example.myapplication.UI.chusan;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -13,7 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,6 +32,7 @@ import com.example.myapplication.dao.CumSanDAO;
 import com.example.myapplication.dao.PhieuThueDAO;
 import com.example.myapplication.dao.SanDAO;
 import com.example.myapplication.entity.CumSan;
+import com.example.myapplication.entity.PhieuThue;
 import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.TrangThai;
 import com.example.myapplication.entity.User;
@@ -53,7 +57,7 @@ public class TongQuanFragment extends Fragment {
     SimpleDateFormat formatNgay = new SimpleDateFormat("dd-MM-yyyy");
     SimpleDateFormat formatGio = new SimpleDateFormat("HH:mm");
     int posNow = 0;
-    TrangThai trangThai;
+    TrangThai item;
     Spinner spCum,spSan;
     TongQuanAdapter tongQuanAdapter;
     SpinnerCumSanAdapter spinnerCumSanAdapter;
@@ -63,7 +67,11 @@ public class TongQuanFragment extends Fragment {
     int maCumSanHienTai;
     List<CumSan> listCumSan;
     List<San> listSan;
+    San san;
     String phone;
+    Dialog dialog;
+    Button btnGiuSanDialog;
+    EditText edGioThueDialog,edCaThueDialog,edTrangThaiDialog,edGiaThueDialog;
 
 
 
@@ -117,10 +125,16 @@ public class TongQuanFragment extends Fragment {
                 maCumSanHienTai = listCumSan.get(position).maCumSan;
                 Log.e("//", "onItemSelected: "+maCumSanHienTai);
                 updateSpinnerSan(String.valueOf(maCumSanHienTai));
-
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        lvTQ.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                item = list.get(i);
+                openDialog(i+1);
             }
         });
         return view;
@@ -181,5 +195,53 @@ public class TongQuanFragment extends Fragment {
             }
         }
         tvTongNgay.setText("Tổng thu nhập ngày: "+Cover.IntegerToVnd(tongNgay)+" VNĐ");
+    }
+    private void openDialog(int ca){
+        dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.ca_san_dialog);
+        edGioThueDialog = dialog.findViewById(R.id.tvGioThueDialog);
+        edGiaThueDialog = dialog.findViewById(R.id.tvGiaThueDialog);
+        edCaThueDialog = dialog.findViewById(R.id.tvCaThueDialog);
+        edTrangThaiDialog = dialog.findViewById(R.id.tvTrangThaiDialog);
+        btnGiuSanDialog = dialog.findViewById(R.id.btnGiuSan);
+
+
+        edGiaThueDialog.setText("   Giá Thuê: "+item.tienSan);
+        edCaThueDialog.setText("   Tên Ca: "+item.ca);
+        edGioThueDialog.setText("   Giờ Thuê: "+ Cover.caToTime(String.valueOf(item.ca)));
+        edTrangThaiDialog.setText("   Trạng Thái: "+item.taiKhoan);
+
+        btnGiuSanDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PhieuThue phieuThue = new PhieuThue();
+                phieuThue.nguoiThue = phone;
+                phieuThue.ngayThue = ngay;
+                phieuThue.caThue = String.valueOf(ca);
+                phieuThue.maSan = maSan;
+                phieuThue.tienSan = item.tienSan;
+                phieuThue.danhGia = 0;
+                phieuThue.sao = 0;
+                if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
+                    Toast.makeText(getContext(), "Đã quá thời gian thuê!", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                    return;
+                }
+                if (item.taiKhoan.contains("0")){
+                    Toast.makeText(getContext(),"Ca sân đã được thuê !",Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
+                    return;
+                }else{
+                    if (phieuThueDAO.insert(phieuThue) > 0){
+                        Toast.makeText(getContext(), "Giữ sân thành công !", Toast.LENGTH_SHORT).show();
+                        setCaSan(tvNgay.getText().toString());
+                        dialog.dismiss();
+                    }else {
+                        Toast.makeText(getContext(), "Đã có lỗi xảy ra, vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+        dialog.show();
     }
 }

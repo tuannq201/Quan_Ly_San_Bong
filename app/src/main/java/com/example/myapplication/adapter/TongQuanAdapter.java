@@ -62,7 +62,6 @@ public class TongQuanAdapter extends ArrayAdapter<TrangThai> {
                 tv_1.setText(""+Cover.caToTime(item.ca));
                 tv_2.setText(""+ Cover.IntegerToVnd(item.tienSan)+"vnđ ");
                 tv_3.setText(""+item.taiKhoan);
-                Log.e("//==", "getView: "+item.taiKhoan);
                 if (item.taiKhoan.contains("0")){
                     tv_3.setText("Đã Thuê");
                     tv_3.setTextColor(Color.GREEN);

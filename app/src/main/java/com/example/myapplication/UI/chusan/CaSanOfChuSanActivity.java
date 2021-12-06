@@ -42,9 +42,6 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
     String phone;
     String type = "";
     San san;
-//    public CaSanOfChuSanActivity(String type){
-//        this.type=type;
-//    }
     ArrayList<TrangThai> list1 = new ArrayList<>();
     PhieuThueDAO phieuThueDAO ;
     Date now;
@@ -93,15 +90,11 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
     }
     
     private void openDialog(int ca){
-//            if (ngay.equals(formatNgay.format(now))){
-//            }
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.ca_san_dialog);
         edGioThueDialog = dialog.findViewById(R.id.tvGioThueDialog);
         edGiaThueDialog = dialog.findViewById(R.id.tvGiaThueDialog);
         edCaThueDialog = dialog.findViewById(R.id.tvCaThueDialog);
-        edKhuyenMaiDialog = dialog.findViewById(R.id.tvKhuyenMaiDialog);
-        //edNgayThueDialog = dialog.findViewById(R.id.tvNgayThueDialog);
         edTrangThaiDialog = dialog.findViewById(R.id.tvTrangThaiDialog);
         btnGiuSanDialog = dialog.findViewById(R.id.btnGiuSan);
 
@@ -110,7 +103,6 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
         edCaThueDialog.setText("   Tên Ca: "+item.ca);
         edGioThueDialog.setText("   Giờ Thuê: "+ Cover.caToTime(String.valueOf(item.ca)));
         edTrangThaiDialog.setText("   Trạng Thái: "+item.taiKhoan);
-        edKhuyenMaiDialog.setText(""+Cover.KhuyenMai1(item.ca));
 
         btnGiuSanDialog.setOnClickListener(new View.OnClickListener() {
             @Override
