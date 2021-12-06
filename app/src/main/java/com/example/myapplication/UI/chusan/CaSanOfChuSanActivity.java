@@ -30,8 +30,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CaSanOfChuSanActivity extends AppCompatActivity {
-    Button btnGiuSanDialog,btnDate;
-    EditText edGioThueDialog,edKhuyenMaiDialog,edCaThueDialog,edTrangThaiDialog,edGiaThueDialog;
+    Button btnDate;
     Dialog dialog;
     TrangThai item;
     GridView gridView;
@@ -67,17 +66,6 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
 
         phieuThueDAO = new PhieuThueDAO(getApplication());
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (type.equals("NT")){
-
-                }else {
-                    item = list1.get(i);
-                    openDialog((i + 1));
-                }
-            }
-        });
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,57 +76,7 @@ public class CaSanOfChuSanActivity extends AppCompatActivity {
         edDate.setText("       "+formatNgay.format(now));
         setCaSan(formatNgay.format(now));
     }
-    
-    private void openDialog(int ca){
-        dialog = new Dialog(this);
-        dialog.setContentView(R.layout.ca_san_dialog);
-        edGioThueDialog = dialog.findViewById(R.id.tvGioThueDialog);
-        edGiaThueDialog = dialog.findViewById(R.id.tvGiaThueDialog);
-        edCaThueDialog = dialog.findViewById(R.id.tvCaThueDialog);
-        edTrangThaiDialog = dialog.findViewById(R.id.tvTrangThaiDialog);
-        btnGiuSanDialog = dialog.findViewById(R.id.btnGiuSan);
 
-
-        edGiaThueDialog.setText("   Giá Thuê: "+item.tienSan);
-        edCaThueDialog.setText("   Tên Ca: "+item.ca);
-        edGioThueDialog.setText("   Giờ Thuê: "+ Cover.caToTime(String.valueOf(item.ca)));
-        edTrangThaiDialog.setText("   Trạng Thái: "+item.taiKhoan);
-
-        btnGiuSanDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PhieuThue phieuThue = new PhieuThue();
-                phieuThue.nguoiThue = phone;
-                phieuThue.ngayThue = ngay;
-                phieuThue.caThue = String.valueOf(ca);
-                phieuThue.maSan = san.maSan;
-                phieuThue.tienSan = item.tienSan;
-                phieuThue.danhGia = 0;
-                phieuThue.sao = 0;
-                if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
-                    Toast.makeText(getApplication(), "Đã quá thời gian thuê!", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
-                    return;
-                }
-                if (item.taiKhoan.contains("0")){
-                    Toast.makeText(getApplicationContext(),"Ca sân đã được thuê !",Toast.LENGTH_LONG).show();
-                    dialog.dismiss();
-                    return;
-                }else{
-                    if (phieuThueDAO.insert(phieuThue) > 0){
-                        Toast.makeText(getApplication(), "Giữ sân thành công !", Toast.LENGTH_SHORT).show();
-                        setCaSan(ngay);
-                        dialog.dismiss();
-                    }else {
-                        Toast.makeText(getApplication(), "Đã có lỗi xảy ra, vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        });
-
-
-        dialog.show();
-    }
     public void chonNgay(){
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
