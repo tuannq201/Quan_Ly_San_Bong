@@ -49,27 +49,28 @@
                     android:textSize="13dp" />
 
                 <TextView
-                    android:id="@+id/tvTrangThai"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="sans-serif"
-                    android:text="TextView"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="13dp" />
-
-                <TextView
                     android:id="@+id/tvKhuyenMai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif"
+                    android:text="TextView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="#00897B"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/tvTrangThai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:fontFamily="sans-serif"
                     android:text="TextView"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="#FB1C1C"
-                    android:textSize="13dp" />
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>

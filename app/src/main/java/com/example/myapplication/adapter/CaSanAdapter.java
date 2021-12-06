@@ -2,6 +2,7 @@ package com.example.myapplication.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,8 +59,10 @@ public class CaSanAdapter extends ArrayAdapter<TrangThai> {
 
             if (item.taiKhoan.contains("0")){
                 tvTrangThai.setText("Trạng Thái: Đã Thuê");
+                tvTrangThai.setTextColor(Color.GREEN);
             }else {
                 tvTrangThai.setText("Trạng Thái: Chưa Thuê");
+                tvTrangThai.setTextColor(Color.RED);
             }
             layout.setBackgroundColor(item.color);
             tvKhuyenMai = view.findViewById(R.id.tvKhuyenMai);

@@ -106,6 +106,7 @@ public class TongQuanFragment extends Fragment {
         ngay = formatNgay.format(now);
         posNow = Cover.dateToPos(formatNgay.format(now), "", 1);
         tvNgay.setText(formatNgay.format(now));
+
         btnChonNgay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,8 +134,20 @@ public class TongQuanFragment extends Fragment {
         lvTQ.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                item = list.get(i);
-                openDialog(i+1);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(now);
+                calendar.add(Calendar.DAY_OF_YEAR, +7);
+                int posAdd7 = Cover.dateToPos(formatNgay.format(calendar.getTime()), "", 1);
+                if (Cover.dateToPos(ngay, "", 1) < posNow){
+                    Toast.makeText(getContext(), "Vui lòng chọn ngày hôm nay trở về sau để quản lý!!!", Toast.LENGTH_SHORT).show();
+                    tvNgay.setText(ngay);
+                    setCaSan(ngay);
+                    lvTQ.setClickable(false);
+                }else {
+                    item = list.get(i);
+                    openDialog(i+1);
+                }
+
             }
         });
         return view;
@@ -180,6 +193,7 @@ public class TongQuanFragment extends Fragment {
                 tvNgay.setText(Cover.formater(y,m,d));
                 ngay = Cover.formater(y,m,d);
                 setCaSan(Cover.formater(y,m,d));
+
             }
         },year, month, day);
         datePickerDialog.show();
@@ -210,7 +224,6 @@ public class TongQuanFragment extends Fragment {
         edCaThueDialog.setText("   Tên Ca: "+item.ca);
         edGioThueDialog.setText("   Giờ Thuê: "+ Cover.caToTime(String.valueOf(item.ca)));
         edTrangThaiDialog.setText("   Trạng Thái: "+item.taiKhoan);
-
         btnGiuSanDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -222,10 +235,12 @@ public class TongQuanFragment extends Fragment {
                 phieuThue.tienSan = item.tienSan;
                 phieuThue.danhGia = 0;
                 phieuThue.sao = 0;
-                if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
-                    Toast.makeText(getContext(), "Đã quá thời gian thuê!", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
-                    return;
+
+                if (ngay.equals(formatNgay.format(now))){
+                    if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
+                        Toast.makeText(getContext(), "Đã vượt quá thời gian của ca thuê!!!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
                 if (item.taiKhoan.contains("0")){
                     Toast.makeText(getContext(),"Ca sân đã được thuê !",Toast.LENGTH_LONG).show();
