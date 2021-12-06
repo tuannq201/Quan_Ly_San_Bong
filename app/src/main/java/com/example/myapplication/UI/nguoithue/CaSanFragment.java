@@ -194,9 +194,11 @@ public class CaSanFragment extends Fragment {
                 if (Cover.dateToPos(ngay, "", 1) < posNow){
                     Toast.makeText(getContext(), "Vui lòng chọn ngày khác!!!", Toast.LENGTH_SHORT).show();
                     ngay = formatNgay.format(now);
+                    tv_san_ngay.setText(ngay);
                 }else if ((Cover.dateToPos(ngay , "", 1) > (posAdd7))){
                     Toast.makeText(getContext(), "Chỉ được thuê sân trước 7 ngày\nvui lòng chọn ngày khác!!!", Toast.LENGTH_SHORT).show();
                     ngay = formatNgay.format(now);
+                    tv_san_ngay.setText(ngay);
                 }
                 setCaSan(ngay);
             }

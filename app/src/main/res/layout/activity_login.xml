@@ -106,7 +106,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="4dp"
         android:gravity="center"
-        android:text="Dăng Ký"
+        android:text="Đăng Ký"
         android:backgroundTint="#1E792C"
         android:textAllCaps="false"
         app:layout_constraintEnd_toStartOf="@+id/textView"
