@@ -60,7 +60,9 @@ public class TongQuanAdapter extends ArrayAdapter<TrangThai> {
             tv_3 = v.findViewById(R.id.tvTrangThaiTQ);
             try {
                 tv_1.setText(""+Cover.caToTime(item.ca));
-                tv_2.setText(""+ Cover.IntegerToVnd(item.tienSan)+"vnđ ");
+                int km = item.soKM;
+                int thanhToan = item.tienSan - (item.tienSan * km / 100);
+                tv_2.setText(""+ Cover.IntegerToVnd(thanhToan)+"vnđ ");
                 tv_3.setText(""+item.taiKhoan);
                 if (item.taiKhoan.contains("0")){
                     tv_3.setText("Đã Thuê");

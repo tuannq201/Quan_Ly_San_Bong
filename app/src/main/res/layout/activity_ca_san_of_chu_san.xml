@@ -7,9 +7,11 @@
     android:orientation="vertical"
     tools:context=".UI.chusan.CaSanOfChuSanActivity"
     >
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <Button
             android:id="@+id/btnDate"
             android:layout_width="wrap_content"
