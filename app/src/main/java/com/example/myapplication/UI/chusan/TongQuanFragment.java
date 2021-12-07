@@ -242,17 +242,15 @@ public class TongQuanFragment extends Fragment {
                 phieuThue.danhGia = 0;
                 phieuThue.sao = 0;
                 phieuThue.soKM = item.soKM;
-                if (ngay.equals(formatNgay.format(now))){
+                if (item.taiKhoan.contains("0")){
+                    Toast.makeText(getContext(),"Ca sân đã được thuê !",Toast.LENGTH_LONG).show();
+                    return;
+                }else if (ngay.equals(formatNgay.format(now))){
                     if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
                         Toast.makeText(getContext(), "Đã vượt quá thời gian của ca thuê!!!", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                }
-                if (item.taiKhoan.contains("0")){
-                    Toast.makeText(getContext(),"Ca sân đã được thuê !",Toast.LENGTH_LONG).show();
-                    dialog.dismiss();
-                    return;
-                }else{
+                }else {
                     if (phieuThueDAO.insert(phieuThue) > 0){
                         Toast.makeText(getContext(), "Giữ sân thành công !", Toast.LENGTH_SHORT).show();
                         setCaSan(tvNgay.getText().toString());

@@ -80,7 +80,7 @@ public class ThongKeFragment extends Fragment {
             data.add(new ValueDataEntry(simpleDateFormat.format(newDate), thu));
             sum = sum + thu;
         }
-        tvThuNhap.setText("Thu Nhập Một Tuần Gần Nhất :"+ Cover.IntegerToVnd(sum)+" VNĐ");
+        tvThuNhap.setText("Thu Nhập Một Tuần Tới :"+ Cover.IntegerToVnd(sum)+" VNĐ");
 
         Column column = cartesian.column(data);
 
