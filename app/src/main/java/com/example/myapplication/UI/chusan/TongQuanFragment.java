@@ -250,15 +250,15 @@ public class TongQuanFragment extends Fragment {
                         Toast.makeText(getContext(), "Đã vượt quá thời gian của ca thuê!!!", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                }else {
-                    if (phieuThueDAO.insert(phieuThue) > 0){
-                        Toast.makeText(getContext(), "Giữ sân thành công !", Toast.LENGTH_SHORT).show();
-                        setCaSan(tvNgay.getText().toString());
-                        dialog.dismiss();
-                    }else {
-                        Toast.makeText(getContext(), "Đã có lỗi xảy ra, vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
-                    }
                 }
+                if (phieuThueDAO.insert(phieuThue) > 0){
+                    Toast.makeText(getContext(), "Giữ sân thành công !", Toast.LENGTH_SHORT).show();
+                    setCaSan(tvNgay.getText().toString());
+                    dialog.dismiss();
+                }else {
+                    Toast.makeText(getContext(), "Đã có lỗi xảy ra, vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         dialog.show();
