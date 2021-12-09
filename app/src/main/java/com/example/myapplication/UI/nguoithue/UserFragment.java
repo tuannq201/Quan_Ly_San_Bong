@@ -117,7 +117,7 @@ public class UserFragment extends Fragment {
             intent = new Intent(this.getContext(), LoginActivity.class);
             SharedPreferences pref = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
             SharedPreferences.Editor edit = pref.edit();
-            edit.putBoolean("AUTOLOGIN",false);
+            edit.putBoolean("REMEMBER",false);
             edit.commit();
             startActivity(intent);
         });

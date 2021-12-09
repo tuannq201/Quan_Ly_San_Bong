@@ -140,18 +140,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Lưu mật khẩu?"
+        android:text="Duy trì đăng nhập "
         android:textStyle="bold"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/matKhau" />
 
-    <CheckBox
-        android:id="@+id/chk_autoLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Đăng nhập một lần"
-        app:layout_constraintBottom_toTopOf="@+id/btn_login"
-        app:layout_constraintStart_toEndOf="@+id/chk_remember"
-        app:layout_constraintTop_toBottomOf="@+id/matKhau" />
 </androidx.constraintlayout.widget.ConstraintLayout>

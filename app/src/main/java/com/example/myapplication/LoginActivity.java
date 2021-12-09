@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     Dialog dialog;
     Button btn_login, btn_camera, btn_album, btn_save, btn_register;
     ImageView iv_camera_result, imgShowPass;
-    CheckBox chk_remember, chk_autoLogin;
+    CheckBox chk_remember;
     TextInputEditText  ed_name, ed_password,ed_phone_number ,ed_re_password;
     EditText ed_phone_login, ed_password_login;
     public static final int REQUEST_CODE_CAMERA = 0;
@@ -70,7 +70,6 @@ public class LoginActivity extends AppCompatActivity {
         ed_password_login = findViewById(R.id.ed_password_login);
         ed_phone_login = findViewById(R.id.ed_phone_number_login);
         chk_remember = findViewById(R.id.chk_remember);
-        chk_autoLogin = findViewById(R.id.chk_autoLogin);
         btn_register = findViewById(R.id.btn_register_user);
 
         userDAO = new UserDAO(LoginActivity.this);
@@ -127,7 +126,6 @@ public class LoginActivity extends AppCompatActivity {
         edit.putString("PHONE",ed_phone_login.getText().toString().trim());
         edit.putString("PASSWORD",ed_password_login.getText().toString().trim());
         edit.putBoolean("REMEMBER",chk_remember.isChecked());
-        edit.putBoolean("AUTOLOGIN",chk_autoLogin.isChecked());
         edit.commit();
     }
 
@@ -141,8 +139,7 @@ public class LoginActivity extends AppCompatActivity {
             ed_phone_login.setText(phone);
             ed_password_login.setText(pass);
             chk_remember.setChecked(remember);
-            chk_autoLogin.setChecked(autoLogin);
-            if (autoLogin == true){
+            if (remember == true){
                 Login();
             }
         }else{
