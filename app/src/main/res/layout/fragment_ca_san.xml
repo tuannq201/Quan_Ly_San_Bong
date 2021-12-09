@@ -4,16 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:padding="8dp"
+    android:padding="0dp"
     tools:context=".UI.nguoithue.CaSanFragment">
+
+    <com.jgabrielfreitas.core.BlurImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/nenapp"
+        app:radius="3" />
 
     <TextView
         android:id="@+id/tv_san_ngay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Sân 1, ngày 21-11-2021"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btn_chonNgay"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,6 +31,8 @@
         android:id="@+id/btn_chonNgay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="#FFCA28"
         android:padding="5dp"
         android:text="Chọn Ngày"

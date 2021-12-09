@@ -1,6 +1,10 @@
 package com.example.myapplication.UI.nguoithue;
 
+import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
+
+import static com.example.myapplication.util.Cover.getImageUri;
+import static com.example.myapplication.util.Cover.imageViewToByteArray;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -8,8 +12,10 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.LoginActivity;
@@ -29,6 +36,8 @@ import com.example.myapplication.dao.UserDAO;
 import com.example.myapplication.entity.User;
 import com.example.myapplication.util.Cover;
 import com.google.android.material.textfield.TextInputEditText;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 
@@ -54,12 +63,12 @@ public class UserFragment extends Fragment {
     Dialog dialog;
     Button  btn_camera, btn_album, btn_save;
     TextInputEditText ed_phone_number, ed_name, ed_password, ed_re_password;
-    ImageView iv_camera_result;
     public static final int REQUEST_CODE_CAMERA = 0;
     public static final int REQUEST_CODE_FOLDER = 1;
 
-    CircleImageView circleImageView;
-    ImageView iv_user_avata;
+    //CircleImageView circleImageView;
+    ImageView iv_user_avata; //fragment
+    ImageView iv_camera_result; //dialog
     String phone;
     public UserFragment() {
         // Required empty public constructor
@@ -95,7 +104,7 @@ public class UserFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_user, container, false);
         iv_user_avata = v.findViewById(R.id.profile_image);
-        circleImageView = v.findViewById(R.id.profile_image);
+        //circleImageView = v.findViewById(R.id.profile_image);
         ed_1 = v.findViewById(R.id.ed_name_user);
         ed_2 = v.findViewById(R.id.ed_phone_user);
         ed_3 = v.findViewById(R.id.ed_pass_user);
@@ -106,6 +115,10 @@ public class UserFragment extends Fragment {
 
         btnDangXuat.setOnClickListener(view -> {
             intent = new Intent(this.getContext(), LoginActivity.class);
+            SharedPreferences pref = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
+            SharedPreferences.Editor edit = pref.edit();
+            edit.putBoolean("AUTOLOGIN",false);
+            edit.commit();
             startActivity(intent);
         });
         btnCapNhatNT.setOnClickListener(view -> {
@@ -122,7 +135,7 @@ public class UserFragment extends Fragment {
         window.getAttributes().windowAnimations = R.style.DialogAnimation;
         btn_camera = dialog.findViewById(R.id.btn_camera);
         btn_album = dialog.findViewById(R.id.btn_albuml);
-        iv_camera_result = dialog.findViewById(R.id.iv_image_register);
+        iv_camera_result = dialog.findViewById(R.id.iv_image_edit);
         btn_save = dialog.findViewById(R.id.btn_save);
         ed_name = dialog.findViewById(R.id.ed_name);
         ed_phone_number = dialog.findViewById(R.id.ed_phone_number);
@@ -136,6 +149,11 @@ public class UserFragment extends Fragment {
             ed_password.setText(user.matKhau);
             ed_re_password.setText(user.matKhau);
             btn_save.setText("Cập Nhật");
+            try {
+                iv_camera_result.setImageBitmap(Cover.ByteToBitmap(user.hinhAnh));
+            }catch (Exception e){
+
+            }
         }
 
         btn_camera.setOnClickListener(new View.OnClickListener() {
@@ -168,23 +186,17 @@ public class UserFragment extends Fragment {
                 user.hinhAnh = imageViewToByteArray(iv_camera_result);
                 if (validate()>0){
                     if (type == 0){
-//                        if (userDAO.insert(user) > 0){
-//                            Toast.makeText(getContext(), "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
-//
-//                            dialog.dismiss();
-//                        }else {
-//                            Toast.makeText(getContext(), "Tạo tài khoản không thành công", Toast.LENGTH_SHORT).show();
-//                        }
+
                     }else {
                         if (userDAO.update(user) > 0){
                             ed_1.setText(""+user.hoTen);
                             ed_2.setText(user.taiKhoan);
                             ed_3.setText(user.matKhau);
                             Toast.makeText(getContext(), "Cập nhật tài khoản thành công", Toast.LENGTH_SHORT).show();
-
+                            setAvatar();
                             dialog.dismiss();
                         }else {
-                            Toast.makeText(getContext(), "Cập nhật khoản không thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Cập nhật không thành công", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -192,6 +204,49 @@ public class UserFragment extends Fragment {
         });
         dialog.show();
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_CAMERA && resultCode == RESULT_OK && data != null){
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            Uri uri = getImageUri(getContext(), bitmap);
+            CropImage.activity(uri)
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                    .setCropShape(CropImageView.CropShape.OVAL)
+                    .setActivityTitle("Cắt xén")
+                    .setCropMenuCropButtonTitle("Lưu")
+                    .setFixAspectRatio(true)
+                    .start(getContext(), this);
+        }
+
+        if (requestCode == REQUEST_CODE_FOLDER && resultCode == RESULT_OK && data != null){
+            Uri uri = data.getData();
+            try {
+                CropImage.activity(uri)
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .setCropShape(CropImageView.CropShape.OVAL)
+                        .setActivityTitle("Cắt xén")
+                        .setCropMenuCropButtonTitle("Lưu")
+                        .setFixAspectRatio(true)
+                        .start(getContext(), this);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                Uri resultUri = result.getUri();
+                iv_camera_result.setImageURI(resultUri);
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+            }
+        }
+    }
+
     public int validate(){
         int check = 1 ;
         if (ed_phone_number.getText().length() == 0 || ed_name.getText().length() == 0 || ed_password.getText().length() == 0 || ed_re_password.getText().length() == 0){
@@ -218,7 +273,7 @@ public class UserFragment extends Fragment {
             byte[] hinh = user.hinhAnh;
             Bitmap bitmap = BitmapFactory.decodeByteArray(hinh, 0, hinh.length);
             iv_user_avata.setImageBitmap(bitmap);
-            circleImageView.setImageBitmap(bitmap);
+            //iv_camera_result.setImageBitmap(bitmap);
         }
         ed_1.setText(""+user.hoTen);
         ed_2.setText(user.taiKhoan);
@@ -226,11 +281,5 @@ public class UserFragment extends Fragment {
         tv_san.setText("Sân đã thuê: "+phieuThueDAO.getPhieuByUser(phone).size()+" sân");
         tv_tienThue.setText("Tổng tiền: "+ Cover.IntegerToVnd(phieuThueDAO.AllTienThueNT(phone))+"vnđ");
     }
-    public byte[] imageViewToByteArray(ImageView iv){
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) iv.getDrawable();
-        Bitmap bitmap = bitmapDrawable.getBitmap();
-        ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArray);
-        return byteArray.toByteArray();
-    }
+
 }

@@ -3,8 +3,6 @@ package com.example.myapplication.UI.chusan;
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
 
-import static com.example.myapplication.util.Cover.imageViewToByteArray;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -32,11 +30,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myapplication.LoginActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.UI.nguoithue.CaSanFragment;
 import com.example.myapplication.dao.CumSanDAO;
 import com.example.myapplication.dao.UserDAO;
-import com.example.myapplication.entity.CumSan;
-import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.User;
 import com.google.android.material.textfield.TextInputEditText;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -148,7 +143,7 @@ public class CaNhanOfChuSanFragment extends Fragment {
         window.getAttributes().windowAnimations = R.style.DialogAnimation;
         btn_camera = dialog.findViewById(R.id.btn_camera);
         btn_album = dialog.findViewById(R.id.btn_albuml);
-        iv_camera_result = dialog.findViewById(R.id.iv_image_register);
+        iv_camera_result = dialog.findViewById(R.id.iv_image_edit);
         btn_save = dialog.findViewById(R.id.btn_save);
         btn_cancelUser = dialog.findViewById(R.id.btn_cancel);
         ed_name = dialog.findViewById(R.id.ed_name);

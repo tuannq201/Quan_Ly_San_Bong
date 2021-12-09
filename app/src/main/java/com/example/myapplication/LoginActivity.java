@@ -1,65 +1,49 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.util.Cover.getImageUri;
+import static com.example.myapplication.util.Cover.imageViewToByteArray;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.myapplication.UI.admin.AdminActivity;
 import com.example.myapplication.UI.chusan.ChuSanActivity;
 import com.example.myapplication.UI.nguoithue.NguoiThueActivity;
 import com.example.myapplication.dao.PhieuThueDAO;
-import com.example.myapplication.dao.SanDAO;
 import com.example.myapplication.dao.UserDAO;
-import com.example.myapplication.entity.PhieuThue;
-import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.TrangThai;
 import com.example.myapplication.entity.User;
-import com.example.myapplication.util.BlurTransformation;
-import com.example.myapplication.util.Cover;
 import com.google.android.material.textfield.TextInputEditText;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
     Dialog dialog;
     Button btn_login, btn_camera, btn_album, btn_save, btn_register;
     ImageView iv_camera_result, imgShowPass;
-    CheckBox chk_remember;
+    CheckBox chk_remember, chk_autoLogin;
     TextInputEditText  ed_name, ed_password,ed_phone_number ,ed_re_password;
     EditText ed_phone_login, ed_password_login;
     public static final int REQUEST_CODE_CAMERA = 0;
@@ -86,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         ed_password_login = findViewById(R.id.ed_password_login);
         ed_phone_login = findViewById(R.id.ed_phone_number_login);
         chk_remember = findViewById(R.id.chk_remember);
+        chk_autoLogin = findViewById(R.id.chk_autoLogin);
         btn_register = findViewById(R.id.btn_register_user);
 
         userDAO = new UserDAO(LoginActivity.this);
@@ -104,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         checkRemember();
-        demo();
+        //demo();
 
     }
 
@@ -113,8 +98,6 @@ public class LoginActivity extends AppCompatActivity {
         PhieuThueDAO phieuThueDAO = new PhieuThueDAO(LoginActivity.this);
         TrangThai trangThai = phieuThueDAO.checkTrangThai(1, "4","06-12-2021" );
         Log.i("nnnnn", ""+trangThai.toString());
-
-
     }
 
 
@@ -144,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
         edit.putString("PHONE",ed_phone_login.getText().toString().trim());
         edit.putString("PASSWORD",ed_password_login.getText().toString().trim());
         edit.putBoolean("REMEMBER",chk_remember.isChecked());
+        edit.putBoolean("AUTOLOGIN",chk_autoLogin.isChecked());
         edit.commit();
     }
 
@@ -152,16 +136,20 @@ public class LoginActivity extends AppCompatActivity {
         String phone = pref.getString("PHONE","");
         String pass = pref.getString("PASSWORD","");
         boolean remember = pref.getBoolean("REMEMBER", false);
+        boolean autoLogin = pref.getBoolean("AUTOLOGIN", false);
         if (remember == true){
             ed_phone_login.setText(phone);
             ed_password_login.setText(pass);
             chk_remember.setChecked(remember);
+            chk_autoLogin.setChecked(autoLogin);
+            if (autoLogin == true){
+                Login();
+            }
         }else{
             SharedPreferences.Editor edit = pref.edit();
             edit.clear();
             edit.commit();
         }
-
     }
 
     public void openDialog(){
@@ -171,7 +159,7 @@ public class LoginActivity extends AppCompatActivity {
         window.getAttributes().windowAnimations = R.style.DialogAnimation;
         btn_camera = dialog.findViewById(R.id.btn_camera);
         btn_album = dialog.findViewById(R.id.btn_albuml);
-        iv_camera_result = dialog.findViewById(R.id.iv_image_register);
+        iv_camera_result = dialog.findViewById(R.id.iv_image_edit);
         btn_save = dialog.findViewById(R.id.btn_save);
         ed_name = dialog.findViewById(R.id.ed_name);
         ed_phone_number = dialog.findViewById(R.id.ed_phone_number);
@@ -216,35 +204,11 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
         dialog.show();
     }
 
-    public Uri getImageUri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
-    }
-    public byte[] imageViewToByteArray(ImageView iv){
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) iv.getDrawable();
-        Bitmap bitmap = bitmapDrawable.getBitmap();
-        ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArray);
-        return byteArray.toByteArray();
-    }
 
-    public void gggggg(View v){
-//        CropImage.activity()
-//        .setGuidelines(CropImageView.Guidelines.ON)
-//                .setCropShape(CropImageView.CropShape.OVAL)
-//                .setActivityTitle("chỉnh sửa")
-//                .setCropMenuCropButtonTitle("Lưu")
-//                .setFixAspectRatio(true)
-//                .start(this);
-    }
+
         @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -279,7 +243,6 @@ public class LoginActivity extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 Uri resultUri = result.getUri();
-                Log.e("//=========", "onActivityResult: "+resultUri);
                 iv_camera_result.setImageURI(resultUri);
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();

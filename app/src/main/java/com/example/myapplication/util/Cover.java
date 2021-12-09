@@ -6,7 +6,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -19,6 +21,10 @@ import com.example.myapplication.R;
 
 import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -30,6 +36,13 @@ public class Cover {
         ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArray);
         return byteArray.toByteArray();
+    }
+
+    public static Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
     }
 
     public static Bitmap ByteToBitmap(byte[] bytes){
@@ -75,47 +88,9 @@ public class Cover {
         }
         return ca;
     }
-    public static float KhuyenMai(String ca ,int gia){
-        if (ca.equals("4")||ca.equals("5")||ca.equals("6")||ca.equals("7")){
-            return (float) ((float) gia*0.3);
-        }
-        return gia;
-    }
-    public static int KhuyenMaiTheoPhanTram(int phanTram,int gia){
-        if (phanTram == 10){
-            return gia - gia*10/100;
-        }
-        if (phanTram == 20){
-            return gia - gia*20/100;
-        }
-        if (phanTram == 30){
-            return gia - gia*30/100;
-        }
-        if (phanTram == 40){
-            return gia - gia*40/100;
-        }
-        if (phanTram == 50){
-            return gia - gia*50/100;
-        }
-        if (phanTram == 60){
-            return gia - gia*60/100;
-        }
-        if (phanTram == 70){
-            return gia - gia*70/100;
-        }if (phanTram == 80){
-            return gia - gia*80/100;
-        }
-        if (phanTram == 90){
-            return gia - gia*90/100;
-        }
-        return gia;
-    }
-    public static int KhuyenMai1(String ca){
-        if (ca.equals("4")||ca.equals("5")||ca.equals("6")||ca.equals("7")){
-            return 30;
-        }
-        return 10;
-    }
+
+
+
 
     public static String IntegerToVnd(int so){
         DecimalFormat formatter = new DecimalFormat("###,###,###");
@@ -162,6 +137,67 @@ public class Cover {
         return Integer.parseInt(strPos);
     }
 
+    public static SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH-mm");
+    public static Date StringToDate(String strDate, SimpleDateFormat format){
+        Date date = new Date();
+        try {
+            date = Cover.format.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+    public static Date ThoiGianThueToDate(String ngay, String ca){
+        String strDate = ngay+" "+caToGio(ca);
+        return StringToDate(strDate, format);
+    }
+
+    public static Date addHoursToDate(Date date, int hours) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.HOUR_OF_DAY, hours);
+        return calendar.getTime();
+    }
+
+    public static String caToGio(String ca){
+        ca = ca.trim();
+        if (ca.equals("1")){
+            return  "06-00";
+        }
+        if (ca.equals("2")){
+            return  "07-15";
+        }
+        if (ca.equals("3")){
+            return  "08-30";
+        }
+        if (ca.equals("4")){
+            return  "09-45";
+        }
+        if (ca.equals("5")){
+            return  "11-00";
+        }
+        if (ca.equals("6")){
+            return  "12-15";
+        }
+        if (ca.equals("7")){
+            return  "13-30";
+        }
+        if (ca.equals("8")){
+            return  "14-45";
+        }
+        if (ca.equals("9")){
+            return  "16-00";
+        }
+        if (ca.equals("10")){
+            return  "17-15";
+        }
+        if (ca.equals("11")){
+            return  "18-30";
+        }
+        else {
+            return  "19-45";
+        }
+    }
 
     public static long NgayCaGioToPos(String ngay,String ca, String gio){
         String posDate = String.valueOf(dateToPos(ngay, ca, 1));//= ngày

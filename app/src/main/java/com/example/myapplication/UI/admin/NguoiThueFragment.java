@@ -16,13 +16,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,7 +27,6 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.example.myapplication.ADadapter.NguoiThueAdapter;
 import com.example.myapplication.ADadapter.NguoiThueAdapter;
 import com.example.myapplication.R;
 import com.example.myapplication.dao.UserDAO;
@@ -118,7 +114,7 @@ public class NguoiThueFragment extends Fragment {
         window.getAttributes().windowAnimations = R.style.DialogAnimation;
         btn_camera = dialog.findViewById(R.id.btn_camera);
         btn_album = dialog.findViewById(R.id.btn_albuml);
-        iv_camera_result = dialog.findViewById(R.id.iv_image_register);
+        iv_camera_result = dialog.findViewById(R.id.iv_image_edit);
         btn_save = dialog.findViewById(R.id.btn_save);
         ed_name = dialog.findViewById(R.id.ed_name);
         ed_phone_number = dialog.findViewById(R.id.ed_phone_number);

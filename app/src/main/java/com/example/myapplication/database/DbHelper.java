@@ -15,7 +15,7 @@ import java.util.Date;
 
 public class DbHelper extends SQLiteOpenHelper{
     static final String dbName = "QLSB";
-    static final int dbVision = 4;
+    static final int dbVision = 6;
     public DbHelper(@Nullable Context context) {
         super(context, dbName, null, dbVision);
     }
@@ -157,6 +157,9 @@ public class DbHelper extends SQLiteOpenHelper{
                 "(4,'0777777775','1','"+ngay+"',0,200000, 1, 4, 'Ok')," +
                 "(4,'0777777775','3','"+ngay+"',0,200000, 1, 4, 'Ok')," +
                 "(4,'0777777775','4','"+ngay+"',0,200000, 1, 4, 'Ok')," +
+                "(11,'0777777777','1','24-11-2021',0,150000, 1, 3, 'ok')," +
+                "(9,'0777777777','3','29-11-2021',0,200000, 1, 2, 'Ok')," +
+                "(9,'0777777777','6','05-12-2021',0,150000, 1, 1, 'Ok')," +
                 "(4,'0777777775','6','"+ngay+"',0,200000, 1, 4, 'Ok')";
         db.execSQL(INSERT_PT);
 

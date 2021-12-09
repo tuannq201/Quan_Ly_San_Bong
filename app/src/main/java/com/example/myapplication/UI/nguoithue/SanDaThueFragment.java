@@ -5,8 +5,10 @@ import static android.content.Context.MODE_PRIVATE;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -52,8 +54,8 @@ public class SanDaThueFragment extends Fragment {
     List<PhieuThue> phieuThueList;
     ListView lv;
     SDTAdapter sdtAdapter;
-    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-    int posNow = 0;
+    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+    //int posNow = 0;
     Dialog dialog;
     CumSanDAO cumSanDAO;
     SanDAO sanDAO;
@@ -107,10 +109,11 @@ public class SanDaThueFragment extends Fragment {
 //            }
 //        });
 
-        Date now = new Date();
-        posNow = Cover.dateToPos(format.format(now), "1", 0);
+//        Date now = new Date();
+//        posNow = Cover.dateToPos(format.format(now), "1", 0);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -121,58 +124,77 @@ public class SanDaThueFragment extends Fragment {
         return v;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void setListView(){
         phieuThueList = phieuThueDAO.getPhieuByUser(phone);
         List<PhieuThue> list = new ArrayList<>();
-        for (int i=0;i<phieuThueList.size();i++){
-            PhieuThue pt = new PhieuThue();
-            pt = phieuThueList.get(i);
-            pt.position = Cover.dateToPos(pt.ngayThue, pt.caThue, 0);
-            list.add(pt);
-        }
+//        for (int i=0;i<phieuThueList.size();i++){
+//            PhieuThue pt = new PhieuThue();
+//            pt = phieuThueList.get(i);
+//            pt.position = Cover.dateToPos(pt.ngayThue, pt.caThue, 0);
+//            list.add(pt);
+//        }
 
         //sắp xếp phiếu thuê
-        Collections.sort(list, new Comparator<PhieuThue>() {
+//        Collections.sort(list, new Comparator<PhieuThue>() {
+//            @Override
+//            public int compare(PhieuThue t0, PhieuThue t1) {
+//                return Integer.compare(t0.position, t1.position);
+//            }
+//        });
+        phieuThueList.sort(new Comparator<PhieuThue>() {
             @Override
-            public int compare(PhieuThue t0, PhieuThue t1) {
-                return Integer.compare(t0.position, t1.position);
+            public int compare(PhieuThue pt0, PhieuThue pt1) {
+                Date date0 = Cover.ThoiGianThueToDate(pt0.ngayThue, pt0.caThue);
+                Date date1 = Cover.ThoiGianThueToDate(pt1.ngayThue, pt1.caThue);
+                return date0.compareTo(date1);
             }
         });
 
-        sdtAdapter = new SDTAdapter(getContext(), list, new ITFClickPhieuThue() {
+        sdtAdapter = new SDTAdapter(getContext(), phieuThueList, new ITFClickPhieuThue() {
             @Override
             public void OnClick(PhieuThue phieuThue) {
                 //Toast.makeText(getContext(), ""+phieuThue.maPT, Toast.LENGTH_SHORT).show();
                 if (validateDel(phieuThue.caThue, phieuThue.ngayThue)){
                     delete(String.valueOf(phieuThue.maPT));
                 }else {
-                    Toast.makeText(getContext(), "Không thể hủy", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "không thể hủy sân!", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
         lv.setAdapter(sdtAdapter);
 
-        for (int i=0;i<list.size();i++){
-            String strPos = String.valueOf(list.get(i).position);
-            String strPosSub = strPos.substring(strPos.length()-1, strPos.length());
-            int pos = Integer.parseInt(strPos);
-            if (pos >= posNow){
+        Date now = new Date();
+        for (int i=0;i<phieuThueList.size();i++){
+            Date datei = Cover.ThoiGianThueToDate(phieuThueList.get(i).ngayThue, phieuThueList.get(i).caThue);
+            if (datei.compareTo(now) >= 0){
                 lv.setSelection(i);
                 break;
             }
         }
 
+
+//        for (int i=0;i<phieuThueList.size();i++){
+//            String strPos = String.valueOf(list.get(i).position);
+//            String strPosSub = strPos.substring(strPos.length()-1, strPos.length());
+//            int pos = Integer.parseInt(strPos);
+//            if (pos >= posNow){
+//                lv.setSelection(i);
+//                break;
+//            }
+//        }
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                //Toast.makeText(getContext(), ""+pos, Toast.LENGTH_SHORT).show();
-                PhieuThue phieuThue = list.get(pos);
+                PhieuThue phieuThue = phieuThueList.get(pos);
                 dialog_danhGia(phieuThue);
             }
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void delete(String id) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Hủy thuê");
@@ -197,6 +219,7 @@ public class SanDaThueFragment extends Fragment {
 
     int rating = 0;
     boolean dDG = false;
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void dialog_danhGia(PhieuThue pt){
 
         dialog = new Dialog(getContext());
@@ -259,8 +282,6 @@ public class SanDaThueFragment extends Fragment {
 
              }
          });
-
-
          btn_dg.setOnClickListener(view -> {
              if (dDG == true){
                  PhieuThue phieuThue = new PhieuThue();
@@ -291,16 +312,26 @@ public class SanDaThueFragment extends Fragment {
 
     public boolean validateDel(String ca, String ngay){
         Date now = new Date();
-        int caInt = Integer.parseInt(ca);
-        if (caInt > 2){
-            ca = String.valueOf(caInt-2);
-        }
-        long posNow = Cover.NgayCaGioToPos(formatNgay.format(now), ca, formatGio.format(now));
-        long posPT = Cover.NgayCaGioToPos(ngay, ca, "");
-        Log.i("-----", "now "+posNow+" pt "+posPT+" rs:"+(posNow-posPT));
-        if (posNow <= posPT){
+//        int caInt = Integer.parseInt(ca);
+//        if (caInt > 8){
+//            ca = String.valueOf(caInt-2);
+//        }
+//        long posNow = Cover.NgayCaGioToPos(formatNgay.format(now), ca, formatGio.format(now));
+//        long posPT = Cover.NgayCaGioToPos(ngay, ca, "");
+//        Log.i("-----", "now "+posNow+" pt "+posPT+" rs:"+(posNow-posPT));
+//        if (posNow <= posPT){
+//            return true;
+//        }
+//        return false;
+        Date datePT = Cover.ThoiGianThueToDate(ngay, ca);
+        Date datePT2 = Cover.addHoursToDate(datePT, -2);
+        Log.i("commmm ", ""+datePT+"\n"+datePT2);
+        if (datePT2.compareTo(now) >= 0){
             return true;
+            //Toast.makeText(getContext(), "có thể xóa", Toast.LENGTH_SHORT).show();
         }
+//        Toast.makeText(getContext(), ""+datePT2.compareTo(now), Toast.LENGTH_SHORT).show();
+//        Log.i("commmm ", "PT2:"+datePT2+"    now:"+format.format(now)+" => "+datePT2.compareTo(now));
         return false;
     }
 }
