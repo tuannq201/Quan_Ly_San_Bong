@@ -104,7 +104,6 @@ public class UserFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_user, container, false);
         iv_user_avata = v.findViewById(R.id.profile_image);
-        //circleImageView = v.findViewById(R.id.profile_image);
         ed_1 = v.findViewById(R.id.ed_name_user);
         ed_2 = v.findViewById(R.id.ed_phone_user);
         ed_3 = v.findViewById(R.id.ed_pass_user);

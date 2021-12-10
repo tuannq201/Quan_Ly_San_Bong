@@ -134,14 +134,11 @@ public class LoginActivity extends AppCompatActivity {
         String phone = pref.getString("PHONE","");
         String pass = pref.getString("PASSWORD","");
         boolean remember = pref.getBoolean("REMEMBER", false);
-        boolean autoLogin = pref.getBoolean("AUTOLOGIN", false);
         if (remember == true){
             ed_phone_login.setText(phone);
             ed_password_login.setText(pass);
             chk_remember.setChecked(remember);
-            if (remember == true){
-                Login();
-            }
+            Login();
         }else{
             SharedPreferences.Editor edit = pref.edit();
             edit.clear();

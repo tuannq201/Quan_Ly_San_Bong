@@ -88,7 +88,11 @@ public class PhieuThueDAO {
     }
 
     public int soDanhGiaCumSan(String maCS){
-        String sql = "SELECT * FROM PhieuThue INNER JOIN San ON PhieuThue.maSan = San.maSan WHERE San.maCumSan=? AND PhieuThue.danhGia = 1";
+        String sql = "SELECT * FROM PhieuThue " +
+                "INNER JOIN San " +
+                "ON PhieuThue.maSan = San.maSan " +
+                "WHERE San.maCumSan=? " +
+                "AND PhieuThue.danhGia = 1";
         return getData(sql, maCS).size();
     }
     public int soLuotThueCumSan(String maCS){
@@ -189,13 +193,10 @@ public class PhieuThueDAO {
             }catch (Exception e1){
                 if (ca.equals("4")||ca.equals("5")||ca.equals("6")||ca.equals("7")){
                     trangThai.soKM = 20;
-                    Log.i("nnnnn", ""+trangThai.soKM);
                 }else {
                     trangThai.soKM = 0;
                 }
-
             }
-
             trangThai.maSan = maSan;
             trangThai.ca = ca;
             trangThai.tienSan = san.giaSan;

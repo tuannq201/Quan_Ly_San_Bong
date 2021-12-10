@@ -176,6 +176,9 @@ public class TongQuanFragment extends Fragment {
         list.clear();
         for (int i = 1; i <= 12 ; i++) {
             item = phieuThueDAO.checkTrangThai(maSanHienTai, String.valueOf(i), ngay);
+            if (item.taiKhoan.equals(phone)){
+                item.taiKhoan = "Giữ sân";
+            }
             list.add(item);
         }
         ThuNhapNgay();
@@ -222,10 +225,13 @@ public class TongQuanFragment extends Fragment {
         btnGiuSanDialog = dialog.findViewById(R.id.btnGiuSan);
         btnHuy = dialog.findViewById(R.id.btnHuy);
 
-        edGiaThueDialog.setText("   Giá Thuê: "+item.tienSan);
+        edGiaThueDialog.setText("   Giá Thuê: "+Cover.IntegerToVnd(item.tienSan)+"đ");
         edCaThueDialog.setText("   Tên Ca: "+item.ca);
         edGioThueDialog.setText("   Giờ Thuê: "+ Cover.caToTime(String.valueOf(item.ca)));
         edTrangThaiDialog.setText("   Trạng Thái: "+item.taiKhoan);
+        if (item.taiKhoan.equals(phone)){
+            edTrangThaiDialog.setText("   Trạng Thái: Giữ sân");
+        }
         tvKhuyenMaiDialog.setText("Khuyến Mãi(%): ");
         edKhuyenMaiDialog.setText(""+item.soKM);
         edKhuyenMaiDialog.setEnabled(false);
@@ -240,7 +246,7 @@ public class TongQuanFragment extends Fragment {
                 phieuThue.ngayThue = ngay;
                 phieuThue.caThue = String.valueOf(ca);
                 phieuThue.maSan = maSan;
-                phieuThue.tienSan = item.tienSan;
+                phieuThue.tienSan = 0;
                 phieuThue.danhGia = 0;
                 phieuThue.sao = 0;
                 phieuThue.soKM = item.soKM;

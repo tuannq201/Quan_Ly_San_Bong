@@ -67,9 +67,12 @@ public class TongQuanAdapter extends ArrayAdapter<TrangThai> {
                 if (item.taiKhoan.contains("0")){
                     tv_3.setText("Đã Thuê");
                     tv_3.setTextColor(Color.GREEN);
-                }else {
+                }else if(item.taiKhoan.equals("Chưa Thuê")){
                     tv_3.setText("Chưa Thuê");
                     tv_3.setTextColor(Color.RED);
+                }else {
+                    tv_3.setText("Giữ sân");
+                    tv_3.setTextColor(Color.BLUE);
                 }
             }catch (Exception e){
                 tv_1.setText("hhhhhhhh");

@@ -97,6 +97,10 @@ public class CaNhanOfChuSanFragment extends Fragment {
         tvLogOut = v.findViewById(R.id.dang_xuat);
         tvLogOut.setOnClickListener(v1 -> {
             Intent intent = new Intent(this.getContext(), LoginActivity.class);
+            SharedPreferences pref = getContext().getSharedPreferences("USER_FILE", MODE_PRIVATE);
+            SharedPreferences.Editor edit = pref.edit();
+            edit.putBoolean("REMEMBER",false);
+            edit.commit();
             startActivity(intent);
         });
         tvThemCumSan = v.findViewById(R.id.text_them_cum_san);
