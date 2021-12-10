@@ -29,6 +29,7 @@ import com.example.myapplication.entity.San;
 import com.example.myapplication.entity.TrangThai;
 import com.example.myapplication.util.Cover;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -57,7 +58,7 @@ public class CaSanFragment extends Fragment {
     String ngay = "";
     TrangThai trangThai;
     String phone;
-    int posNow = 0;
+    //int posNow = 0;
     Date now;
 
     public CaSanFragment(San san, String type) {//type: CS or NT
@@ -92,7 +93,7 @@ public class CaSanFragment extends Fragment {
 
         now = new Date();
         ngay = formatNgay.format(now);
-        posNow = Cover.dateToPos(formatNgay.format(now), "", 1);
+        //posNow = Cover.dateToPos(formatNgay.format(now), "", 1);
         tv_san_ngay.setText(""+san.tenSan+" ,"+ngay+" ,"+ formatGio.format(now));
         btn_chon_ngay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +122,8 @@ public class CaSanFragment extends Fragment {
 
     public void openDialog(int ca){
         if (ngay.equals(formatNgay.format(now))){
-            if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
+            Date dateCa = Cover.ThoiGianThueToDate(ngay, String.valueOf(ca));
+            if (dateCa.compareTo(now) < 0){
                 Toast.makeText(getContext(), "đã quá thời gian thuê!!!", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -191,16 +193,27 @@ public class CaSanFragment extends Fragment {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(now);
                 calendar.add(Calendar.DAY_OF_YEAR, +7);
-                int posAdd7 = Cover.dateToPos(formatNgay.format(calendar.getTime()), "", 1);
-                if (Cover.dateToPos(ngay, "", 1) < posNow){
-                    Toast.makeText(getContext(), "Vui lòng chọn ngày khác!!!", Toast.LENGTH_SHORT).show();
-                    ngay = formatNgay.format(now);
-                    tv_san_ngay.setText(ngay);
-                }else if ((Cover.dateToPos(ngay , "", 1) > (posAdd7))){
+                Date dateAdd7 = calendar.getTime();
+                Date dateChon = new Date();
+                String strNow = formatNgay.format(now)+ " 00-00";
+                try {
+                    dateChon = formatNgay.parse(ngay);
+                    Date dateNow = Cover.format.parse(strNow);
+                    if (dateChon.compareTo(dateNow) < 0){
+                        Toast.makeText(getContext(), "Vui lòng chọn ngày khác!!!", Toast.LENGTH_SHORT).show();
+                        ngay = formatNgay.format(now);
+                        tv_san_ngay.setText(ngay);
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                if (dateChon.compareTo(dateAdd7) > 0){
                     Toast.makeText(getContext(), "Chỉ được thuê sân trước 7 ngày\nvui lòng chọn ngày khác!!!", Toast.LENGTH_SHORT).show();
                     ngay = formatNgay.format(now);
                     tv_san_ngay.setText(ngay);
                 }
+
                 setCaSan(ngay);
             }
         },year, month, day);

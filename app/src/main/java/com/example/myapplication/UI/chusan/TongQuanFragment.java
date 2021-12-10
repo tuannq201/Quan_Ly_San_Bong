@@ -38,6 +38,7 @@ import com.example.myapplication.entity.TrangThai;
 import com.example.myapplication.entity.User;
 import com.example.myapplication.util.Cover;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -136,6 +137,7 @@ public class TongQuanFragment extends Fragment {
                 calendar.setTime(now);
                 calendar.add(Calendar.DAY_OF_YEAR, +7);
                 int posAdd7 = Cover.dateToPos(formatNgay.format(calendar.getTime()), "", 1);
+
                 if (Cover.dateToPos(ngay, "", 1) < posNow){
                     Toast.makeText(getContext(), "Vui lòng chọn ngày hôm nay trở về sau để quản lý!!!", Toast.LENGTH_SHORT).show();
                     tvNgay.setText(ngay);
@@ -246,7 +248,12 @@ public class TongQuanFragment extends Fragment {
                     Toast.makeText(getContext(),"Ca sân đã được thuê !",Toast.LENGTH_LONG).show();
                     return;
                 }else if (ngay.equals(formatNgay.format(now))){
-                    if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
+//                    if (Cover.caToPos(String.valueOf(ca)) < Cover.hourToPos(formatGio.format(now))){
+//                        Toast.makeText(getContext(), "Đã vượt quá thời gian của ca thuê!!!", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+                    Date dateCa = Cover.ThoiGianThueToDate(ngay, String.valueOf(ca));
+                    if (dateCa.compareTo(now) < 0){
                         Toast.makeText(getContext(), "Đã vượt quá thời gian của ca thuê!!!", Toast.LENGTH_SHORT).show();
                         return;
                     }
