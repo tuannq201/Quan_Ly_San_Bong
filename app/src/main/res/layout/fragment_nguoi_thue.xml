@@ -45,7 +45,7 @@
         android:divider="@null"
         android:dividerHeight="0dp"
         android:layout_marginTop="70dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
