@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.example.myapplication.UI.chusan.DanhGiaFragment;
 import com.example.myapplication.adapter.ListSanAdapter;
 import com.example.myapplication.dao.PhieuThueDAO;
 import com.example.myapplication.dao.SanDAO;
@@ -84,8 +85,18 @@ public class SanCumSanFragment extends Fragment {
 
             @Override
             public void onItemClick(San san, int type) {
-                onClickGoToCaSan(san);
+
                 //Toast.makeText(getContext(), ""+san.soSao, Toast.LENGTH_SHORT).show();
+                if (type == 6){
+                    //show dánh giá
+                    DanhGiaFragment fragment = new DanhGiaFragment(String.valueOf(san.maSan));
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frm_nguoi_thue, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }else {
+                    onClickGoToCaSan(san);
+                }
             }
             @Override
             public void onItemClick(PhieuThue phieuThue) {

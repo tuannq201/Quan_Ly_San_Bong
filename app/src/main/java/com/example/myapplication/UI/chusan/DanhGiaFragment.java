@@ -41,7 +41,7 @@ public class DanhGiaFragment extends Fragment {
     public PhieuThueDAO phieuThueDAO;
     public SanDAO sanDAO;
     public UserDAO userDAO;
-    TextView tv_1, tv_2, tv_3, tv_4;
+    TextView tv_1, tv_2, tv_3, tv_4, tv_5;
     ListView lv;
     DanhGiaAdapter adapter;
     int tongSaoSan = 0;
@@ -115,13 +115,20 @@ public class DanhGiaFragment extends Fragment {
         tv_2 = v.findViewById(R.id.tv_frag_dg_2);
         tv_3 = v.findViewById(R.id.tv_frag_dg_3);
         tv_4 = v.findViewById(R.id.tv_frag_dg_4);
+        tv_5 = v.findViewById(R.id.tv_frag_odg);
 
         tv_1.setText("Phản hồi người thuê sân - "+sanDAO.getID(maSan).tenSan);
         tv_2.setText("Số lượt thuê sân: "+listPT.size());
         tv_3.setText("Số đánh giá: "+listDG.size());
-        float sao = tongSaoSan / listDG.size();
-        //Toast.makeText(getContext(), ""+sao, Toast.LENGTH_SHORT).show();
-        tv_4.setText("Đánh giá trung bình: "+sao+" sao");
+        try {
+            float sao = tongSaoSan / listDG.size();
+            tv_4.setText("Đánh giá trung bình: "+sao+" sao");
+        }catch (Exception e){
+            tv_4.setText("Đánh giá trung bình: 0");
+        }
+        if (listDG.size() > 0){
+            tv_5.setVisibility(View.GONE);
+        }
         lv.setAdapter(adapter);
         return v;
     }

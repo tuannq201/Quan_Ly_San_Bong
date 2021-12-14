@@ -55,4 +55,15 @@
         android:text="đánh giá trung bình: "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_frag_dg_3" />
+
+    <TextView
+        android:id="@+id/tv_frag_odg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chưa có đánh giá!!!"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lv_show_dg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lv_show_dg" />
 </androidx.constraintlayout.widget.ConstraintLayout>
