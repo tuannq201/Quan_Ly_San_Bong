@@ -119,7 +119,17 @@
                             android:gravity="center_vertical"
                             android:text="99"
                             android:textSize="12dp" />
+
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_show_dg_san"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingBottom="5dp"
+                        android:text="chi tiết đánh giá"
+                        android:textSize="14dp" />
 
                 </LinearLayout>
             </LinearLayout>

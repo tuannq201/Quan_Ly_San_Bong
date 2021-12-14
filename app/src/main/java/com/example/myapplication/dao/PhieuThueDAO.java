@@ -151,6 +151,10 @@ public class PhieuThueDAO {
         String sql = "SELECT * FROM PhieuThue INNER JOIN San ON PhieuThue.maSan = San.maSan WHERE San.maCumSan=?";
         return getData(sql, maCS);
     }
+    public List<PhieuThue> getPhieuThueSan(String maSan){
+        String sql = "SELECT * FROM PhieuThue WHERE maSan=?";
+        return getData(sql, maSan);
+    }
 
 
     public PhieuThue getID(String id){

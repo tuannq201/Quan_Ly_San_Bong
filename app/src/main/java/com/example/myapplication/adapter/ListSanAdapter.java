@@ -77,6 +77,9 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
             return true;
         });
 
+        holder.tv_show_dg.setOnClickListener(view -> {
+            itfOnItenClick.onItemClick(san, 6);
+        });
 
 
     }
@@ -97,7 +100,7 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
     }
 
     public class ListsanViewHolder extends RecyclerView.ViewHolder{
-        private TextView tvTenSan, tvLoaiSan, tvGiaSan, tvSoDanhGia;
+        private TextView tvTenSan, tvLoaiSan, tvGiaSan, tvSoDanhGia, tv_show_dg;
         private ImageView imgSan;
         private LinearLayout layoutDelete, layout;
         private SwipeRevealLayout swipeRevealLayout;
@@ -116,6 +119,7 @@ public class ListSanAdapter extends RecyclerView.Adapter<ListSanAdapter.ListsanV
             layout = itemView.findViewById(R.id.layout_cs);
             ratingBar = itemView.findViewById(R.id.rb_san);
             tvSoDanhGia = itemView.findViewById(R.id.tv_soDanhGiaSan);
+            tv_show_dg = itemView.findViewById(R.id.tv_show_dg_san);
 //            cv = (CardView) itemView;
         }
     }

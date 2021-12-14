@@ -137,6 +137,16 @@ public class Cover {
         return Integer.parseInt(strPos);
     }
 
+    public static SimpleDateFormat formatD = new SimpleDateFormat("dd-MM-yyyy");
+    public static Date StringToDate2(String strDate){
+        Date date = new Date();
+        try {
+            date = Cover.formatD.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
     public static SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH-mm");
     public static Date StringToDate(String strDate, SimpleDateFormat format){
         Date date = new Date();

@@ -58,7 +58,6 @@ import java.util.Locale;
  * create an instance of this fragment.
  */
 public class SanFragment extends Fragment {
-
     TextView tv_tenSan_sdg, tv_tongThue, tv_tong_dg, tv_sao_sdg;
     ImageView btn_dongShow;
     ListView lv_showdg;
@@ -83,10 +82,8 @@ public class SanFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     public static SanFragment newInstance(String param1, String param2) {
         SanFragment fragment = new SanFragment();
-
         return fragment;
     }
 
@@ -106,8 +103,6 @@ public class SanFragment extends Fragment {
                 cumSanList.add(listCS.get(i));
             }
         }
-
-
     }
 
     @Override
@@ -137,11 +132,9 @@ public class SanFragment extends Fragment {
                 return false;
             }
         });
-
         iv_chonDD.setOnClickListener(view -> {
             openDialogCDD(getContext());
         });
-
 
         return v;
     }
@@ -169,7 +162,6 @@ public class SanFragment extends Fragment {
         super.onResume();
         ChipNavigationBar chip = getActivity().findViewById(R.id.chip_navi_nguoi_thue);
         chip.setVisibility(View.VISIBLE);
-
 
         search(NguoiThueActivity.ddiaiemDC);
 
@@ -242,7 +234,6 @@ public class SanFragment extends Fragment {
         btn_dongShow.setOnClickListener(view -> {
             dialog.dismiss();
         });
-
         dialog.show();
     }
 
@@ -268,7 +259,6 @@ public class SanFragment extends Fragment {
                     dg.tenNT = tenNT;
                     String tenSan = sanDAO.getID(String.valueOf(pt.maSan)).tenSan;
                     dg.tenSan = tenSan;
-
                     rsList.add(dg);
                 }
 

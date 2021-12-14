@@ -35,6 +35,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.UI.nguoithue.CaSanFragment;
 import com.example.myapplication.adapter.ListSanAdapter;
 import com.example.myapplication.adapter.SpinnerCumSanAdapter;
 import com.example.myapplication.dao.CumSanDAO;
@@ -150,6 +151,14 @@ public class ListSanFragment extends Fragment {
                 }
                 if (type == 2){
                     delete(String.valueOf(san.maSan));
+                }
+                if (type == 6){
+                    //show dánh giá
+                    DanhGiaFragment fragment = new DanhGiaFragment(String.valueOf(san.maSan));
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_container, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
                 }
             }
             @Override

@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.2574074074074074" />
+        <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/activity_chu_san.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/activity_login.xml" value="0.46647230320699706" />
         <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/activity_nguoi_thue.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/dialog_danh_gia.xml" value="0.4" />
@@ -11,12 +12,14 @@
         <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/dialog_register_user.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/dialog_show_danh_gia.xml" value="0.4" />
         <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/fragment_ca_san.xml" value="0.25" />
+        <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/fragment_danh_gia.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/fragment_san.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/fragment_san_cum_san.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/fragment_san_da_thue.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/fragment_user.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/item_cum_san.xml" value="0.4" />
-        <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/item_list_san_cs_layout.xml" value="0.25" />
+        <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/item_list_san_cs_layout.xml" value="0.4" />
+        <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/item_list_san_layout.xml" value="0.25" />
         <entry key="..\:/Quan_Ly_San_Bong_01_12/app/src/main/res/layout/item_show_danh_gia.xml" value="0.4" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/drawable/br_textview.xml" value="0.26614583333333336" />
         <entry key="..\:/Quan_Ly_San_Bong_da1/app/src/main/res/drawable/ic_soccer_ball_black.xml" value="0.26614583333333336" />
